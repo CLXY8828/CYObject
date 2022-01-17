@@ -1,5 +1,6 @@
 package com.rj.bd.managerall.postinfo;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,6 +26,10 @@ public class PostinfoServlet extends  HttpServlet{
 			    	this.query(request,response);
 			    }else if("add".equals(method)){
 			    	this.add(request,response);
+			    }else if("delete".equals(method)){
+			    	this.delete(request,response);
+			    }else if("edit".equals(method)){
+			    	this.edit(request,response);
 			    }
 		} 
 		  catch (Exception e) 
@@ -34,17 +39,79 @@ public class PostinfoServlet extends  HttpServlet{
 		   }
 	}
 	/**
+	 * @desc  编辑上传
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
+		//1.接值
+		String eid = request.getParameter("eid");
+		String employment_name = request.getParameter("employment_name_"+eid);
+		String gsname = request.getParameter("gsname_"+eid);
+		String salary_upload = request.getParameter("qian_"+eid);
+		String salarytimes_upload = request.getParameter("xin_"+eid);
+		String salary = salary_upload+"."+salarytimes_upload;//吧薪资要求和多少薪加起来
+		String scale = request.getParameter("scale_"+eid);
+		String nature_id = request.getParameter("nature_id_"+eid);
+		String recrultsNumb = request.getParameter("recrultsNumb_"+eid);
+		String welfare = request.getParameter("welfare_"+eid);
+		String gstype = request.getParameter("gstype_"+eid);
+		String zwtype = request.getParameter("zwtype_"+eid);
+		String address = request.getParameter("address_"+eid);
+		String education = request.getParameter("education_"+eid);
+		String phone = request.getParameter("phone_"+eid);
+		String experience = request.getParameter("experience_"+eid);
+		String employment_describe = request.getParameter("employment_describe_"+eid);
+		String note = request.getParameter("note_"+eid);
+		String introduce = request.getParameter("introduce_"+eid);
+		String demand = request.getParameter("demand_"+eid);
+		String subtime = Dates.CurrentTime();
+		String readyNumb= request.getParameter("readyNumb_"+eid);
+		System.out.println(subtime);
+		//2.存值
+		postinfoservice.editValue(eid,nature_id,gsname,employment_name,salary,phone,
+				employment_describe,introduce,note,address,education,experience,zwtype,
+				scale,welfare,demand,recrultsNumb,subtime,readyNumb,gstype);
+		//3.重定向
+		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query");
+	}
+	/**
+	 * @desc  删除岗位数据
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws FileNotFoundException 
+	 * @throws ClassNotFoundException 
+	 * @throws InterruptedException 
+	 * @throws ServletException 
+	 */
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException, ServletException, InterruptedException {
+		String eid = request.getParameter("eid");
+		System.out.println(eid);
+		postinfoservice.deleteValue(eid);
+		//3.重定向
+		this.query(request, response);
+	}
+	/**
 	 * @desc  添加岗位请求
 	 * @param request
 	 * @param response
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws FileNotFoundException 
+	 * @throws ClassNotFoundException 
 	 */
-	private void add(HttpServletRequest request, HttpServletResponse response) {
-		//接值
+	private void add(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		//1.接值
 		String employment_name = request.getParameter("employment_name");
 		String gsname = request.getParameter("gsname");
 		String salary_upload = request.getParameter("salary_upload");
 		String salarytimes_upload = request.getParameter("salarytimes_upload");
-		String salary = salary_upload+"."+salary_upload;//吧薪资要求和多少薪加起来
+		String salary = salary_upload+"."+salarytimes_upload;//吧薪资要求和多少薪加起来
 		String scale = request.getParameter("scale");
 		String nature_id = request.getParameter("nature_id");
 		String recrultsNumb = request.getParameter("recrultsNumb");
@@ -56,8 +123,8 @@ public class PostinfoServlet extends  HttpServlet{
 		String phone = request.getParameter("phone");
 		String experience = request.getParameter("experience");
 		String employment_describe = request.getParameter("employment_describe");
-		String note = request.getParameter("experience");
-		String introduce = request.getParameter("experience");
+		String note = request.getParameter("note");
+		String introduce = request.getParameter("introduce");
 		String demand = request.getParameter("demand");
 		String subtime = Dates.CurrentTime();
 		int readyNumb= 0;
@@ -66,6 +133,8 @@ public class PostinfoServlet extends  HttpServlet{
 		postinfoservice.addValue(nature_id,gsname,employment_name,salary,phone,
 				employment_describe,introduce,note,address,education,experience,zwtype,
 				scale,welfare,demand,recrultsNumb,subtime,readyNumb,gstype);
+		//3.重定向
+		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query");
 	}
 	/**
 	 * @desc  查询展示界面
@@ -78,9 +147,12 @@ public class PostinfoServlet extends  HttpServlet{
 	 * @throws InterruptedException
 	 */
 	private void query(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException, InterruptedException {
-		System.out.println(111111);
 		List<Map<String, Object>> list = postinfoservice.selectEmploymentAndCompanynature();
+		int count = postinfoservice.selectEmploymentNum();
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("start", 0);
+		request.setAttribute("end", 10);
 		request.getRequestDispatcher("/managerjsp/post/postinfo.jsp").forward(request, response);
 	}
 

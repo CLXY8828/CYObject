@@ -29,9 +29,17 @@
 				text-align: center;
 			}
 		</style>
+		
 	</head>
 	<body>
-	<%List list=(List)request.getAttribute("list");%>
+	<%List list=(List)request.getAttribute("list");
+	  int count = (Integer)request.getAttribute("count");
+	  int start = (Integer)request.getAttribute("start");
+	  int end = (Integer)request.getAttribute("end");
+	  if(list.size()<end){
+		  end=list.size();
+	  }
+	%>
 		<div class="container">
 			<div id="header">
 				<div class="row" style="margin-left: 10px;margin-right: 10px;">
@@ -135,7 +143,7 @@
 										</span>
 										<span style="margin-left: 2%;">
 											公司类型：
-											<input type="text" name="type" id="comtype_upload" value="" style="width: 20%;"/>
+											<input type="text" name="gstype" id="comtype_upload" value="" style="width: 20%;"/>
 										</span>
 										<span style="margin-left: 2%;">
 											公司所在地：
@@ -194,19 +202,19 @@
 									<br>
 									<div style="margin-left: -1.5%;">
 										<span >岗位描述：</span><br>
-										<textarea rows="2" cols="97%" name="employment_describe"></textarea>
+										<textarea rows="2" cols="97%" style="width: 97%;" name="employment_describe"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
 										<span>任职要求：</span><br>
-										<textarea rows="4" cols="97%" name="demand"></textarea>
+										<textarea rows="4" cols="97%" style="width: 97%;" name="demand"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
 										<span>公司信息：</span><br>
-										<textarea rows="4" cols="97%" name="introduce"></textarea>
+										<textarea rows="4" cols="97%" style="width: 97%;" name="introduce"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
 										<span>备注</span><br>
-										<textarea rows="2" cols="97%" name="note"></textarea>
+										<textarea rows="2" cols="97%" style="width: 97%;" name="note"></textarea>
 									</div>
 								</div>
 								<div class="modal-footer">
@@ -226,7 +234,6 @@
 						删除需要id请自己加
 						蟹蟹
 					 -->
-					<form action="<%=request.getContextPath()%>/postinfo/postin.do?method=delete" method="post" name="delform">
 						<table border="0px" cellspacing="5px" cellpadding="0px" style="width: 100%;" class="table">
 							<tr>
 								<th width="8%">序号</th>
@@ -241,7 +248,7 @@
 							</tr>
 							<!-- /*以下放数据 -->
 							<% 
-							for(int i =0; i < list.size();i++){
+							for(int i =start; i < end;i++){
 								Map map = (Map)list.get(i);
 								String salary = (String)map.get("salary");
 								String [] salaryarr  = salary.split("\\.");
@@ -258,7 +265,9 @@
 								<td><%=map.get("gsname")%></td>
 								<td><a href="#idenfier" data-toggle="modal" data-target="#edit<%=map.get("eid")%>"><img src="../img/edit.png" style="width: 30px;height:30px;" ></a></td>
 								<td><a href="#idenfier" data-toggle="modal" data-target="#view<%=map.get("eid")%>"><img src="../img/view.png" style="width: 30px;height:30px;" ></a></td>
-								<td><a href="" onclick="checkdel(delform)"><img src="../img/delete.png" style="width: 30px;height: 30px;" ></a></td>
+								<td>
+								<a href="" onclick="checkdel('<%=map.get("eid")%>')"><img src="../img/delete.png" style="width: 30px;height: 30px;" ></a>
+								</td>
 							</tr>
 							<div class="modal fade" id="edit<%=map.get("eid")%>" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
 								<div class="modal-dialog modal-lg" role="document">
@@ -413,19 +422,19 @@
 												<br>
 												<div style="margin-left: -1.5%;">
 													<span >岗位描述：</span><br>
-													<textarea rows="2" cols="97" name="employment_describe_<%=map.get("eid") %>"><%=map.get("employment_describe")%></textarea>
+													<textarea rows="2" cols="97%" style="width: 97%;" name="employment_describe_<%=map.get("eid") %>"><%=map.get("employment_describe")%></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>任职要求：</span><br>
-													<textarea rows="4" cols="97" name="demand_<%=map.get("eid") %>"><%=map.get("demand")%></textarea>
+													<textarea rows="4" cols="97%" style="width: 97%;" name="demand_<%=map.get("eid") %>"><%=map.get("demand")%></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>公司信息：</span><br>
-													<textarea rows="4" cols="97" name="introduce_<%=map.get("eid") %>"><%=map.get("introduce")%></textarea>
+													<textarea rows="4" cols="97%" style="width: 97%;" name="introduce_<%=map.get("eid") %>"><%=map.get("introduce")%></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>备注：</span><br>
-													<textarea rows="2" cols="97%" name="note_<%=map.get("eid") %>"><%=map.get("note")%></textarea>
+													<textarea rows="2" cols="97%" style="width: 97%;" name="note_<%=map.get("eid") %>"><%=map.get("note")%></textarea>
 												</div>
 											</div>
 											<div class="modal-footer">
@@ -526,19 +535,19 @@
 											<br>
 											<div style="margin-left: -1.5%;">
 												<span >岗位描述：</span><br>
-												<textarea disabled="disabled" rows="2" cols="97%" name="descript_view"><%=map.get("employment_describe")%></textarea>
+												<textarea disabled="disabled" rows="2" cols="97%" style="width: 97%;" name="descript_view"><%=map.get("employment_describe")%></textarea>
 											</div>
 											<div style="margin-left: -1.5%;">
 												<span>任职要求：</span><br>
-												<textarea disabled="disabled" rows="4" cols="97%" name="workrequire_view"><%=map.get("demand")%></textarea>
+												<textarea disabled="disabled" rows="4" cols="97%" style="width: 97%;" name="workrequire_view"><%=map.get("demand")%></textarea>
 											</div>
 											<div style="margin-left: -1.5%;">
 												<span>公司信息：</span><br>
-												<textarea disabled="disabled" rows="4" cols="97%" name="cominfo_view"><%=map.get("introduce")%></textarea>
+												<textarea disabled="disabled" rows="4" cols="97%" style="width: 97%;" name="cominfo_view"><%=map.get("introduce")%></textarea>
 											</div>
 											<div style="margin-left: -1.5%;">
 													<span>备注：</span><br>
-													<textarea rows="2" cols="97%" name=""><%=map.get("note")%></textarea>
+													<textarea rows="2" cols="97%" style="width: 97%;" name=""><%=map.get("note")%></textarea>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -557,14 +566,23 @@
 								<td colspan="9">
 									<div class="row" style="background-color: #dafffb;">
 										<div  style="float: left;">
-											<a href="/*"><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
-											<a href="/*"><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+										<%if(start==0){%>
+											<span onclick="starthead()" class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span>
+										<%}else{%>
+											<a href=""><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+										<%}%>
+										<%if(end==list.size()){%>
+											<span onclick="end()" class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span>
+										<%}else{%>
+											<a href=""><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+										<%}%>
+											
 										</div>
 										<span style="float: left; margin-left: 10px;">
-											<span>150</span>条总记录数
+											<span><%=count %></span>条总记录数
 										</span>
 										<span style="float: left; margin-left: 20px;">
-											显示<span>10</span>页
+											显示<span><%=(count/10)!=0?(count/10):1%></span>页
 										</span>
 										<span style="float: left; margin-left: 35px;">
 											跳转至
@@ -574,11 +592,11 @@
 										<div style="float: right;">
 											<span>
 												每页显示
-												<select name="infonum" style="width:80px">
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option>
-													<option value="30">30</option>
+												<select name="pageinfonum" style="width:80px">
+													<option value="15">10</option>
+													<option value="20">15</option>
+													<option value="25">20</option>
+													<option value="30">25</option>
 												</select>
 											</span>
 										</div>
@@ -586,17 +604,23 @@
 								</td>
 							</tr>
 						</table>
-					</form>
 				</div>
 			</div>
 		</div>
 	</body>
 	<script type="text/javascript">
+		function end() {
+			alert("已经到底了")
+		}
+		function starthead() {
+			alert("已经到头了")
+		}
 		function checkdel(delform){
 			if(confirm("确认删除该公司招聘信息？")){
-				delform.submit();
+				var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=delete&eid="+delform+"";	
+				  window.location.href=encodeURI(url);	
 			}
-		}
+			}
 	</script>
 </html>
     
