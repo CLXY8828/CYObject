@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>18级就业详情</title>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			.container{
+				width: 95%;
+				left: 2.5%;
+			}
+			th{
+				font-size: 20px;
+				text-align: center;
+			}
+			td{
+				font-size: 20px;
+				text-align: center;
+			}
+			.modal-lg{
+				width: 80%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row" style="margin-left: 10px;margin-right: 10px;">
+				<form action="/*" method="post">
+					<img src="../../img/userA.png" style="width: 80px;height: 80px;">
+					<span class="h3" style="position: absolute;margin-top: 25px;">18级就业详情信息表</span>
+					<span style="color: #00FFFF;top: 38px;position: absolute;" class="h3"><a href="/*" style="margin-right: 20px;">一键导出</a><a href="/*">选中导出</a></span>
+					<span id="addclass" style="float: right;padding-top: 10px;" class="h3">
+						<select name="queryinfo" style="width: 90px;height: 39px;border-radius: 10px 0px 0px 10px;">
+							<option value="name">姓名</option>
+							<option value="stu_id">学号</option>
+						</select>
+						<input type="text" name="queryCondition" id="queryCondition" value="" style="width: 300px;height: 40px;margin-left: -8px;border-radius: 0px 10px 10px 0px;" />
+						<input type="submit" id="" value="搜索" style="height: 40px;width: 90px;margin-left: -8px;font-size: 20px;margin-top: -3px;" class="btn btn-primary" />
+					</span>
+				</form>
+			</div>
+			<hr style="border: #000000 2px solid;margin-top: 7px; width: 100%;" />
+			
+			<div style="width: 100%;">
+				<table border="0px" cellspacing="5px" cellpadding="0px" class="table" style="width:100%">
+					<tr>
+						<th width="5%">序号</th>
+						<th width="10%">姓名</th>
+						<th width="10%">学号</th>
+						<th width="15%">身份证</th>
+						<th width="13%">考生号</th>
+						<th width="10%">联系电话</th>
+						<th width="19%">单位名称</th>
+						<th width="5%">编辑</th>
+						<th width="5%">详情</th>
+						<th width="5%">导出</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>张三</td>
+						<td>1511307526</td>
+						<td>130603********0918</td>
+						<td>17130601111</td>
+						<td>999999999</td>
+						<td>单位名称单位名称单位</td>
+						<td><a href="#idenfier" data-toggle="modal" data-target="#edit"><img src="../../img/edit.png" style="width: 30px;height:30px;" ></a></td>
+						<td><a href="/*"><img src="../../img/view.png" style="width: 30px;height: 30px;" ></a></td>
+						<td><a href="/*"><img src="../../img/expoet2.png" style="width:30px;height: 30px;" ></a></td>
+					</tr>
+					<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<form action="/*" method="post">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<div class="row">
+											<h2 class="modal-title" id="modaltitle" style="margin-left: 2%;">查看
+											<a href="/*"><span class="h3">删除该学生信息</span></a></h2>
+										</div>
+									</div>
+									<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
+										<div class="">
+											<div class="row">
+												<span  class="h3">个人信息</span>
+											</div>
+											<br>
+											<div class="row">
+												<span style="margin-left: 5%;">
+													姓名：
+													<input type="text" name="username_edit" id="username_edit" value="" style="width: 6%;" />
+												</span>
+												<span style="margin-left: 2%;">
+													性别：
+													<input type="text" name="sex_edit" id="sex_edit" value="" style="width: 4%;" />
+												</span>
+												<span style="margin-left: 2%;">
+													学号：
+													<input type="text" name="scid_edit" id="scid_edit" value="" style="width: 20%;" />
+												</span>
+												<span style="margin-left: 3%;">
+													身份证号：
+													<input type="text" name="identity_edit" id="identity_edit" value="" style="width: 30%;" />
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+										</button>
+										<button type="submit" class="btn btn-primary">
+											确定
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<tr>
+						<td colspan="10">
+							<div class="row" style="background-color: #dafffb;">
+								<div  style="float: left;">
+									<a href="/*"><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+									<a href="/*"><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+								</div>
+								<span style="float: left; margin-left: 10px;">
+									<span>150</span>条总记录数
+								</span>
+								<span style="float: left; margin-left: 20px;">
+									显示<span>10</span>页
+								</span>
+								<span style="float: left; margin-left: 35px;">
+									跳转至
+									<input type="text" name="pagenum" id="pagenum" value="1" style="width: 35px;" />
+									页
+								</span>
+								<div style="float: right;">
+									<span>
+										每页显示
+										<select name="infonum" style="width:80px">
+											<option value="15">15</option>
+											<option value="20">20</option>
+											<option value="25">25</option>
+											<option value="30">30</option>
+										</select>
+									</span>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

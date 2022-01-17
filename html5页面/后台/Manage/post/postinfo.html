@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>岗位信息</title>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			.container{
+				width: 95%;
+				left: 2.5%;
+			}
+			.modal-lg{
+				width: 80%;
+			}
+			th{
+				font-size: 20px;
+				text-align: center;
+			}
+			td{
+				font-size: 20px;
+				text-align: center;
+			}
+			div::-webkit-scrollbar {
+			  width: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="header">
+				<div class="row" style="margin-left: 10px;margin-right: 10px;">
+					<img src="../img/userA.png" style="width: 80px;height: 80px;">
+					<span class="h3" style="position: absolute;margin-top: 50px;">岗位信息</span>
+					<a href="#idenfier" data-toggle="modal" data-target="#upload">
+						<span id="addclass" style="color:royalblue;float: right;padding-top: 10px;" class="h3">
+							<img src="../img/export.png" width="50px" height="50px">
+							<span style="margin-top: 50px">上传岗位</span>
+						</span>
+					</a>
+				</div>
+				<hr style="border: #000000 2px solid;margin-top: -1px; width: 100%;" />
+				<!-- /*模态框 -->
+				<div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<!-- 上传岗位 -->
+							<form action="/*" method="post">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h2 class="modal-title" id="modaltitle">上传岗位</h2>
+								</div>
+								<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
+									<div class="row">
+										<span>
+											岗位名称：
+											<input type="text" name="postname_upload" id="postname_upload" value="" style="width: 20%;" />	
+										</span>
+										<span style="margin-left:2%;">
+											公司名称：
+											<input type="text" name="comname_upload" id="comname_upload" value="" style="width: 20%;" />
+										</span>
+										<span style="margin-left: 2%;">
+											薪资:
+											<select name="salary_upload" style="width: 12%;">
+												<option value="3K以下">3K以下</option>
+												<option value="3K以下">3K以下</option>
+												<option value="3K以下">3K以下</option>
+											</select>
+											<span style="font-size: 32px;">·</span>
+											<select name="salarytimes_upload">
+												<option value="12">12</option>
+												<option value="12">12</option>
+												<option value="12">12</option>
+											</select>
+											薪
+										</span>
+									</div>
+									<br>
+									<div class="row">
+										<span>
+											公司规模：
+											<select name="comsize_upload" style="width: 18%;">
+												<option value="20以下">20以下</option>
+												<option value="20以下">20以下</option>
+												<option value="20以下">20以下</option>
+											</select>
+										</span>
+										<span style="margin-left: 4%;">
+											公司性质：
+											<select name="comattr_upload" style="width: 18%;">
+												<option value="国有企业">国有企业</option>
+												<option value="国有企业">国有企业</option>
+												<option value="国有企业">国有企业</option>
+											</select>
+										</span>
+										<span style="margin-left: 4%;">
+											招聘人数：
+											<input type="text" name="recruits_upload" id="recruits_upload" value="" style="width: 10%;" />
+											人
+										</span>
+									</div>
+									<br>
+									<div class="row">
+										<span>
+											公司福利：
+											<input type="text" name="comwelfare_upload" id="comwelfare_upload" value="" style="width: 20%;"/>
+										</span>
+										<span style="margin-left: 2%;">
+											公司类型：
+											<input type="text" name="comtype_upload" id="comtype_upload" value="" style="width: 20%;"/>
+										</span>
+										<span style="margin-left: 2%;">
+											公司所在地：
+											<input type="text" name="comaddress_upload" id="comaddress_upload" value="" style="width: 18%;" />
+										</span>
+									</div>
+									<br>
+									<div class="row">
+										<span>
+											学历要求：
+											<select name="degree_upload" style="width: 18%;">
+												<option value="初中及以下">初中及以下</option>
+												<option value="高中">高中</option>
+												<option value="中专">中专</option>
+												<option value="大专">大专</option>
+												<option value="本科">本科</option>
+												<option value="硕士">硕士</option>
+												<option value="博士">博士</option>
+												<option value="MEA/EMBA">MEA/EMBA</option>
+											</select>
+										</span>
+										<span style="margin-left: 4%;">
+											联系电话：
+											<input type="text" name="tel_upload" id="comtype_upload" value="" style="width: 20%;"/>
+										</span>
+										<span style="margin-left: 2%;">
+											工作经验要求：
+											<select name="comaddress_upload" style="width: 16%;">
+												<option value="应届生">应届生</option>
+												<option value="实习生">实习生</option>
+												<option value="1年以内">1年以内</option>
+												<option value="1-3年">1-3年</option>
+												<option value="3-5年">3-5年</option>
+												<option value="5-10年">5-10年</option>
+												<option value="10年以上">10年以上</option>
+											</select>
+										</span>
+									</div>
+									<br>
+									<div class="row">
+										<span>
+											岗位类型：
+											<select name="posttype_upload" style="width: 18%;">
+												<option value="JAVA">JAVA</option>
+												<option value="pyhton">pyhton</option>
+												<option value="php">php</option>
+												<option value="UED">UED</option>
+												<option value="AI">AI</option>
+												<option value="前端">前端</option>
+												<option value="运维">运维</option>
+												<option value="产品设计">产品设计</option>
+												<option value="其他">其他</option>
+											</select>
+										</span>
+									</div><br>
+									<div style="margin-left: -1.5%;">
+										<span >岗位描述：</span><br>
+										<textarea rows="2" cols="97%" name="descript_upload"></textarea>
+									</div>
+									<div style="margin-left: -1.5%;">
+										<span>任职要求：</span><br>
+										<textarea rows="2" cols="97%" name="workrequire_upload"></textarea>
+									</div>
+									<div style="margin-left: -1.5%;">
+										<span>公司信息：</span><br>
+										<textarea rows="2" cols="97%" name="cominfo_upload"></textarea>
+									</div>
+									<div style="margin-left: -1.5%;">
+										<span>备注</span><br>
+										<textarea rows="2" cols="97%" name="tips_upload"></textarea>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+									</button>
+									<button type="submit" class="btn btn-primary">
+										上传
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+				<div style="width: 100%;">
+					<!-- 删除提交：
+						删除需要id请自己加
+						蟹蟹
+					 -->
+					<form action="/*" method="post" name="delform">
+						<table border="0px" cellspacing="5px" cellpadding="0px" style="width: 100%;" class="table">
+							<tr>
+								<th width="8%">序号</th>
+								<th width="10%">岗位名称</th>
+								<th width="10%">招聘人数</th>
+								<th width="10%">薪资</th>
+								<th width="10%">联系电话</th>
+								<th width="27%">公司名称</th>
+								<th width="6%">编辑</th>
+								<th width="6%">查看</th>
+								<th width="6%">删除</th>
+							</tr>
+							<!-- /*以下放数据 -->
+							<tr>
+								<td>1</td>
+								<td>JAVA开发师</td>
+								<td>5<span>人</span></td>
+								<td>10-15K<span>/月</span></td>
+								<td>11111111111</td>
+								<td>北京京云万峰信息技术有限公司</td>
+								<td><a href="#idenfier" data-toggle="modal" data-target="#edit"><img src="../img/edit.png" style="width: 30px;height:30px;" ></a></td>
+								<td><a href="#idenfier" data-toggle="modal" data-target="#view"><img src="../img/view.png" style="width: 30px;height:30px;" ></a></td>
+								<td><a href="" onclick="checkdel(delform)"><img src="../img/delete.png" style="width: 30px;height: 30px;" ></a></td>
+							</tr>
+							<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<!-- 编辑模态框 -->
+										<form action="/*" method="post">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h2 class="modal-title" id="modaltitle">编辑</h2>
+											</div>
+											<div class="modal-body" style="font-size: 20px; margin-left: 20px;overflow-y: scroll;">
+												<div class="row">
+													<span>
+														岗位名称：
+														<input type="text" name="postname_edit" id="postname_edit" value="" style="width: 20%;" />	
+													</span>
+													<span style="margin-left:2%;">
+														公司名称：
+														<input type="text" name="comname_edit" id="comname_edit" value="" style="width: 20%;" />
+													</span>
+													<span style="margin-left: 2%;">
+														薪资:
+														<select name="salary_edit" style="width: 12%;">
+															<option value="3K以下">3K以下</option>
+															<option value="3K以下">3K以下</option>
+															<option value="3K以下">3K以下</option>
+														</select>
+														<span style="font-size: 32px;">·</span>
+														<select name="salarytimes_edit">
+															<option value="12">12</option>
+															<option value="12">12</option>
+															<option value="12">12</option>
+														</select>
+														薪
+													</span>
+												</div>
+												<br>
+												<div class="row">
+													<span>
+														公司规模：
+														<select name="comsize_edit" style="width: 18%;">
+															<option value="20以下">20以下</option>
+															<option value="20以下">20以下</option>
+															<option value="20以下">20以下</option>
+														</select>
+													</span>
+													<span style="margin-left: 4%;">
+														公司性质：
+														<select name="comattr_edit" style="width: 18%;">
+															<option value="国有企业">国有企业</option>
+															<option value="国有企业">国有企业</option>
+															<option value="国有企业">国有企业</option>
+														</select>
+													</span>
+													<span style="margin-left: 4%;">
+														招聘人数：
+														<input type="text" name="recruits_edit" id="recruits_edit" value="" style="width: 10%;" />
+														人
+													</span>
+												</div>
+												<br>
+												<div class="row">
+													<span>
+														公司福利：
+														<input type="text" name="comwelfare_edit" id="comwelfare_edit" value="" style="width: 20%;"/>
+													</span>
+													<span style="margin-left: 2%;">
+														公司类型：
+														<input type="text" name="comtype_edit" id="comtype_edit" value="" style="width: 20%;"/>
+													</span>
+													<span style="margin-left: 2%;">
+														公司所在地：
+														<input type="text" name="comaddress_edit" id="comaddress_edit" value="" style="width: 18%;" />
+													</span>
+												</div>
+												<br>
+												<div class="row">
+													<span>
+														学历要求：
+														<select name="degree_edit" style="width: 18%;">
+															<option value="初中及以下">初中及以下</option>
+															<option value="高中">高中</option>
+															<option value="中专">中专</option>
+															<option value="大专">大专</option>
+															<option value="本科">本科</option>
+															<option value="硕士">硕士</option>
+															<option value="博士">博士</option>
+															<option value="MEA/EMBA">MEA/EMBA</option>
+														</select>
+													</span>
+													<span style="margin-left: 4%;">
+														联系电话：
+														<input type="text" name="tel_edit" id="tel_edit" value="" style="width: 20%;"/>
+													</span>
+													<span style="margin-left: 2%;">
+														工作经验要求：
+														<select name="comaddress_edit" style="width: 16%;">
+															<option value="应届生">应届生</option>
+															<option value="实习生">实习生</option>
+															<option value="1年以内">1年以内</option>
+															<option value="1-3年">1-3年</option>
+															<option value="3-5年">3-5年</option>
+															<option value="5-10年">5-10年</option>
+															<option value="10年以上">10年以上</option>
+														</select>
+													</span>
+												</div>
+												<br>
+												<div class="row">
+													<span>
+														已招人数：
+														<input type="text" name="hadwork_edit" id="hadwork_edit" value="" style="width: 8%;"/>
+														人
+													</span>
+													<span style="margin-left: 12%;">
+														岗位类型：
+														<select name="posttype_upload" style="width: 18%;">
+															<option value="JAVA">JAVA</option>
+															<option value="pyhton">pyhton</option>
+															<option value="php">php</option>
+															<option value="UED">UED</option>
+															<option value="AI">AI</option>
+															<option value="前端">前端</option>
+															<option value="运维">运维</option>
+															<option value="产品设计">产品设计</option>
+															<option value="其他">其他</option>
+														</select>
+													</span>
+												</div>
+												<br>
+												<div style="margin-left: -1.5%;">
+													<span >岗位描述：</span><br>
+													<textarea rows="2" cols="97%" name="descript_edit"></textarea>
+												</div>
+												<div style="margin-left: -1.5%;">
+													<span>任职要求：</span><br>
+													<textarea rows="4" cols="97%" name="workrequire_edit"></textarea>
+												</div>
+												<div style="margin-left: -1.5%;">
+													<span>公司信息：</span><br>
+													<textarea rows="4" cols="97%" name="cominfo_edit"></textarea>
+												</div>
+												<div style="margin-left: -1.5%;">
+													<span>备注：</span><br>
+													<textarea rows="2" cols="97%" name="tips_edit"></textarea>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+												</button>
+												<button type="submit" class="btn btn-primary">
+													确定
+												</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- 查看模态框 -->
+							<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h2 class="modal-title" id="modaltitle">查看</h2>
+										</div>
+										<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
+											<div class="row">
+												<span>
+													岗位名称：
+													<input type="text" name="postname_view" id="postname_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;" />	
+												</span>
+												<span style="margin-left:2%;">
+													公司名称：
+													<input type="text" name="comname_view" id="comname_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;" />
+												</span>
+												<span style="margin-left: 2%;">
+													薪资:
+													<input type="text" name="salary_view" id="salary_view" value="" disabled="disabled" style="width: 12%;outline: none;border: none;"/>
+													<span style="font-size: 32px;">·</span>
+													<input type="text" name="salarytimes_view" id="salarytimes_view" value="" disabled="disabled" style="width: 5%;outline: none;border: none;" />
+													薪
+												</span>
+											</div>
+											<br>
+											<div class="row">
+												<span>
+													公司规模：
+													<input type="text" name="comsize_view" id="comsize_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;" />
+												</span>
+												<span style="margin-left: 2%;">
+													公司性质：
+													<input type="text" name="comattr_view" id="comattr_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;" />
+												</span>
+												<span style="margin-left: 2%;">
+													招聘人数：
+													<input type="text" name="recruits_view" id="recruits_view" value="" disabled="disabled" style="width: 10%;outline: none;border: none;" />
+													人
+												</span>
+											</div>
+											<br>
+											<div class="row">
+												<span>
+													公司福利：
+													<input type="text" name="comwelfare_view" id="comwelfare_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;"/>
+												</span>
+												<span style="margin-left: 2%;">
+													公司类型：
+													<input type="text" name="comtype_view" id="comtype_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;"/>
+												</span>
+												<span style="margin-left: 2%;">
+													公司所在地：
+													<input type="text" name="comaddress_view" id="comaddress_view" value="" disabled="disabled" style="width: 18%;outline: none;border: none;" />
+												</span>
+											</div>
+											<br>
+											<div class="row">
+												<span>
+													学历要求：
+													<input type="text" name="degree_view" id="degree_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;" />
+												</span>
+												<span style="margin-left: 2%;">
+													联系电话：
+													<input type="text" name="tel_view" id="comtype_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;"/>
+												</span>
+												<span style="margin-left: 2%;">
+													工作经验要求：
+													<input type="text" name="workexp_view" id="comaddress_view" value="" disabled="disabled" style="width: 16%;outline: none;border: none;" />
+												</span>
+											</div>
+											<br>
+											<div class="row">
+												<span>
+													总招聘人数
+													<input type="text" name="allworker_view" id="allworker_view" value="" disabled="disabled" style="width: 8%;outline: none;border: none;"/>
+													人
+												</span>
+												<span>
+													已招人数：
+													<input type="text" name="hadwork_view" id="hadwork_view" value="" disabled="disabled" style="width: 8%;outline: none;border: none;"/>
+													人
+												</span>
+											</div>
+											<br>
+											<div style="margin-left: -1.5%;">
+												<span >岗位描述：</span><br>
+												<textarea rows="2" cols="97%" name="descript_view" disabled="disabled" style="outline: none;border: none;" >123</textarea>
+											</div>
+											<div style="margin-left: -1.5%;">
+												<span>任职要求：</span><br>
+												<textarea rows="4" cols="97%" name="workrequire_view" disabled="disabled" style="outline: none;border: none;" ></textarea>
+											</div>
+											<div style="margin-left: -1.5%;">
+												<span>公司信息：</span><br>
+												<textarea rows="4" cols="97%" name="cominfo_view" disabled="disabled" style="outline: none;border: none;"></textarea>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+											</button>
+											<button type="button" class="btn btn-primary" data-dismiss="modal">
+												确定
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 以上都要存数据*/ -->
+							<tr>
+								<td colspan="9">
+									<div class="row" style="background-color: #dafffb;">
+										<div  style="float: left;">
+											<a href="/*"><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+											<a href="/*"><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+										</div>
+										<span style="float: left; margin-left: 10px;">
+											<span>150</span>条总记录数
+										</span>
+										<span style="float: left; margin-left: 20px;">
+											显示<span>10</span>页
+										</span>
+										<span style="float: left; margin-left: 35px;">
+											跳转至
+											<input type="text" name="pagenum" id="pagenum" value="1" style="width: 35px;" />
+											页
+										</span>
+										<div style="float: right;">
+											<span>
+												每页显示
+												<select name="infonum" style="width:80px">
+													<option value="15">15</option>
+													<option value="20">20</option>
+													<option value="25">25</option>
+													<option value="30">30</option>
+												</select>
+											</span>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function checkdel(delform){
+			if(confirm("确认删除该公司招聘信息？")){
+				delform.submit();
+			}
+		}
+	</script>
+</html>
