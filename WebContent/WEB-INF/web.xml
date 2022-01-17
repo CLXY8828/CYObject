@@ -11,6 +11,15 @@
   </welcome-file-list>
   
   <servlet>
+    <servlet-name>PostinfoServlet</servlet-name>
+    <servlet-class>com.rj.bd.managerall.postinfo.PostinfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostinfoServlet</servlet-name>
+    <url-pattern>/postinfo/postin.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>LogeinServlet</servlet-name>
   	<servlet-class>com.rj.bd.logein.LogeinServlet</servlet-class>
   </servlet>

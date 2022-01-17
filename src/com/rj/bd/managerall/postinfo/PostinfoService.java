@@ -18,4 +18,11 @@ public class PostinfoService {
 	public List<Map<String, Object>> selectEmploymentAndCompanynature() throws ClassNotFoundException, SQLException {
 		return dao.executeQueryForList(" select * from employment e,companynature c where e.nature_id=c.nature_id ");
 	}
+	public void addValue(String nature_id, String gsname, String employment_name, String salary, String phone,
+			String employment_describe, String introduce, String note, String address, String education,
+			String experience, String zwtype, String scale, String welfare, String demand, String recrultsNumb,
+			String subtime, int readyNumb, String gstype) {
+		String sql = "  ";
+		
+	}
 }

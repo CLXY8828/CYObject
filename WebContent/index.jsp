@@ -8,5 +8,6 @@
 </head>
 <body>
 	<a href="./logein/login.jsp">进入登录</a>
+	<a href="./managerjsp/index.jsp">1111111</a>
 </body>
 </html>

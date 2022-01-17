@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.rj.bd.managerall.utils.Dates;
+
 @SuppressWarnings("serial")
 public class PostinfoServlet extends  HttpServlet{
 	PostinfoService postinfoservice =new PostinfoService();
@@ -47,19 +49,23 @@ public class PostinfoServlet extends  HttpServlet{
 		String nature_id = request.getParameter("nature_id");
 		String recrultsNumb = request.getParameter("recrultsNumb");
 		String welfare = request.getParameter("welfare");
-		String type = request.getParameter("type");
+		String gstype = request.getParameter("gstype");
+		String zwtype = request.getParameter("zwtype");
 		String address = request.getParameter("address");
 		String education = request.getParameter("education");
 		String phone = request.getParameter("phone");
 		String experience = request.getParameter("experience");
-		String descr = request.getParameter("descr");
+		String employment_describe = request.getParameter("employment_describe");
 		String note = request.getParameter("experience");
 		String introduce = request.getParameter("experience");
-		System.out.println(employment_name+"-"+gsname+"-"+salary);
+		String demand = request.getParameter("demand");
+		String subtime = Dates.CurrentTime();
+		int readyNumb= 0;
+		System.out.println(subtime);
 		//2.存值
-		postinfoservice.addValue(nature_id,employment_name,salary,phone,
-				descr,introduce,note,address,education,experience,type,
-				scale,welfare,demand,recrultsNumb,subtime,readyNumb,gsname);
+		postinfoservice.addValue(nature_id,gsname,employment_name,salary,phone,
+				employment_describe,introduce,note,address,education,experience,zwtype,
+				scale,welfare,demand,recrultsNumb,subtime,readyNumb,gstype);
 	}
 	/**
 	 * @desc  查询展示界面
