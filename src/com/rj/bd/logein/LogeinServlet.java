@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.jasper.tagplugins.jstl.core.Out;
@@ -39,11 +40,20 @@ public class LogeinServlet extends HttpServlet {
 			else if ("nopassword".equals(q)) {
 				nopassword(request,response);
 			}
+			else if ("out".equals(q)) {
+				out(request,response);
+			}
 		} catch (ClassNotFoundException | SQLException | SmsCodeException e) {
 			System.out.println(e.getMessage());
 		}
 		
 	
+	}
+
+	private void out(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().invalidate();
+		request.getRequestDispatcher("/indexx.jsp").forward(request, response);
+		
 	}
 
 	/**
