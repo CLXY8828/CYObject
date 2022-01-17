@@ -52,7 +52,7 @@ public class LogeinServlet extends HttpServlet {
 
 	private void out(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		request.getRequestDispatcher("/indexx.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		
 	}
 
@@ -138,7 +138,7 @@ public class LogeinServlet extends HttpServlet {
 		if (map!=null) {
 			if (map.get("password").equals(password)) {
 					request.getSession().setAttribute("user", map);
-					request.getRequestDispatcher("/indexx.jsp").forward(request, response);
+					request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 			else {//登录失败
 				request.setAttribute("err", "学号与密码不匹配！");
