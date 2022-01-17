@@ -83,5 +83,9 @@ public class LogeinService {
 		dao.executeUpdate(sql, types, values);
 		
 	}
+
+	public Map<String, Object> queryAdmin(String sid, String password) throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForMap("select * from admin where admin_UUID=? and admin_password=?", new int[]{Types.VARCHAR,Types.VARCHAR},new Object[]{sid,password});
+	}
 	
 }

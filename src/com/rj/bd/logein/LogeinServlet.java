@@ -138,9 +138,17 @@ public class LogeinServlet extends HttpServlet {
 			}
 		}
 		else {//登录失败
-			request.setAttribute("err", "该账号尚未注册,请使用手机号登录！");
-			request.setAttribute("errindex", 1);
-			request.getRequestDispatcher("/logein/login.jsp").forward(request, response);
+			Map<String, Object> mapadm=service.queryAdmin(sid,password);
+			if (mapadm!=null) {//管理员登录
+				
+				request.getSession().setAttribute("user", mapadm);
+				request.getRequestDispatcher("/managerjsp/index.jsp").forward(request, response);
+			}
+			else {
+				request.setAttribute("err", "该账号尚未注册,请使用手机号登录！");
+				request.setAttribute("errindex", 1);
+				request.getRequestDispatcher("/logein/login.jsp").forward(request, response);
+			}
 		}
 		
 		

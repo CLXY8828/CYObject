@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
  <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
@@ -75,6 +76,14 @@
 			  background-color:#ddd;
 			}
 		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+							var ws=<%=(List)request.getAttribute("ws")%>;
+							if(ws==null){
+								$('#myModal001').modal('show');
+							}
+						});
+		</script>
 	</head>
 	<body>
 		<div class="container" style="background-image: url(<%=request.getContextPath() %>/img/004.jpg); height: 300px;width: 1518px; " >
@@ -104,17 +113,18 @@
 			
 			
 			<!-- Split button -->
+			
 				<div class=" btn-group col-md-1 " style="margin: 0px 0px 0px 1300px; bottom: 70px;  ">
 				<c:set var="map" scope="session" value="${sessionScope.user}"></c:set>
-				<c:choose>
+			<c:choose>
+				
 				<c:when test="${!empty map}">
 				  <button type="button" class="btn btn-default">我的</button>
 				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    <span class="caret"></span>
 				    <span class="sr-only">Toggle Dropdown</span>
 				  </button>
-				 </c:when>
-				 <c:otherwise>
+				
 				  <ul class="dropdown-menu">
 				    <li><a href="wd.html">个人信息</a></li>
 				    <br />
@@ -122,16 +132,18 @@
 				    <br />
 				    <li><a href="dljm.html">退出</a></li>
 				  </ul>
-				  </c:otherwise>
+				  </c:when>
+				 <c:otherwise>
+				<div class="btn-group col-md-1 " style="margin: 0px 0px 0px 1300px; bottom: 70px; ">
+				  <a href="<%=request.getContextPath() %>/users/index.do?method=login" type="button" class="btn btn-default">登录</a>
+				</div>
+				
+				 </c:otherwise>
 				 </c:choose>
+				 
 				</div>
 				
 			
-				
-				<div class="btn-group col-md-1 " style="margin: 0px 0px 0px 1300px; bottom: 70px; ">
-				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal001" >登录</button>
-				</div>
-				
 				
 							    				
 				<!-- 引导个人信息的填写 -->

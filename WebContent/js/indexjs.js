@@ -75,21 +75,20 @@ function yanzheng()
 			exception("学号不能为空！",1)
 			return false
 		}
-		if(regexp.test(xh))
-		{
-			if(!xh.length==9)
-			{
-				exception("请输入正确的学号！",1)
-				return false
-			}
-			
-
-		}
-		else
-		{
-			exception("请输入正确的学号！",1)
-			return false
-		}
+//		if(regexp.test(xh))
+//		{
+//			if(!xh.length>0)
+//			{
+//				exception("请输入正确的学号！",1)
+//				return false
+//			}
+//
+//		}
+//		else
+//		{
+//			exception("请输入正确的学号！",1)
+//			return false
+//		}
 		
 		if(!$("#exampleInputEmail2").val().trim())
 		{

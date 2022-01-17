@@ -28,6 +28,15 @@
   	<url-pattern>/users/logein.do</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>IndexServlet</servlet-name>
+  	<servlet-class>com.rj.bd.index.IndexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>IndexServlet</servlet-name>
+  	<url-pattern>/users/index.do</url-pattern>
+  </servlet-mapping>
+  
    <servlet>
   	<servlet-name>NoPasswordServlet</servlet-name>
   	<servlet-class>com.rj.bd.logein.nopassword.NoPasswordServlet</servlet-class>
