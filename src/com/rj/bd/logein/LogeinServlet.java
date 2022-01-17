@@ -98,7 +98,7 @@ public class LogeinServlet extends HttpServlet {
 				response.getWriter().write("新用户创建一个账号");
 			}
 			else {//已注册的用户登录
-				request.setAttribute("user", map);
+				request.getSession().setAttribute("user", map);
 				response.getWriter().write("数据库存在信息，直接登录");
 			}
 		}
@@ -128,7 +128,7 @@ public class LogeinServlet extends HttpServlet {
 		if (map!=null) {
 			if (map.get("password").equals(password)) {
 					request.getSession().setAttribute("user", map);
-					response.getWriter().write("登录成功");
+					request.getRequestDispatcher("/indexx.jsp").forward(request, response);
 			}
 			else {//登录失败
 				request.setAttribute("err", "学号与密码不匹配！");
