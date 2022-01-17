@@ -22,7 +22,7 @@ public class PostinfoService {
 			String employment_describe, String introduce, String note, String address, String education,
 			String experience, String zwtype, String scale, String welfare, String demand, String recrultsNumb,
 			String subtime, int readyNumb, String gstype) {
-		String sql = "  ";
+		String sql = " insert into employment values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 		
 	}
 }
