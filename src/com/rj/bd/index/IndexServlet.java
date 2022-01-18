@@ -31,6 +31,9 @@ public class IndexServlet extends HttpServlet {
 			else if ("sc".equals(q)) {
 				saveSC(request,response);
 			}
+			else if ("sq".equals(q)) {
+				saveSQ(request,response);
+			}
 			else if ("qsc".equals(q)) {
 				saveqSC(request,response);
 			}
@@ -44,6 +47,13 @@ public class IndexServlet extends HttpServlet {
 	}
 
 	
+	private void saveSQ(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		String userid = request.getParameter("userid");
+		String eid = request.getParameter("eid");
+		service.saveSQ(userid,eid);
+	}
+
+
 	private void mquery(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
 		
 		String userid = (String) request.getSession().getAttribute("userid");

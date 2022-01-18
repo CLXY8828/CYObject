@@ -87,7 +87,6 @@
 				
 			}
 			else{
-				alert(<%=(List)request.getAttribute("ws")==null%>);
 				if(<%=(List)request.getAttribute("ws")==null%>){
 					$('#myModal001').modal('show');
 				}
@@ -97,14 +96,21 @@
 			var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
 				$.post(url,{userid:userid,eid:eid},function(data)
 				{
-					location.reload();
+					
+				});
+		}
+		function sq(userid,eid) {
+			var url ="<%=request.getContextPath()%>/users/index.do?method=sq";
+				$.post(url,{userid:userid,eid:eid},function(data)
+				{
+					shenqing(true);
 				});
 		}
 		function qsc(userid,eid) {
 			var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
 				$.post(url,{userid:userid,eid:eid},function(data)
 				{
-					location.reload();
+					
 				});
 		}
 		
@@ -192,6 +198,19 @@
 			document.getElementById("xzyq06").innerHTML="公司规模";
 			window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
 		}
+		function shenqing(data)
+		{
+			if(data==true)
+			{
+				$("#sqzw").html("已申请");
+			}
+			else
+			{
+				$("#sqzw").html("申请");
+			}	
+			
+		}
+		
 	</script>
 	</head>
 	<body>
@@ -659,25 +678,25 @@
 												<c:if test="${map.Collectionstate==1}">
 												<a href=""  onclick="qsc('${map.UUID}','${map.eid}')">
 												<div class="col-md-7 "  >
-							    					<img src="<%=request.getContextPath() %>/img/收藏-已收藏.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span style="font-size: 16px; font: arial; ">已收藏&nbsp;&nbsp;</span>
+							    					<img  id="shoucang" src="<%=request.getContextPath() %>/img/收藏-已收藏.png" alt="..." class="..." style=" height: 35px; width: 38px;">
+													<span id="shoucang01" style="font-size: 16px; font: arial; ">已收藏&nbsp;&nbsp;</span>
 												</div>
 												</a>
 												</c:if>
 												<c:if test="${map.Collectionstate==0}">
 												<a href=""  onclick="sc('${map.UUID}','${map.eid}')">
 												<div class="col-md-7 ">
-							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span style="font-size: 16px; font: arial;">收藏&nbsp;&nbsp;</span>
+							    					<img id="shoucang" src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
+													<span id="shoucang01" style="font-size: 16px; font: arial;">收藏&nbsp;&nbsp;</span>
 												</div>
 												</a>
 												</c:if>
 												<c:if test="${map.applystate==1}">
 												
-												<button type="button" class="btn btn-primary">已申请</button>
+												<button id="sqzw" type="button" class="btn btn-primary">已申请</button>
 												</c:if>
 												<c:if test="${map.applystate==0}">
-												<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}">申 请 职 位</button>
+												<button id="sqzw" type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}">申 请 职 位</button>
 												</c:if>
 												</c:otherwise>
 												</c:choose>
@@ -697,7 +716,7 @@
 													      </div>
 													      <div class="modal-footer">
 													        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 430px 0px 0px;">再想想</button>
-													        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal${i}">确 定</button>
+													        <button type="button"  onclick="sq('${map.UUID}','${map.eid}')" class="btn btn-primary" data-toggle="modal" data-target="#myModal${i}">确 定</button>
 													        
 													      </div>
 													    </div>

@@ -14,9 +14,20 @@ import com.alibaba.fastjson.asm.Type;
 import com.rj.bd.dao.Dao;
 import com.rj.bd.dao.DaoImpl;
 
+/**
+ * @author mengjinfu
+ *
+ */
 public class IndexService {
 	Dao dao = new DaoImpl();
 
+	/**
+	 * @desc 查询全部岗位
+	 * @param userid
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public List<Map<String, Object>> query(String userid) throws ClassNotFoundException, SQLException {
 		
 		if (userid==null) {
@@ -26,12 +37,27 @@ public class IndexService {
 		return dao.executeQueryForList("SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=?", new int[]{Types.VARCHAR}, new Object[]{userid});
 	}
 
+	/**
+	 * @desc 收藏一个岗位
+	 * @param userid
+	 * @param eid
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public void saveSC(String userid, String eid) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		
 		String sql = "update employmentapply set Collectionstate=? where UUID=? and eid=?";
 		dao.executeUpdate(sql, new int[]{Types.INTEGER,Types.VARCHAR,Types.VARCHAR}, new Object[]{1,userid,eid});
 	}
-
+	/**
+	 * @desc 收藏数量查询
+	 * @param userid
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public int scquery(String userid) throws ClassNotFoundException, SQLException {
 		if (userid==null) {
 			return 0;
@@ -40,6 +66,13 @@ public class IndexService {
 		return dao.executeQueryForInt(sql, new int[]{Types.VARCHAR},new Object[]{userid});
 	}
 
+	/**
+	 * @desc 申请数量查询
+	 * @param userid
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public int sqquery(String userid) throws ClassNotFoundException, SQLException {
 		if (userid==null) {
 			return 0;
@@ -48,12 +81,29 @@ public class IndexService {
 		return dao.executeQueryForInt(sql, new int[]{Types.VARCHAR},new Object[]{userid});
 	}
 
+	/**
+	 * @desc 用户取消收藏
+	 * @param userid
+	 * @param eid
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public void saveqSC(String userid, String eid) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		String sql = "update employmentapply set Collectionstate=? where UUID=? and eid=?";
 		dao.executeUpdate(sql, new int[]{Types.INTEGER,Types.VARCHAR,Types.VARCHAR}, new Object[]{0,userid,eid});
 		
 	}
 
+	/**
+	 * @desc 全文模糊查询
+	 * @param text
+	 * @param userid
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public List<Map<String, Object>> mqueryByQW(String text, String userid) throws ClassNotFoundException, SQLException {
 		if (userid==null) {
 			String sql = "SELECT * FROM employment where employment.employment_name LIKE  ?";
@@ -63,6 +113,14 @@ public class IndexService {
 		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR ,Types.VARCHAR}, new Object[]{userid,"%"+text+"%"}); 
 	}
 
+	/**
+	 * @desc 公司模糊查询
+	 * @param text
+	 * @param userid
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public List<Map<String, Object>> mqueryByGS(String text, String userid) throws ClassNotFoundException, SQLException {
 		if (userid==null) {
 			String sql = "SELECT * FROM employment where employment.gsname LIKE  ?";
@@ -72,7 +130,21 @@ public class IndexService {
 		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR ,Types.VARCHAR}, new Object[]{userid,"%"+text+"%"}); 
 	}
 
+	/**
+	 * @desc 条件模糊查询
+	 * @param userid 用户id
+	 * @param xxz 薪资要求
+	 * @param xl 学历要求
+	 * @param jy 工作经验
+	 * @param zw 职位类型
+	 * @param xz 公司性质
+	 * @param gm 公司规模
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public List<Map<String, Object>> mqueryBytwo(String userid,String xxz, String xl, String jy, String zw, String xz, String gm) throws ClassNotFoundException, SQLException {
+		
 		if (xxz.equals("薪资要求")) {
 			xxz="";
 		}
@@ -91,6 +163,7 @@ public class IndexService {
 		if (gm.equals("公司规模")) {
 			gm="";
 		}
+		
 		if (userid==null) {
 			String sql = "SELECT * FROM employment WHERE employment.salary LIKE ? and employment.education LIKE ? and employment.experience LIKE ? and employment.zwtype LIKE ? and employment.gstype LIKE ? and employment.scale LIKE ?";
 			int[] types=new int[6];
@@ -129,6 +202,12 @@ public class IndexService {
 		values[5]="%"+xz+"%";
 		values[6]="%"+gm+"%";
 		return dao.executeQueryForList(sql, types, values);
+	}
+
+	public void saveSQ(String userid, String eid) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		String sql = "update employmentapply set applystate=? where UUID=? and eid=?";
+		dao.executeUpdate(sql, new int[]{Types.INTEGER,Types.VARCHAR,Types.VARCHAR}, new Object[]{1,userid,eid});
+		
 	}
 
 }

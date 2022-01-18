@@ -112,33 +112,6 @@ $(document).bind('click', function(e) {
 
 
 
-//收藏的显示和隐藏
-//页面加载就执行,传出来是true,显示已经收藏,否则就是未收藏
-$(document).ready(function()
-		{
-//			var url="<%=request.getContextPath()%>/manager.do?method=queryAjax";
-//				$.post(url,{manager_name:gname},function(data)
-//						{
-//							如果等于true，然后就显示已收藏
-
-//							
-//					
-//						});
-			function shoucang(data)
-				{
-					if(zt==true)
-					{
-						$("#shoucang01").hide();
-						$("#shoucang02").show();
-					}
-					else
-					{
-						$("#shoucang02").hide();
-						$("#shoucang01").show();
-					}
-					
-				}
-		});
 
 
 
@@ -181,30 +154,3 @@ function tiaozhuan()
 {
 	window.location.href = "zym.html";
 }
-$(document).ready(function()
-		{
-//			var url="<%=request.getContextPath()%>/manager.do?method=queryAjax";
-//				$.post(url,{manager_name:gname},function(data)
-//						{
-//							如果等于true，然后就显示等待审核
-
-//							
-//					
-//						});
-
-			function shoucang(data)
-				{
-					if(data==true)
-					{
-						$("#sqzw").hide();
-						$("#sqzw01").show();
-						document.getElementById("sqzw01").disabled=false;
-					}
-					else
-					{
-						$("#sqzw01").hide();
-						$("#sqzw").show();
-					}
-					
-				}
-		});
