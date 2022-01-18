@@ -48,4 +48,10 @@ public class IndexService {
 		return dao.executeQueryForInt(sql, new int[]{Types.VARCHAR},new Object[]{userid});
 	}
 
+	public void saveqSC(String userid, String eid) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		String sql = "update employmentapply set Collectionstate=? where UUID=? and eid=?";
+		dao.executeUpdate(sql, new int[]{Types.INTEGER,Types.VARCHAR,Types.VARCHAR}, new Object[]{0,userid,eid});
+		
+	}
+
 }
