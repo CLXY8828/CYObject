@@ -52,11 +52,11 @@ public class PostinfoServlet extends  HttpServlet{
 		String gsname = request.getParameter("gsname_"+eid);
 		String salary_upload = request.getParameter("qian_"+eid);
 		String salarytimes_upload = request.getParameter("xin_"+eid);
-		String salary = salary_upload+"."+salarytimes_upload;//吧薪资要求和多少薪加起来
+		String salary = salary_upload+"."+salarytimes_upload+"薪";//吧薪资要求和多少薪加起来
 		String scale = request.getParameter("scale_"+eid);
 		String nature_id = request.getParameter("nature_id_"+eid);
 		String recrultsNumb = request.getParameter("recrultsNumb_"+eid);
-		String welfare = request.getParameter("welfare_"+eid);
+		String welfare [] = request.getParameterValues("welfare_"+eid);
 		String gstype = request.getParameter("gstype_"+eid);
 		String zwtype = request.getParameter("zwtype_"+eid);
 		String address = request.getParameter("address_"+eid);
@@ -110,11 +110,11 @@ public class PostinfoServlet extends  HttpServlet{
 		String gsname = request.getParameter("gsname");
 		String salary_upload = request.getParameter("salary_upload");
 		String salarytimes_upload = request.getParameter("salarytimes_upload");
-		String salary = salary_upload+"."+salarytimes_upload;//吧薪资要求和多少薪加起来
+		String salary = salary_upload+"."+salarytimes_upload+"薪";//吧薪资要求和多少薪加起来
 		String scale = request.getParameter("scale");
 		String nature_id = request.getParameter("nature_id");
 		String recrultsNumb = request.getParameter("recrultsNumb");
-		String welfare = request.getParameter("welfare");
+		String welfare [] = request.getParameterValues("welfare");
 		String gstype = request.getParameter("gstype");
 		String zwtype = request.getParameter("zwtype");
 		String address = request.getParameter("address");
