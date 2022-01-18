@@ -89,9 +89,19 @@
 					}
 				}
 				});
+			
 		</script>
 	</head>
 	<body>
+	<script type="text/javascript">
+	function sc(userid,eid) {
+		var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
+			$.post(url,{userid:userid,eid:eid},function(data)
+			{
+				location.reload();
+			});
+	}
+	</script>
 		<div class="container" style="background-image: url(<%=request.getContextPath() %>/img/004.jpg); height: 300px;width: 1518px; " >
 			<div class="row">
 			<div class="col-md-1 col-md-offset-1" style="height: 80px; width: 120px; margin: 20px 0px 0px 50px; ">
@@ -549,25 +559,26 @@
 												<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#login">申 请 职 位</button>
 												</c:when>
 												<c:otherwise>
-												<c:if test="${map.applystate==1}">
-												
+												<c:if test="${map.Collectionstate==1}">
 												<div class="col-md-7 "  >
+												<a href="">
 							    					<img src="<%=request.getContextPath() %>/img/收藏-已收藏.png" alt="..." class="..." style=" height: 35px; width: 38px;">
 													<span style="font-size: 16px; font: arial; ">已收藏&nbsp;&nbsp;</span>
+												</a>
 												</div>
 												</c:if>
-												<c:if test="${map.applystate==0}">
-												<a>
-												<div class="col-md-7 ">
+												<c:if test="${map.Collectionstate==0}">
+												
+												<div class="col-md-7 " onclick="sc('${map.UUID}','${map.eid}')">
 							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
 													<span style="font-size: 16px; font: arial;color:black; ">收藏&nbsp;&nbsp;</span>
 												</div>
-												</a>
 												</c:if>
-												<c:if test="${map.Collectionstate==1}">
+												<c:if test="${map.applystate==1}">
+												
 												<button type="button" class="btn btn-primary">已申请</button>
 												</c:if>
-												<c:if test="${map.Collectionstate==0}">
+												<c:if test="${map.applystate==0}">
 												<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}">申 请 职 位</button>
 												</c:if>
 												</c:otherwise>

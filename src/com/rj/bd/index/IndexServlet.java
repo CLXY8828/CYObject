@@ -1,5 +1,6 @@
 package com.rj.bd.index;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,6 +27,9 @@ public class IndexServlet extends HttpServlet {
 			else if ("query".equals(q)) {
 				query(request,response);
 			}
+			else if ("sc".equals(q)) {
+				saveSC(request,response);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -33,6 +37,15 @@ public class IndexServlet extends HttpServlet {
 	}
 
 	
+	private void saveSC(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		System.out.println(11);
+		String userid = request.getParameter("userid");
+		String eid = request.getParameter("eid");
+		service.saveSC(userid,eid);
+		
+	}
+
+
 	/**
 	 * @param request
 	 * @param response
