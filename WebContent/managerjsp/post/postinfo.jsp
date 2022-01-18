@@ -34,8 +34,9 @@
 	<body>
 	<%List list=(List)request.getAttribute("list");
 	  int count = (Integer)request.getAttribute("count");
-	  int start = (Integer)request.getAttribute("start");
-	  int end = (Integer)request.getAttribute("end");
+	  int pagej = (Integer)request.getAttribute("page");
+	  int start = 0;
+	  int end = start+10;
 	  if(list.size()<end){
 		  end=list.size();
 	  }
@@ -65,11 +66,11 @@
 								</div>
 								<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
 									<div class="row">
-										<span>
+										<span name="uploadspan">
 											岗位名称：
 											<input type="text" name="employment_name" id="postname_upload" value="" style="width: 20%;" />	
 										</span>
-										<span style="margin-left:2%;">
+										<span style="margin-left:2%;" name="uploadspan">
 											公司名称：
 											<input type="text" name="gsname" id="comname_upload" value="" style="width: 20%;" />
 										</span>
@@ -129,7 +130,7 @@
 												<option value="dwxz0013">其他</option>
 											</select>
 										</span>
-										<span style="margin-left: 4%;">
+										<span style="margin-left: 4%;" name="uploadspan">
 											招聘人数：
 											<input type="text" name="recrultsNumb" id="recrultsNumb" value="" style="width: 10%;" />
 											人
@@ -137,15 +138,15 @@
 									</div>
 									<br>
 									<div class="row">
-										<span>
+										<span name="uploadspan">
 											公司福利：
 											<input type="text" name="welfare" id="comwelfare_upload" value="" style="width: 20%;"/>
 										</span>
-										<span style="margin-left: 2%;">
+										<span style="margin-left: 2%;" name="uploadspan">
 											公司类型：
 											<input type="text" name="gstype" id="comtype_upload" value="" style="width: 20%;"/>
 										</span>
-										<span style="margin-left: 2%;">
+										<span style="margin-left: 2%;" name="uploadspan">
 											公司所在地：
 											<input type="text" name=address id="comaddress_upload" value="" style="width: 18%;" />
 										</span>
@@ -165,7 +166,7 @@
 												<option value="MEA/EMBA">MEA/EMBA</option>
 											</select>
 										</span>
-										<span style="margin-left: 2%;">
+										<span style="margin-left: 2%;" name="uploadspan">
 											联系电话：
 											<input type="text" name="phone" id="comtype_upload" value="" style="width: 20%;"/>
 										</span>
@@ -202,19 +203,19 @@
 									<br>
 									<div style="margin-left: -1.5%;">
 										<span >岗位描述：</span><br>
-										<textarea rows="2" cols="97%" style="width: 97%;" name="employment_describe"></textarea>
+										<textarea rows="2" cols="97%" style="width: 97%;" name="employment_describe" id="descript_upload"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
 										<span>任职要求：</span><br>
-										<textarea rows="4" cols="97%" style="width: 97%;" name="demand"></textarea>
+										<textarea rows="4" cols="97%" style="width: 97%;" name="demand" id="workrequire_upload"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
 										<span>公司信息：</span><br>
-										<textarea rows="4" cols="97%" style="width: 97%;" name="introduce"></textarea>
+										<textarea rows="4" cols="97%" style="width: 97%;" name="introduce" id="cominfo_upload"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
 										<span>备注</span><br>
-										<textarea rows="2" cols="97%" style="width: 97%;" name="note"></textarea>
+										<textarea rows="2" cols="97%" style="width: 97%;" name="note" id="tips_upload"></textarea>
 									</div>
 								</div>
 								<div class="modal-footer">
@@ -547,7 +548,7 @@
 											</div>
 											<div style="margin-left: -1.5%;">
 													<span>备注：</span><br>
-													<textarea rows="2" cols="97%" style="width: 97%;" name=""><%=map.get("note")%></textarea>
+													<textarea disabled="disabled" rows="2" cols="97%" style="width: 97%;" name=""><%=map.get("note")%></textarea>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -566,40 +567,21 @@
 								<td colspan="9">
 									<div class="row" style="background-color: #dafffb;">
 										<div  style="float: left;">
-										<%if(start==0){%>
-											<span onclick="starthead()" class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span>
-										<%}else{%>
-											<a href=""><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
-										<%}%>
-										<%if(end==list.size()){%>
-											<span onclick="end()" class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span>
-										<%}else{%>
-											<a href=""><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
-										<%}%>
-											
+											<a onclick="querydel()" href=""><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+											<a onclick="queryadd()" href=""><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
 										</div>
 										<span style="float: left; margin-left: 10px;">
 											<span><%=count %></span>条总记录数
 										</span>
 										<span style="float: left; margin-left: 20px;">
-											显示<span><%=(count/10)!=0?(count/10):1%></span>页
+											显示<span><%=(count/10)!=0?((count/10)+1):1%></span>页
 										</span>
 										<span style="float: left; margin-left: 35px;">
 											跳转至
-											<input type="text" name="pagenum" id="pagenum" value="1" style="width: 35px;" />
+											<input type="text" onblur="pagenum(this.value)" name="pagenum" id="pagenum" value="<%=pagej %>" style="width: 35px;" />
 											页
 										</span>
-										<div style="float: right;">
-											<span>
-												每页显示
-												<select name="pageinfonum" style="width:80px">
-													<option value="15">10</option>
-													<option value="20">15</option>
-													<option value="25">20</option>
-													<option value="30">25</option>
-												</select>
-											</span>
-										</div>
+										
 									</div>
 								</td>
 							</tr>
@@ -609,18 +591,72 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-		function end() {
-			alert("已经到底了")
+	var page = document.getElementById("pagenum").value;
+		function querydel() {
+			if(true){
+			var page1 = Number(page)-1
+			var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=query&page="+page+"";	
+			  window.location.href=encodeURI(url);
+			}
 		}
-		function starthead() {
-			alert("已经到头了")
+		function queryadd() {
+			if(true){
+			var page1 = Number(page)+1
+			alert(page1)
+			var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=query&page="+page1+"";	
+			  window.location.href=encodeURI(url);
+			}
+		}
+		function pagenum(num) {
+			if(num<=<%=(count/10)!=0?((count/10)+1):1%>){
+				var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=query&page="+num+"";	
+				  window.location.href=encodeURI(url);	
+			}else{
+				alert("没有当前页数")
+			}
 		}
 		function checkdel(delform){
 			if(confirm("确认删除该公司招聘信息？")){
 				var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=delete&eid="+delform+"";	
 				  window.location.href=encodeURI(url);	
+				}
 			}
-			}
+		$(function(){
+			$("#upload form").submit(function(){
+				var i=0;
+				var x=0;
+				document.getElementById("upload")
+				$("#upload input").each(function(){
+					if($(this).val()==""){
+						alert(document.getElementsByName("uploadspan")[i].innerText.split("：")[0]+"为必填信息，您没有填写")
+						$(this).focus();
+						return false;
+					}else{
+						x++;
+					}
+					i++;
+					
+				})
+				if($("#descript_upload").val()==""){
+					$("#descript_upload").val()=="无";
+				}
+				if($("#workrequire_upload").val()==""){
+					$("#workrequire_upload").val()=="无";
+				}
+				if($("#cominfo_upload").val()==""){
+					$("#cominfo_upload").val()=="无";
+				}
+				if($("#tips_upload").val()==""){
+					$("#tips_upload").val()=="无";
+				}
+				if(x>=7){
+					return true;
+				}else{
+					return false;
+				}
+			})
+			
+		})
 	</script>
 </html>
     

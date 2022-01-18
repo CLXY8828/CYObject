@@ -21,8 +21,7 @@ public class PostinfoServlet extends  HttpServlet{
 		 try 
 		  {
 			  String method=request.getParameter("method");
-			    if ("query".equals(method)) 
-			    {
+			    if ("query".equals(method)) {
 			    	this.query(request,response);
 			    }else if("add".equals(method)){
 			    	this.add(request,response);
@@ -30,6 +29,8 @@ public class PostinfoServlet extends  HttpServlet{
 			    	this.delete(request,response);
 			    }else if("edit".equals(method)){
 			    	this.edit(request,response);
+			    }else if("querypage".equals(method)){
+			    	this.querypage(request,response);
 			    }
 		} 
 		  catch (Exception e) 
@@ -37,6 +38,35 @@ public class PostinfoServlet extends  HttpServlet{
 			  System.out.println("1.首先需要打印出异常的信息为:"+e.getMessage());
 			  System.out.println("2.其实异常发送的内存地址："+e.getStackTrace());
 		   }
+	}
+	/**
+	 * @desc  上一页
+	 * @param request
+	 * @param response
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	/**
+	 * @desc  页面跳转页数
+	 * @param request
+	 * @param response
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void querypage(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+		String num = request.getParameter("num");
+		List<Map<String, Object>> list = postinfoservice.selectEmploymentAndCompanynature(0);
+		int count = postinfoservice.selectEmploymentNum();
+		int start = 10*(Integer.parseInt(num)-1);
+		System.out.println(start);
+		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("start", start);
+		request.getRequestDispatcher("/managerjsp/post/postinfo.jsp").forward(request, response);
 	}
 	/**
 	 * @desc  编辑上传
@@ -76,7 +106,9 @@ public class PostinfoServlet extends  HttpServlet{
 				employment_describe,introduce,note,address,education,experience,zwtype,
 				scale,welfare,demand,recrultsNumb,subtime,readyNumb,gstype);
 		//3.重定向
-		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query");
+		String pageinfonum = request.getParameter("pageinfonum");
+		request.setAttribute("pageinfonum", pageinfonum);
+		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query&pageinfonum="+pageinfonum);
 	}
 	/**
 	 * @desc  删除岗位数据
@@ -94,7 +126,7 @@ public class PostinfoServlet extends  HttpServlet{
 		System.out.println(eid);
 		postinfoservice.deleteValue(eid);
 		//3.重定向
-		this.query(request, response);
+		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query");
 	}
 	/**
 	 * @desc  添加岗位请求
@@ -128,7 +160,6 @@ public class PostinfoServlet extends  HttpServlet{
 		String demand = request.getParameter("demand");
 		String subtime = Dates.CurrentTime();
 		int readyNumb= 0;
-		System.out.println(subtime);
 		//2.存值
 		postinfoservice.addValue(nature_id,gsname,employment_name,salary,phone,
 				employment_describe,introduce,note,address,education,experience,zwtype,
@@ -147,12 +178,14 @@ public class PostinfoServlet extends  HttpServlet{
 	 * @throws InterruptedException
 	 */
 	private void query(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException, InterruptedException {
-		List<Map<String, Object>> list = postinfoservice.selectEmploymentAndCompanynature();
+		//接取页面显示条数
+		String page1 =request.getParameter("page");
+		int page = Integer.parseInt(page1);
+		List<Map<String, Object>> list = postinfoservice.selectEmploymentAndCompanynature(page);
 		int count = postinfoservice.selectEmploymentNum();
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
-		request.setAttribute("start", 0);
-		request.setAttribute("end", 10);
+		request.setAttribute("page", page);
 		request.getRequestDispatcher("/managerjsp/post/postinfo.jsp").forward(request, response);
 	}
 

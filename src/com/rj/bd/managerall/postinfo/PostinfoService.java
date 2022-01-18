@@ -18,8 +18,15 @@ public class PostinfoService {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public List<Map<String, Object>> selectEmploymentAndCompanynature() throws ClassNotFoundException, SQLException {
-		return dao.executeQueryForList(" select * from employment e,companynature c where e.nature_id=c.nature_id ");
+	public List<Map<String, Object>> selectEmploymentAndCompanynature(int page) throws ClassNotFoundException, SQLException {
+		int count = selectEmploymentNum();
+		int i = (page-1)*10;
+		if(i<0){
+			i=0;
+		}else if(i>count){
+			i=(page-2)*10;
+		}
+		return dao.executeQueryForList(" select * from employment e,companynature c where e.nature_id=c.nature_id limit ?,? ", new int []{Types.INTEGER,Types.INTEGER}, new Object []{i,(i+10)});
 	}
 	/**
 	 * @desc  上传岗位的值添加
@@ -51,6 +58,18 @@ public class PostinfoService {
 			String employment_describe, String introduce, String note, String address, String education,
 			String experience, String zwtype, String scale, String welfare, String demand, String recrultsNumb,
 			String subtime, int readyNumb, String gstype) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		
+		if(demand.equals("")){
+			demand="无";
+		}else if(employment_describe.equals("")){
+			employment_describe="无";
+		}else if(introduce.equals("")){
+			introduce="无";
+		}else if(note.equals("")){
+			note="无";
+		}
+		
+		
 		String sql = " insert into employment values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 		
 		int[] types = new int[20];
