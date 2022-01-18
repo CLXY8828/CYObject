@@ -30,6 +30,9 @@ public class IndexServlet extends HttpServlet {
 			else if ("sc".equals(q)) {
 				saveSC(request,response);
 			}
+			else if ("qsc".equals(q)) {
+				saveqSC(request,response);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -37,8 +40,15 @@ public class IndexServlet extends HttpServlet {
 	}
 
 	
+	private void saveqSC(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		String userid = request.getParameter("userid");
+		String eid = request.getParameter("eid");
+		service.saveqSC(userid,eid);
+		
+	}
+
+
 	private void saveSC(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
-		System.out.println(11);
 		String userid = request.getParameter("userid");
 		String eid = request.getParameter("eid");
 		service.saveSC(userid,eid);

@@ -567,8 +567,16 @@
 								<td colspan="9">
 									<div class="row" style="background-color: #dafffb;">
 										<div  style="float: left;">
-											<a onclick="querydel()" href=""><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
-											<a onclick="queryadd()" href=""><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+											<%if(pagej==1){%>
+												<span onclick="del()" class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span>
+											<%}else{%>
+												<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej-1)%>"><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+											<%} %>
+											<%if(pagej==((count/10)!=0?((count/10)+1):1)){%>
+												<span onclick="add()" class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span>
+											<%}else{%>
+												<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej+1)%>"><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+											<%} %>
 										</div>
 										<span style="float: left; margin-left: 10px;">
 											<span><%=count %></span>条总记录数
@@ -591,21 +599,11 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-	var page = document.getElementById("pagenum").value;
-		function querydel() {
-			if(true){
-			var page1 = Number(page)-1
-			var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=query&page="+page+"";	
-			  window.location.href=encodeURI(url);
-			}
+		function add() {
+			alert("已经是最后一页了！")
 		}
-		function queryadd() {
-			if(true){
-			var page1 = Number(page)+1
-			alert(page1)
-			var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=query&page="+page1+"";	
-			  window.location.href=encodeURI(url);
-			}
+		function del() {
+			alert("前面没有了！")
 		}
 		function pagenum(num) {
 			if(num<=<%=(count/10)!=0?((count/10)+1):1%>){

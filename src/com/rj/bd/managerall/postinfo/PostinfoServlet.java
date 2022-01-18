@@ -29,8 +29,6 @@ public class PostinfoServlet extends  HttpServlet{
 			    	this.delete(request,response);
 			    }else if("edit".equals(method)){
 			    	this.edit(request,response);
-			    }else if("querypage".equals(method)){
-			    	this.querypage(request,response);
 			    }
 		} 
 		  catch (Exception e) 
@@ -38,35 +36,6 @@ public class PostinfoServlet extends  HttpServlet{
 			  System.out.println("1.首先需要打印出异常的信息为:"+e.getMessage());
 			  System.out.println("2.其实异常发送的内存地址："+e.getStackTrace());
 		   }
-	}
-	/**
-	 * @desc  上一页
-	 * @param request
-	 * @param response
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
-	 * @throws ServletException 
-	 */
-	/**
-	 * @desc  页面跳转页数
-	 * @param request
-	 * @param response
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
-	 * @throws ServletException 
-	 */
-	private void querypage(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
-		String num = request.getParameter("num");
-		List<Map<String, Object>> list = postinfoservice.selectEmploymentAndCompanynature(0);
-		int count = postinfoservice.selectEmploymentNum();
-		int start = 10*(Integer.parseInt(num)-1);
-		System.out.println(start);
-		request.setAttribute("list", list);
-		request.setAttribute("count", count);
-		request.setAttribute("start", start);
-		request.getRequestDispatcher("/managerjsp/post/postinfo.jsp").forward(request, response);
 	}
 	/**
 	 * @desc  编辑上传
@@ -106,9 +75,7 @@ public class PostinfoServlet extends  HttpServlet{
 				employment_describe,introduce,note,address,education,experience,zwtype,
 				scale,welfare,demand,recrultsNumb,subtime,readyNumb,gstype);
 		//3.重定向
-		String pageinfonum = request.getParameter("pageinfonum");
-		request.setAttribute("pageinfonum", pageinfonum);
-		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query&pageinfonum="+pageinfonum);
+		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query&page="+1);
 	}
 	/**
 	 * @desc  删除岗位数据
@@ -126,7 +93,7 @@ public class PostinfoServlet extends  HttpServlet{
 		System.out.println(eid);
 		postinfoservice.deleteValue(eid);
 		//3.重定向
-		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query");
+		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query&page="+1);
 	}
 	/**
 	 * @desc  添加岗位请求
@@ -165,7 +132,7 @@ public class PostinfoServlet extends  HttpServlet{
 				employment_describe,introduce,note,address,education,experience,zwtype,
 				scale,welfare,demand,recrultsNumb,subtime,readyNumb,gstype);
 		//3.重定向
-		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query");
+		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query&page="+1);
 	}
 	/**
 	 * @desc  查询展示界面
@@ -186,7 +153,10 @@ public class PostinfoServlet extends  HttpServlet{
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		request.setAttribute("page", page);
+		System.out.println("前");
 		request.getRequestDispatcher("/managerjsp/post/postinfo.jsp").forward(request, response);
+//		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query&page="+page);
+		System.out.println("后");
 	}
 
 }

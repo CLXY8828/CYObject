@@ -77,31 +77,49 @@
 			}
 		</style>
 		<script type="text/javascript">
-			$(document).ready(function(){
-				if(<%=request.getAttribute("list")%>==null){//
-					<%Map user=(Map)request.getSession().getAttribute("user");%>
-					window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
+		$(document).ready(function(){
+			if(<%=request.getAttribute("list")==null%>){//
+				<%Map user=(Map)request.getSession().getAttribute("user");%>
+				window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
+			}
+			if(<%=request.getSession().getAttribute("user")==null%>){
+				$('#login').modal('show');
+				
+			}
+			else{
+				alert(<%=(List)request.getAttribute("ws")==null%>);
+				if(<%=(List)request.getAttribute("ws")==null%>){
+					$('#myModal001').modal('show');
 				}
-				var ws=<%=(List)request.getAttribute("ws")%>;
-				if(<%=request.getSession().getAttribute("user")%>!=null){
-					if(ws==null){
-						$('#myModal001').modal('show');
-					}
-				}
+			}
+			});
+		function sc(userid,eid) {
+			var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
+				$.post(url,{userid:userid,eid:eid},function(data)
+				{
+					location.reload();
 				});
-			
-		</script>
+		}
+		function qsc(userid,eid) {
+			var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
+				$.post(url,{userid:userid,eid:eid},function(data)
+				{
+					location.reload();
+				});
+		}
+		
+		function login () {
+					if(<%=request.getSession().getAttribute("user")==null%>){
+						$('#login').modal('show');
+					}
+					
+				}
+	</script>
 	</head>
 	<body>
 	<script type="text/javascript">
-	function sc(userid,eid) {
-		var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
-		alert(url)
-			$.post(url,{userid:userid,eid:eid},function(data)
-			{
-				location.reload();
-			});
-	}
+
+	
 	</script>
 		<div class="container" style="background-image: url(<%=request.getContextPath() %>/img/004.jpg); height: 300px;width: 1518px; " >
 			<div class="row">
@@ -200,7 +218,7 @@
 				
 			</div>
 			
-			<div class="col-md-3" style="border:2px solid #E5E5E5;  height: 160px; width: 180px;  bottom:150px; left: 998px;">
+			<div class="col-md-3" onclick="login()" style="border:2px solid #E5E5E5;  height: 160px; width: 180px;  bottom:150px; left: 998px;">
 				
 				<div class=" " style="margin: 0px 0px 0px 140px;">
 					<img src="<%=request.getContextPath() %>/img/006.png" alt="..." class="img-rounded" style=" height: 15px; width: 15px; ">
@@ -524,7 +542,7 @@
 				    		
 				 			<c:set value="1" var="i"></c:set>
 				    		<c:forEach var="map" items="${requestScope.list}">
-				    		<tr >
+				    		<tr onclick="login()">
 				    			<td colspan="7">
 				    				<a href="fym.html" style="color: black;">
 						    		<div class="well well-lg" style=" width: 800px; height: 180px;">
@@ -550,30 +568,31 @@
 						    				<div class="col-md-4 " style="margin: 0px 0px 0px 520px;" >
 							    				<c:choose>
 						    					<c:when test="${empty user}">
-						    					<a href="">
-						    					<div class="col-md-7 " data-toggle="modal" data-target="#login">
+						    					<a>
+						    					<div class="col-md-7 ">
 						    						
 							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span style="font-size: 16px; font: arial;color:black; ">收藏&nbsp;&nbsp;</span>
+													<span style="font-size: 16px; font: arial;">收藏&nbsp;&nbsp;</span>
 												</div>
 												</a>
-												<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#login">申 请 职 位</button>
+												<button type="button" class="btn btn-primary" onclick="login()">申 请 职 位</button>
 												</c:when>
 												<c:otherwise>
 												<c:if test="${map.Collectionstate==1}">
+												<a href=""  onclick="qsc('${map.UUID}','${map.eid}')">
 												<div class="col-md-7 "  >
-												<a href="">
 							    					<img src="<%=request.getContextPath() %>/img/收藏-已收藏.png" alt="..." class="..." style=" height: 35px; width: 38px;">
 													<span style="font-size: 16px; font: arial; ">已收藏&nbsp;&nbsp;</span>
-												</a>
 												</div>
+												</a>
 												</c:if>
 												<c:if test="${map.Collectionstate==0}">
-												
-												<div class="col-md-7 " onclick="sc('${map.UUID}','${map.eid}')">
+												<a href=""  onclick="sc('${map.UUID}','${map.eid}')">
+												<div class="col-md-7 ">
 							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span style="font-size: 16px; font: arial;color:black; ">收藏&nbsp;&nbsp;</span>
+													<span style="font-size: 16px; font: arial;">收藏&nbsp;&nbsp;</span>
 												</div>
+												</a>
 												</c:if>
 												<c:if test="${map.applystate==1}">
 												
@@ -664,7 +683,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 95px 0px 0px;">稍后登录</button>
-		        <a class="btn btn-primary" href="dljm.html">立即登录</a>
+		        <a class="btn btn-primary" href="<%=request.getContextPath()%>/users/index.do?method=loginpage">立即登录</a>
 		      </div>
 		    </div>
 		  </div>
