@@ -16,7 +16,7 @@ public class PostinfoService {
 	 * @desc   查询Employment表和从companynature表
 	 * @return
 	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws SQLException 
 	 */
 	public List<Map<String, Object>> selectEmploymentAndCompanynature(int page) throws ClassNotFoundException, SQLException {
 		int count = selectEmploymentNum();

@@ -155,7 +155,6 @@ public class PostinfoServlet extends  HttpServlet{
 		request.setAttribute("page", page);
 		System.out.println("前");
 		request.getRequestDispatcher("/managerjsp/post/postinfo.jsp").forward(request, response);
-//		response.sendRedirect(request.getContextPath()+"/postinfo/postin.do?method=query&page="+page);
 		System.out.println("后");
 	}
 
