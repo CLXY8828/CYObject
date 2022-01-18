@@ -114,6 +114,40 @@
 					}
 					
 				}
+		
+		//筛选
+		//选择之后改变薪资要求的内容
+		function gxnr01(xz)
+		{
+			$("#xzyq02").text()
+			document.getElementById("xzyq01").innerHTML=xz;
+		}
+		//选择之后改变学历要求的内容
+		function xlyq01(xl)
+		{
+			document.getElementById("xzyq02").innerHTML=xl;
+		}
+		//选择之后改变学历要求的内容
+		function gzjy01(jy)
+		{
+			document.getElementById("xzyq03").innerHTML=jy;
+		}
+		//选择之后改变职位类型的内容
+		function zwlx01(zw)
+		{
+			document.getElementById("xzyq04").innerHTML=zw;
+		}
+		//选择之后改变公司性质的内容
+		function gsxz01(xz)
+		{
+			document.getElementById("xzyq05").innerHTML=xz;
+		}
+		//选择之后改变公司规模的内容   
+		function gsgm01(gm)
+		{
+			document.getElementById("xzyq06").innerHTML=gm;
+		}
+		
 	</script>
 	</head>
 	<body>
@@ -203,7 +237,7 @@
 			
 			<div  style="border:2px solid #E5E5E5;  height: 80px ; width: 650px; margin: 210px 400px 0px  346px; font-size: 40px; font: '宋体'; ">
 				
-					<form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath() %>/logein.do?" method="post">
+					<form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath() %>/users/index.do?method=mquery&type=1" method="post">
 						
 					  <div class="form-group" >
 					  	<select class="form-control" name="select">
@@ -211,7 +245,7 @@
 	          					<option value="公司">公司</option>
 	          				</select>
 								        
-					    <input type="text" class="form-control" placeholder="请输入关键字" style="height: 40px; width: 400px; ">
+					    <input type="text" name="text" class="form-control" placeholder="请输入关键字" style="height: 40px; width: 400px; ">
 					  </div>
 					  <button type="submit" class="btn btn-default" style=" background-color: #E38D13; color: white; ">&nbsp;&nbsp;&nbsp;&nbsp;搜 索&nbsp;&nbsp;&nbsp;&nbsp;</button>
 					</form>
@@ -378,22 +412,22 @@
 					    			<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="xzyq">
 					    			
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gxnr01()">3K以下</button>
+									    <button type="button" class="btn btn-default" onclick="gxnr01('3K以下')">3K以下</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gxnr02()">3K-5K</button>
+									    <button type="button" class="btn btn-default" onclick="gxnr01('3K-5K')">3K-5K</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gxnr03()">5K-10K</button>
+									    <button type="button" class="btn btn-default" onclick="gxnr01('5K-10K')">5K-10K</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gxnr04()">10K-20K</button>
+									    <button type="button" class="btn btn-default" onclick="gxnr01('10K-20K')">10K-20K</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gxnr05()">40-60K</button>
+									    <button type="button" class="btn btn-default" onclick="gxnr01('40-60K')">40-60K</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gxnr06()">60K以上</button>
+									    <button type="button" class="btn btn-default" onclick="gxnr01('60K以上')">60K以上</button>
 									  </div>
 
 									  
@@ -404,25 +438,25 @@
 									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="xlyq">
 					    			
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="xlyq01()">初中及以下</button>
+									    <button type="button" class="btn btn-default" onclick="xlyq01('初中及以下')">初中及以下</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="xlyq02()">高中</button>
+									    <button type="button" class="btn btn-default" onclick="xlyq01('高中')">高中</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="xlyq03()">大专</button>
+									    <button type="button" class="btn btn-default" onclick="xlyq01('大专')">大专</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="xlyq04()">本科</button>
+									    <button type="button" class="btn btn-default" onclick="xlyq01('本科')">本科</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="xlyq05()">硕士</button>
+									    <button type="button" class="btn btn-default" onclick="xlyq01('硕士')">硕士</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="xlyq06()">博士</button>
+									    <button type="button" class="btn btn-default" onclick="xlyq01('博士')">博士</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="xlyq07()">MBA/EMBA</button>
+									    <button type="button" class="btn btn-default" onclick="xlyq01('MBA/EMBA')">MBA/EMBA</button>
 									  </div>
 				
 									  
@@ -431,25 +465,25 @@
 									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="gzjy">
 					    			
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gzjy01()">应届生</button>
+									    <button type="button" class="btn btn-default" onclick="gzjy01('应届生')">应届生</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gzjy02()">实习生</button>
+									    <button type="button" class="btn btn-default" onclick="gzjy01('实习生')">实习生</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gzjy03()">1年以内</button>
+									    <button type="button" class="btn btn-default" onclick="gzjy01('1年以内')">1年以内</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gzjy04()">1-3年</button>
+									    <button type="button" class="btn btn-default" onclick="gzjy01('1-3年')">1-3年</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gzjy05()">3-5年</button>
+									    <button type="button" class="btn btn-default" onclick="gzjy01('3-5年')">3-5年</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gzjy06()">5-10年</button>
+									    <button type="button" class="btn btn-default" onclick="gzjy01('5-10年')">5-10年</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gzjy07()">10年以上</button>
+									    <button type="button" class="btn btn-default" onclick="gzjy01('10年以上')">10年以上</button>
 									  </div>
 				
 									</div>
@@ -458,31 +492,31 @@
 									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="zwlx">
 					    			
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx01()">JAVA</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('JAVA')">JAVA</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx02()">Python</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('Python')">Python</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx03()">PHP</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('PHP')">PHP</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx04()">UED</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('UED')">UED</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx05()">AI</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('AI')">AI</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx06()">前端</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('前端')">前端</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx07()">运维</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('运维')">运维</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx08()">产品设计</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('产品设计')">产品设计</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="zwlx09()">其他</button>
+									    <button type="button" class="btn btn-default" onclick="zwlx01('其他')">其他</button>
 									  </div>
 				
 									</div>
@@ -490,22 +524,22 @@
 									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="gsxz">
 					    			
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsxz01()">国有企业</button>
+									    <button type="button" class="btn btn-default" onclick="gsxz01('国有企业')">国有企业</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsxz02()">民营企业</button>
+									    <button type="button" class="btn btn-default" onclick="gsxz01('民营企业')">民营企业</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsxz03()">外资企业</button>
+									    <button type="button" class="btn btn-default" onclick="gsxz01('民营企业')">民营企业</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsxz04()">合伙企业</button>
+									    <button type="button" class="btn btn-default" onclick="gsxz01('合伙企业')">合伙企业</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsxz05()">有限责任公司</button>
+									    <button type="button" class="btn btn-default" onclick="gsxz01('有限责任公司')">有限责任公司</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsxz06()">股份有限公司</button>
+									    <button type="button" class="btn btn-default" onclick="gsxz01('股份有限公司')">股份有限公司</button>
 									  </div>
 				
 									</div>
@@ -513,25 +547,25 @@
 									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="gsgm">
 					    			
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsgm01()">20人以下</button>
+									    <button type="button" class="btn btn-default" onclick="gsgm01('20人以下')">20人以下</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsgm02()">20-99人</button>
+									    <button type="button" class="btn btn-default" onclick="gsgm01('20-99人')">20-99人</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsgm03()">100-299人</button>
+									    <button type="button" class="btn btn-default" onclick="gsgm01('100-299人')">100-299人</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsgm04()">500-999人</button>
+									    <button type="button" class="btn btn-default" onclick="gsgm01('500-999人')">500-999人</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsgm05()">1000-9999人</button>
+									    <button type="button" class="btn btn-default" onclick="gsgm01('1000-9999人')">1000-9999人</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsgm06()">万人以上</button>
+									    <button type="button" class="btn btn-default" onclick="gsgm01('万人以上')">万人以上</button>
 									  </div>
 									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default" onclick="gsgm07()">不限</button>
+									    <button type="button" class="btn btn-default" onclick="gsgm01('不限')">不限</button>
 									  </div>
 									  
 									</div>
@@ -539,7 +573,7 @@
 									
 								</td>
 				    		</tr>
-				    		
+				    		<div>
 				 			<c:set value="1" var="i"></c:set>
 				    		<c:forEach var="map" items="${requestScope.list}">
 				    		<tr onclick="login()">
@@ -658,7 +692,7 @@
 					    	</tr>
 					    	<c:set var="i" value="${i}+1"></c:set>
 					    	</c:forEach>
-					    	
+					    	</div>
 				    	</tbody>
 				    	
 				    	

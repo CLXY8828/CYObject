@@ -14,36 +14,7 @@ $(document).bind('click', function(e) {
       $("#xzyq").css("display", "none");
     });
 
-//选择之后改变薪资要求的内容
-function gxnr01()
-{
-	document.getElementById("xzyq01").innerHTML="3K以下";
-}
 
-function gxnr02()
-{
-	document.getElementById("xzyq01").innerHTML="3K-5K";
-}
-
-function gxnr03()
-{
-	document.getElementById("xzyq01").innerHTML="5K-10K";
-}
-
-function gxnr04()
-{
-	document.getElementById("xzyq01").innerHTML="10K-20K";
-}
-
-function gxnr05()
-{
-	document.getElementById("xzyq01").innerHTML="40-60K";
-}
-
-function gxnr06()
-{
-	document.getElementById("xzyq01").innerHTML="60K以上";
-}
 
 //学历要求的隐藏和显示
 function xs02()
@@ -61,30 +32,7 @@ $(document).bind('click', function(e) {
       $("#xlyq").css("display", "none");
     });
    
-//选择之后改变学历要求的内容
-function xlyq01()
-{
-	document.getElementById("xzyq02").innerHTML="初中及以下";
-}
-function xlyq02()
-{
-	document.getElementById("xzyq02").innerHTML="高中";
-}function xlyq03()
-{
-	document.getElementById("xzyq02").innerHTML="大专";
-}function xlyq04()
-{
-	document.getElementById("xzyq02").innerHTML="本科";
-}function xlyq05()
-{
-	document.getElementById("xzyq02").innerHTML="硕士";
-}function xlyq06()
-{
-	document.getElementById("xzyq02").innerHTML="博士";
-}function xlyq07()
-{
-	document.getElementById("xzyq02").innerHTML="MBA/EMBA";
-}
+
 
 
 //工作经验的隐藏和显示
@@ -103,30 +51,7 @@ $(document).bind('click', function(e) {
       $("#gzjy").css("display", "none");
     });
    
-//选择之后改变学历要求的内容
-function gzjy01()
-{
-	document.getElementById("xzyq03").innerHTML="应届生";
-}
-function gzjy02()
-{
-	document.getElementById("xzyq03").innerHTML="实习生";
-}function gzjy03()
-{
-	document.getElementById("xzyq03").innerHTML="1年以内";
-}function gzjy04()
-{
-	document.getElementById("xzyq03").innerHTML="1-3年";
-}function gzjy05()
-{
-	document.getElementById("xzyq03").innerHTML="3-5年";
-}function gzjy06()
-{
-	document.getElementById("xzyq03").innerHTML="5-10年";
-}function gzjy07()
-{
-	document.getElementById("xzyq03").innerHTML="10年以上";
-}
+
 
 //职位类型的隐藏和显示
 function xs04()
@@ -144,36 +69,7 @@ $(document).bind('click', function(e) {
       $("#zwlx").css("display", "none");
     });
   
-//选择之后改变职位类型的内容
-function zwlx01()
-{
-	document.getElementById("xzyq04").innerHTML="JAVA";
-}
-function zwlx02()
-{
-	document.getElementById("xzyq04").innerHTML="Python";
-}function zwlx03()
-{
-	document.getElementById("xzyq04").innerHTML="PHP";
-}function zwlx04()
-{
-	document.getElementById("xzyq04").innerHTML="UED";
-}function zwlx05()
-{
-	document.getElementById("xzyq04").innerHTML="AI";
-}function zwlx06()
-{
-	document.getElementById("xzyq04").innerHTML="前端";
-}function zwlx07()
-{
-	document.getElementById("xzyq04").innerHTML="运维";
-}function zwlx08()
-{
-	document.getElementById("xzyq04").innerHTML="产品设计";
-}function zwlx09()
-{
-	document.getElementById("xzyq04").innerHTML="其他";
-}
+
 
 
 //公司性质的隐藏和显示
@@ -192,27 +88,8 @@ $(document).bind('click', function(e) {
       $("#gsxz").css("display", "none");
     });
 
-//选择之后改变公司性质的内容
-function gsxz01()
-{
-	document.getElementById("xzyq05").innerHTML="国有企业";
-}
-function gsxz02()
-{
-	document.getElementById("xzyq05").innerHTML="民营企业";
-}function gsxz03()
-{
-	document.getElementById("xzyq05").innerHTML="外资企业";
-}function gsxz04()
-{
-	document.getElementById("xzyq05").innerHTML="合伙企业";
-}function gsxz05()
-{
-	document.getElementById("xzyq05").innerHTML="有限责任公司";
-}function gsxz06()
-{
-	document.getElementById("xzyq05").innerHTML="股份有限公司";
-}
+
+
 
 //公司规模的隐藏和显示
 function xs06()
@@ -230,30 +107,7 @@ $(document).bind('click', function(e) {
       }
       $("#gsgm").css("display", "none");
     });
- //选择之后改变公司规模的内容   
-function gsgm01()
-{
-	document.getElementById("xzyq06").innerHTML="20人以下";
-}
-function gsgm02()
-{
-	document.getElementById("xzyq06").innerHTML="20-99人";
-}function gsgm03()
-{
-	document.getElementById("xzyq06").innerHTML="100-299人";
-}function gsgm04()
-{
-	document.getElementById("xzyq06").innerHTML="500-999人";
-}function gsgm05()
-{
-	document.getElementById("xzyq06").innerHTML="1000-9999人";
-}function gsgm06()
-{
-	document.getElementById("xzyq06").innerHTML="万人以上";
-}function gsgm07()
-{
-	document.getElementById("xzyq06").innerHTML="不限";
-}
+ 
 
 //清空筛选条件，把选择条件全部清空还原
 function xs07()

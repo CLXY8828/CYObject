@@ -33,6 +33,9 @@ public class IndexServlet extends HttpServlet {
 			else if ("qsc".equals(q)) {
 				saveqSC(request,response);
 			}
+			else if ("mquery".equals(q)){
+				mquery(request,response);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -40,6 +43,30 @@ public class IndexServlet extends HttpServlet {
 	}
 
 	
+	private void mquery(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+		
+		String userid = (String) request.getSession().getAttribute("userid");
+		String type = request.getParameter("type");
+		if ("1".equals(type)) {
+			String select = request.getParameter("select");
+			String text = request.getParameter("text");
+			if ("全文".equals(select)) {
+				List<Map<String, Object>> list =service.mqueryByQW(text,userid);
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				return;
+			}
+			else if ("公司".equals(select)) {
+				List<Map<String, Object>> list =service.mqueryByGS(text,userid);
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				return;
+			}
+		}
+		
+	}
+
+
 	private void saveqSC(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		String userid = request.getParameter("userid");
 		String eid = request.getParameter("eid");
@@ -65,7 +92,7 @@ public class IndexServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void query(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
-			String userid = request.getParameter("userid");
+			String userid = (String) request.getSession().getAttribute("userid");
 			System.out.println(userid);
 			List<Map<String, Object>> list=service.query(userid);
 			int sc=service.scquery(userid);

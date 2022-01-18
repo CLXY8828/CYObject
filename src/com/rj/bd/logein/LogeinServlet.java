@@ -138,7 +138,8 @@ public class LogeinServlet extends HttpServlet {
 		if (map!=null) {
 			if (map.get("password").equals(password)) {
 					request.getSession().setAttribute("user", map);
-					response.sendRedirect(request.getContextPath()+"/users/index.do?method=query&userid="+map.get("UUID"));
+					request.getSession().setAttribute("userid", map.get("UUID"));
+					response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
 			}
 			else {//登录失败
 				request.setAttribute("err", "学号与密码不匹配！");

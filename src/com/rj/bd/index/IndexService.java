@@ -54,4 +54,22 @@ public class IndexService {
 		
 	}
 
+	public List<Map<String, Object>> mqueryByQW(String text, String userid) throws ClassNotFoundException, SQLException {
+		if (userid==null) {
+			String sql = "SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid  and employment.employment_name LIKE  ?";
+			return dao.executeQueryForList(sql, new int[]{Types.VARCHAR}, new Object[]{"%"+text+"%"});
+		}
+		String sql = "SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=? and employment.employment_name LIKE  ?";
+		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR ,Types.VARCHAR}, new Object[]{userid,"%"+text+"%"}); 
+	}
+
+	public List<Map<String, Object>> mqueryByGS(String text, String userid) throws ClassNotFoundException, SQLException {
+		if (userid==null) {
+			String sql = "SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid  and employment.gsname LIKE  ?";
+			return dao.executeQueryForList(sql, new int[]{Types.VARCHAR}, new Object[]{"%"+text+"%"});
+		}
+		String sql = "SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=? and employment.gsname LIKE  ?";
+		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR ,Types.VARCHAR}, new Object[]{userid,"%"+text+"%"}); 
+	}
+
 }
