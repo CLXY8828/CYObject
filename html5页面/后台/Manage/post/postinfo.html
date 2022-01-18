@@ -25,6 +25,9 @@
 			div::-webkit-scrollbar {
 			  width: 0;
 			}
+			input[type=checkbox]{
+				margin-left: 10px;
+			}
 		</style>
 	</head>
 	<body>
@@ -104,21 +107,6 @@
 									<br>
 									<div class="row">
 										<span name="uploadspan">
-											公司福利：
-											<input type="text" name="comwelfare_upload" id="comwelfare_upload" value="" style="width: 20%;"/>
-										</span>
-										<span style="margin-left: 2%;" name="uploadspan">
-											公司类型：
-											<input type="text" name="comtype_upload" id="comtype_upload" value="" style="width: 20%;"/>
-										</span>
-										<span style="margin-left: 2%;" name="uploadspan">
-											公司所在地：
-											<input type="text" name="comaddress_upload" id="comaddress_upload" value="" style="width: 18%;" />
-										</span>
-									</div>
-									<br>
-									<div class="row">
-										<span name="uploadspan">
 											学历要求：
 											<select name="degree_upload" style="width: 18%;">
 												<option value="初中及以下">初中及以下</option>
@@ -129,6 +117,31 @@
 												<option value="硕士">硕士</option>
 												<option value="博士">博士</option>
 												<option value="MEA/EMBA">MEA/EMBA</option>
+											</select>
+										</span>
+										<span style="margin-left: 4%;" name="uploadspan">
+											公司类型：
+											<input type="text" name="comtype_upload" id="comtype_upload" value="" style="width: 20%;"/>
+										</span>
+										<span style="margin-left: 2%;" name="uploadspan">
+											公司所在地：
+											<input type="text" name="comaddress_upload" id="comaddress_upload" value="" style="width: 18%;" />
+										</span>
+									</div>
+									<br>
+									<div class="row">
+										<span>
+											岗位类型：
+											<select name="posttype_upload" style="width: 18%;">
+												<option value="JAVA">JAVA</option>
+												<option value="pyhton">pyhton</option>
+												<option value="php">php</option>
+												<option value="UED">UED</option>
+												<option value="AI">AI</option>
+												<option value="前端">前端</option>
+												<option value="运维">运维</option>
+												<option value="产品设计">产品设计</option>
+												<option value="其他">其他</option>
 											</select>
 										</span>
 										<span style="margin-left: 4%;" name="uploadspan">
@@ -151,18 +164,13 @@
 									<br>
 									<div class="row">
 										<span>
-											岗位类型：
-											<select name="posttype_upload" style="width: 18%;">
-												<option value="JAVA">JAVA</option>
-												<option value="pyhton">pyhton</option>
-												<option value="php">php</option>
-												<option value="UED">UED</option>
-												<option value="AI">AI</option>
-												<option value="前端">前端</option>
-												<option value="运维">运维</option>
-												<option value="产品设计">产品设计</option>
-												<option value="其他">其他</option>
-											</select>
+											公司福利：
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="五险一金" />五险一金
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="补充医疗保险" />补充医疗保险
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="弹性工作" />弹性工作
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="交通补贴" />交通补贴
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="周末双休" />周末双休
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="年终奖金" />年终奖金
 										</span>
 									</div><br>
 									<div style="margin-left: -1.5%;">
@@ -286,10 +294,19 @@
 												<br>
 												<div class="row">
 													<span>
-														公司福利：
-														<input type="text" name="comwelfare_edit" id="comwelfare_edit" value="" style="width: 20%;"/>
+														学历要求：
+														<select name="degree_edit" style="width: 18%;">
+															<option value="初中及以下">初中及以下</option>
+															<option value="高中">高中</option>
+															<option value="中专">中专</option>
+															<option value="大专">大专</option>
+															<option value="本科">本科</option>
+															<option value="硕士">硕士</option>
+															<option value="博士">博士</option>
+															<option value="MEA/EMBA">MEA/EMBA</option>
+														</select>
 													</span>
-													<span style="margin-left: 2%;">
+													<span style="margin-left: 4%;">
 														公司类型：
 														<input type="text" name="comtype_edit" id="comtype_edit" value="" style="width: 20%;"/>
 													</span>
@@ -301,16 +318,17 @@
 												<br>
 												<div class="row">
 													<span>
-														学历要求：
-														<select name="degree_edit" style="width: 18%;">
-															<option value="初中及以下">初中及以下</option>
-															<option value="高中">高中</option>
-															<option value="中专">中专</option>
-															<option value="大专">大专</option>
-															<option value="本科">本科</option>
-															<option value="硕士">硕士</option>
-															<option value="博士">博士</option>
-															<option value="MEA/EMBA">MEA/EMBA</option>
+														岗位类型：
+														<select name="posttype_upload" style="width: 18%;">
+															<option value="JAVA">JAVA</option>
+															<option value="pyhton">pyhton</option>
+															<option value="php">php</option>
+															<option value="UED">UED</option>
+															<option value="AI">AI</option>
+															<option value="前端">前端</option>
+															<option value="运维">运维</option>
+															<option value="产品设计">产品设计</option>
+															<option value="其他">其他</option>
 														</select>
 													</span>
 													<span style="margin-left: 4%;">
@@ -337,19 +355,16 @@
 														<input type="text" name="hadwork_edit" id="hadwork_edit" value="" style="width: 8%;"/>
 														人
 													</span>
-													<span style="margin-left: 12%;">
-														岗位类型：
-														<select name="posttype_upload" style="width: 18%;">
-															<option value="JAVA">JAVA</option>
-															<option value="pyhton">pyhton</option>
-															<option value="php">php</option>
-															<option value="UED">UED</option>
-															<option value="AI">AI</option>
-															<option value="前端">前端</option>
-															<option value="运维">运维</option>
-															<option value="产品设计">产品设计</option>
-															<option value="其他">其他</option>
-														</select>
+												</div>
+												<div class="row" style="margin-top: 1.5%;">
+													<span>
+														公司福利：
+														<input type="checkbox" name="welfare_edit" id="comwelfare_upload" value="五险一金" />五险一金
+														<input type="checkbox" name="welfare_edit" id="comwelfare_upload" value="补充医疗保险" />补充医疗保险
+														<input type="checkbox" name="welfare_edit" id="comwelfare_upload" value="弹性工作" />弹性工作
+														<input type="checkbox" name="welfare_edit" id="comwelfare_upload" value="交通补贴" />交通补贴
+														<input type="checkbox" name="welfare_edit" id="comwelfare_upload" value="周末双休" />周末双休
+														<input type="checkbox" name="welfare_edit" id="comwelfare_upload" value="年终奖金" />年终奖金
 													</span>
 												</div>
 												<br>
@@ -426,8 +441,8 @@
 											<br>
 											<div class="row">
 												<span>
-													公司福利：
-													<input type="text" name="comwelfare_view" id="comwelfare_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;"/>
+													学历要求：
+													<input type="text" name="degree_view" id="degree_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;" />
 												</span>
 												<span style="margin-left: 2%;">
 													公司类型：
@@ -441,8 +456,8 @@
 											<br>
 											<div class="row">
 												<span>
-													学历要求：
-													<input type="text" name="degree_view" id="degree_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;" />
+													岗位类型：
+													<input type="text" name="posttype_view" id="posttype_view" value="" disabled="disabled" style="width: 20%;outline: none;border: none;"/>
 												</span>
 												<span style="margin-left: 2%;">
 													联系电话：
@@ -456,16 +471,18 @@
 											<br>
 											<div class="row">
 												<span>
-													总招聘人数
-													<input type="text" name="allworker_view" id="allworker_view" value="" disabled="disabled" style="width: 8%;outline: none;border: none;"/>
-													人
-												</span>
-												<span>
 													已招人数：
 													<input type="text" name="hadwork_view" id="hadwork_view" value="" disabled="disabled" style="width: 8%;outline: none;border: none;"/>
 													人
 												</span>
 											</div>
+											<div class="row"  style="margin-top: 1.5%;">
+												<span>
+													公司福利：
+													<input type="text" name="welfare_edit" id="welfare_edit" value="" disabled="disabled" style="width: 60%;outline: none;border: none;"/>
+												</span>
+											</div>
+											
 											<br>
 											<div style="margin-left: -1.5%;">
 												<span >岗位描述：</span><br>
@@ -513,7 +530,6 @@
 											<input type="text" name="pagenum" id="pagenum" value="1" style="width: 35px;" />
 											页
 										</span>
-										
 									</div>
 								</td>
 							</tr>
@@ -557,7 +573,7 @@
 				if($("#tips_upload").val()==""){
 					$("#tips_upload").val()=="无";
 				}
-				if(x>=7){
+				if(x>=6){
 					return true;
 				}else{
 					return false;
