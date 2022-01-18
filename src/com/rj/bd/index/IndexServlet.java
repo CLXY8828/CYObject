@@ -58,7 +58,11 @@ public class IndexServlet extends HttpServlet {
 			String userid = request.getParameter("userid");
 			System.out.println(userid);
 			List<Map<String, Object>> list=service.query(userid);
+			int sc=service.scquery(userid);
+			int sq=service.sqquery(userid);
 			System.out.println(list);
+			request.getSession().setAttribute("sc", sc);
+			request.getSession().setAttribute("sq", sq);
 			request.setAttribute("list", list);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}

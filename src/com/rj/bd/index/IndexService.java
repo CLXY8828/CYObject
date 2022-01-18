@@ -32,4 +32,20 @@ public class IndexService {
 		dao.executeUpdate(sql, new int[]{Types.INTEGER,Types.VARCHAR,Types.VARCHAR}, new Object[]{1,userid,eid});
 	}
 
+	public int scquery(String userid) throws ClassNotFoundException, SQLException {
+		if (userid==null) {
+			return 0;
+		}
+		String sql = "SELECT COUNT(*) FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=? and employmentapply.Collectionstate=1";
+		return dao.executeQueryForInt(sql, new int[]{Types.VARCHAR},new Object[]{userid});
+	}
+
+	public int sqquery(String userid) throws ClassNotFoundException, SQLException {
+		if (userid==null) {
+			return 0;
+		}
+		String sql ="SELECT COUNT(*) FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=? and employmentapply.applystate=1";
+		return dao.executeQueryForInt(sql, new int[]{Types.VARCHAR},new Object[]{userid});
+	}
+
 }

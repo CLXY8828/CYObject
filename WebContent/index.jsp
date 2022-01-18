@@ -96,6 +96,7 @@
 	<script type="text/javascript">
 	function sc(userid,eid) {
 		var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
+		alert(url)
 			$.post(url,{userid:userid,eid:eid},function(data)
 			{
 				location.reload();
@@ -187,10 +188,10 @@
 					<form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath() %>/logein.do?" method="post">
 						
 					  <div class="form-group" >
-					  	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >全文 <span class="caret"></span></button>
-								        <ul class="dropdown-menu">
-								          <li><a href="#">全文</a></li>
-								        </ul>
+					  	<select class="form-control" name="select">
+	          					<option value="全文">全文</option>
+	          					<option value="公司">公司</option>
+	          				</select>
 								        
 					    <input type="text" class="form-control" placeholder="请输入关键字" style="height: 40px; width: 400px; ">
 					  </div>
@@ -222,8 +223,8 @@
 						</td>
 					</tr>
 					<tr align="center" style="font-size: 20px;">
-						<td>0</td>
-						<td>0</td>
+						<td>${sessionScope.sc}</td>
+						<td>${sessionScope.sq}</td>
 					</tr>
 					<tr  align="center" style="font-size: 13px; font-weight: 500;">
 						<td>我的收藏</td>
