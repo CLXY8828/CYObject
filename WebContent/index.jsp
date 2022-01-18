@@ -539,30 +539,36 @@
 						    				<div class="col-md-4 " style="margin: 0px 0px 0px 520px;" >
 							    				<c:choose>
 						    					<c:when test="${empty user}">
-						    					<div class="col-md-7 " id=shoucang01 onclick="shoucang(true)">
+						    					<a href="">
+						    					<div class="col-md-7 " data-toggle="modal" data-target="#login">
+						    						
 							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span style="font-size: 16px; font: arial; ">收藏&nbsp;&nbsp;</span>
+													<span style="font-size: 16px; font: arial;color:black; ">收藏&nbsp;&nbsp;</span>
 												</div>
+												</a>
+												<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#login">申 请 职 位</button>
 												</c:when>
 												<c:otherwise>
 												<c:if test="${map.applystate==1}">
 												
-												<div class="col-md-7 " id=shoucang02 >
+												<div class="col-md-7 "  >
 							    					<img src="<%=request.getContextPath() %>/img/收藏-已收藏.png" alt="..." class="..." style=" height: 35px; width: 38px;">
 													<span style="font-size: 16px; font: arial; ">已收藏&nbsp;&nbsp;</span>
 												</div>
 												</c:if>
 												<c:if test="${map.applystate==0}">
-												<div class="col-md-7 " id=shoucang01 onclick="shoucang(true)">
+												<a>
+												<div class="col-md-7 ">
 							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span style="font-size: 16px; font: arial; ">收藏&nbsp;&nbsp;</span>
+													<span style="font-size: 16px; font: arial;color:black; ">收藏&nbsp;&nbsp;</span>
 												</div>
+												</a>
 												</c:if>
 												<c:if test="${map.Collectionstate==1}">
-												<button type="button" class="btn btn-primary" id="sqzw01">已申请</button>
+												<button type="button" class="btn btn-primary">已申请</button>
 												</c:if>
 												<c:if test="${map.Collectionstate==0}">
-												<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}" id="sqzw">申 请 职 位</button>
+												<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}">申 请 职 位</button>
 												</c:if>
 												</c:otherwise>
 												</c:choose>
@@ -633,7 +639,24 @@
 		  	
 			</div>
 		</div>
-		
-		
+		<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style=" margin: 250px 0px 0px 0px;">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		      
+		      <div class="modal-body" align="center">
+		      	 <br />
+		      	 <br />
+		      	 <h4 class="modal-title" id="myModalLabel">请先进行登录</h4>
+		      	 <br />
+		       	<br />
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 95px 0px 0px;">稍后登录</button>
+		        <a class="btn btn-primary" href="dljm.html">立即登录</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 	</body>
 </html>
