@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8"> 
 		<title>岗位信息</title>
 		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
