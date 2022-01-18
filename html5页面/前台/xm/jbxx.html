@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基本信息</title>
+		<!--1.移动设备积极响应的语句 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!--2.引入基本的bootstrap的样式和js文件 -->
+		
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+	</head>
+	<body>
+		
+		<div style="height: 140px;border-bottom-style:solid; border-bottom-color: #CCCCCC; border-bottom-width: 2px;">
+			<div  style="width: 60px; height: 60px; margin: 20px 0px 0px 0px; float: left;">
+				<img src="img/我的.png" alt="..." class="img-thumbnail">
+					
+			</div>
+			<div style="float: left; margin: 5px 0px 0px 40px;">
+				<h2>张三</h2>
+			</div>
+			<div style=" margin: 0px 0px 0px 85px;	clear:left; font-size: 17px;">
+				<span>现居住宁波-北仓区 | 九年工作经验 | 男 | 26岁（1995/02/11）</span>
+			</div>
+		</div>
+		
+		<div style=" height: 300px;">
+			<form action="<%=request.getContextPath() %>/logein.do?" method="post">
+			<table class="table" frame="void">
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">姓 名</span>
+						  <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">性 别</span>
+						  <div class="form-control" >
+						   		<label class="radio-inline">
+							   		&nbsp;&nbsp;
+									  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 男
+								</label>
+								<label class="radio-inline" >
+									  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 女
+								</label>
+          					 </div>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">QQ</span>
+						  <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">邮 箱</span>
+						   <input type="text" class="form-control"  aria-describedby="basic-addon2">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">学 号</span>
+						  <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">是否就业</span>
+						  	<div class="form-control">
+						 	 <label class="radio-inline">
+								  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 是
+								</label>
+								<label class="radio-inline" >
+								  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 否
+								</label>
+          					 </div>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">身份证号</span>
+						  <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">手机号码</span>
+						  <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <span class="input-group-addon" id="sizing-addon2">现居住地</span>
+						  <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						  <span class="input-group-addon" id="sizing-addon2">工作经验</span>
+						  	<select class="form-control">
+	          					<option value="">请选择</option>
+	          					<option value="">应届生</option>
+	          					<option value="">实习生</option>
+	          					<option value="">1年以内</option>
+	          					<option value="">1-3年</option>
+	          					<option value="">3-5年</option>
+	          					<option value="">5-10年</option>
+	          					<option value="">10年以上</option>
+	          				</select>
+						  	
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <!--<button type="button" class="btn btn-default" >取 消</button>-->
+						  <a class="btn btn-default" href="zym.html" target="_parent">取消</a>
+ 
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px; " align="right">
+						   <a class="btn btn-primary" href="gsxx02.html">确 定</a>
+						</div>
+					</td>
+				</tr>
+				
+			</table>
+			</form>
+		</div>
+		
+	</body>
+</html>

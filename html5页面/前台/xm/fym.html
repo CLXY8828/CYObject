@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>子页面</title>
+		
+		<!--1.移动设备积极响应的语句 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!--2.引入基本的bootstrap的样式和js文件 -->
+		
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript" src="../jquery/jquery.js"></script>
+		<style type="text/css">
+			#address{
+			  border:1px solid #CCCCCC;
+			  padding:6px 16px 4px 4px;
+			  background: url(1.gif) no-repeat 80px center;
+			  width:80px;
+			  height:30px;
+			  text-align:center;
+			  cursor:pointer;
+			}
+			*{
+			  padding:0;
+			  margin:0;
+			}
+			ul{
+			  margin:0px;
+			  padding:5px;
+			  font-size:12px;
+			}
+			a{
+			  color:#009999;
+			  text-decoration:none;
+			}
+			a:hover{
+			  background-color:#006699;
+			  color:#FFFFFF;
+			  text-decoration:underline;
+			}
+			li{
+			  list-style:none;
+			  width:38px;
+			  padding:2px 2px;
+			  display:inline-block;
+			}
+			#citys{
+			  border:1px solid #FF0000;
+			  width:336px;
+			  position:relative;
+			}
+			#citys span{
+			  padding:5px;
+			}
+			#smallCity{
+			  border-top:1px solid #CCCCCC;
+			}
+			#cancel{
+			  position:absolute;
+			  width:20px;
+			  height:20px;
+			  cursor:pointer;
+			  top:0px;
+			  right:0px;
+			  border:1px solid #333;
+			  text-align:center;
+			  font-size:16px;
+			  line-height:20px;
+			  background-color:#ddd;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			
+			/*
+			*  选择城市
+			*  made by keimon
+			*  2013-03-21
+			*/
+			$(function(){
+
+			  $("#address01").click(function(){
+			    $("#citys").show();
+			  });
+			  $("#cancel").click(function(){
+			    $("#citys").hide();
+			  });
+			  $(".province").click(function(){
+			    $("#smallCity").show()
+			                .find("li").hide();
+			 $("."+this.id + "City").parent("li").show();
+			 $("."+this.id + "City").click(function(){
+			   $("#address").html($(this).html())
+			                .siblings("#citys").hide();
+			 });
+			  })
+			  $("#bigCity a").click(function(){
+			 $("#address").html($(this).html())
+			              .siblings("#citys").hide();
+			 })
+			})
+			
+			//收藏的显示和隐藏
+			//页面加载就执行,传出来是true,显示已经收藏,否则就是未收藏
+			$(document).ready(function()
+					{
+			//			var url="<%=request.getContextPath()%>/manager.do?method=queryAjax";
+			//				$.post(url,{manager_name:gname},function(data)
+			//						{
+			//							如果等于true，然后就显示已收藏
+			
+			//							
+			//					
+			//						});
+						function shoucang(data)
+							{
+								if(zt==true)
+								{
+									$("#shoucang01").hide();
+									$("#shoucang02").show();
+								}
+								else
+								{
+									$("#shoucang02").hide();
+									$("#shoucang01").show();
+								}
+								
+							}
+					});
+			
+			//上传简历成功之后跳转回公司详情
+			//传一个参数，如果这个参数等于true，然后就把等待公司审核这个按钮显示出来
+			//并且这个等待公司审核按钮是禁止点击的
+			function tiaozhuan()
+			{
+				window.location.href = "fym.html";
+			}
+			$(document).ready(function()
+					{
+			//			var url="<%=request.getContextPath()%>/manager.do?method=queryAjax";
+			//				$.post(url,{manager_name:gname},function(data)
+			//						{
+			//							如果等于true，然后就显示等待审核
+			
+			//							
+			//					
+			//						});
+			
+						function shoucang(data)
+							{
+								if(data==true)
+								{
+									$("#sqzw").hide();
+									$("#sqzw01").show();
+									document.getElementById("sqzw01").disabled=false;
+								}
+								else
+								{
+									$("#sqzw01").hide();
+									$("#sqzw").show();
+								}
+								
+							}
+					});
+
+			
+		</script>
+		
+	</head>
+	<body>
+		
+	<div class="container" style="background-image: url(img/004.jpg); height: 300px;width: 1518px; " >
+			<div class="row">
+			
+			<div class="col-md-1 col-md-offset-1" style="height: 80px; width: 120px; margin: 20px 0px 0px 50px; ">
+			  	<img src="img/001.png" class="img-responsive" alt="Responsive image" style="width:100%;height:100%; ">
+			</div>
+			<div class="col-md-3" style="font-size: 40px; text-align: center; font-weight: bold; color: white ; margin: 30px 0px 0px 0px; ">高 校 就 业 平 台</div>
+			
+			
+			<div class="col-md-6 " style="margin:50px 0px 0px 200px ; ">
+				<div class="row">
+					<div class="col-md-1" style="margin:5px 0px 0px 200px ; "align="right">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="height: 50px ; width: 50px;"></span>
+					</div>
+					
+					<div id="address" class="col-md-4">
+						河北
+					</div>
+					<div class="col-md-4" id="address01">
+						<a style="color: blue;">切换城市</a>
+					</div>
+				</div>
+				
+			
+			</div>
+			
+			
+			<!-- Split button -->
+				<div class="btn-group col-md-1 " style="margin: 0px 0px 0px 1300px; bottom: 70px; ">
+				  <button type="button" class="btn btn-default">我的</button>
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <span class="caret"></span>
+				    <span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li><a href="wd.html">个人信息</a></li>
+				    <br />
+				    <li><a href="#">个人中心</a></li>
+				    <br />
+				    <li role="separator" class="divider"></li>
+				    <br />
+				    <li><a href="dljm.html">退出</a></li>
+				  </ul>
+				</div>
+			
+			
+			
+			
+			
+			
+			<div id="citys"  style="display:none ; margin: 0px 0px 0px 900px; ">
+				  <span>请选择省份:</span>
+				  <ul id="bigCity">
+				  	 <li><a href="#" class="city">北京</a></li>
+					 <li><a href="#" class="city">河北</a></li>
+					 <li><a href="#" class="city">上海</a></li>
+					 <li><a href="#" class="city">天津</a></li>
+				
+				  </ul>
+				  <ul id="province">
+				  	<li><a id="hb" class="province" href="#">河北</a></li>
+					<li><a id="zj" class="province" href="#">浙江</a></li>
+					 <li><a id="ah" class="province" href="#">安徽</a></li>
+					 <li><a id="sc" class="province" href="#">四川</a></li>
+					 <li><a id="gz" class="province" href="#">贵州</a></li>
+					 <li><a id="yn" class="province" href="#">云南</a></li>
+					 <li><a id="hn" class="province" href="#">湖南</a></li>
+					 <li><a id="gd" class="province" href="#">广东</a></li>
+					 <li><a id="sd" class="province" href="#">山东</a></li>
+				 
+				  </ul>
+				  <ul id="smallCity" style="display:none">
+				 <!--浙江-->
+				 <li><a class="zjCity" href="#">宁波</a></li>
+				  <li><a class="zjCity" href="#">杭州</a></li>
+				  <li><a class="zjCity" href="#">温州</a></li>
+				  <li><a class="zjCity" href="#">台州</a></li>
+				  <li><a class="zjCity" href="#">绍兴</a></li>
+				  <!--广东-->
+				  <li><a class="gdCity" href="#">广州</a></li>
+				  <li><a class="gdCity" href="#">深圳</a></li>
+				  <li><a class="gdCity" href="#">中山</a></li>
+				  <li><a class="gdCity" href="#">珠海</a></li>
+				  <li><a class="gdCity" href="#">汕头</a></li>
+				  <li><a class="gdCity" href="#">东莞</a></li>
+				  <li><a class="gdCity" href="#">梅州</a></li>
+				  <!--安徽-->
+				  <li><a class="ahCity" href="#">合肥</a></li>
+				  <li><a class="ahCity" href="#">芜湖</a></li>
+				  <li><a class="ahCity" href="#">宣城</a></li>
+				  <li><a class="ahCity" href="#">池州</a></li>
+				  <li><a class="ahCity" href="#">六安</a></li>
+				  <!--四川-->
+				  <li><a class="scCity" href="#">成都</a></li>
+				  <li><a class="scCity" href="#">雅安</a></li>
+				  <li><a class="scCity" href="#">广安</a></li>
+				  <!--贵州-->
+				  <li><a class="gzCity" href="#">贵阳</a></li>
+				  <li><a class="gzCity" href="#">遵义</a></li>
+				  <!--云南-->
+				  <li><a class="ynCity" href="#">昆明</a></li>
+				  <li><a class="ynCity" href="#">丽江</a></li>
+				  <!--湖南-->
+				  <li><a class="hnCity" href="#">长沙</a></li>
+				  <li><a class="hnCity" href="#">株洲</a></li>
+				  <li><a class="hnCity" href="#">常德</a></li>
+				  <!--山东-->
+				  <li><a class="sdCity" href="#">济南</a></li>
+				  <li><a class="sdCity" href="#">青岛</a></li>
+				  <!--河北-->
+				  <li><a class="hbCity" href="#">石家庄</a></li>
+				  <li><a class="hbCity" href="#">保定</a></li>
+				  <li><a class="hbCity" href="#">秦皇岛</a></li>
+				  <li><a class="hbCity" href="#">邢台</a></li>
+				  <li><a class="hbCity" href="#">唐山</a></li>
+				  <li><a class="hbCity" href="#">邯郸</a></li>
+				  <li><a class="hbCity" href="#">张家口</a></li>
+				  <li><a class="hbCity" href="#">承德</a></li>
+				  <li><a class="hbCity" href="#">沧州</a></li>
+				  <li><a class="hbCity" href="#">廊坊</a></li>
+				  <li><a class="hbCity" href="#">衡水</a></li>
+				  </ul>
+				  <p id="cancel">×</p>
+				</div>
+			
+			
+			</div>
+		</div>
+		
+		
+		
+		<div class="container-fluid" style=" box-shadow:0 0 6px 3px #c3c3c3;   align-content: center; width: 860px; font-family: arial;">
+		  	<div class="row" >
+		  		<table>
+		  			<br />
+	    			<div>
+		    			<span  style="font-size: 30px; font-weight: bold; margin: 0px 0px 0px 10px;"> Java开发工程师</span>
+		    			<span style="font-size: 24px; color: red; margin: 0px 0px 0px 260px; ">1.5万-3万 .13薪</span>
+		    			
+	    			</div>
+	    			
+	    			<div align="left">
+	    				<span  style="margin: 0px 0px 0px 10px;">北京京云万峰信息技术有限公司</span>
+    				</div>
+    				<br />
+    				<div align="left">
+	    				<span  style="margin: 0px 0px 0px 10px;"> 广州-天河区 | 2年经验 | 本科 | 招2人 | 01-09发布</span>
+    				</div>
+    				<br />
+    				<div class="row" style="margin: 0px 0px 0px 10px;">
+											  
+					<div class="col-md-1 " style="width: 80px; height: 20px;  font-size: 10px; background-color: #EEA236;" align="center">五险一金</div>
+					<div class="col-md-1 " style="width: 110px; height: 20px; font-size: 10px; solid #000; background-color: #EEA236; margin: 0px 0px 0px 10px; " align="center">补充医疗保险</div>
+					<div class="col-md-1 " style="width: 80px; height: 20px; font-size: 10px; solid #000; background-color: #EEA236; margin: 0px 0px 0px 10px;" align="center">弹性工作</div>
+					<div class="col-md-1 " style="width: 80px; height: 20px; font-size: 10px; solid #000; background-color: #EEA236; margin: 0px 0px 0px 10px;" align="center">交通补贴</div>
+					<div class="col-md-1 " style="width: 80px; height: 20px; font-size: 10px; solid #000; background-color: #EEA236; margin: 0px 0px 0px 10px;" align="center">周末双休</div>
+					<div class="col-md-1 " style="width: 80px; height: 20px; font-size: 10px; solid #000; background-color: #EEA236; margin: 0px 0px 0px 10px;" align="center">年终奖金</div>
+					
+					
+    				<div class="col-md-4 " style="margin: 0px 0px 0px 580px;" >
+    					<div class="col-md-7 " id=shoucang01 onclick="shoucang()">
+	    					<img src="img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
+							<span style="font-size: 16px; font: arial; ">收藏&nbsp;&nbsp;</span>
+						</div>
+						<div class="col-md-7 " id=shoucang02 onclick="shoucang01()" style="display: none;">
+	    					<img src="img/收藏-已收藏.png" alt="..." class="..." style=" height: 35px; width: 38px;">
+							<span style="font-size: 16px; font: arial; ">已收藏&nbsp;&nbsp;</span>
+						</div>
+						
+	    				<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModal" id="sqzw">申 请 职 位</button>
+	    				<button type="button" class="btn btn-primary"   style="display: none" id="sqzw01">等 待 审 核</button>
+	    				
+	    				<!-- 申请职位 -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" align="center">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel">您所要申请的是北京京云万峰信息技术有限公司</h4>
+							        <h5 class="modal-title" id="myModalLabel">JAVA开发工程师</h5>
+							      </div>
+							      <div class="modal-body">
+							        <img src="img/008.jpg" alt="..." class="img-thumbnail">
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 430px 0px 0px;">再想想</button>
+							        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal01">确 定</button>
+							        
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							
+							<!-- Small modal -->
+							<div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" align="center">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        <h4 class="modal-title" id="myModalLabel">您所要申请的是北京京云万峰信息技术有限公司</h4>
+								        <h5 class="modal-title" id="myModalLabel">JAVA开发工程师</h5>
+								      </div>
+								      <div class="modal-body">
+								      	<h4 class="modal-title" id="myModalLabel">上传简历成功</h4>
+								      </div>
+								      <div class="modal-footer" align="center">
+								        <button type="button" class="btn btn-primary" data-toggle="modal" style="margin: 0px 250px 0px 0px;" onclick="tiaozhuan()">确定</button>
+								        
+								      </div>
+								</div>
+							    </div>
+							  </div>
+	    			</div>
+    			
+    			</div>
+	    			
+		  		<hr />
+		  		
+		  		<div  style="border:2px solid #E5E5E5;  height: 1000px; width: 250px;  float: right;">
+					
+					<br />
+					<hr />
+					<div >
+	    				<span  style="font-size: 25px; font-weight: bold; margin: 0px 0px 0px 10px;"> 公司信息:</span>
+    				</div>
+    				<hr />
+    				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px; font-size: 19px;">北京京云万峰信息技术有限公司</span>
+					</div>
+					<br />
+					<div align="left">
+						<span style="margin: 0px 0px 0px 20px; ">
+							<img src="img/1.png" style="height: 25px; width: 30px;"/>
+						</span>
+    					<span  style="margin: 0px 0px 0px 10px;">民营企业</span>
+					</div>
+					<br />
+					<div align="left">
+						<span style="margin: 0px 0px 0px 20px; ">
+							<img src="img/2.png" style="height: 25px; width: 30px;"/>
+						</span>
+    					<span  style="margin: 0px 0px 0px 10px;">少于50人</span>
+					</div>
+					<br />
+					<div align="left">
+						<span style="margin: 0px 0px 0px 20px; ">
+							<img src="img/3.png" style="height: 25px; width: 30px;"/>
+						</span>
+    					<span  style="margin: 0px 0px 0px 10px;">计算机软件 互联网/电子商务</span>
+					</div>
+					<br />
+					<hr />
+					<br />
+					<br />
+					<br />
+					<hr />
+					<div >
+	    				<span  style="font-size: 25px; font-weight: bold; margin: 0px 0px 0px 10px;"> 相似职位</span>
+    				</div>
+    				<hr />
+    				<div align="left">
+    					<a href="fym.html">
+    					<div>
+	    					<span  style=" font-size: 18px; margin: 0px 0px 0px 20px;">JAVA工程师</span>
+	    					<br />
+	    					<br />
+	    					<p style="margin: 0px 0px 0px 20px; color: #CCCCCC;">广州市佑盛文化传播有限公司 </p>
+	    					<span  style=" color: red; margin: 0px 0px 0px 20px;">1-1.5万/月</span>
+	    					<span  style=" color: #CCCCCC; margin: 0px 30px 0px 0px; float: right;" >广州-天河</span>
+						</div>
+						</a>
+    				</div>	
+    				<hr />
+    				<div align="left">
+    					<a href="fym.html">
+    					<div>
+	    					<span  style=" font-size: 18px; margin: 0px 0px 0px 20px;">JAVA工程师</span>
+	    					<br />
+	    					<br />
+	    					<p style="margin: 0px 0px 0px 20px; color: #CCCCCC;">广州市佑盛文化传播有限公司 </p>
+	    					<span  style=" color: red; margin: 0px 0px 0px 20px;">1-1.5万/月</span>
+	    					<span  style=" color: #CCCCCC; margin: 0px 30px 0px 0px; float: right;" >广州-天河</span>
+						</div>
+						</a>
+    				</div>	
+    				<hr />
+    				<div align="left">
+    					<a href="fym.html">
+    					<div>
+	    					<span  style=" font-size: 18px; margin: 0px 0px 0px 20px;">JAVA工程师</span>
+	    					<br />
+	    					<br />
+	    					<p style="margin: 0px 0px 0px 20px; color: #CCCCCC;">广州市佑盛文化传播有限公司 </p>
+	    					<span  style=" color: red; margin: 0px 0px 0px 20px;">1-1.5万/月</span>
+	    					<span  style=" color: #CCCCCC; margin: 0px 30px 0px 0px; float: right;" >广州-天河</span>
+						</div>
+						</a>
+    				</div>	
+    				<hr />
+    						
+					
+				</div>
+		  		
+		  		<div >
+	    			<span  style="font-size: 25px; font-weight: bold; margin: 0px 0px 0px 10px;"> 职位信息</span>
+    			</div>
+    			
+    			<br />
+    			<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">职位职责:</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">基于java技术进行web应用软件的开发与维护</span>
+				</div>
+				<br />
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">任职要求：</span>
+				</div>
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">1，精通java，J2ee相关技术和体系框架，具备两年以上全栈开发经验。</span>
+				</div>
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">2、精通Spring-boot、 MyBatis后台框架及相关技术。</span>
+				</div>
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">3、精通JavaScript. HTML、CSS等技术;熟悉各种浏览器终端的兼容性。</span>
+				</div>
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">4、熟悉VUE等前沿框架，熟练使用vue生态圈UI库(element-ui, iview, van等) 。</span>
+				</div>
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">5、精通Mysql, 熟练配置维护Nginx/Tomcat等服务。</span>
+				</div>
+				<br />
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">职能类别： JAVA工程师</span>
+				</div>
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">关键字： 软件工程师   &nbsp;&nbsp;&nbsp;&nbsp;软件开发  &nbsp;&nbsp;&nbsp;&nbsp;  java</span>
+				</div>
+		  	
+		  	
+		  	
+		  		
+		  		<hr />
+		  		<div>
+	    			<span  style="font-size: 25px; font-weight: bold; margin: 0px 0px 0px 10px;"> 联系方式</span>
+    			</div>
+    			<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">上班地址： 乐天创意园</span>
+				</div>
+				<br />
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">招聘人电话： 113255369984</span>
+				</div>
+				<br />
+				<br />
+				
+		  		<hr />
+		  		<div>
+	    			<span  style="font-size: 25px; font-weight: bold; margin: 0px 0px 0px 10px;"> 公司信息</span>
+    			</div>
+		  		<br />
+		  		<br />
+		  		<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">&nbsp;&nbsp;&nbsp;&nbsp;广州璐华信息技术有限公司成立于2002年1月,是专业从事应用软件开发与服务的高科技企</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">业、广东省双软”认定企业、高新技术企业.</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">&nbsp;&nbsp;&nbsp;&nbsp;公司自成立以来, 坚持立足于软件信息技术的开发与推广，汇萃了一批经验丰富、锐意创新</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">的科技及管理精英,始终专注于人事管理软件及OA协同办公软件的自主研发。核心产品有一</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">站式企业，人力资源管理系统、干部信息管理系统、干部人事档案管理系统、事业单位人事管</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">理系统、企业协同OA办公系统、信创OA系统、政务0A系统等多个软件产品与解决方案。</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">&nbsp;&nbsp;&nbsp;&nbsp;多年来，广州璐华信息成功为数千家不同类型、不同规模的客户提供了产品实施与服务，</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">用户单位涵盖国有企业、民营企业、政府机关、等院校、科研机构、医疗卫生等领域,</span>
+				</div>
+				<div align="left">
+    				<span  style="margin: 0px 0px 0px 10px;">在帮助客户的信息化管理取得巨大成功的同时，也收获了用户的好评与高度赞扬。</span>
+				</div>
+				
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+		  		
+		  		
+		  		
+		  		</table>
+			</div>
+		</div>
+		
+		
+		
+	</body>
+</html>

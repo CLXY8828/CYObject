@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    
+    <script type="text/javascript" src="../jquery/jquery.js"></script>
+<style>
+#address{
+  border:1px solid #CCCCCC;
+  padding:6px 16px 4px 4px;
+  background: url(1.gif) no-repeat 80px center;
+  width:80px;
+  height:20px;
+  text-align:center;
+  cursor:pointer;
+}
+*{
+  padding:0;
+  margin:0;
+}
+ul{
+  margin:0px;
+  padding:5px;
+  font-size:12px;
+}
+a{
+  color:#009999;
+  text-decoration:none;
+}
+a:hover{
+  background-color:#006699;
+  color:#FFFFFF;
+  text-decoration:underline;
+}
+li{
+  list-style:none;
+  width:38px;
+  padding:2px 2px;
+  display:inline-block;
+}
+#citys{
+  border:1px solid #FF0000;
+  width:336px;
+  position:relative;
+}
+#citys span{
+  padding:5px;
+}
+#smallCity{
+  border-top:1px solid #CCCCCC;
+}
+#cancel{
+  position:absolute;
+  width:20px;
+  height:20px;
+  cursor:pointer;
+  top:0px;
+  right:0px;
+  border:1px solid #333;
+  text-align:center;
+  font-size:16px;
+  line-height:20px;
+  background-color:#ddd;
+}
+</style>
+</head>
+<body>
+    
+    <div id="address">上海</div>
+<div id="citys"  style="display:none">
+  <span>请选择省份:</span>
+  <ul id="bigCity">
+    <li><a href="#" class="city">重庆</a></li>
+ <li><a href="#" class="city">天津</a></li>
+ <li><a href="#" class="city">上海</a></li>
+ <li><a href="#" class="city">北京</a></li>
+  </ul>
+  <ul id="province">
+    <li><a id="zj" class="province" href="#">浙江</a></li>
+ <li><a id="ah" class="province" href="#">安徽</a></li>
+ <li><a id="sc" class="province" href="#">四川</a></li>
+ <li><a id="gz" class="province" href="#">贵州</a></li>
+ <li><a id="yn" class="province" href="#">云南</a></li>
+ <li><a id="hn" class="province" href="#">湖南</a></li>
+ <li><a id="gd" class="province" href="#">广东</a></li>
+ <li><a id="sd" class="province" href="#">山东</a></li>
+ <li><a id="hb" class="province" href="#">河北</a></li>
+  </ul>
+  <ul id="smallCity" style="display:none">
+     <!--浙江-->
+     <li><a class="zjCity" href="#">宁波</a></li>
+  <li><a class="zjCity" href="#">杭州</a></li>
+  <li><a class="zjCity" href="#">温州</a></li>
+  <li><a class="zjCity" href="#">台州</a></li>
+  <li><a class="zjCity" href="#">绍兴</a></li>
+  <!--广东-->
+  <li><a class="gdCity" href="#">广州</a></li>
+  <li><a class="gdCity" href="#">深圳</a></li>
+  <li><a class="gdCity" href="#">中山</a></li>
+  <li><a class="gdCity" href="#">珠海</a></li>
+  <li><a class="gdCity" href="#">汕头</a></li>
+  <li><a class="gdCity" href="#">东莞</a></li>
+  <li><a class="gdCity" href="#">梅州</a></li>
+  <!--安徽-->
+  <li><a class="ahCity" href="#">合肥</a></li>
+  <li><a class="ahCity" href="#">芜湖</a></li>
+  <li><a class="ahCity" href="#">宣城</a></li>
+  <li><a class="ahCity" href="#">池州</a></li>
+  <li><a class="ahCity" href="#">六安</a></li>
+  <!--四川-->
+  <li><a class="scCity" href="#">成都</a></li>
+  <li><a class="scCity" href="#">雅安</a></li>
+  <li><a class="scCity" href="#">广安</a></li>
+  <!--贵州-->
+  <li><a class="gzCity" href="#">贵阳</a></li>
+  <li><a class="gzCity" href="#">遵义</a></li>
+  <!--云南-->
+  <li><a class="ynCity" href="#">昆明</a></li>
+  <li><a class="ynCity" href="#">丽江</a></li>
+  <!--湖南-->
+  <li><a class="hnCity" href="#">长沙</a></li>
+  <li><a class="hnCity" href="#">株洲</a></li>
+  <li><a class="hnCity" href="#">常德</a></li>
+  <!--山东-->
+  <li><a class="sdCity" href="#">济南</a></li>
+  <li><a class="sdCity" href="#">青岛</a></li>
+  <!--河北-->
+  <li><a class="hbCity" href="#">石家庄</a></li>
+  <li><a class="hbCity" href="#">保定</a></li>
+  </ul>
+  <p id="cancel">×</p>
+</div>
+
+<script type="text/javascript">
+/*
+*  选择城市
+*  made by keimon
+*  2013-03-21
+*/
+$(function(){
+  $("#address").click(function(){
+    $("#citys").show();
+  });
+  $("#cancel").click(function(){
+    $("#citys").hide();
+  });
+  $(".province").click(function(){
+    $("#smallCity").show()
+                .find("li").hide();
+ $("."+this.id + "City").parent("li").show();
+ $("."+this.id + "City").click(function(){
+   $("#address").html($(this).html())
+                .siblings("#citys").hide();
+ });
+  })
+  $("#bigCity a").click(function(){
+ $("#address").html($(this).html())
+              .siblings("#citys").hide();
+ })
+})
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>技能特长</title>
+		<!--1.移动设备积极响应的语句 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!--2.引入基本的bootstrap的样式和js文件 -->
+		
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		
+		<div style="height: 140px;border-bottom-style:solid; border-bottom-color: #CCCCCC; border-bottom-width: 2px;">
+			<div  style="width: 60px; height: 60px; margin: 20px 0px 0px 0px; float: left;">
+				<img src="img/我的.png" alt="..." class="img-thumbnail">
+					
+			</div>
+			<div style="float: left; margin: 5px 0px 0px 40px;">
+				<h2>张三</h2>
+			</div>
+			<div style=" margin: 0px 0px 0px 85px;	clear:left; font-size: 17px;">
+				<span>现居住宁波-北仓区 | 九年工作经验 | 男 | 26岁（1995/02/11）</span>
+			</div>
+		</div>
+		
+		<div style=" height: 300px;">
+			<form action="<%=request.getContextPath() %>/logein.do?" method="post">
+			<table class="table" frame="void">
+				<tr >
+					<td >
+						<br />
+						<div class="input-group" style="width: 600px;" >
+						 	<div  style=" font-size: 18px;">请填写擅长的技能</div>
+						   <textarea class="form-control" rows="3"></textarea>
+						</div>
+						<br />
+					</td>
+				</tr>
+				
+				<tr >
+					<td >
+						<br />
+						<div class="input-group" style="width: 600px;" >
+						 	<div  style=" font-size: 18px;">请填写自身优势</div>
+						   <textarea class="form-control" rows="3"></textarea>
+						</div>
+						<br />
+					</td>
+				</tr>
+				
+				
+				
+			</table>
+			</form>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>公司信息02</title>
+		<!--1.移动设备积极响应的语句 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!--2.引入基本的bootstrap的样式和js文件 -->
+		
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div style="height: 140px;border-bottom-style:solid; border-bottom-color: #CCCCCC; border-bottom-width: 2px;">
+			<div  style="width: 60px; height: 60px; margin: 20px 0px 0px 0px; float: left;">
+				<img src="img/我的.png" alt="..." class="img-thumbnail">
+					
+			</div>
+			<div style="float: left; margin: 5px 0px 0px 40px;">
+				<h2>张三</h2>
+			</div>
+			<div style=" margin: 0px 0px 0px 85px;	clear:left; font-size: 17px;">
+				<span>现居住宁波-北仓区 | 九年工作经验 | 男 | 26岁（1995/02/11）</span>
+			</div>
+		</div>
+		
+		<div style=" height: 300px;">
+			<form action="<%=request.getContextPath() %>/logein.do?" method="post">
+			<table class="table" frame="void">
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						  	<div  style=" font-size: 18px;">毕业去向</div>
+							  <select class="form-control">
+		          					<option>请选择</option>
+		          					<option value="">签就业协议形式就业</option>
+		          					<option value="">签劳动合同形式就业</option>
+		          					<option value="">科研助理</option>
+		          					<option value="">应征义务兵</option>
+		          					<option value="">国家基层项目</option>
+		          					<option value="">地方基层项目</option>
+		          					<option value="">自主创业</option>
+		          					<option value="">其他录用形式就业</option>
+		          					<option value="">自由职业</option>
+		          					<option value="">升学</option>
+		          					<option value="">出国、出境</option>
+		          					<option value="">不就业拟升学</option>
+		          					<option value="">其他暂不就业</option>
+		          					<option value="">待就业</option>
+		          				</select>
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						 	<div  style=" font-size: 18px;">单位名称</div>
+						   <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						  	<div  style=" font-size: 18px;">单位性质</div>
+							  <select class="form-control">
+		          					<option>请选择</option>
+		          					<option value="">机关</option>
+		          					<option value="">科研设计单位</option>
+		          					<option value="">高等教育单位</option>
+		          					<option value="">中初教育单位</option>
+		          					<option value="">医疗卫生单位</option>
+		          					<option value="">其他事业单位</option>
+		          					<option value="">国有企业</option>
+		          					<option value="">三资企业</option>
+		          					<option value="">其他企业</option>
+		          					<option value="">部队</option>
+		          					<option value="">农村建制村</option>
+		          					<option value="">城镇社区</option>
+		          					<option value="">其他</option>
+		          				</select>
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						 	<div  style=" font-size: 18px;">单位所在地</div>
+						   <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						 	<div  style=" font-size: 18px;">单位行业</div>
+						   <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						 	<div  style=" font-size: 18px;">工作职位类别</div>
+						   <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						 	<div  style=" font-size: 18px;">单位联系人</div>
+						   <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						 	<div  style=" font-size: 18px;">联系人电话</div>
+						   <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						 	<div  style=" font-size: 18px;">联系人手机</div>
+						   <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px;" align="center">
+						 	<div  style=" font-size: 18px;">联系人电子邮箱</div>
+						   <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+						<div class="input-group"  align="center">
+						 	<div  style=" font-size: 18px;">单位地址</div>
+						 	<input type="text" class="form-control"  aria-describedby="sizing-addon2" placeholder="例如：xx省xx市xx区xx街道xx号" style="width: 600px; height: 80px;">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group" style="width: 250px;">
+						  <!--<button type="button" class="btn btn-default" >取 消</button>-->
+						  <a class="btn btn-default" href="jbxx.html">取消</a>
+ 
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="width: 250px; " align="right">
+						   <a class="btn btn-primary" href="zym.html" target="_parent">提 交</a>
+						</div>
+					</td>
+				</tr>
+				
+			</table>
+			</form>
+		</div>
+		
+	</body>
+</html>

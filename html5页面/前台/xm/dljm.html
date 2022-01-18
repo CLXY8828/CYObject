@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		
+		 <!--1.移动设备积极响应的语句 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<!--2.引入基本的bootstrap的样式和js文件 -->
+		
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="jquery/jquery.min.js" ></script>
+		<script src="jquery/jquery.cookie.js" ></script>
+		
+		<script type="text/javascript">
+		function hiddenEle()
+		{
+			var box=$("#box");
+				box.hide();
+				
+			var box=$("#box01");
+				box.show();
+		}
+		
+function  showEle()
+{
+	var box=$("#box01");
+		box.hide();
+		
+	var box=$("#box");
+		box.show();
+}
+
+//生成一个n到m之间的随机整数
+function rand(n,m){
+    return n+parseInt(Math.random()*(m-n+1));
+}
+//传入元素id,返回指定id元素
+function $id(id)
+{
+    return document.getElementById(id)
+    
+}
+//生成验证码
+ function createCode(length) {
+    var code = "";
+    var codeLength = parseInt(length); //验证码的长度
+    var checkCode = document.getElementById("checkCode");
+    var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+    'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); 
+    //循环组成验证码的字符串
+    for (var i = 0; i < codeLength; i++)
+    {
+        //获取随机验证码下标
+        var charNum = Math.floor(Math.random() * 62);
+        //组合成指定字符验证码
+        code += codeChars[charNum];
+    }
+    if (checkCode)
+    {
+        //为验证码区域添加样式名
+        checkCode.className = "code";
+        //将生成验证码赋值到显示区
+        checkCode.innerHTML = code;
+    }
+}
+
+	window.onload = function ()
+	{
+		createCode(4); 
+		
+		
+	}
+		
+function yanzheng()
+	{
+
+		var a=$id('checkCode').innerHTML
+		var bj=document.getElementById("txt").value
+		
+		
+		var xh=document.getElementById("exampleInputEmail1").value
+		var regexp=new RegExp("^[0-9]*[1-9][0-9]*$");
+		
+		var mm=document.getElementById("exampleInputEmail2").value
+		
+		if(!$("#exampleInputEmail1").val().trim())
+		{
+			exception("学号不能为空！",1)
+			return false
+		}
+		if(regexp.test(xh))
+		{
+			if(!xh.length==9)
+			{
+				exception("请输入正确的学号！",1)
+				return false
+			}
+			
+
+		}
+		else
+		{
+			exception("请输入正确的学号！",1)
+			return false
+		}
+		
+		if(!$("#exampleInputEmail2").val().trim())
+		{
+			exception("密码不能为空，请输入密码！",1)
+			return false
+		}
+		
+		if(!$("#txt").val().trim())
+		{	
+			exception("验证码为空,请输入验证码!",1)
+			return false
+		}
+		if(bj.toLowerCase()==a.toLowerCase())
+		{
+			window.location.href= "zym.html"
+		}
+		else
+		{
+			exception("验证码输入错误，请重新输入!",1)
+			return false
+
+		}
+		
+		
+
+		
+	}
+	
+	
+function yanzheng01()
+{
+	
+	var b=document.getElementById("inp_id007").value;
+	var regexp=new RegExp("^1[58379]\\d{9}$");
+	if(!$("#inp_id007").val().trim())
+	{
+		exception("手机号不能为为空，请输入手机号!",0)
+		return false
+	}
+	if(!regexp.test(b))
+	{
+		exception("请输入正确的手机号!",0)
+		return false
+	}
+	
+	
+	if(!$("#inp_id008").val().trim())
+	{
+		exception("验证码不能为为空，请输入验证码!",0)
+		return false
+	}
+	else
+	{
+		window.location.href= "zym.html"
+	}
+			
+}
+function exception (e,index) {
+						$(".ex").text(e);
+						$(".ex")[index].classList.remove("hidden");
+						
+					}
+				
+				$(function(){  
+		        /*仿刷新：检测是否存在cookie*/  
+		        if($.cookie("captcha"))
+		        {
+		        	
+		        	
+		        	
+		            var count = $.cookie("captcha");  
+		            var btn = $('#getting');  
+		            btn.val(count+'秒后可重新获取').attr('disabled',true).css('cursor','not-allowed');  
+		            var resend = setInterval(function(){  
+		                count--;  
+		                if (count > 0){  
+		                    btn.val(count+'秒后可重新获取').attr('disabled',true).css('cursor','not-allowed');  
+		                    $.cookie("captcha", count, {path: '/', expires: (1/86400)*count});  
+		                }else {  
+		                    clearInterval(resend);  
+		                    btn.val("获取验证码").removeClass('disabled').removeAttr('disabled style');  
+		                }  
+		            }, 1000);  
+		        }  
+   
+		        /*点击改变按钮状态，已经简略掉ajax发送短信验证的代码*/  
+		        $('#getting').click(function()
+		        {
+		        	var b=document.getElementById("inp_id007").value;
+					var regexp=new RegExp("^1[58379]\\d{9}$");
+					
+					if(!$("#inp_id007").val().trim())
+					{
+						exception("请输入正确的手机号!",0)
+						//alert("手机号不能为为空，请输入手机号！")
+						return false
+					}
+					if(!regexp.test(b))
+					{
+						exception("请输入正确的手机号!",0)
+						//alert("请输入正确的手机号")
+						return false
+					}
+		        	
+		            var btn = $(this);  
+		            var count = 60;  
+		            var resend = setInterval(function(){  
+		                count--;  
+		                if (count > 0){  
+		                    btn.val(count+"秒后可重新获取");  
+		                    $.cookie("captcha", count, {path: '/', expires: (1/86400)*count});  
+		                }else {  
+		                    clearInterval(resend);  
+		                    btn.val("获取验证码").removeAttr('disabled style');  
+		                }  
+		            }, 1000);  
+		            btn.attr('disabled',true).css('cursor','not-allowed');  
+		        });  
+		   
+		    });  
+		
+		</script>
+		<style type="text/css">
+			.code
+		    {	
+		    	-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+		         font-family:Arial;
+		         font-style:italic;
+		         color:blue;
+		         font-size:20px;
+		         border:1px;
+		         padding:2px 3px;
+		         letter-spacing:3px;
+		         font-weight:bolder;            
+		         cursor:pointer;
+		         width:150px;
+		         height:50px;
+		         line-height:10px;
+		         text-align:center;
+		         vertical-align:middle;
+		         background-color:#D8B7E3;
+		     }
+		     #spans {
+		        text-decoration:none;
+		        font-size:12px;
+		        color:#288bc4;
+		        padding-left:10px;
+		    }
+		 
+		    #span:hover {
+		        text-decoration:underline;
+		        cursor:pointer;
+		    }
+		   .box{
+				  display: flex;
+				}
+				
+			
+		</style>
+		
+		
+		
+	</head>
+	<body>
+		
+		
+		
+	<div class="panel panel-default  " style="background: #122B40;">
+	  <div class="panel-body">
+	    <div class="col-md-2 col-md-offset-1" style="height: 70px; width: 120px; ">
+		  	<img src="img/001.png" class="img-responsive" alt="Responsive image" style="width:100%;height:100%; ">
+		  	
+		  </div>
+		  <div class="col-md-3  " style="font-size: 35px; text-align: center; font-weight: bold; color: white; top: 10px; left: 30px; width: 300px; height: 100px;">高 校 就 业 平 台</div>
+	  </div>
+	</div>
+	
+
+	
+	<div class="box ">
+  
+  		<div class="container" style=" box-shadow:0 0 6px 3px #c3c3c3;   align-content: center; width: 1300px; height: 520px;   ">
+		  <div class="row" >
+		  	
+		  	<div class="col-md-2 visible-lg" style="height: 430px; width: 700px; top: 30px; ">
+		  		<img src="img/003.jpg" class="img-responsive" alt="Responsive image" style="width:100%;height:100%; ">
+		 	 </div>
+			
+			<div class=" col-md-offset-1 " >
+				
+				<h2 align="center" style="font-weight: bold; margin: 30px  0px  0px  0px; ">欢 迎 登 录 就 业 服 务 平 台</h2>
+				<h4 style=" color: #C0C0C0; font-style: italic; text-align: center;  font-family: '宋体';">为高校应届毕业生就业工作助力</h4>				
+					
+					
+		<div class=" col-xs-12 col-md-5  " style="margin: 20px  0px  0px  50px;  box-shadow:0 0 6px 3px #c3c3c3; padding: 20px;  display: inline-flex; " id="box" >
+			<div class="form-info" align="center" >
+
+				<p align="center">
+				  <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;手 机 登 录&nbsp;&nbsp;&nbsp;&nbsp;</button>
+				  <button type="button" class="btn btn-default btn-lg"  onclick="hiddenEle()">&nbsp;&nbsp;&nbsp;&nbsp;学 号 登 录&nbsp;&nbsp;&nbsp;&nbsp;</button>
+				</p>
+				
+				<div class="alert alert-danger text-center hidden ex" role="alert"></div>
+
+				<form >
+					<div class="form-group" >
+						<hr />
+
+						 <div class="col-md-12">
+						    <div class="input-group">
+						      <div class="input-group-btn">
+						        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+86 <span class="caret"></span></button>
+						        <ul class="dropdown-menu">
+						          <li><a href="#">+86</a></li>
+						        </ul>
+						      </div><!-- /btn-group -->
+						      <input type="text" class="form-control" aria-label="..." placeholder="请输入手机号" id="inp_id007">
+						    </div><!-- /input-group -->
+						  </div>
+						  
+					</div>
+					<br />
+					<br />
+					<br />
+					<div class="form-group">
+						
+						 <div class="col-md-12 ">
+						    <div class="input-group ">
+						    	<span class="input-group-addon" id="basic-addon3" >验证码：</span>
+						      <input type="text" class="form-control" id="inp_id008" placeholder="请输入验证码">
+						      <span class="input-group-btn">
+						        <!--<button class="btn btn-default " type="button" id="getting" style="color: #269ABC" >获取验证码</button>-->
+						        <input type="button"  class="btn btn-default "id="getting" value="获取验证码" style="color: #269ABC">  
+						      </span>
+						    </div>
+						  </div>
+							
+						
+					</div>
+					<!--<div class="captcha-box">  
+				        <input type="text" id="mobile" maxlength="11" placeholder="请输入手机号码">  
+				        <input type="button" id="getting" value="获取验证码">  
+				    </div>  -->
+					<br />
+					<br />
+					<br />
+					<div class="submit" align="center">
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="yanzheng01()" >登      录</button>
+
+					</div>
+					<br />
+				</form>
+			</div>
+		</div>
+		
+		<div class="container-fluid col-md-5 col-md-offset-1" style="margin: 20px  0px  0px  50px;  box-shadow:0 0 6px 3px #c3c3c3; padding: 20px; display: none;" id="box01">
+			<div class="form-info">
+
+				<p align="center">
+				  <button type="button" class=" btn btn-default btn-lg" onclick="showEle()">&nbsp;&nbsp;&nbsp;&nbsp;手 机 登 录&nbsp;&nbsp;&nbsp;&nbsp;</button>
+				  <button type="button" class=" btn btn-primary btn-lg"  >&nbsp;&nbsp;&nbsp;&nbsp;学 号 登 录 &nbsp;&nbsp;&nbsp;&nbsp;</button>
+				</p>
+				
+				<div class="alert alert-danger text-center hidden ex" role="alert"></div>
+				<form >
+					<table style=" border-collapse: separate; border-spacing: 10px;" >
+						<tr >
+							<td><label for="exampleInputEmail1" >学号 : </label></td>
+							<td><input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入学号"></td>
+						</tr>
+						<hr />
+						<tr >
+							
+							<div class="form-group" >
+							<td><label for="exampleInputEmail1" >密码 : </label></td>
+							<td><input type="password" class="form-control" id="exampleInputEmail2" placeholder="请输入密码"></td>
+							
+							</div>
+						</tr>
+						
+						<tr >
+							<td align="right"  style="font-weight: bold;">验证码:</td>
+							<td>
+								<input id="txt" type="text" placeholder="请输入验证码"/>
+									<div style=" background-color: white; -10px -15px;width:80px; 
+									font-style: italic; height: 20px;
+									display: inline-block;" id="checkCode" class="code"  onclick="createCode(4)" ></div>
+									<span id="spans" onclick="createCode(4)">看不清换一张</span>		
+								
+							</td>
+						</tr>
+
+					</table>
+					<br />
+					<div class="submit" style=" float: right;">
+						
+						<button type="button" class="btn btn-primary btn-lg " onclick="yanzheng()" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登    录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					
+					</div>
+					<div style=" margin: 26px 0 0 0; float: left;">
+							<a href="wjmm.html"  style="font-weight: bold;  ">忘记密码</a>
+						</div>
+
+				</form>
+			</div>
+		</div>
+					
+			</div>
+
+		  </div>
+		</div>
+  		
+	</div>
+		
+	</body>
+</html>
