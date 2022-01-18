@@ -1,6 +1,9 @@
 package com.rj.bd.index;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,11 +19,37 @@ public class IndexServlet extends HttpServlet {
 		
 		String q = request.getParameter("method");
 		
-		if ("loginpage".equals(q)) {
-			loginpage(request,response);
+		try {
+			if ("loginpage".equals(q)) {
+				loginpage(request,response);
+			}
+			else if ("query".equals(q)) {
+				query(request,response);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println(e.getMessage());
 		}
 		
 	}
+
+	
+	/**
+	 * @param request
+	 * @param response
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void query(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+			String userid = request.getParameter("userid");
+			System.out.println(userid);
+			List<Map<String, Object>> list=service.query(userid);
+			System.out.println(list);
+			request.setAttribute("list", list);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+
 
 	/**
 	 * @desc 跳转登录界面

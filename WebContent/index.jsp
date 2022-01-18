@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
@@ -16,7 +17,6 @@
 		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="<%=request.getContextPath() %>/js/zym.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath() %>/jquery/jquery.js"></script>
 		<style type="text/css">
 			#address{
 			  border:1px solid #CCCCCC;
@@ -78,13 +78,17 @@
 		</style>
 		<script type="text/javascript">
 			$(document).ready(function(){
-							var ws=<%=(List)request.getAttribute("ws")%>;
-							if(<%=request.getSession().getAttribute("user")%>!=null){
-								if(ws==null){
-									$('#myModal001').modal('show');
-								}
-							}
-						});
+				if(<%=request.getAttribute("list")%>==null){//
+					<%Map user=(Map)request.getSession().getAttribute("user");%>
+					window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
+				}
+				var ws=<%=(List)request.getAttribute("ws")%>;
+				if(<%=request.getSession().getAttribute("user")%>!=null){
+					if(ws==null){
+						$('#myModal001').modal('show');
+					}
+				}
+				});
 		</script>
 	</head>
 	<body>
@@ -117,10 +121,10 @@
 			<!-- Split button -->
 			
 				<div class=" btn-group col-md-1 " style="margin: 0px 0px 0px 1300px; bottom: 70px;  ">
-				<c:set var="map" scope="session" value="${sessionScope.user}"></c:set>
+				<c:set var="user" scope="session" value="${sessionScope.user}"></c:set>
 			<c:choose>
 				
-				<c:when test="${!empty map}">
+				<c:when test="${!empty user}">
 				  <button type="button" class="btn btn-default">我的</button>
 				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    <span class="caret"></span>
@@ -507,62 +511,78 @@
 								</td>
 				    		</tr>
 				    		
-				 
-				    		
+				 			<c:set value="1" var="i"></c:set>
+				    		<c:forEach var="map" items="${requestScope.list}">
 				    		<tr >
 				    			<td colspan="7">
 				    				<a href="fym.html" style="color: black;">
-						    		<div class="well well-lg" style=" width: 800px; height: 180px;  ">
-						    			<div>
-							    			<span  style="font-size: 25px; font-weight: bold; ">Java开发工程师</span>
-							    			
-							    			<span  style="margin: 0px 0px 0px 360px; " >北京京云万峰信息技术有限公司</span>
+						    		<div class="well well-lg" style=" width: 800px; height: 180px;">
+						    			<div align="left";>
+							    			<span  style="font-size: 25px; font-weight: bold;">${map.employment_name}</span>
+							    			<span  style="margin: 0px 0px 0px 360px;" >${map.gsname}</span>
 						    			</div>
 						    			
 						    			
 						    			<div align="left">
-							    			<span style="font-size: 24px; color: red; ">1.5万-3万 .13薪</span>
-							    			<span style="margin: 0px 0px 0px 50px; font-size: 20px;">北京.海淀区</span>
-							    			<span style="margin: 0px 0px 0px 20px; ">| 1-3年 本科</span>
+							    			<span style="font-size: 24px; color: red; ">${map.salary}</span>
+							    			<span style="margin: 0px 0px 0px 50px; font-size: 20px;">${map.address}</span>
+							    			<span style="margin: 0px 0px 0px 20px; ">| ${map.experience} ${map.education}</span>
 						    			</div>
 						    			<br />
 						    			
 						    			
 						    			<div class="row">
-											  
-											<div class="col-md-1 " style="width: 100px; height: 20px; border:1px solid #000; " align="center">java</div>
-											<div class="col-md-1 " style="width: 100px; height: 20px; border:1px solid #000; margin: 0px 0px 0px 20px; " align="center">HTMD/CSS</div>
-											<div class="col-md-1 " style="width: 100px; height: 20px; border:1px solid #000; margin: 0px 0px 0px 20px;" align="center">javaScript</div>
-											<div class="col-md-1 " style="width: 100px; height: 20px; border:1px solid #000; margin: 0px 0px 0px 20px;" align="center">jQuery</div>
+											 <c:forTokens items="${map.welfare}" delims="#" var="name">
+											<div class="col-md-1 " align="center"><span class="label label-info">${name}</span></div>
+						    				</c:forTokens>
 						    			</a>
 						    				<div class="col-md-4 " style="margin: 0px 0px 0px 520px;" >
+							    				<c:choose>
+						    					<c:when test="${empty user}">
 						    					<div class="col-md-7 " id=shoucang01 onclick="shoucang(true)">
 							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
 													<span style="font-size: 16px; font: arial; ">收藏&nbsp;&nbsp;</span>
 												</div>
-												<div class="col-md-7 " id=shoucang02 " style="display: none;">
+												</c:when>
+												<c:otherwise>
+												<c:if test="${map.applystate==1}">
+												
+												<div class="col-md-7 " id=shoucang02 >
 							    					<img src="<%=request.getContextPath() %>/img/收藏-已收藏.png" alt="..." class="..." style=" height: 35px; width: 38px;">
 													<span style="font-size: 16px; font: arial; ">已收藏&nbsp;&nbsp;</span>
 												</div>
-												
-							    				<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModal" id="sqzw">申 请 职 位</button>
-							    				<button type="button" class="btn btn-primary"   style="display: none" id="sqzw01">等 待 审 核</button>
+												</c:if>
+												<c:if test="${map.applystate==0}">
+												<div class="col-md-7 " id=shoucang01 onclick="shoucang(true)">
+							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
+													<span style="font-size: 16px; font: arial; ">收藏&nbsp;&nbsp;</span>
+												</div>
+												</c:if>
+												<c:if test="${map.Collectionstate==1}">
+												<button type="button" class="btn btn-primary" id="sqzw01">已申请</button>
+												</c:if>
+												<c:if test="${map.Collectionstate==0}">
+												<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}" id="sqzw">申 请 职 位</button>
+												</c:if>
+												</c:otherwise>
+												</c:choose>
+							    				
 							    				
 							    				<!-- Modal模态框 -->
-													<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+													<div class="modal fade" id="myModa${i}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
 													  <div class="modal-dialog" role="document">
 													    <div class="modal-content">
 													      <div class="modal-header">
 													        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        <h4 class="modal-title" id="myModalLabel">您所要申请的是北京京云万峰信息技术有限公司</h4>
-													        <h5 class="modal-title" id="myModalLabel">JAVA开发工程师</h5>
+													        <h4 class="modal-title" id="myModalLabel">您所要申请的是${map.gsname}</h4>
+													        <h5 class="modal-title" id="myModalLabel">${map.employment_name}</h5>
 													      </div>
 													      <div class="modal-body">
 													        <img src="<%=request.getContextPath() %>/img/008.jpg" alt="..." class="img-thumbnail">
 													      </div>
 													      <div class="modal-footer">
 													        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 430px 0px 0px;">再想想</button>
-													        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal01">确 定</button>
+													        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal${i}">确 定</button>
 													        
 													      </div>
 													    </div>
@@ -570,13 +590,13 @@
 													</div>
 													
 													<!-- Small modal -->
-													<div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+													<div class="modal fade" id="myModal${i}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 													  <div class="modal-dialog" role="document">
 													    <div class="modal-content">
 													      <div class="modal-header">
 															<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-														        <h4 class="modal-title" id="myModalLabel">您所要申请的是北京京云万峰信息技术有限公司</h4>
-														        <h5 class="modal-title" id="myModalLabel">JAVA开发工程师</h5>
+														        <h4 class="modal-title" id="myModalLabel">您所要申请的是${map.gsname}</h4>
+														        <h5 class="modal-title" id="myModalLabel">${map.employment_name}</h5>
 														      </div>
 														      <div class="modal-body">
 														      	<h4 class="modal-title" id="myModalLabel">上传简历成功</h4>
@@ -599,7 +619,8 @@
 						    		
 					    		</td>
 					    	</tr>
-					    	
+					    	<c:set var="i" value="${i}+1"></c:set>
+					    	</c:forEach>
 					    	
 				    	</tbody>
 				    	
