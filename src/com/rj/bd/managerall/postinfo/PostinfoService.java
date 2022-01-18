@@ -229,6 +229,12 @@ public class PostinfoService {
 		values[19]=eid;
 		dao.executeUpdate(sql, types, values);
 	}
+	/**
+	 * @desc   查询页面页数
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public int selectEmploymentNum() throws ClassNotFoundException, SQLException {
 		return dao.executeQueryForInt(" select count(*) from employment ");
 	}

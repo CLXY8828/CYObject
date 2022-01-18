@@ -10,6 +10,15 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+   <servlet>
+    <servlet-name>StuwaringServlet</servlet-name>
+    <servlet-class>com.rj.bd.managerall.postwaring.stuwaring.StuwaringServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StuwaringServlet</servlet-name>
+    <url-pattern>/waring/stu.do</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>PostinfoServlet</servlet-name>
     <servlet-class>com.rj.bd.managerall.postinfo.PostinfoServlet</servlet-class>

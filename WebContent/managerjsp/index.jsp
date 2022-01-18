@@ -191,7 +191,7 @@
 				</div>
 				<div class="content_right tab-content" style="box-shadow: 1 0 3px 3px gray;">
 					<div id="default" class="tab-pane active" style="width: 100%;height: 100%;">
-						<iframe src="<%=request.getContextPath() %>/managerjsp/default.jsp" width="100%" height="100%"></iframe>
+						<iframe src="default.jsp" width="100%" height="100%"></iframe>
 					</div>
 					<div id="gradeset" class="tab-pane" style="width: 100%;height: 100%;">
 						<iframe src="gradesetting.jsp" width="100%" height="100%"></iframe>
@@ -200,10 +200,10 @@
 						<iframe src="eighteenworkinfo/eighteenworkinfo.jsp" width="100%" height="100%"></iframe>
 					</div>
 					<div id="postinfo" class="tab-pane" style="width: 100%;height: 100%;">
-						<iframe src="<%=request.getContextPath()%>/postinfo/postin.do?method=query" width="100%" height="100%"></iframe>
+						<iframe src="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
 					<div id="stuworkwarn" class="tab-pane" style="width: 100%;height: 100%;">
-						<iframe src="postwaring/stuworkwarn.jsp" width="100%" height="100%"></iframe>
+						<iframe src="<%=request.getContextPath()%>/waring/stu.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
 					<div id="postfillwarn" class="tab-pane" style="width: 100%;height: 100%;">
 						<iframe src="postwaring/postfillwarn.jsp" width="100%" height="100%"></iframe>
