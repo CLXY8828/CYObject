@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8"> 
+		<meta charset="utf-8">
 		<title>岗位信息</title>
 		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
@@ -27,6 +27,9 @@
 			td{
 				font-size: 20px;
 				text-align: center;
+			}
+			input[type=checkbox]{
+				margin-left: 10px;
 			}
 		</style>
 		
@@ -138,21 +141,6 @@
 									</div>
 									<br>
 									<div class="row">
-										<span name="uploadspan">
-											公司福利：
-											<input type="text" name="welfare" id="comwelfare_upload" value="" style="width: 20%;"/>
-										</span>
-										<span style="margin-left: 2%;" name="uploadspan">
-											公司类型：
-											<input type="text" name="gstype" id="comtype_upload" value="" style="width: 20%;"/>
-										</span>
-										<span style="margin-left: 2%;" name="uploadspan">
-											公司所在地：
-											<input type="text" name=address id="comaddress_upload" value="" style="width: 18%;" />
-										</span>
-									</div>
-									<br>
-									<div class="row">
 										<span>
 											学历要求：
 											<select name="education" style="width: 18%;">
@@ -164,6 +152,31 @@
 												<option value="硕士">硕士</option>
 												<option value="博士">博士</option>
 												<option value="MEA/EMBA">MEA/EMBA</option>
+											</select>
+										</span>
+										<span style="margin-left: 4%;" name="uploadspan">
+											公司类型：
+											<input type="text" name="gstype" id="comtype_upload" value="" style="width: 20%;"/>
+										</span>
+										<span style="margin-left: 2%;" name="uploadspan">
+											公司所在地：
+											<input type="text" name=address id="comaddress_upload" value="" style="width: 18%;" />
+										</span>
+									</div>
+									<br>
+									<div class="row">
+										<span>
+											岗位类型：
+											<select name="zwtype" style="width: 18%;">
+												<option value="JAVA">JAVA</option>
+												<option value="Python">Python</option>
+												<option value="PHP">PHP</option>
+												<option value="UED">UED</option>
+												<option value="AI">AI</option>
+												<option value="前端">前端</option>
+												<option value="运维">运维</option>
+												<option value="产品设计">产品设计</option>
+												<option value="其他">其他</option>
 											</select>
 										</span>
 										<span style="margin-left: 2%;" name="uploadspan">
@@ -186,18 +199,13 @@
 									<br>
 									<div class="row">
 										<span>
-											岗位类型：
-											<select name="zwtype" style="width: 18%;">
-												<option value="JAVA">JAVA</option>
-												<option value="Python">Python</option>
-												<option value="PHP">PHP</option>
-												<option value="UED">UED</option>
-												<option value="AI">AI</option>
-												<option value="前端">前端</option>
-												<option value="运维">运维</option>
-												<option value="产品设计">产品设计</option>
-												<option value="其他">其他</option>
-											</select>
+											公司福利：
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="五险一金" />五险一金
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="补充医疗保险" />补充医疗保险
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="弹性工作" />弹性工作
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="交通补贴" />交通补贴
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="周末双休" />周末双休
+											<input type="checkbox" name="welfare" id="comwelfare_upload" value="年终奖金" />年终奖金
 										</span>
 									</div>
 									<br>
@@ -238,21 +246,23 @@
 						<table border="0px" cellspacing="5px" cellpadding="0px" style="width: 100%;" class="table">
 							<tr>
 								<th width="8%">序号</th>
-								<th width="10%">岗位名称</th>
+								<th width="12%">岗位名称</th>
 								<th width="10%">招聘人数</th>
-								<th width="10%">薪资</th>
-								<th width="10%">联系电话</th>
-								<th width="27%">公司名称</th>
-								<th width="6%">编辑</th>
-								<th width="6%">查看</th>
-								<th width="6%">删除</th>
+								<th width="11%">薪资</th>
+								<th width="14%">联系电话</th>
+								<th width="23%">公司名称</th>
+								<th width="5%">编辑</th>
+								<th width="5%">查看</th>
+								<th width="5%">删除</th>
 							</tr>
 							<!-- /*以下放数据 -->
 							<% 
 							for(int i =start; i < end;i++){
 								Map map = (Map)list.get(i);
+								
 								String salary = (String)map.get("salary");
 								String [] salaryarr  = salary.split("\\.");
+								
 								String qian = salaryarr[0];
 								String xin = salaryarr[1];
 							%>
@@ -261,7 +271,7 @@
 								<td><%=(i+1)%></td>
 								<td><%=map.get("employment_name")%></td>
 								<td><%=map.get("recrultsNumb")%><span>人</span></td>
-								<td><%=map.get("salary")%><span>/月</span></td>
+								<td><%=qian%><span>/月</span></td>
 								<td><%=map.get("phone")%></td>
 								<td><%=map.get("gsname")%></td>
 								<td><a href="#idenfier" data-toggle="modal" data-target="#edit<%=map.get("eid")%>"><img src="../img/edit.png" style="width: 30px;height:30px;" ></a></td>
@@ -354,10 +364,19 @@
 												<br>
 												<div class="row">
 													<span>
-														公司福利：
-														<input type="text" name="welfare_<%=map.get("eid") %>" id="comwelfare_edit" value="<%=map.get("welfare")%>" style="width: 20%;"/>
+														学历要求：
+														<select name="education_<%=map.get("eid") %>" style="width: 18%;">
+															<option value="初中及以下" <%="初中及以下".equals(map.get("education"))?"selected":"" %>>初中及以下</option>
+															<option value="高中" <%="高中".equals(map.get("education"))?"selected":"" %>>高中</option>
+															<option value="中专" <%="中专".equals(map.get("education"))?"selected":"" %>>中专</option>
+															<option value="大专" <%="大专".equals(map.get("education"))?"selected":"" %>>大专</option>
+															<option value="本科" <%="本科".equals(map.get("education"))?"selected":"" %>>本科</option>
+															<option value="硕士" <%="硕士".equals(map.get("education"))?"selected":"" %>>硕士</option>
+															<option value="博士" <%="博士".equals(map.get("education"))?"selected":"" %>>博士</option>
+															<option value="MEA/EMBA" <%="MEA/EMBA".equals(map.get("education"))?"selected":"" %>>MEA/EMBA</option>
+														</select>
 													</span>
-													<span style="margin-left: 2%;">
+													<span style="margin-left: 4%;">
 														公司类型：
 														<input type="text" name="gstype_<%=map.get("eid") %>" id="comtype_edit" value="<%=map.get("gstype")%>" style="width: 20%;"/>
 													</span>
@@ -369,16 +388,17 @@
 												<br>
 												<div class="row">
 													<span>
-														学历要求：
-														<select name="education_<%=map.get("eid") %>" style="width: 18%;">
-															<option value="初中及以下" <%="初中及以下".equals(map.get("education"))?"selected":"" %>>初中及以下</option>
-															<option value="高中" <%="高中".equals(map.get("education"))?"selected":"" %>>高中</option>
-															<option value="中专" <%="中专".equals(map.get("education"))?"selected":"" %>>中专</option>
-															<option value="大专" <%="大专".equals(map.get("education"))?"selected":"" %>>大专</option>
-															<option value="本科" <%="本科".equals(map.get("education"))?"selected":"" %>>本科</option>
-															<option value="硕士" <%="硕士".equals(map.get("education"))?"selected":"" %>>硕士</option>
-															<option value="博士" <%="博士".equals(map.get("education"))?"selected":"" %>>博士</option>
-															<option value="MEA/EMBA" <%="MEA/EMBA".equals(map.get("education"))?"selected":"" %>>MEA/EMBA</option>
+														岗位类型：
+														<select name="zwtype_<%=map.get("eid") %>" style="width: 18%;">
+															<option value="JAVA" <%="JAVA".equals(map.get("zwtype"))?"selected":"" %>>JAVA</option>
+			 												<option value="Pyhton" <%="Pyhton".equals(map.get("zwtype"))?"selected":"" %>>pyhton</option>
+															<option value="PHP" <%="PHP".equals(map.get("zwtype"))?"selected":"" %>>php</option>
+															<option value="UED" <%="UED".equals(map.get("zwtype"))?"selected":"" %>>UED</option>
+															<option value="AI" <%="AI".equals(map.get("zwtype"))?"selected":"" %>>AI</option>
+															<option value="前端" <%="前端".equals(map.get("zwtype"))?"selected":"" %>>前端</option>
+															<option value="运维" <%="运维".equals(map.get("zwtype"))?"selected":"" %>>运维</option>
+															<option value="产品设计" <%="产品设计".equals(map.get("zwtype"))?"selected":"" %>>产品设计</option>
+															<option value="其他" <%="其他".equals(map.get("zwtype"))?"selected":"" %>>其他</option>
 														</select>
 													</span>
 													<span style="margin-left: 2%;">
@@ -405,20 +425,23 @@
 														<input type="text" name="readyNumb_<%=map.get("eid") %>" id="hadwork_edit" value="<%=map.get("readyNumb")%>" width="5%"/>
 														人
 													</span>
-													<span style="margin-left: 12%;">
-														岗位类型：
-														<select name="zwtype_<%=map.get("eid") %>" style="width: 18%;">
-															<option value="JAVA" <%="JAVA".equals(map.get("zwtype"))?"selected":"" %>>JAVA</option>
-			 												<option value="Pyhton" <%="Pyhton".equals(map.get("zwtype"))?"selected":"" %>>pyhton</option>
-															<option value="PHP" <%="PHP".equals(map.get("zwtype"))?"selected":"" %>>php</option>
-															<option value="UED" <%="UED".equals(map.get("zwtype"))?"selected":"" %>>UED</option>
-															<option value="AI" <%="AI".equals(map.get("zwtype"))?"selected":"" %>>AI</option>
-															<option value="前端" <%="前端".equals(map.get("zwtype"))?"selected":"" %>>前端</option>
-															<option value="运维" <%="运维".equals(map.get("zwtype"))?"selected":"" %>>运维</option>
-															<option value="产品设计" <%="产品设计".equals(map.get("zwtype"))?"selected":"" %>>产品设计</option>
-															<option value="其他" <%="其他".equals(map.get("zwtype"))?"selected":"" %>>其他</option>
-														</select>
+												<div class="row" style="margin-top: 1.5%;">
+													<span>
+														公司福利：
+														<input type="checkbox" name="welfare_edit_<%=map.get("eid") %>" id="comwelfare_upload" value="五险一金" 
+														<%=(((String)map.get("welfare")).contains("五险一金"))? "checked":"" %>/>五险一金
+														<input type="checkbox" name="welfare_edit_<%=map.get("eid") %>" id="comwelfare_upload" value="补充医疗保险" 
+														<%=(((String)map.get("welfare")).contains("补充医疗保险"))? "checked":"" %>/>补充医疗保险
+														<input type="checkbox" name="welfare_edit_<%=map.get("eid") %>" id="comwelfare_upload" value="弹性工作" 
+														<%=(((String)map.get("welfare")).contains("弹性工作"))? "checked":""%>/>弹性工作
+														<input type="checkbox" name="welfare_edit_<%=map.get("eid") %>" id="comwelfare_upload" value="交通补贴" 
+														<%=(((String)map.get("welfare")).contains("交通补贴"))? "checked":"" %>/>交通补贴
+														<input type="checkbox" name="welfare_edit_<%=map.get("eid") %>" id="comwelfare_upload" value="周末双休" 
+														<%=(((String)map.get("welfare")).contains("周末双休"))? "checked":""%>/>周末双休
+														<input type="checkbox" name="welfare_edit_<%=map.get("eid") %>" id="comwelfare_upload" value="年终奖金" 
+														<%=(((String)map.get("welfare")).contains("年终奖金"))? "checked":""%>/>年终奖金
 													</span>
+												</div>
 												</div>
 												<br>
 												<div style="margin-left: -1.5%;">
@@ -494,8 +517,8 @@
 											<br>
 											<div class="row">
 												<span>
-													公司福利：
-													<input type="text" disabled="disabled" name="comwelfare_view" id="comwelfare_view" value="<%=map.get("welfare")%>" style="width: 20%;"/>
+													学历要求：
+													<input type="text" disabled="disabled" name="degree_view" id="comwelfare_view" value="<%=map.get("education")%>" style="width: 20%;"/>
 												</span>
 												<span style="margin-left: 2%;">
 													公司类型：
@@ -509,8 +532,8 @@
 											<br>
 											<div class="row">
 												<span>
-													学历要求：
-													<input type="text" disabled="disabled" name="degree_view" id="comwelfare_view" value="<%=map.get("education")%>" style="width: 20%;"/>
+													岗位类型：
+													<input type="text" disabled="disabled" name="hadwork_view" id="hadwork_view" value="<%=map.get("zwtype")%>" width="5%"/>
 												</span>
 												<span style="margin-left: 2%;">
 													联系电话：
@@ -529,8 +552,8 @@
 													人
 												</span>
 												<span>
-													岗位类型：
-													<input type="text" disabled="disabled" name="hadwork_view" id="hadwork_view" value="<%=map.get("zwtype")%>" width="5%"/>
+													公司福利：
+													<input type="text" name="welfare_edit" id="welfare_edit" value="<%=map.get("welfare")%>" disabled="disabled" style="width: 51%;outline: none;border: none;"/>
 												</span>
 											</div>
 											<br>
@@ -647,7 +670,7 @@
 				if($("#tips_upload").val()==""){
 					$("#tips_upload").val()=="无";
 				}
-				if(x>=7){
+				if(x>=6){
 					return true;
 				}else{
 					return false;

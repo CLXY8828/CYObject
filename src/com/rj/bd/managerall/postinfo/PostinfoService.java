@@ -16,7 +16,7 @@ public class PostinfoService {
 	 * @desc   查询Employment表和从companynature表
 	 * @return
 	 * @throws ClassNotFoundException
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public List<Map<String, Object>> selectEmploymentAndCompanynature(int page) throws ClassNotFoundException, SQLException {
 		int count = selectEmploymentNum();
@@ -56,19 +56,26 @@ public class PostinfoService {
 	 */
 	public void addValue(String nature_id, String gsname, String employment_name, String salary, String phone,
 			String employment_describe, String introduce, String note, String address, String education,
-			String experience, String zwtype, String scale, String welfare, String demand, String recrultsNumb,
+			String experience, String zwtype, String scale, String [] welfare1, String demand, String recrultsNumb,
 			String subtime, int readyNumb, String gstype) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		String welfare= "";
+		for (int i = 0; i < welfare1.length; i++) {
+			welfare+=welfare1[i]+"#";
+		}
 		
 		if(demand.equals("")){
 			demand="无";
-		}else if(employment_describe.equals("")){
+		}
+		if(employment_describe.equals("")){
 			employment_describe="无";
-		}else if(introduce.equals("")){
+		}
+		if(introduce.equals("")){
 			introduce="无";
-		}else if(note.equals("")){
+		}
+		if(note.equals("")){
 			note="无";
 		}
-		
+		String eid = UUID.randomUUID().toString();
 		
 		String sql = " insert into employment values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 		
@@ -95,7 +102,7 @@ public class PostinfoService {
 		types[19]=Types.VARCHAR;
 		
 		Object []values=new Object[20];
-		values[0]=UUID.randomUUID().toString();
+		values[0]=eid;
 		values[1]=nature_id;
 		values[2]=gsname;
 		values[3]=employment_name;
@@ -115,8 +122,15 @@ public class PostinfoService {
 		values[17]=subtime;
 		values[18]=readyNumb;
 		values[19]=gstype;
+		
 		dao.executeUpdate(sql, types, values);
 		
+		List<Map<String,Object>> list1 = dao.executeQueryForList(" select UUID from account ");
+		for (int i = 0; i < list1.size(); i++) {
+			Map<String,Object> map  = list1.get(i);
+			String UUID = (String) map.get("UUID");
+			dao.executeUpdate(" insert into employmentapply values('"+eid+"','"+UUID+"',0,0,'"+""+"','"+""+"','"+""+"') ");
+		}
 	}
 	/**
 	 * @desc  删除数据
@@ -127,6 +141,7 @@ public class PostinfoService {
 	 * @throws IOException
 	 */
 	public void deleteValue(String eid) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		dao.executeUpdate("delete from employmentapply where eid=?", new int []{Types.VARCHAR}, new Object []{eid});
 		dao.executeUpdate("delete from employment where eid=?", new int []{Types.VARCHAR}, new Object []{eid});
 	}
 	/**
@@ -158,8 +173,12 @@ public class PostinfoService {
 	 */
 	public void editValue(String eid, String nature_id, String gsname, String employment_name, String salary,
 			String phone, String employment_describe, String introduce, String note, String address, String education,
-			String experience, String zwtype, String scale, String welfare, String demand, String recrultsNumb,
+			String experience, String zwtype, String scale, String [] welfare1, String demand, String recrultsNumb,
 			String subtime, String readyNumb, String gstype) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		String welfare = "";
+		for (int i = 0; i < welfare1.length; i++) {
+				welfare+=welfare1[i]+"#";
+		}
 		String sql = "  update employment set nature_id=?,gsname=?,employment_name=?,salary=?,phone=?"
 				+ ",employment_describe=?,introduce=?,note=?,address=?,education=?,experience=?,zwtype=?,scale=?"
 				+ ",welfare=?,demand=?,recrultsNumb=?,subtime=?,readyNumb=?,gstype=? "
