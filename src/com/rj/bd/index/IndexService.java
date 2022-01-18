@@ -20,7 +20,7 @@ public class IndexService {
 	public List<Map<String, Object>> query(String userid) throws ClassNotFoundException, SQLException {
 		
 		if (userid==null) {
-			return dao.executeQueryForList("SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid");
+			return dao.executeQueryForList("SELECT * FROM employment");
 		}
 		
 		return dao.executeQueryForList("SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=?", new int[]{Types.VARCHAR}, new Object[]{userid});
@@ -56,7 +56,7 @@ public class IndexService {
 
 	public List<Map<String, Object>> mqueryByQW(String text, String userid) throws ClassNotFoundException, SQLException {
 		if (userid==null) {
-			String sql = "SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid  and employment.employment_name LIKE  ?";
+			String sql = "SELECT * FROM employment where employment.employment_name LIKE  ?";
 			return dao.executeQueryForList(sql, new int[]{Types.VARCHAR}, new Object[]{"%"+text+"%"});
 		}
 		String sql = "SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=? and employment.employment_name LIKE  ?";
@@ -65,11 +65,70 @@ public class IndexService {
 
 	public List<Map<String, Object>> mqueryByGS(String text, String userid) throws ClassNotFoundException, SQLException {
 		if (userid==null) {
-			String sql = "SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid  and employment.gsname LIKE  ?";
+			String sql = "SELECT * FROM employment where employment.gsname LIKE  ?";
 			return dao.executeQueryForList(sql, new int[]{Types.VARCHAR}, new Object[]{"%"+text+"%"});
 		}
 		String sql = "SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=? and employment.gsname LIKE  ?";
 		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR ,Types.VARCHAR}, new Object[]{userid,"%"+text+"%"}); 
+	}
+
+	public List<Map<String, Object>> mqueryBytwo(String userid,String xxz, String xl, String jy, String zw, String xz, String gm) throws ClassNotFoundException, SQLException {
+		if (xxz.equals("薪资要求")) {
+			xxz="";
+		}
+		if (xl.equals("学历要求")) {
+			xl="";
+		}
+		if (jy.equals("工作经验")) {
+			jy="";
+		}
+		if (zw.equals("职位类型")) {
+			zw="";
+		}
+		if (xz.equals("公司性质")) {
+			xz="";
+		}
+		if (gm.equals("公司规模")) {
+			gm="";
+		}
+		if (userid==null) {
+			String sql = "SELECT * FROM employment WHERE employment.salary LIKE ? and employment.education LIKE ? and employment.experience LIKE ? and employment.zwtype LIKE ? and employment.gstype LIKE ? and employment.scale LIKE ?";
+			int[] types=new int[6];
+			types[0]=Types.VARCHAR;
+			types[1]=Types.VARCHAR;
+			types[2]=Types.VARCHAR;
+			types[3]=Types.VARCHAR;
+			types[4]=Types.VARCHAR;
+			types[5]=Types.VARCHAR;
+			
+			Object[] values = new Object[6];
+			values[0]="%"+xxz+"%";
+			values[1]="%"+xl+"%";
+			values[2]="%"+jy+"%";
+			values[3]="%"+zw+"%";
+			values[4]="%"+xz+"%";
+			values[5]="%"+gm+"%";
+			return dao.executeQueryForList(sql, types, values);
+		}
+		String sql = "SELECT * FROM employment ,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=? and employment.salary LIKE ? and employment.education LIKE ? and employment.experience LIKE ? and employment.zwtype LIKE ? and employment.gstype LIKE ? and employment.scale LIKE ?";
+		int[] types=new int[7];
+		types[0]=Types.VARCHAR;
+		types[1]=Types.VARCHAR;
+		types[2]=Types.VARCHAR;
+		types[3]=Types.VARCHAR;
+		types[4]=Types.VARCHAR;
+		types[5]=Types.VARCHAR;
+		types[6]=Types.VARCHAR;
+		
+		Object[] values = new Object[7];
+		values[0]=userid;
+		values[1]="%"+xxz+"%";
+		values[2]="%"+xl+"%";
+		values[3]="%"+jy+"%";
+		values[4]="%"+zw+"%";
+		values[5]="%"+xz+"%";
+		values[6]="%"+gm+"%";
+		return dao.executeQueryForList(sql, types, values);
 	}
 
 }

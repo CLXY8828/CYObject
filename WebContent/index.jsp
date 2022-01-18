@@ -117,37 +117,81 @@
 		
 		//筛选
 		//选择之后改变薪资要求的内容
-		function gxnr01(xz)
+		function gxnr01(xxz)
 		{
-			$("#xzyq02").text()
-			document.getElementById("xzyq01").innerHTML=xz;
+			var xl=$("#xzyq02").text();
+			var jy=$("#xzyq03").text();
+			var zw=$("#xzyq04").text();
+			var gm=$("#xzyq05").text();
+			var xz=$("#xzyq06").text();
+			document.getElementById("xzyq01").innerHTML=xxz;
+			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
 		//选择之后改变学历要求的内容
 		function xlyq01(xl)
 		{
+			var xxz=$("#xzyq01").text();
+			var jy=$("#xzyq03").text();
+			var zw=$("#xzyq04").text();
+			var gm=$("#xzyq05").text();
+			var xz=$("#xzyq06").text();
 			document.getElementById("xzyq02").innerHTML=xl;
+			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
 		//选择之后改变学历要求的内容
 		function gzjy01(jy)
-		{
+		{	
+			var xxz=$("#xzyq01").text();
+			var xl=$("#xzyq02").text();
+			var zw=$("#xzyq04").text();
+			var gm=$("#xzyq05").text();
+			var xz=$("#xzyq06").text();
 			document.getElementById("xzyq03").innerHTML=jy;
+			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
 		//选择之后改变职位类型的内容
 		function zwlx01(zw)
 		{
+			var xxz=$("#xzyq01").text();
+			var xl=$("#xzyq02").text();
+			var jy=$("#xzyq03").text();
+			var gm=$("#xzyq05").text();
+			var xz=$("#xzyq06").text();
 			document.getElementById("xzyq04").innerHTML=zw;
+			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
 		//选择之后改变公司性质的内容
 		function gsxz01(xz)
 		{
+			var xxz=$("#xzyq01").text();
+			var xl=$("#xzyq02").text();
+			var jy=$("#xzyq03").text();
+			var zw=$("#xzyq04").text();
+			var gm=$("#xzyq06").text();
 			document.getElementById("xzyq05").innerHTML=xz;
-		}
+			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);		}
 		//选择之后改变公司规模的内容   
 		function gsgm01(gm)
 		{
+			var xxz=$("#xzyq01").text();
+			var xl=$("#xzyq02").text();
+			var jy=$("#xzyq03").text();
+			var zw=$("#xzyq04").text();
+			var xz=$("#xzyq05").text();
 			document.getElementById("xzyq06").innerHTML=gm;
+			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
-		
+		//清空筛选条件，把选择条件全部清空还原
+		function xs07()
+		{
+			document.getElementById("xzyq01").innerHTML="薪资要求";
+			document.getElementById("xzyq02").innerHTML="学历要求";
+			document.getElementById("xzyq03").innerHTML="工作经验";
+			document.getElementById("xzyq04").innerHTML="职位类型";
+			document.getElementById("xzyq05").innerHTML="公司性质";
+			document.getElementById("xzyq06").innerHTML="公司规模";
+			window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
+		}
 	</script>
 	</head>
 	<body>
@@ -369,7 +413,7 @@
 		
 		<div class="container-fluid" style=" box-shadow:0 0 6px 3px #c3c3c3;   align-content: center; width: 860px; ">
 		  	<div class="row" >
-		  		
+		  		<c:set var="tj" scope="request" value="${requestScope.tj}"></c:set>
 		  		<div class="table-responsive col-md-12">
 		  		<form action="<%=request.getContextPath() %>/logein.do?method=loge" method="post">
 				  <table class="table " style="font-family: arial;">
@@ -379,22 +423,22 @@
 				    		<div class="btn-group btn-group-justified" role="group" aria-label="...">
 				    			
 							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default" id="xzyq01" onclick="xs01()">薪资要求</button>
+							    <button type="button" class="btn btn-default" id="xzyq01" onclick="xs01()">${empty tj?"薪资要求":tj.xxz }</button>
 							  </div>
 							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default" id="xzyq02" onclick="xs02()">学历要求</button>
+							    <button type="button" class="btn btn-default" id="xzyq02" onclick="xs02()">${empty tj?"学历要求":tj.xl }</button>
 							  </div>
 							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default" id="xzyq03" onclick="xs03()">工作经验</button>
+							    <button type="button" class="btn btn-default" id="xzyq03" onclick="xs03()">${empty tj?"工作经验":tj.jy }</button>
 							  </div>
 							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default" id="xzyq04" onclick="xs04()">职位类型</button>
+							    <button type="button" class="btn btn-default" id="xzyq04" onclick="xs04()">${empty tj?"职位类型":tj.zw }</button>
 							  </div>
 							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default" id="xzyq05" onclick="xs05()">公司性质</button>
+							    <button type="button" class="btn btn-default" id="xzyq05" onclick="xs05()">${empty tj?"公司性质":tj.xz }</button>
 							  </div>
 							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default" id="xzyq06" onclick="xs06()">公司规模</button>
+							    <button type="button" class="btn btn-default" id="xzyq06" onclick="xs06()">${empty tj?"公司规模":tj.gm }</button>
 							  </div>
 							  <div class="btn-group" role="group">
 							    <button type="button" class="btn btn-default" onclick="xs07()">清空筛选条件</button>

@@ -3,6 +3,7 @@ package com.rj.bd.index;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +63,27 @@ public class IndexServlet extends HttpServlet {
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 				return;
 			}
+		}
+		else if ("2".equals(type)) {
+			String xxz = request.getParameter("xxz");
+			String xl = request.getParameter("xl");
+			String jy = request.getParameter("jy");
+			String zw = request.getParameter("zw");
+			String xz = request.getParameter("xz");
+			String gm = request.getParameter("gm");
+			
+			List<Map<String, Object>> list =service.mqueryBytwo(userid,xxz,xl,jy,zw,xz,gm);
+			Map<String, String> tj= new HashMap<String, String>();
+			tj.put("xxz", xxz);
+			tj.put("xl", xl);
+			tj.put("jy", jy);
+			tj.put("zw", zw);
+			tj.put("xz", xz);
+			tj.put("gm", gm);
+			request.setAttribute("list", list);
+			request.setAttribute("tj", tj);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			return;
 		}
 		
 	}

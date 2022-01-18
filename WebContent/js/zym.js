@@ -109,16 +109,7 @@ $(document).bind('click', function(e) {
     });
  
 
-//清空筛选条件，把选择条件全部清空还原
-function xs07()
-{
-	document.getElementById("xzyq01").innerHTML="薪资要求";
-	document.getElementById("xzyq02").innerHTML="学历要求";
-	document.getElementById("xzyq03").innerHTML="工作经验";
-	document.getElementById("xzyq04").innerHTML="职位类型";
-	document.getElementById("xzyq05").innerHTML="公司性质";
-	document.getElementById("xzyq06").innerHTML="公司规模";
-}
+
 
 
 //收藏的显示和隐藏
