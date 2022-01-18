@@ -46,18 +46,18 @@
 					<div class="modal-dialog modal-lg" role="document">
 						<div class="modal-content">
 							<!-- 上传岗位 -->
-							<form action="/*" method="post">
+							<form action="/*" method="post" name="post_upload" onsubmit="return checkupload(post_upload)">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 									<h2 class="modal-title" id="modaltitle">上传岗位</h2>
 								</div>
 								<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
 									<div class="row">
-										<span>
+										<span name="uploadspan">
 											岗位名称：
 											<input type="text" name="postname_upload" id="postname_upload" value="" style="width: 20%;" />	
 										</span>
-										<span style="margin-left:2%;">
+										<span style="margin-left:2%;" name="uploadspan">
 											公司名称：
 											<input type="text" name="comname_upload" id="comname_upload" value="" style="width: 20%;" />
 										</span>
@@ -95,7 +95,7 @@
 												<option value="国有企业">国有企业</option>
 											</select>
 										</span>
-										<span style="margin-left: 4%;">
+										<span style="margin-left: 4%;" name="uploadspan">
 											招聘人数：
 											<input type="text" name="recruits_upload" id="recruits_upload" value="" style="width: 10%;" />
 											人
@@ -103,22 +103,22 @@
 									</div>
 									<br>
 									<div class="row">
-										<span>
+										<span name="uploadspan">
 											公司福利：
 											<input type="text" name="comwelfare_upload" id="comwelfare_upload" value="" style="width: 20%;"/>
 										</span>
-										<span style="margin-left: 2%;">
+										<span style="margin-left: 2%;" name="uploadspan">
 											公司类型：
 											<input type="text" name="comtype_upload" id="comtype_upload" value="" style="width: 20%;"/>
 										</span>
-										<span style="margin-left: 2%;">
+										<span style="margin-left: 2%;" name="uploadspan">
 											公司所在地：
 											<input type="text" name="comaddress_upload" id="comaddress_upload" value="" style="width: 18%;" />
 										</span>
 									</div>
 									<br>
 									<div class="row">
-										<span>
+										<span name="uploadspan">
 											学历要求：
 											<select name="degree_upload" style="width: 18%;">
 												<option value="初中及以下">初中及以下</option>
@@ -131,7 +131,7 @@
 												<option value="MEA/EMBA">MEA/EMBA</option>
 											</select>
 										</span>
-										<span style="margin-left: 4%;">
+										<span style="margin-left: 4%;" name="uploadspan">
 											联系电话：
 											<input type="text" name="tel_upload" id="comtype_upload" value="" style="width: 20%;"/>
 										</span>
@@ -166,20 +166,20 @@
 										</span>
 									</div><br>
 									<div style="margin-left: -1.5%;">
-										<span >岗位描述：</span><br>
-										<textarea rows="2" cols="97%" name="descript_upload"></textarea>
+										<span name="uploadspan">岗位描述：</span><br>
+										<textarea rows="2" cols="97%" name="descript_upload" style="width: 97%;" id="descript_upload"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
-										<span>任职要求：</span><br>
-										<textarea rows="2" cols="97%" name="workrequire_upload"></textarea>
+										<span name="uploadspan">任职要求：</span><br>
+										<textarea rows="2" cols="97%" name="workrequire_upload" style="width: 97%;" id="workrequire_upload"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
-										<span>公司信息：</span><br>
-										<textarea rows="2" cols="97%" name="cominfo_upload"></textarea>
+										<span name="uploadspan">公司信息：</span><br>
+										<textarea rows="2" cols="97%" name="cominfo_upload" style="width: 97%;" id="cominfo_upload"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
-										<span>备注</span><br>
-										<textarea rows="2" cols="97%" name="tips_upload"></textarea>
+										<span name="uploadspan">备注</span><br>
+										<textarea rows="2" cols="97%" name="tips_upload" style="width: 97%;" id="tips_upload"></textarea>
 									</div>
 								</div>
 								<div class="modal-footer">
@@ -355,19 +355,19 @@
 												<br>
 												<div style="margin-left: -1.5%;">
 													<span >岗位描述：</span><br>
-													<textarea rows="2" cols="97%" name="descript_edit"></textarea>
+													<textarea rows="2" cols="97%" name="descript_edit" style="width: 97%;"></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>任职要求：</span><br>
-													<textarea rows="4" cols="97%" name="workrequire_edit"></textarea>
+													<textarea rows="4" cols="97%" name="workrequire_edit" style="width: 97%;"></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>公司信息：</span><br>
-													<textarea rows="4" cols="97%" name="cominfo_edit"></textarea>
+													<textarea rows="4" cols="97%" name="cominfo_edit" style="width: 97%;"></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>备注：</span><br>
-													<textarea rows="2" cols="97%" name="tips_edit"></textarea>
+													<textarea rows="2" cols="97%" name="tips_edit" style="width: 97%;"></textarea>
 												</div>
 											</div>
 											<div class="modal-footer">
@@ -469,15 +469,19 @@
 											<br>
 											<div style="margin-left: -1.5%;">
 												<span >岗位描述：</span><br>
-												<textarea rows="2" cols="97%" name="descript_view" disabled="disabled" style="outline: none;border: none;" >123</textarea>
+												<textarea rows="2" cols="97%" name="descript_view" disabled="disabled" style="width: 97%;outline: none;border: none;" >123</textarea>
 											</div>
 											<div style="margin-left: -1.5%;">
 												<span>任职要求：</span><br>
-												<textarea rows="4" cols="97%" name="workrequire_view" disabled="disabled" style="outline: none;border: none;" ></textarea>
+												<textarea rows="4" cols="97%" name="workrequire_view" disabled="disabled" style="width: 97%;outline: none;border: none;" ></textarea>
 											</div>
 											<div style="margin-left: -1.5%;">
 												<span>公司信息：</span><br>
-												<textarea rows="4" cols="97%" name="cominfo_view" disabled="disabled" style="outline: none;border: none;"></textarea>
+												<textarea rows="4" cols="97%" name="cominfo_view" disabled="disabled" style="width: 97%;outline: none;border: none;"></textarea>
+											</div>
+											<div style="margin-left: -1.5%;">
+												<span>备注：</span><br>
+												<textarea rows="4" cols="97%" name="cominfo_view" disabled="disabled" style="width: 97%;outline: none;border: none;"></textarea>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -509,17 +513,7 @@
 											<input type="text" name="pagenum" id="pagenum" value="1" style="width: 35px;" />
 											页
 										</span>
-										<div style="float: right;">
-											<span>
-												每页显示
-												<select name="infonum" style="width:80px">
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option>
-													<option value="30">30</option>
-												</select>
-											</span>
-										</div>
+										
 									</div>
 								</td>
 							</tr>
@@ -535,5 +529,41 @@
 				delform.submit();
 			}
 		}
+		$(function(){
+			$("#upload form").submit(function(){
+				var i=0;
+				var x=0;
+				document.getElementById("upload")
+				$("#upload input").each(function(){
+					if($(this).val()==""){
+						alert(document.getElementsByName("uploadspan")[i].innerText.split("：")[0]+"为必填信息，您没有填写")
+						$(this).focus();
+						return false;
+					}else{
+						x++;
+					}
+					i++;
+					
+				})
+				if($("#descript_upload").val()==""){
+					$("#descript_upload").val()=="无";
+				}
+				if($("#workrequire_upload").val()==""){
+					$("#workrequire_upload").val()=="无";
+				}
+				if($("#cominfo_upload").val()==""){
+					$("#cominfo_upload").val()=="无";
+				}
+				if($("#tips_upload").val()==""){
+					$("#tips_upload").val()=="无";
+				}
+				if(x>=7){
+					return true;
+				}else{
+					return false;
+				}
+			})
+			
+		})
 	</script>
 </html>
