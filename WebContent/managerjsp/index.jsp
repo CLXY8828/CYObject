@@ -206,7 +206,7 @@
 						<iframe src="<%=request.getContextPath()%>/waring/stu.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
 					<div id="postfillwarn" class="tab-pane" style="width: 100%;height: 100%;">
-						<iframe src="postwaring/postfillwarn.jsp" width="100%" height="100%"></iframe>
+						<iframe src="<%=request.getContextPath()%>/waring/fill.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
 					<div id="postoverdue" class="tab-pane" style="width: 100%;height: 100%;">
 						<iframe src="postwaring/postoverdue.jsp" width="100%" height="100%"></iframe>
