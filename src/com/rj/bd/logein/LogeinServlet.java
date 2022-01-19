@@ -112,7 +112,8 @@ public class LogeinServlet extends HttpServlet {
 			}
 			else {//已注册的用户登录
 				request.getSession().setAttribute("user", map);
-				response.getWriter().write("数据库存在信息，直接登录");
+				request.getSession().setAttribute("userid", map.get("UUID"));
+				response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
 			}
 		}
 		else {//验证码错误
