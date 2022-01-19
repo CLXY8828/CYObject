@@ -99,11 +99,11 @@
 					
 				});
 		}
-		function sq(userid,eid) {
+		function sq(userid,eid,id,mid) {
 			var url ="<%=request.getContextPath()%>/users/index.do?method=sq";
 				$.post(url,{userid:userid,eid:eid},function(data)
 				{
-					shenqing(true);
+					shenqing(id,true,mid);
 				});
 		}
 		function qsc(userid,eid) {
@@ -128,30 +128,33 @@
 			var xl=$("#xzyq02").text();
 			var jy=$("#xzyq03").text();
 			var zw=$("#xzyq04").text();
-			var gm=$("#xzyq05").text();
-			var xz=$("#xzyq06").text();
+			var xz=$("#xzyq05").text();
+			var gm =$("#xzyq06").text();
+			
 			document.getElementById("xzyq01").innerHTML=xxz;
 			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
 		//选择之后改变学历要求的内容
 		function xlyq01(xl)
 		{
+			
 			var xxz=$("#xzyq01").text();
 			var jy=$("#xzyq03").text();
 			var zw=$("#xzyq04").text();
-			var gm=$("#xzyq05").text();
-			var xz=$("#xzyq06").text();
+			var xz=$("#xzyq05").text();
+			var gm =$("#xzyq06").text();
 			document.getElementById("xzyq02").innerHTML=xl;
 			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
+		
 		//选择之后改变学历要求的内容
 		function gzjy01(jy)
 		{	
 			var xxz=$("#xzyq01").text();
 			var xl=$("#xzyq02").text();
 			var zw=$("#xzyq04").text();
-			var gm=$("#xzyq05").text();
-			var xz=$("#xzyq06").text();
+			var xz=$("#xzyq05").text();
+			var gm =$("#xzyq06").text();
 			document.getElementById("xzyq03").innerHTML=jy;
 			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
@@ -161,8 +164,8 @@
 			var xxz=$("#xzyq01").text();
 			var xl=$("#xzyq02").text();
 			var jy=$("#xzyq03").text();
-			var gm=$("#xzyq05").text();
-			var xz=$("#xzyq06").text();
+			var xz=$("#xzyq05").text();
+			var gm =$("#xzyq06").text();
 			document.getElementById("xzyq04").innerHTML=zw;
 			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 		}
@@ -198,22 +201,19 @@
 			document.getElementById("xzyq06").innerHTML="公司规模";
 			window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
 		}
-		function shenqing(data)
+		function shenqing(id,data,mid)
 		{
 			if(data==true)
-			{
-				$("#sqzw").html("已申请");
+			{	
+				$("#"+id).html("已申请");
+				$("#"+id).attr("disabled","disabled");
+				$('#'+mid).modal('hide');
 			}
-			else
-			{
-				$("#sqzw").html("申请");
-			}	
-			
 		}
 		
 	</script>
 	</head>
-	<body>
+	<body style="background-color: #f2f2f2">
 	<script type="text/javascript">
 
 	
@@ -298,7 +298,7 @@
 			
 			
 			
-			<div  style="border:2px solid #E5E5E5;  height: 80px ; width: 650px; margin: 210px 400px 0px  346px; font-size: 40px; font: '宋体'; ">
+			<div  style="  height: 80px ; width: 650px; margin: 210px 400px 0px  346px; font-size: 40px; font: '宋体'; ">
 				
 					<form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath() %>/users/index.do?method=mquery&type=1" method="post">
 						
@@ -331,10 +331,10 @@
 				<table style=" border-collapse: separate; border-spacing: 6px; font: arial;">
 					<tr>
 						<td>
-							<button type="button" class="btn btn-primary btn-sm" style="background-color: #E38D13 ; color: white;">刷新简历</button>
+							<button type="button" class="btn btn-primary btn-sm" style="background-color: #E38D13 ; color: white;">上传简历</button>
 						</td>
 						<td>
-							<button type="button" class="btn btn-default btn-sm" style="color: #E38D13;">编辑简历</button>
+							<button type="button" class="btn btn-default btn-sm" style="color: #E38D13;">历史简历</button>
 						</td>
 					</tr>
 					<tr align="center" style="font-size: 20px;">
@@ -430,15 +430,16 @@
 		
 		
 		
-		<div class="container-fluid" style=" box-shadow:0 0 6px 3px #c3c3c3;   align-content: center; width: 860px; ">
+		<div class="container-fluid" style=" box-shadow:0 0 0px 0px #c3c3c3;   align-content: center; width: 1150px; ">
 		  	<div class="row" >
 		  		<c:set var="tj" scope="request" value="${requestScope.tj}"></c:set>
 		  		<div class="table-responsive col-md-12">
 		  		<form action="<%=request.getContextPath() %>/logein.do?method=loge" method="post">
-				  <table class="table " style="font-family: arial;">
+				  <table style="font-family: arial;" border="0">
 				    	<thead  class="active"  style="font-size: 15PX;">
 				    		
 				    		<th>
+				    		<br>
 				    		<div class="btn-group btn-group-justified" role="group" aria-label="...">
 				    			
 							  <div class="btn-group" role="group">
@@ -464,6 +465,7 @@
 							  </div>
 							  
 							</div>
+							<br>
 							</th>
 							
 				    	</thead>
@@ -636,33 +638,44 @@
 									
 								</td>
 				    		</tr>
-				    		<div>
 				 			<c:set value="1" var="i"></c:set>
 				    		<c:forEach var="map" items="${requestScope.list}">
 				    		<tr onclick="login()">
 				    			<td colspan="7">
+				    			<div class="panel panel-info" style=" width: 1116px; height: 160px;">
+						    		<div class="panel-body">
+						    		<div class="row row-no-gutters">
+						    		<div class="col-xs-12 col-md-10 col-md-offset-1">
 				    				<a href="fym.html" style="color: black;">
-						    		<div class="well well-lg" style=" width: 800px; height: 180px;">
-						    			<div align="left";>
-							    			<span  style="font-size: 25px; font-weight: bold;">${map.employment_name}</span>
-							    			<span  style="margin: 0px 0px 0px 360px;" >${map.gsname}</span>
-						    			</div>
 						    			
-						    			
-						    			<div align="left">
-							    			<span style="font-size: 24px; color: red; ">${map.salary}</span>
-							    			<span style="margin: 0px 0px 0px 50px; font-size: 20px;">${map.address}</span>
-							    			<span style="margin: 0px 0px 0px 20px; ">| ${map.experience} ${map.education}</span>
+						    			<div class="row" style="white-space: nowrap;">
+							    			<span class="pull-left"  style="font-size: 25px; font-weight: bold;">${map.employment_name}</span>
+							    			<span class="pull-right"  style="text-overflow: ellipsis;" >${map.gsname}</span>
 						    			</div>
-						    			<br />
 						    			
 						    			
 						    			<div class="row">
-											 <c:forTokens items="${map.welfare}" delims="#" var="name">
-											<div class="col-md-1 " align="center"><span class="label label-info">${name}</span></div>
-						    				</c:forTokens>
+						    				<div class="pull-left">
+							    			<span  style="font-size: 24px; color: red; ">${map.salary}</span>
+							    			<span style="margin: 0px 0px 0px 50px;">${map.address}</span>
+							    			<span style="margin: 0px 0px 0px 0px; ">| ${map.experience} ${map.education}</span>
+							    			</div>
+						    			</div>
+									    <br />		
 						    			</a>
-						    				<div class="col-md-4 " style="margin: 0px 0px 0px 520px;" >
+						    		</div>
+						    		</div>
+						    			
+						    			<div class="row">
+						    			<div class="col-md-4 col-md-offset-1" style=" padding: 0px 0px 0px 0px;">
+						    				<div class="pull-left" style="padding: 0px 0px 0px 0px;">
+											 <c:forTokens items="${map.welfare}" delims="#" var="name">
+											<span class="label label-info">${name}</span>
+						    				</c:forTokens>
+						    				</div>
+						    			</div>
+						    			
+						    				<div class="col-md-4 col-md-offset-3" style="" >
 							    				<c:choose>
 						    					<c:when test="${empty user}">
 						    					<a>
@@ -693,10 +706,10 @@
 												</c:if>
 												<c:if test="${map.applystate==1}">
 												
-												<button id="sqzw" type="button" class="btn btn-primary">已申请</button>
+												<button id="sq${i}" disabled="disabled" type="button" class="btn btn-primary">已申请</button>
 												</c:if>
 												<c:if test="${map.applystate==0}">
-												<button id="sqzw" type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}">申 请 职 位</button>
+												<button type="button" id="sq${i}" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}">申 请 职 位</button>
 												</c:if>
 												</c:otherwise>
 												</c:choose>
@@ -716,7 +729,7 @@
 													      </div>
 													      <div class="modal-footer">
 													        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 430px 0px 0px;">再想想</button>
-													        <button type="button"  onclick="sq('${map.UUID}','${map.eid}')" class="btn btn-primary" data-toggle="modal" data-target="#myModal${i}">确 定</button>
+													        <button type="button"  onclick="sq('${map.UUID}','${map.eid}','sq${i}','myModa${i}')" class="btn btn-primary" data-toggle="modal" data-target="#myModal${i}">确 定</button>
 													        
 													      </div>
 													    </div>
@@ -736,26 +749,22 @@
 														      	<h4 class="modal-title" id="myModalLabel">上传简历成功</h4>
 														      </div>
 														      <div class="modal-footer" align="center">
-														        <button type="button" class="btn btn-primary" data-toggle="modal" style="margin: 0px 250px 0px 0px;" onclick="tiaozhuan()">确定</button>
+														        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" style="margin: 0px 250px 0px 0px;">确定</button>
 														        
 														      </div>
-														</div>
-													    </div>
+															</div>
+													    	</div>
 													  </div>
-													</div>
 													
+												</div>	
 							    			</div>
 							    			
-						    			
 						    			</div>
-						    			
-						    		</div>
-						    		
+					    		</div>
 					    		</td>
 					    	</tr>
-					    	<c:set var="i" value="${i}+1"></c:set>
+					    	<c:set var="i" value="${i+1}"></c:set>
 					    	</c:forEach>
-					    	</div>
 				    	</tbody>
 				    	
 				    	
@@ -763,7 +772,7 @@
 				  </form>
 
 				  
-				</div>
+				
 		  	
 			</div>
 		</div>

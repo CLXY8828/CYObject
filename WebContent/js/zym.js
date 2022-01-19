@@ -146,11 +146,3 @@ $(function(){
  })
 })
 
-
-//上传简历成功之后跳转回主页面
-//传一个参数，如果这个参数等于true，然后就把等待公司审核这个按钮显示出来
-//并且这个等待公司审核按钮是禁止点击的
-function tiaozhuan()
-{
-	window.location.href = "zym.html";
-}
