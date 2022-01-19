@@ -13,9 +13,9 @@
 			<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 			<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 			<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-			<script src="../jquery/jquery.min.js" ></script>
-			<script src="../jquery/jquery.cookie.js" ></script>
-			<script src="../js/indexjs.js"></script>
+			<script src="<%=request.getContextPath() %>/jquery/jquery.min.js" ></script>
+			<script src="<%=request.getContextPath() %>/jquery/jquery.cookie.js" ></script>
+			<script src="<%=request.getContextPath() %>/js/indexjs.js"></script>
 			<style>
 		    .code
 		    {	

@@ -54,33 +54,36 @@ public class LogeinService {
 	 * @throws IOException
 	 */
 	public void newUserByPhone(String phonenumber) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
-		String sql="insert into account values(?,?,?,?,?,?,?,?,?,?)";
-		int[] types = new int[10];
+		List<Map<String, Object>> elist = dao.executeQueryForList("select * from employment");
+		UUID userid = UUID.randomUUID();
+		String sql="insert into account values(?,?,?,?,?,?,?,?,?)";
+		int[] types = new int[9];
 		types[0]=Types.VARCHAR;
 		types[1]=Types.INTEGER;
 		types[2]=Types.NULL;
 		types[3]=Types.NULL;
 		types[4]=Types.VARCHAR;
 		types[5]=Types.INTEGER;
-		types[6]=Types.INTEGER;
-		types[7]=Types.NULL;
+		types[6]=Types.NULL;
+		types[7]=Types.INTEGER;
 		types[8]=Types.NULL;
-		types[9]=Types.NULL;
 		
-		Object[] values = new Object[10];
+		Object[] values = new Object[9];
 		
-		values[0]=UUID.randomUUID();
+		values[0]=userid;
 		values[1]=1;
 		values[2]="null";
 		values[3]="null";
 		values[4]=phonenumber;
 		values[5]=0;
-		values[6]=0;
-		values[7]="null";
+		values[6]="null";
+		values[7]=0;
 		values[8]="null";
-		values[9]="null";
 		
 		dao.executeUpdate(sql, types, values);
+		for ( Map<String, Object> map : elist) {
+			dao.executeUpdate("insert into employmentapply values('"+map.get("eid")+"','"+userid+"',"+Integer.valueOf(0)+","+Integer.valueOf(0)+",'','','')");
+		}
 		
 	}
 

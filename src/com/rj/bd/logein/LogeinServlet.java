@@ -21,7 +21,7 @@ import com.rj.bd.messageutrl.SmsCodeException;
 public class LogeinServlet extends HttpServlet {
 	
 	LogeinService service = new LogeinService();
-	CodeUtrl utrl;
+	CodeUtrl utrl = new CodeUtrl();
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -77,7 +77,6 @@ public class LogeinServlet extends HttpServlet {
 	 * @throws ServletException
 	 */
 	private void logephone(HttpServletRequest request, HttpServletResponse response) throws ClientProtocolException, IOException, SmsCodeException, ServletException {
-		utrl = new CodeUtrl();//初始化验证码工具类
 		String phonecode = request.getParameter("name");//获取用户输入的验证码
 //		System.out.println(phonecode);
 //		utrl.createPhoneCode(phonecode);//发送验证码
@@ -105,7 +104,11 @@ public class LogeinServlet extends HttpServlet {
 			if (map==null||map.size()<=0) {//创建新用户
 				System.out.println(1);
 				service.newUserByPhone(phonenumber);
-				response.getWriter().write("新用户创建一个账号");
+				map=service.queryByPhone(phonenumber);
+				request.getSession().setAttribute("user", map);
+				request.getSession().setAttribute("userid", map.get("UUID"));
+				response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
+				return;
 			}
 			else {//已注册的用户登录
 				request.getSession().setAttribute("user", map);
