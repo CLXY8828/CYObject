@@ -8,11 +8,11 @@
 		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<style type="text/css">
 			th{
-				font-size: 20px;
+				font-size: 16px;
 				text-align: center;
 			}
 			td{
-				font-size: 20px;
+				font-size: 16px;
 				text-align: center;
 			}
 			.container{
@@ -47,8 +47,7 @@
 							<th width="14%">联系电话</th>
 							<th width="14%">离职/未就业</th>
 							<th width="14%">专业老师</th>
-							<th width="6%">删除</th>
-							<th width="10%">联系处理</th>
+							<th width="8%">联系处理</th>
 						</tr>
 						<!-- /*以下放数据 -->
 						<tr>
@@ -59,20 +58,108 @@
 							<td>99999999999</td>
 							<td>离职</td>
 							<td>小龙女</td>
-							<td><a href="/*"><img src="../img/delete.png" style="width: 38px;height: 38px;" ></a></td>
-							<td><a href="/*"><img src="../img/deal.png" style="width: 30px;height: 30px;" ></a></td>
+							<td>
+								<a href="*"><img src="../img/deal.png" style="width: 30px;height: 30px;" ></a>
+								<a href="#idenfier" data-toggle="modal" data-target="#dealmethod"><img src="../img/warning.png" style="width: 30px;height: 30px;" ></a>
+							</td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>李四</td>
-							<td>207777777</td>
-							<td>10<span>天</span></td>
-							<td>00000000000</td>
-							<td>未就业</td>
-							<td>过儿</td>
-							<td><a href="/*"><img src="../img/delete.png" style="width: 38px;height: 38px;" ></a></td>
-							<td><a href="/*"><img src="../img/warning.png" style="width: 30px;height: 30px;" ></a></td>
-						</tr>
+						<div class="modal fade" id="dealmethod" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h2 class="modal-title" id="modaltitle">处理方式</h4>
+									</div>
+									<div class="modal-body">
+										<br>
+										<div class="row">
+											<span style="margin-left: 20%;">
+												<a href="#idenfier" data-toggle="modal" data-target="#emaildeal" data-dismiss="modal"><span class="h3">发送学生信息到邮箱</span></a>
+											</span>
+										</div>
+										<br>
+										<div class="row">
+											<span style="margin-left: 20%;">
+												<a href="#idenfier" data-toggle="modal" data-target="#dealnow" data-dismiss="modal"><span class="h3">联系学生了解情况</span></a>
+											</span>
+										</div>
+									</div><br><br><br>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+										</button>
+										<button type="button" class="btn btn-primary" data-dismiss="modal">
+											确定
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- email处理 -->
+						<div class="modal fade" id="emaildeal" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h2 class="modal-title" id="modaltitle">处理方式</h4>
+									</div>
+									<div class="modal-body">
+										<br>
+										<div class="row">
+											<span style="margin-left: 20%;">
+												<span class="h3">已将学生信息发送至您的邮箱</span>
+											</span>
+										</div>
+										<br><br><br>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+										</button>
+										<button type="button" class="btn btn-primary" data-dismiss="modal">
+											确定
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="dealnow" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h2 class="modal-title" id="modaltitle">学生联系方式</h4>
+									</div>
+									<div class="modal-body">
+										<br>
+										<div class="row" style="margin-left:10%">
+											<span class="h3">
+												电话：
+												<span>99999999999</span>
+											</span>
+										</div><br>
+										<div class="row" style="margin-left:10%">
+											<span class="h3">
+												QQ：
+												<span>99999999999</span>
+											</span>
+										</div><br>
+										<div class="row" style="margin-left:10%">
+											<span class="h3">
+												微信：
+												<span>99999999999</span>
+											</span>
+										</div>
+										<br><br><br>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+										</button>
+										<button type="button" class="btn btn-primary" data-dismiss="modal">
+											确定
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
 						<tr>
 							<td colspan="9">
 								<div class="row" style="background-color: #dafffb;">
@@ -91,17 +178,7 @@
 										<input type="text" name="pagenum" id="pagenum" value="1" style="width: 35px;" />
 										页
 									</span>
-									<div style="float: right;">
-										<span>
-											每页显示
-											<select name="infonum" style="width:80px">
-												<option value="15">15</option>
-												<option value="20">20</option>
-												<option value="25">25</option>
-												<option value="30">30</option>
-											</select>
-										</span>
-									</div>
+									
 								</div>
 							</td>
 						</tr>
