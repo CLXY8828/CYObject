@@ -10,6 +10,11 @@ import java.util.Map;
 import com.rj.bd.dao.Dao;
 import com.rj.bd.dao.DaoImpl;
 
+/**
+ * @desc   岗位招满 c层
+ * @author 秋月蓝璃
+ *
+ */
 public class PostfillwarnService {
 	Dao dao =new DaoImpl();
 	/**

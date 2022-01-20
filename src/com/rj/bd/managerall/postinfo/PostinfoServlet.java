@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.rj.bd.managerall.utils.Dates;
-
+/**
+ * @desc   岗位上传M层
+ * @author 秋月蓝璃
+ *
+ */
 @SuppressWarnings("serial")
 public class PostinfoServlet extends  HttpServlet{
 	PostinfoService postinfoservice =new PostinfoService();

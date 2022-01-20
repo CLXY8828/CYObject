@@ -9,8 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.rj.bd.managerall.utils.Dates;
+/**
+ * @desc  学生预警M层
+ * @author 秋月蓝璃
+ */
+
 @SuppressWarnings("serial")
 public class StuwaringServlet extends  HttpServlet{
 	StuwaringService stuwaringservice = new StuwaringService();

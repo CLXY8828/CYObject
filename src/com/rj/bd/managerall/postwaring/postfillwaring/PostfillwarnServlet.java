@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rj.bd.managerall.utils.Dates;
 
+/**
+ * @desc   岗位招满 M层
+ * @author 秋月蓝璃
+ *
+ */
 @SuppressWarnings("serial")
 public class PostfillwarnServlet extends  HttpServlet{
 	PostfillwarnService postfillservice = new PostfillwarnService();

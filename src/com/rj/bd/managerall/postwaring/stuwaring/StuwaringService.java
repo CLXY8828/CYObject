@@ -8,6 +8,12 @@ import java.util.Map;
 import com.rj.bd.dao.Dao;
 import com.rj.bd.dao.DaoImpl;
 
+/**
+ * @desc   学生预警C层
+ * @author 秋月蓝璃
+ *
+ */
+
 public class StuwaringService {
 	Dao dao =new DaoImpl();
 

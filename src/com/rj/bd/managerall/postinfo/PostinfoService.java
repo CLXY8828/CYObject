@@ -1,6 +1,7 @@
 package com.rj.bd.managerall.postinfo;
 
 import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -10,6 +11,12 @@ import java.util.UUID;
 
 import com.rj.bd.dao.Dao;
 import com.rj.bd.dao.DaoImpl;
+
+/**
+ * @desc   岗位上传c层
+ * @author 秋月蓝璃
+ *
+ */
 public class PostinfoService {
 	Dao dao =new DaoImpl();
 	/**
