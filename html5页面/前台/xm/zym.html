@@ -73,9 +73,9 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body style="background-color: #F5F5F5;">
 		
-		<div class="container" style="background-image: url(img/004.jpg); height: 300px;width: 1518px; " >
+		<div class="container" style="background-image: url(img/004.jpg); height: 300px;width: 100%; " >
 			<div class="row">
 			
 			<div class="col-md-1 col-md-offset-1" style="height: 80px; width: 120px; margin: 20px 0px 0px 50px; ">
@@ -153,10 +153,11 @@
 					<form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath() %>/logein.do?" method="post">
 						
 					  <div class="form-group" >
-					  	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >全文 <span class="caret"></span></button>
-								        <ul class="dropdown-menu">
-								          <li><a href="#">全文</a></li>
-								        </ul>
+					  	<select class="form-control ">
+	          					<option value="" >全文</option>
+	          					<option value="">公司</option>
+	     
+	          				</select>
 								        
 					    <input type="text" class="form-control" placeholder="请输入关键字" style="height: 40px; width: 400px; ">
 					  </div>
@@ -280,10 +281,10 @@
 		
 		
 		
-		<div class="container-fluid" style=" box-shadow:0 0 6px 3px #c3c3c3;   align-content: center; width: 860px; ">
+		<div class="container-fluid" style=" box-shadow:0 0 6px 3px #c3c3c3;   align-content: center; width: 1150px; ">
 		  	<div class="row" >
 		  		
-		  		<div class="table-responsive col-md-12">
+		  		<div class="table-responsive col-md-12 ">
 		  		<form action="<%=request.getContextPath() %>/logein.do?method=loge" method="post">
 				  <table class="table " style="font-family: arial;">
 				    	<thead  class="active"  style="font-size: 15PX;">
@@ -492,7 +493,8 @@
 				    		<tr >
 				    			<td colspan="7">
 				    				<a href="fym.html" style="color: black;">
-						    		<div class="well well-lg" style=" width: 800px; height: 180px;  ">
+						    		<div class="panel panel-default " style=" width: 800px; height: 180px;  ">
+						    			 <div class="panel-body">
 						    			<div>
 							    			<span  style="font-size: 25px; font-weight: bold; ">Java开发工程师</span>
 							    			
@@ -570,9 +572,31 @@
 													  </div>
 													</div>
 													
+
+													
+													<!-- 如果没有登录点击申请职位则出现提示先让用户登录-->
+														<div class="modal fade" id="myModal002" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style=" margin: 250px 0px 0px 0px;">
+														  <div class="modal-dialog modal-sm" role="document">
+														    <div class="modal-content">
+														      
+														      <div class="modal-body" align="center">
+														      	 <br />
+														      	 <br />
+														      	 <h4 class="modal-title" id="myModalLabel">请先进行登录</h4>
+														      	 <br />
+														       	<br />
+														      </div>
+														      <div class="modal-footer">
+														        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 95px 0px 0px;">稍后登录</button>
+														        <a class="btn btn-primary" href="dljm.html">立即登录</a>
+														      </div>
+														    </div>
+														  </div>
+														</div>
+													
 							    			</div>
 							    			
-						    			
+						    			</div>
 						    			</div>
 						    			
 						    		</div>

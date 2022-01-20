@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../jquery/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/afquery.js" ></script>
+		<style>
+			.main{
+				
+			}
+			
+			.main input{
+				margin: 20px;
+			}
+			.main .upload{
+				background-color: cornflowerblue;
+				color: #fff;
+				border: 1px solid #ccc;
+				border-radius: 1px;
+				padding: 8px 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<input type="file" class="filebutton" style="display: none;" onchange="fileSelected()" /><br />
+			<button class="upload" onclick="openFileDialog()">选择上传文件</button>
+		</div>
+	</body>
+	
+	<script>
+		//点击普通按钮
+		function openFileDialog()
+		{
+			//模拟鼠标点击事件
+			$(".filebutton").click();
+		}
+		
+		// 用户选择了一个文件 onchange事件被触发
+		function fileSelected()
+		{
+			var fbutton = $(".filebutton")[0];  //DOM
+			var file = fbutton.files[0];   //fbutton.files可能一次选择了多个文件
+			fbutton.value = "";  //清空选择
+			startUpload(file);   //开始上传
+		}
+		
+		
+		
+	</script>
+</html>

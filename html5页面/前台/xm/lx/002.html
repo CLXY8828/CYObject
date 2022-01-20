@@ -14,21 +14,25 @@
 		
 	</head>
 	<body>
-					
-					 <div style="box-shadow:0 0 6px 3px #c3c3c3; height: 70px; width: 400px; margin: 50px 0px 0px 0px; float: right;">
-					<table class="table" frame="void" style="font-size: 17px;">
-						<tr>
-							<td>
-								<img src="../img/112.png" alt="..." class="img-rounded" style="height:50px;width: 50px;">
-							</td>
-							<td>
-								   	 <p>修改密码</p>
-								    <p class="help-block">重置学号登录密码</p>
-							</td>
-						</tr>
-						
-					</table>
-					
+					<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModal002" id="sqzw">申 请 职 位</button>
+				<!-- 如果没有登录点击申请职位则出现提示先让用户登录-->
+				<div class="modal fade" id="myModal002" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style=" margin: 250px 0px 0px 0px;">
+				  <div class="modal-dialog modal-sm" role="document">
+				    <div class="modal-content">
+				      
+				      <div class="modal-body" align="center">
+				      	 <br />
+				      	 <br />
+				      	 <h4 class="modal-title" id="myModalLabel">请先进行登录</h4>
+				      	 <br />
+				       	<br />
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 95px 0px 0px;">稍后登录</button>
+				        <a class="btn btn-primary" href="wd.html">立即登录</a>
+				      </div>
+				    </div>
+				  </div>
 				</div>
 					
 	</body>

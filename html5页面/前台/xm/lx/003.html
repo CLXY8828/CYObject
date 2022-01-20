@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--1.移动设备积极响应的语句 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!--2.引入基本的bootstrap的样式和js文件 -->
+		
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">选择地区</button>
+		<!-- Modal模态框 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" >
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">选择地区</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="row row-no-gutters">
+					<!--
+                    	左边展示
+                    -->
+					<div class="col-xs-6 col-md-3" style=" height: 450px;  ">
+						
+						<table class="table table-hover" >
+							<tr align="center">
+						  		<td>
+						  			<a href="#home001" aria-controls="home" role="tab" data-toggle="tab">热门城市</a>
+						  		</td>
+						  		
+						  	</tr>
+						  	
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home002" aria-controls="home" role="tab" data-toggle="tab">A B C</a>
+						  		</td>
+						  		
+						  	</tr>
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home003" aria-controls="profile" role="tab" data-toggle="tab">D E F G </a>
+						  		</td>
+						  		
+						  	</tr>
+						  	
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home004" aria-controls="messages" role="tab" data-toggle="tab">H I</a>
+						  		</td>
+						  		
+						  	</tr>
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home005" aria-controls="settings" role="tab" data-toggle="tab">J K</a>
+						  		</td>
+						  		
+						  	</tr>
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home006" aria-controls="settings" role="tab" data-toggle="tab">L M N </a>
+						  		</td>
+						  		
+						  	</tr>
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home007" aria-controls="settings" role="tab" data-toggle="tab">O P Q R</a>
+						  		</td>
+						  		
+						  	</tr>
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home008" aria-controls="settings" role="tab" data-toggle="tab">S T U</a>
+						  		</td>
+						  	</tr>
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home009" aria-controls="home" role="tab" data-toggle="tab">V W X</a>
+						  		</td>
+						  	</tr>
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home0010" aria-controls="home" role="tab" data-toggle="tab">Y Z</a>
+						  		</td>
+						  	</tr>
+						  	<tr align="center">
+						  		<td>
+						  			<a href="#home0011" aria-controls="home" role="tab" data-toggle="tab">所有省份（含港澳台）</a>
+						  		</td>
+						  	</tr>
+						</table>
+						
+					    
+					    
+					   
+						
+					</div>
+					
+					<!--
+                    	右边页面展示
+                    -->
+				  	<div class="col-xs-12 col-md-9"  >
+				  		 <div class="tab-content">
+						    <div role="tabpanel" class="tab-pane active" id="home001">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px; ">
+						    		<form>
+						    		<table class="table" align="center">
+									  <tr>
+									  	<br />
+									  	<br />
+									  	<span style="color: orange; ">热门城市</span>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">北京</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">上海</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">广州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">深圳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">武汉</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">西安</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">杭州</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">南京</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">成都</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">重庆</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">东莞</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">大连</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">沈阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">苏州</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">昆明</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">长沙</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">合肥</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宁波</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">郑州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">天津</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">青岛</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">济南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">哈尔滨</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">长春</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">福州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">河北</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td colspan="7">
+									  		<a class="btn btn-default" href="#" role="button">珠三角（惠州，汕头，珠海，佛山，中山，湛江，肇庆，清远）</a>
+									  	</td>
+									  	
+									  </tr>
+									  	
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home002">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阿坝</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阿苏克</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阿拉尔</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阿拉善盟</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阿勒泰</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阿里</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">鞍山</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">安康</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">安庆</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">安顺</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">安阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">巴彦淖尔</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">巴音郭尔</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">巴中</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">白城</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">白沙</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">白山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">白银</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">百色</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">蚌埠</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">包头</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">保定</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宝山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">保亭</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宝鸡</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">北海</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">北京</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">本溪</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">毕节</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">滨州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">博尔塔拉</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">亳州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">沧州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">昌州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">昌吉</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">昌江</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">常德</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">常熟</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">常州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">长春</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">长沙</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">长治</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">朝阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">潮州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">郴州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">成都</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">澄迈</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">承德</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">池州</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">赤峰</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">崇左</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">滁州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">楚雄</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">重庆</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  	
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home003">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">达州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">大理</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">大连</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">大庆</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">大同</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">大兴安岭</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">丹东</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">丹阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">德宏</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">德阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">德州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">郑州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">迪庆</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">定安</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">定西</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">东方</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">东营</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">东莞</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">儋州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">鄂尔多斯</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">鄂州</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">恩施</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">防城港</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">佛山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">福州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">抚顺</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">抚州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阜新</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阜阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">甘南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">甘孜</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">赣州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">固原</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">广安</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">广元</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">广州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">桂林</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">贵港</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">贵阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">果洛</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									  
+									  	
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home004">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">哈尔滨</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">哈密</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">北海</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">海东</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">海口</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">海南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">海宁</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">海西</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">邯郸</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">汉中</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">杭州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">菏泽</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">和田</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">合肥</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">河池</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">河源</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">鹤壁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">鹤岗</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">贺州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黑河</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">衡水</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">衡阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">红河州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">呼和浩特</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">呼伦贝尔</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">葫芦岛</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">湖北</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">怀化</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">淮安</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">淮北</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">淮南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黄冈</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黄南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黄山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黄石</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">惠州</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									  
+									  	
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home005">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">鸡西</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">吉安</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">吉林</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">济南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">济宁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">济源</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">嘉兴</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">嘉峪关</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">佳木斯</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">江门</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">焦作</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">揭阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">金昌</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">金华</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">锦州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">晋城</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">晋中</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">荆门</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">荆州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">景德镇</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">九江</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">酒泉</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">喀什地区</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">开封</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">开平</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">克拉玛依</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">克孜勒苏柯<br />尔克孜</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">昆明</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">昆山</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home006" align="center">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">拉萨</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">来宾</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">兰州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">廊坊</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">乐山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">丽江</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">丽水</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">连云港</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">凉山</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">聊城</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">辽阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">辽源</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">林芝</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">临沧</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">临汾</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">临高</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">临夏</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">临沂</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">陵水</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">柳州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">六安</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">六盘水</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">龙岩</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">陇南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">娄底</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">吕梁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">洛阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">泸州</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">漯河</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">马鞍山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">茂名</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">梅州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">眉山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">绵阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">牡丹江</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">那曲</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">南昌</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">南充</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">南京</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">南宁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">南平</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">南通</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">南阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">内江</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宁波</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宁德</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">怒江</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home007" align="center">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">攀枝花</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">盘锦</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">萍乡</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">平顶山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">平凉</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">莆田</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">普洱</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">濮阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">七台河</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">齐齐哈尔</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黔东南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黔南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黔西南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">潜江</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">钦州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">秦皇岛</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">青岛</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">清远</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">庆阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">琼海</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">琼中</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">曲靖</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">泉州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">衡州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">日格则</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">日照</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home008" align="center">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">三门峡</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">三明</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">三沙</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">三亚</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">山南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">汕头</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">汕尾</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">商洛</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">商丘</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">上海</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">上饶</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">韶关</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">朝阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">绍兴</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">深圳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">神农架</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">沈阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">十堰</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">石河子</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">石家庄</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">石嘴山</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">双鸭山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">朔州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">四平</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">松原</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">苏州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宿迁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宿州</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">随州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">绥化</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">遂宁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">塔城</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">台州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">泰安</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">泰州</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">太仓</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">太原</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">唐山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">天津</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">天门</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">天水</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">铁岭</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">通化</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">通辽</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">铜川</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">铜陵</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">铜仁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">图木舒克</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">吐鲁番</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">屯昌</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home009" align="center">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">万宁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">威海</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">潍坊</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">渭南</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">温州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">文昌</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">文山</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">乌海</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">乌兰察布</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">乌鲁木齐</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">无锡</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">芜湖</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">梧州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">吴忠</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">武汉</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">武威</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">五家渠</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">五指山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">西安</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">西昌</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">西宁</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">双西版纳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">锡林郭勒盟</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">厦门</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">仙桃</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">咸宁</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">咸阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">襄阳</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">湘潭</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">湘西</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">孝感</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">新乡</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">新余</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">忻州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">信阳</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">兴安盟</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">邢台</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">雄安新区</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">徐州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">许昌</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宣城</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									 
+									  
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home0010" align="center">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">乐东</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">雅安</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">烟台</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">盐城</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">延安</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">延边</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">延吉</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">燕郊开发区</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">杨凌</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">扬州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">洋浦经济开<br />发区</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阳江</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">阳泉</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">伊春</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">伊利</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宜宾</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宜昌</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宜春</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">义乌</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">益阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">银川</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">鹰潭</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">营口</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">永州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">榆林</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">玉林</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">玉树</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">玉溪</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">岳阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">云浮</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">运城</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">枣庄</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">湛江</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">漳州</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">张家港</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">张家界</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">张家口</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">张掖</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">邵通</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">肇庆</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">镇江</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">郑州</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">中山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">中卫</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">舟山</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">周口</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">珠海</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">株洲</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">驻马店</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">资阳</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">淄博</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">自贡</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">遵义</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									 
+									  
+									</table>
+									</form>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="home0011" align="center">
+						    	<div class="embed-responsive embed-responsive-16by9" style="height: 450px;">
+								  <form>
+						    		<table class="table table-condensed" align="center">
+									  <tr>
+									  	<br />
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">广东省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">江苏省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">浙江省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">四川省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">海南省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">福建省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">山东省</a>
+									  	</td>
+									  </tr>
+									  
+									   <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">江西省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">广西</a>
+									  	</td>
+									  	
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">安徽省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">河北省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">河南省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">湖北省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">湖南省</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">陕西省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">山西省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">黑龙江省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">辽宁省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">吉林省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">云南省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">贵州省</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">甘肃省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">内蒙古</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">宁夏</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">西藏</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">新疆</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">青海省</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">香港</a>
+									  	</td>
+									  </tr>
+									  
+									  <tr>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">澳门</a>
+									  	</td>
+									  	<td>
+									  		<a class="btn btn-default" href="#" role="button">台湾</a>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  	<td>
+									  	</td>
+									  </tr>
+									  
+									  
+									  
+									</table>
+									</form>
+								</div>
+						    </div>
+						  </div>
+				  	</div>
+				  
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		      	
+		      	<button type="button" class="btn btn-primary" data-toggle="modal" style="margin: 0px 20px 0px 0px;" >确 定</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 360px 0px 0px;">取消</button>
+		        
+		      </div>
+		    </div>
+		  </div>
+		</div>
+</body>
+</html>
