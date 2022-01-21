@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -317,10 +317,7 @@
 		
 		
 	</head>
-	<body >
-		
-		
-		
+	<body>
 	<div class="panel panel-default  " style="background: #122B40;">
 	  <div class="panel-body">
 	    <div class="col-md-2 col-md-offset-1" style="height: 70px; width: 120px; ">

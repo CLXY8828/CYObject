@@ -107,6 +107,7 @@ function yanzheng()
 		}
 		else
 		{
+			createCode(4);
 			exception("验证码输入错误，请重新输入!",1)
 			return false
 
