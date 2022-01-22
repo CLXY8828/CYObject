@@ -1,0 +1,120 @@
+#loge{
+				width: 50px;
+				height: 45px;
+			}
+			#top{
+				height: 70px;
+				background-color: #011536;
+			}
+			#tp{
+				height: 450px;
+			}
+			body { 
+				padding-top: 100px; 
+				background-color: #f6f6f8;
+				}
+			#sm-top-padding{
+				padding-top: 250px;
+			}
+			#lg-inputphone{
+				width: 335px;
+			}
+			#sm-inputphone{
+				width: 500px;
+				height: 45px;
+				font-size: 18px;
+			}
+			#lg-inputcode{
+				width: 228px;
+			}
+			#sm-inputcode{
+				width: 380px;
+				height: 45px;
+				font-size: 18px;
+			}
+			#lg-get{
+				width: 93px;
+			}
+			#sm-get{
+				width: 115px;
+				height: 45px;
+				font-size: 18px;
+			}
+			.input-from{
+				font-size: 18px;
+				width: 80px;
+				height: 45px;
+			}
+			#input-all-xh-lg{
+				width: 335px;
+			}
+			#input-all-xh-sm{
+				width: 500px;
+				height: 45px;
+				font-size: 18px;
+			}
+			#input-all-pass-lg{
+				width: 335px;
+			}
+			#input-all-pass-sm{
+				width: 500px;
+				height: 45px;
+				font-size: 18px;
+			}
+			#input-all-code-lg{
+				width: 170px;
+			}
+			#input-all-code-sm{
+				width: 280px;
+				height: 45px;
+				font-size: 18px;
+			}
+			.sub-all-lg{
+				width: 160px;
+				letter-spacing: 5px;
+			}
+			.input-pudding{
+				padding-top: 10px;
+			}
+			.sub-padding{
+				padding-top: 30px;
+			}
+			.sub{
+				width: 475px;
+				font-size:20px ;
+				letter-spacing: 15px;
+			}
+			.subsm{
+				width: 720px;
+				height: 55px;
+				font-size:23px ;
+				letter-spacing: 15px;
+			}
+			#h1-text{
+				font-size: 18px;
+				color: #C0C0C0;
+				font-family: '宋体';
+			}
+			#row-body{
+				padding-bottom: 40px;
+			}
+			.logintypebtn{
+				width: 160px;
+				letter-spacing: 4px;
+			}
+			.navbar-brand
+			{
+				padding-top: 13px;
+				padding-left: 160px;
+			}
+			.navbar-text
+			{
+				padding-top:5px;
+				font-size: 25px;
+				letter-spacing: 3px;
+				
+			}
+			.navbar-text strong
+			{
+				color: white;
+			}

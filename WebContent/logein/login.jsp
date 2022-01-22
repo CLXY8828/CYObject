@@ -1,91 +1,45 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-	    pageEncoding="UTF-8"%>
-	<!DOCTYPE html>
-	<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+ pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 	<head>
-	<meta charset="UTF-8">
-	<title>登录界面</title>
-	<!--1.移动设备积极响应的语句 -->
-			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-			
-			<!--2.引入基本的bootstrap的样式和js文件 -->
-			
-			<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-			<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-			<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-			<script src="<%=request.getContextPath() %>/jquery/jquery.min.js" ></script>
-			<script src="<%=request.getContextPath() %>/jquery/jquery.cookie.js" ></script>
-			<script src="<%=request.getContextPath() %>/js/indexjs.js"></script>
-			<style>
-		    .code
-		    {	
-		    	-webkit-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-		         font-family:Arial;
-		         font-style:italic;
-		         color:blue;
-		         font-size:20px;
-		         border:1px;
-		         padding:2px 3px;
-		         letter-spacing:3px;
-		         font-weight:bolder;            
-		         cursor:pointer;
-		         width:150px;
-		         height:50px;
-		         line-height:10px;
-		         text-align:center;
-		         vertical-align:middle;
-		         background-color:#D8B7E3;
-		     }
-		     #spans {
-		        text-decoration:none;
-		        font-size:12px;
-		        color:#288bc4;
-		        padding-left:10px;
-		    }
-		 
-		    #span:hover {
-		        text-decoration:underline;
-		        cursor:pointer;
-		    }
-		   
-		</style>
-			<script type="text/javascript">
-			$().ready(function (){
-				var err="<%=(String)request.getAttribute("err")==null?"":(String)request.getAttribute("err")%>";
-				var errindex="<%=(Integer)request.getAttribute("errindex")==null?"":(Integer)request.getAttribute("errindex")%>";
-				if(err!=""){
-					if(errindex==1){
-						hiddenEle();
-					}
-					exception(err,errindex);
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/loge.css"/>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="<%=request.getContextPath() %>/js/loge.js"></script>
+		<script src="<%=request.getContextPath() %>/js/codes.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		$().ready(function (){
+			var err="<%=(String)request.getAttribute("err")==null?"":(String)request.getAttribute("err")%>";
+			var errindex="<%=(Integer)request.getAttribute("errindex")==null?"":(Integer)request.getAttribute("errindex")%>";
+			if(err!=""){
+				if(errindex==1){
+					hiddenBtn(1);
 				}
-			})
+				exception(err,errindex);
+			}
+		})
 			$(function(){  
-			    /*仿刷新：检测是否存在cookie*/  
-			    if($.cookie("captcha")){  
-			        var count = $.cookie("captcha");  
-			        var btn = $('#getting');  
-			        btn.val(count+'秒后可重新获取').attr('disabled',true).css('cursor','not-allowed');  
-			        var resend = setInterval(function(){  
-			            count--;  
-			            if (count > 0){  
-			                btn.val(count+'秒后可重新获取').attr('disabled',true).css('cursor','not-allowed');  
-			                $.cookie("captcha", count, {path: '/', expires: (1/86400)*count});  
-			            }else {  
-			                clearInterval(resend);  
-			                btn.val("获取验证码").removeClass('disabled').removeAttr('disabled style');  
-			            }  
-			        }, 1000);  
-			    }  
-
-			    /*点击改变按钮状态，已经简略掉ajax发送短信验证的代码*/  
-			    $('#getting').click(function(){
-			    	var phonecode =$("#inp_id007").val();
-	    	    	hq(this);
-			    	$.ajax({
+		        /*点击改变按钮状态，已经简略掉ajax发送短信验证的代码*/  
+		        $('#lg-get').click(function()
+		        {
+		            var btn = $(this);  
+		            var count = 60;  
+		            var resend = setInterval(function(){  
+		                count--;  
+		                if (count > 0){  
+		                    btn.val(count+"秒");  
+		                    $.cookie("captcha", count, {path: '/', expires: (1/86400)*count});  
+		                }else {  
+		                    clearInterval(resend);  
+		                    btn.val("获取验证码").removeAttr('disabled style');  
+		                }  
+		            }, 1000);  
+		            btn.attr('disabled',true).css('cursor','not-allowed');  
+		            $.ajax({
 			    	    url: "<%=request.getContextPath()%>/users/logein.do?method=logephone",
 			    	    data: {name: phonecode},
 			    	    type: "POST",
@@ -93,190 +47,332 @@
 			    	    success: function(data) {
 			    	    }
 			    	});
-			        
-			    });  
-					
-			});  
-			function hq (a){
-				var b=document.getElementById("inp_id007").value;
-				var regexp=new RegExp("^1[58379]\\d{9}$");
-				
-				if(!$("#inp_id007").val().trim())
-				{
-					exception("手机号不能为为空，请输入手机号!",0)
-					return false
-				}
-				if(!regexp.test(b))
-				{
-					exception("请输入正确的手机号!",0)
-					return false
-				}
-				
-			    var btn = $(a);  
-			    var count = 60;  
-			    var resend = setInterval(function(){  
-			        count--;  
-			        if (count > 0){  
-			            btn.val(count+"秒后可重新获取");  
-			            $.cookie("captcha", count, {path: '/', expires: (1/86400)*count});  
-			        }else {  
-			            clearInterval(resend);  
-			            btn.val("获取验证码").removeAttr('disabled style');  
-			        }  
-			    }, 1000);  
-			    btn.attr('disabled',true).css('cursor','not-allowed');  
-			   }
-			</script>
-			<style type="text/css">
-				.box{
-					  display: flex;
-					}
-				
-			</style>
+		        });  
+		   		$('#sm-get').click(function()
+		        {
+		            var btn = $(this);  
+		            var count = 60;  
+		            var resend = setInterval(function(){  
+		                count--;  
+		                if (count > 0){  
+		                    btn.val(count+"秒");  
+		                    $.cookie("captcha", count, {path: '/', expires: (1/86400)*count});  
+		                }else {  
+		                    clearInterval(resend);  
+		                    btn.val("获取验证码").removeAttr('disabled style');  
+		                }  
+		            }, 1000);  
+		            btn.attr('disabled',true).css('cursor','not-allowed'); 
+		            $.ajax({
+			    	    url: "<%=request.getContextPath()%>/users/logein.do?method=logephone",
+			    	    data: {name: phonecode},
+			    	    type: "POST",
+			    	    dataType: "json",
+			    	    success: function(data) {
+			    	    }
+			    	});
+		        }); 
+		    });
+
+		</script>
 	</head>
+	
 	<body>
-	
-		
-		<div class="panel panel-default  " style="background: #122B40;">
-		  <div class="panel-body">
-		    <div class="col-md-2 col-md-offset-1" style="height: 70px; width: 120px; ">
-			  	<img src="../img/001.png" class="img-responsive" alt="Responsive image" style="width:100%;height:100%; ">
-			  	
+		<div class="container-fluid">
+			<div class="row">
+			  <div class="col-sm-12 col-lg-12">
+			  	<nav id="top" class="navbar navbar-default navbar-fixed-top">
+					  <div class="container-fluid">
+					    <div class="navbar-header">
+					      <a class="navbar-brand" href="#">
+					        <img id="loge" class="img-responsive" alt="Responsive image" src="<%=request.getContextPath() %>/img/001.png">
+					      </a>
+					    </div>
+					     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					     	<p class="navbar-text"><strong>高校就业平台</strong></p>
+					    </div>
+					  </div>
+				</nav>
 			  </div>
-			  <div class="col-md-3  " style="font-size: 35px; text-align: center; font-weight: bold; color: white; top: 10px; left: 30px; width: 300px; height: 100px;">高 校 就 业 平 台</div>
-		  </div>
-		</div>
-		
-	
-		
-		<div class="box ">
-	  
-	  		<div class="container" style=" box-shadow:0 0 6px 3px #c3c3c3;   align-content: center; width: 1300px; height: 520px;   ">
-			  <div class="row" >
-			  	
-			  	<div class="col-md-2 visible-lg" style="height: 430px; width: 700px; top: 30px; ">
-			  		<img src="../img/003.jpg" class="img-responsive" alt="Responsive image" style="width:100%;height:100%; ">
-			 	 </div>
-				
-				<div class=" col-md-offset-1 " >
-					
-					<h2 align="center" style="font-weight: bold; margin: 30px  0px  0px  0px; ">欢 迎 登 录 就 业 服 务 平 台</h2>
-					<h4 style=" color: #C0C0C0; font-style: italic; text-align: center;  font-family: '宋体';">为高校应届毕业生就业工作助力</h4>				
-						
-						
-			<div class=" col-md-5  " style="margin: 20px  0px  0px  50px;  box-shadow:0 0 6px 3px #c3c3c3; padding: 20px;" id="box">
-				<div class="form-info" align="center">
-				
-					<p align="center">
-					  <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;手 机 登 录&nbsp;&nbsp;&nbsp;&nbsp;</button>
-					  <button type="button" class="btn btn-default btn-lg"  onclick="hiddenEle()">&nbsp;&nbsp;&nbsp;&nbsp;学 号 登 录&nbsp;&nbsp;&nbsp;&nbsp;</button>
-					</p>
-					
-					<div class="alert alert-danger text-center hidden ex" role="alert"></div>
-					<form name="loginForm" action="<%=request.getContextPath()%>/users/logein.do?method=logep" method="post" onsubmit="return yanzheng01()">
-						<div class="form-group">
-							<hr />
-	
-							 <div class="col-md-12">
-							    <div class="input-group">
-							      <div class="input-group-btn">
-							        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+86 <span class="caret"></span></button>
-							        <ul class="dropdown-menu">
-							          <li><a href="#">+86</a></li>
-							        </ul>
-							      </div><!-- /btn-group -->
-							      <input type="text" class="form-control" name="phonenumber" aria-label="..." placeholder="请输入手机号" id="inp_id007">
-							    </div><!-- /input-group -->
-							  </div>
-							  
-						</div>
-						<br />
-						<br />
-						<br />
-						<div class="form-group">
-							
-							 <div class="col-md-12 ">
-							    <div class="input-group ">
-							    	<span class="input-group-addon" id="basic-addon3">验证码：</span>
-							      <input type="text" class="form-control" id="inp_id008" name="code" placeholder="请输入验证码">
-							      <span class="input-group-btn">
-							         <input type="button"  class="btn btn-default "id="getting" value="获取验证码" style="color: #269ABC">
-							      </span>
-							    </div>
-							  </div>
-								
-							
-						</div>
-						<br />
-						<br />
-						<br />
-						<div class="submit" align="center">
-							<button type="submit" class="btn btn-primary btn-lg btn-block">登      录</button>
-	
-						</div>
-						<br />
-					</form>
-				</div>
 			</div>
-			
-			<div class="container-fluid col-md-5 col-md-offset-1" style="margin: 20px  0px  0px  50px;  box-shadow:0 0 6px 3px #c3c3c3; padding: 20px; display: none;" id="box01">
-				<div class="form-info">
-					<p align="center">
-					  <button type="button" class=" btn btn-default btn-lg" onclick="showEle()">&nbsp;&nbsp;&nbsp;&nbsp;手 机 登 录&nbsp;&nbsp;&nbsp;&nbsp;</button>
-					  <button type="button" class=" btn btn-primary btn-lg"  >&nbsp;&nbsp;&nbsp;&nbsp;学 号 登 录 &nbsp;&nbsp;&nbsp;&nbsp;</button>
-					</p>
-					
-					<div class="alert alert-danger text-center hidden ex" role="alert"></div>
-					<form name="loginForm01" action="<%=request.getContextPath()%>/users/logein.do?method=loge" method="post" onsubmit="return yanzheng()">
-						<table style=" border-collapse: separate; border-spacing: 10px;" >
-							<tr >
-								<td><label for="exampleInputEmail1" >学号 : </label></td>
-								<%String sid = (String)request.getAttribute("sid"); %>
-								<td><input type="text" class="form-control" name="sid" id="exampleInputEmail1" placeholder="请输入学号" <%=sid==null?"":"value="+sid %>></td>
-							</tr>
-							<hr />
-							<tr >
-								
-								<div class="form-group" >
-								<td><label for="exampleInputEmail1" >密码 : </label></td>
-								<td><input type="password" class="form-control" name="password" id="exampleInputEmail2" placeholder="请输入密码"></td>
-								
+			<div class="row">
+	  			<div class="col-sm-12 visible-sm-block" id="sm-top-padding">
+	  				<br />
+	  			</div>
+			</div>
+			<div id="row-body" class="row">
+				<div class="col-sm-10  col-lg-10 col-lg-offset-1 col-sm-offset-1">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+					  	<div class=" visible-lg-block col-lg-7">
+					  		 <img id="tp" class="img-responsive" alt="Responsive image" src="<%=request.getContextPath() %>/img/003.jpg">
+					  	</div>
+					  	<div class="visible-sm-block col-sm-12">
+					  		<img  class="img-responsive" alt="Responsive image" src="<%=request.getContextPath() %>/img/003.jpg">
+					  	</div>
+					  	<div class="col-sm-12 col-lg-5">
+					  		<div class="row visible-lg-block">
+					  			<h2 class="text-center"><strong>欢迎登录就业服务平台</strong></h2>
+					  			<p class="text-center"><small id="h1-text"><em>为高校应届毕业生就业工作助力</em></small></p>
+					  			<br />
+					  		</div>
+					  		
+					  		<div class="row">
+					  			<div class="panel panel-default" id="phone-form">
+					  				<div class="panel-body">
+					  					<div class="row">
+					  						<div class="col-lg-12 col-sm-12" align="center">
+													<button type="button" class="btn btn-primary btn-lg logintypebtn" onclick="hiddenBtn(0)">手机登录</button>
+						  							<button type="button" class="btn btn-default btn-lg logintypebtn" onclick="hiddenBtn(1)">学号登录</button>					  							
+					  						</div>
+					  					</div>
+					  					<div class="row">
+					  						<hr />
+					  					</div>
+					  					<div class="alert fade in ex text-center alert-warning hidden alert-dismissible" role="alert">
+											  <button type="button" class="close" aria-label="Close" onclick="removeException()"><span aria-hidden="true">&times;</span></button>
+				  							</div>
+					  					<div class="row">
+					  						<div class="col-lg-12 visible-lg-block">
+					  							<!--
+                                                  	作者：1977455153@qq.com
+                                                  	时间：2022-01-21
+                                                  	描述：pc手机登录表单
+                                                  -->
+						  						<form class="form-horizontal" action="<%=request.getContextPath()%>/users/logein.do?method=logep" method="post"  onsubmit="return nonull('pc','phone')">
+							  						<div class="form-group">
+							  							<label for="lg-inputphone" class="col-sm-1 col-lg-1 control-label"></label>
+													    <div class="col-lg-11">
+													    	<div class="input-group">
+														      <div class="input-group-btn">
+														        <button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+86<span class="caret"></span></button>
+														        <ul class="dropdown-menu">
+														          <li><a href="#">+86</a></li>
+														        </ul>
+														      </div>
+														      <input type="text" name="phonenumber" class="form-control" id="lg-inputphone" placeholder="请输入手机号">
+														    </div>
+													    </div>
+							  						</div>
+							  						<div class="input-pudding form-group">
+							  							<label for="code" class="col-sm-1 col-lg-1 control-label"></label>
+													    <div class="col-lg-9">
+													    	<div class="input-group">
+													    		<span class="input-group-addon">验证码:</span>
+															      <input type="text" class="form-control" id="lg-inputcode" name="code" placeholder="请输入验证码">
+															      <span class="input-group-btn">
+															         <input type="button"  class="btn btn-default "id="lg-get" value="获取验证码" style="color: #269ABC">
+															      </span>
+													    	</div>
+ 													    </div>
+							  						</div>
+							  						<div class="form-group">
+							  							<div class="col-lg-4 sub-padding">
+							  								<button type="submit" class="sub btn btn-lg btn-primary">登录</button>
+							  							</div>
+							  						</div>
+						  						</form>
+					  						</div>
+					  						<div class="col-sm-12 visible-sm-block">
+					  							<!--
+                                                  	作者：1977455153@qq.com
+                                                  	时间：2022-01-21
+                                                  	描述：phone手机登录表单
+                                                  -->
+						  						<form class="form-horizontal" action="<%=request.getContextPath()%>/users/logein.do?method=logep" method="post" onsubmit="return nonull('phone','phone')">
+							  						<div class="form-group">
+							  							<label for="sm-inputphone" class="col-sm-1 control-label"></label>
+													    <div class="col-sm-11">
+													    	<div class="input-group">
+														      <div class="input-group-btn">
+														        <button type="button" class="btn input-from btn-default  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+86<span class="caret"></span></button>
+														        <ul class="dropdown-menu">
+														          <li><a href="#">+86</a></li>
+														        </ul>
+														      </div>
+														      <input type="text" class="form-control" name="phonenumber" id="sm-inputphone" placeholder="请输入手机号">
+														    </div>
+													    </div>
+							  						</div>
+							  						<div class="input-pudding form-group">
+							  							<label for="code" class="col-sm-1 control-label"></label>
+													    <div class="col-sm-9">
+													    	<div class="input-group">
+													    		<span class="input-group-addon">验证码:</span>
+															      <input type="text" class="form-control" id="sm-inputcode" name="code" placeholder="请输入验证码">
+															      <span class="input-group-btn">
+															         <input type="button"  class="btn btn-default "id="sm-get" value="获取验证码" style="color: #269ABC">
+															      </span>
+													    	</div>
+													    </div>
+							  						</div>
+							  						<div class="form-group">
+							  							<div class="col-lg-4 sub-padding">
+							  								<button type="submit" class="subsm btn btn-lg btn-primary">登录</button>
+							  							</div>
+							  						</div>
+						  						</form>
+					  						</div>
+					  					</div>
+					  				</div>
+					  			</div>
+					  			<div class="panel panel-default" id="xh-form">
+								  <div class="panel-body">
+								  	<div class="row">
+				  						<div class="col-lg-12 col-sm-12" align="center">
+											<button type="button" class="btn btn-default btn-lg logintypebtn"  onclick="hiddenBtn(0)">手机登录</button>
+				  							<button type="button" class="btn btn-primary  btn-lg logintypebtn"  onclick="hiddenBtn(1)">学号登录</button>					  							
+				  						</div>
+					  				</div>
+					  				<div class="row">
+				  						<hr />
+				  						<div class="col-lg-10 col-sm-10 col-sm-offset-1 col-lg-offset-1">
+				  							<div class="alert fade in ex text-center alert-warning hidden alert-dismissible" role="alert">
+											  <button type="button" class="close" aria-label="Close" onclick="removeException()"><span aria-hidden="true">&times;</span></button>
+										</div>
+				  						</div>
+				  					</div>
+				  					<div class="row">
+				  						<!--
+                                          	作者：1977455153@qq.com
+                                          	时间：2022-01-22
+                                          	描述：pc学号登录表单
+                                          -->
+					  						<div class="col-lg-12 visible-lg-block">
+					  							<form class="form-horizontal" action="<%=request.getContextPath()%>/users/logein.do?method=loge" method="post" onsubmit="return nonull('pc','xh')">
+					  								<div class="form-group">
+													    <label class="col-sm-1 col-lg-1 control-label" for="exampleInputAmount"></label>
+													    <div class="col-lg-11">
+														    <div class="input-group">
+														      <div class="input-group-addon">学号</div>
+														      <input type="text" class="form-control" name="sid" id="input-all-xh-lg" placeholder="请输入学号">
+														    </div>
+														 </div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-1 col-lg-1 control-label" for="exampleInputAmount"></label>
+														<div class="col-lg-11">
+														    <div class="input-pudding input-group">
+														      <div class="input-group-addon">密码</div>
+														      <input type="password" class="form-control" name="password" id="input-all-pass-lg" placeholder="请输入密码">
+														    </div>
+														 </div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-1 col-lg-1 control-label" for="exampleInputAmount"></label>
+														<div class="col-md-11">
+															<div class="row row-no-gutters">
+																<div class="col-lg-6">
+																	<div class="input-pudding input-group">
+															      <div class="input-group-addon">验证码</div>
+															      <input type="text" class="form-control" id="input-all-code-lg" placeholder="请输入验证码">
+																</div>
+																</div>
+															     <div class="col-lg-6">
+															     	<canvas class="input-pudding" id="canvas" width="100" height="40" style="margin-left: 20px;"></canvas>
+	  																<a href="#" id="changeImg" style="font-size: 5px;">看不清,换一张</a>
+															     </div>
+															    
+														    </div>
+														 </div>
+													 </div>
+													 <div class="input-pudding-sub form-group">
+													 	 <label class="col-sm-1 col-lg-1 control-label" for="exampleInputAmount"></label>
+													 	<div class="row" >
+													 		<div style="margin-top: 23px;" class="col-lg-4">
+													 			<a href="<%=request.getContextPath()%>/users/logein.do?method=nopassword"  ><strong>忘记密码</strong></a>
+													 		</div>
+													 		<div class="col-lg-6">
+													 			<button type="submit" class="pull-right btn btn-primary btn-lg sub-all-lg">登录</button>
+													 		</div>
+													 	</div>
+													 </div>
+					  							</form>
+					  						</div>
+					  						<div class="col-sm-12 visible-sm-block">
+					  							<!--
+                                                  	作者：1977455153@qq.com
+                                                  	时间：2022-01-22
+                                                  	描述：phone学号登录表单
+                                                  -->
+					  							<form class="form-horizontal" action="<%=request.getContextPath()%>/users/logein.do?method=loge" method="post" onsubmit="return nonull('phone','xh')">
+					  								<div class="form-group">
+													    <label class="col-sm-1 control-label" for="exampleInputAmount"></label>
+													    <div class="col-sm-11">
+														    <div class="input-group">
+														      <div class="input-group-addon" style="font-size: 18px;">学号</div>
+														      <input type="text" class="form-control" name="sid" id="input-all-xh-sm" placeholder="请输入学号">
+														    </div>
+														 </div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-1 control-label" for="exampleInputAmount"></label>
+														<div class="col-sm-11">
+														    <div class="input-pudding input-group">
+														      <div class="input-group-addon" style="font-size: 18px;">密码</div>
+														      <input type="password" class="form-control" name="password" id="input-all-pass-sm" placeholder="请输入密码">
+														    </div>
+														 </div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-1 control-label" for="exampleInputAmount"></label>
+														<div class="col-sm-11">
+															<div class="row row-no-gutters">
+																<div class="col-sm-6">
+																	<div class="input-pudding input-group">
+															      <div class="input-group-addon" style="font-size: 18px;">验证码</div>
+															      <input type="text" class="form-control" id="input-all-code-sm" placeholder="请输入验证码">
+																</div>
+																</div>
+															     <div class="col-sm-6">
+															     	<canvas class="input-pudding" id="canvas2" width="100" height="40" style="margin-left: 20px;"></canvas>
+	  																<a href="#" id="changeImg2" style="font-size: 15px;">看不清,换一张</a>
+															     </div>
+															    
+														    </div>
+														 </div>
+													 </div>
+													 <div class="input-pudding-sub form-group">
+													 	 <label class="col-sm-1 control-label" for="exampleInputAmount"></label>
+													 	<div class="row" >
+													 		<div style="margin-top: 23px;" class="col-sm-4">
+													 			<a href="<%=request.getContextPath()%>/users/logein.do?method=nopassword" ><strong>忘记密码</strong></a>
+													 		</div>
+													 		<div class="col-sm-6">
+													 			<button type="submit" class="pull-right btn btn-primary btn-lg sub-all-lg">登录</button>
+													 		</div>
+													 	</div>
+													 </div>
+					  							</form>
+					  						</div>
+					  				</div>
+								  </div>
 								</div>
-							</tr>
-							
-							<tr >
-								<td align="right"  style="font-weight: bold;">验证码:</td>
-								<td>
-									<input id="txt" type="text" placeholder="请输入验证码"/>
-									<div style=" background-color: white; -10px -15px;width:80px; 
-									font-style: italic; height: 20px;
-									display: inline-block;" id="checkCode" class="code"  onclick="createCode(4)" ></div>
-									<span id="spans" onclick="createCode(4)">看不清换一张</span>		
-								
-								</td>
-							</tr>
-	
-						</table>
-						<br />
-						<div class="submit" style=" float: right;">
-							
-							<button type="submit" class="btn btn-primary btn-lg ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登    录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-						
-						</div>
-						<div style=" margin: 26px 0 0 0; float: left;">
-								<a href="<%=request.getContextPath()%>/users/logein.do?method=nopassword"  style="font-weight: bold;  ">忘记密码</a>
-							</div>
-	
-					</form>
+					  			
+					  			
+					  			
+					  		</div>
+					  		
+					  	</div>
+					  	</div>
+					  </div>
+					</div>
 				</div>
 			</div>
-						
-				</div>
-	
-			  </div>
+			<div class="row">
+				<nav class="navbar navbar-default navbar-fixed-bottom">
+				  <div class="container">
+				    <div style="font:12px Tahoma;margin:0px auto;text-align:center;">
+					 <div><hr size="1" />
+					COPYRIGHT &copy;&nbsp;&nbsp;2003-2050&nbsp;&nbsp; <a href="index.htm">北京市贵天影视有限公司</a> ALL RIGHT RESERVED<br />
+					 热线：400-66-741741 Email:service@prd.com<br />
+					 ICP：<a href="#">沪ICP备05021104号</a><br />
+					 </div><!--copyright end-->
+					</div><!--footer end-->
+				  </div>
+				</nav>
 			</div>
-	  		
 		</div>
-	
 	</body>
-	</html>
+</html>
+ 	
