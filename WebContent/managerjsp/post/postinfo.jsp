@@ -14,45 +14,52 @@
 		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<style type="text/css">
 			.container{
-				width: 95%;
-				left: 2.5%;
+				width: 100%;
 			}
 			.modal-lg{
 				width: 80%;
 			}
 			th{
-				font-size: 20px;
+				font-size: 14px;
 				text-align: center;
 			}
 			td{
-				font-size: 20px;
+				font-size: 14px;
 				text-align: center;
+			}
+			div::-webkit-scrollbar {
+			  width: 0;
 			}
 			input[type=checkbox]{
 				margin-left: 10px;
 			}
 		</style>
-		
 	</head>
 	<body>
-	<%List list=(List)request.getAttribute("list");
-	  int count = (Integer)request.getAttribute("count");
-	  int pagej = (Integer)request.getAttribute("page");
-	  int start = 0;
-	  int end = start+10;
-	  if(list.size()<end){
-		  end=list.size();
-	  }
-	%>
+		<%List list=(List)request.getAttribute("list");
+		  int count = (Integer)request.getAttribute("count");
+		  int pagej = (Integer)request.getAttribute("page");
+		  int start = 0;
+		  int end = start+10;
+		  if(list.size()<end){
+			  end=list.size();
+		  }
+		%>
 		<div class="container">
 			<div id="header">
-				<div class="row" style="margin-left: 10px;margin-right: 10px;">
-					<img src="../img/userA.png" style="width: 80px;height: 80px;">
-					<span class="h3" style="position: absolute;margin-top: 50px;">岗位信息</span>
+				<div class="row">
+					<ul class="breadcrumb">
+					    <li>岗位</li>
+					    <li class="active">岗位信息</li>
+					</ul>
+				</div>
+				<div class="row" style="margin-left: 10px;margin-right: 10px;margin-top: -10px;">
+					<img src="../img/userA.png" style="width: 50px;height: 50px;">
+					<span class="h3">岗位信息</span>
 					<a href="#idenfier" data-toggle="modal" data-target="#upload">
-						<span id="addclass" style="color:royalblue;float: right;padding-top: 10px;" class="h3">
-							<img src="../img/export.png" width="50px" height="50px">
-							<span style="margin-top: 50px">上传岗位</span>
+						<span id="addclass" style="color:royalblue;float: right;" class="h3">
+							<img src="../img/export.png" width="30px" height="30px">
+							<span>上传岗位</span>
 						</span>
 					</a>
 				</div>
@@ -62,12 +69,12 @@
 					<div class="modal-dialog modal-lg" role="document">
 						<div class="modal-content">
 							<!-- 上传岗位 -->
-							<form action="<%=request.getContextPath()%>/postinfo/postin.do?method=add" method="post">
+							<form action="<%=request.getContextPath()%>/postinfo/postin.do?method=add" method="post" name="post_upload" onsubmit="return checkupload(post_upload)">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h2 class="modal-title" id="modaltitle">上传岗位</h2>
+									<h3 class="modal-title" id="modaltitle">上传岗位</h3>
 								</div>
-								<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
+								<div class="modal-body" style="font-size: 14px; margin-left: 20px;">
 									<div class="row">
 										<span name="uploadspan">
 											岗位名称：
@@ -88,7 +95,7 @@
 												<option value="40k-60k">40k-60k</option>
 												<option value="60k以上">60k以上</option>
 											</select>
-											<span style="font-size: 32px;">·</span>
+											<span style="font-size: 14px;">·</span>
 											<select name="salarytimes_upload">
 												<option value="12">12</option>
 												<option value="13">13</option>
@@ -112,7 +119,6 @@
 												<option value="500-999人">500-999人</option>
 												<option value="1000-9999人">1000-9999人</option>
 												<option value="万人以上">万人以上</option>
-												<option value="不限">不限</option>
 											</select>
 										</span>
 										<span style="margin-left: 4%;">
@@ -135,13 +141,13 @@
 										</span>
 										<span style="margin-left: 4%;" name="uploadspan">
 											招聘人数：
-											<input type="text" name="recrultsNumb" id="recrultsNumb" value="" style="width: 10%;" />
+											<input type="text" name="recrultsNumb" id="recruits_upload" value="" style="width: 10%;" />
 											人
 										</span>
 									</div>
 									<br>
 									<div class="row">
-										<span>
+										<span name="uploadspan">
 											学历要求：
 											<select name="education" style="width: 18%;">
 												<option value="初中及以下">初中及以下</option>
@@ -160,7 +166,7 @@
 										</span>
 										<span style="margin-left: 2%;" name="uploadspan">
 											公司所在地：
-											<input type="text" name=address id="comaddress_upload" value="" style="width: 18%;" />
+											<input type="text" name="address" id="comaddress_upload" value="" style="width: 18%;" />
 										</span>
 									</div>
 									<br>
@@ -179,7 +185,7 @@
 												<option value="其他">其他</option>
 											</select>
 										</span>
-										<span style="margin-left: 2%;" name="uploadspan">
+										<span style="margin-left: 4%;" name="uploadspan">
 											联系电话：
 											<input type="text" name="phone" id="comtype_upload" value="" style="width: 20%;"/>
 										</span>
@@ -207,23 +213,22 @@
 											<input type="checkbox" name="welfare" id="comwelfare_upload" value="周末双休" />周末双休
 											<input type="checkbox" name="welfare" id="comwelfare_upload" value="年终奖金" />年终奖金
 										</span>
-									</div>
-									<br>
+									</div><br>
 									<div style="margin-left: -1.5%;">
-										<span >岗位描述：</span><br>
-										<textarea rows="2" cols="97%" style="width: 97%;" name="employment_describe" id="descript_upload"></textarea>
-									</div>
-									<div style="margin-left: -1.5%;">
-										<span>任职要求：</span><br>
-										<textarea rows="4" cols="97%" style="width: 97%;" name="demand" id="workrequire_upload"></textarea>
+										<span name="uploadspan">岗位描述：</span><br>
+										<textarea rows="2" cols="97%" name="employment_describe" style="width: 97%;" id="descript_upload"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
-										<span>公司信息：</span><br>
-										<textarea rows="4" cols="97%" style="width: 97%;" name="introduce" id="cominfo_upload"></textarea>
+										<span name="uploadspan">任职要求：</span><br>
+										<textarea rows="2" cols="97%" name="demand" style="width: 97%;" id="workrequire_upload"></textarea>
 									</div>
 									<div style="margin-left: -1.5%;">
-										<span>备注</span><br>
-										<textarea rows="2" cols="97%" style="width: 97%;" name="note" id="tips_upload"></textarea>
+										<span name="uploadspan">公司信息：</span><br>
+										<textarea rows="2" cols="97%" name="introduce" style="width: 97%;" id="cominfo_upload"></textarea>
+									</div>
+									<div style="margin-left: -1.5%;">
+										<span name="uploadspan">备注</span><br>
+										<textarea rows="2" cols="97%" name="note" style="width: 97%;" id="tips_upload"></textarea>
 									</div>
 								</div>
 								<div class="modal-footer">
@@ -243,17 +248,18 @@
 						删除需要id请自己加
 						蟹蟹
 					 -->
+					<form action="/*" method="post" name="delform">
 						<table border="0px" cellspacing="5px" cellpadding="0px" style="width: 100%;" class="table">
 							<tr>
 								<th width="8%">序号</th>
-								<th width="12%">岗位名称</th>
+								<th width="14%">岗位名称</th>
 								<th width="10%">招聘人数</th>
-								<th width="11%">薪资</th>
-								<th width="14%">联系电话</th>
-								<th width="23%">公司名称</th>
-								<th width="5%">编辑</th>
-								<th width="5%">查看</th>
-								<th width="5%">删除</th>
+								<th width="10%">薪资</th>
+								<th width="10%">联系电话</th>
+								<th width="30%">公司名称</th>
+								<th width="4%">编辑</th>
+								<th width="4%">查看</th>
+								<th width="4%">删除</th>
 							</tr>
 							<!-- /*以下放数据 -->
 							<% 
@@ -267,7 +273,6 @@
 								String xin = salaryarr[1];
 							%>
 							<tr>
-							
 								<td><%=(i+1)%></td>
 								<td><%=map.get("employment_name")%></td>
 								<td><%=map.get("recrultsNumb")%><span>人</span></td>
@@ -287,9 +292,9 @@
 										<form action="<%=request.getContextPath()%>/postinfo/postin.do?method=edit&eid=<%=map.get("eid")%>" method="post">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h2 class="modal-title" id="modaltitle">编辑</h2>
+												<h3 class="modal-title" id="modaltitle">编辑</h3>
 											</div>
-											<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
+											<div class="modal-body" style="font-size: 14px; margin-left: 20px;overflow-y: scroll;">
 												<div class="row">
 													<span>
 														岗位名称：
@@ -401,7 +406,7 @@
 															<option value="其他" <%="其他".equals(map.get("zwtype"))?"selected":"" %>>其他</option>
 														</select>
 													</span>
-													<span style="margin-left: 2%;">
+													<span style="margin-left: 4%;">
 														联系电话：
 														<input type="text" name="phone_<%=map.get("eid") %>" id="tel_edit" value="<%=map.get("phone")%>" style="width: 20%;"/>
 													</span>
@@ -422,9 +427,10 @@
 												<div class="row">
 													<span>
 														已招人数：
-														<input type="text" name="readyNumb_<%=map.get("eid") %>" id="hadwork_edit" value="<%=map.get("readyNumb")%>" width="5%"/>
+														<input type="text" name="readyNumb_<%=map.get("eid") %>" id="hadwork_edit" value="<%=map.get("readyNumb")%>" style="width: 8%;"/>
 														人
 													</span>
+												</div>
 												<div class="row" style="margin-top: 1.5%;">
 													<span>
 														公司福利：
@@ -442,23 +448,22 @@
 														<%=(((String)map.get("welfare")).contains("年终奖金"))? "checked":""%>/>年终奖金
 													</span>
 												</div>
-												</div>
 												<br>
 												<div style="margin-left: -1.5%;">
-													<span >岗位描述：</span><br>
-													<textarea rows="2" cols="97%" style="width: 97%;" name="employment_describe_<%=map.get("eid") %>"><%=map.get("employment_describe")%></textarea>
+													<span>岗位描述：</span><br>
+													<textarea rows="2" cols="97%" name="employment_describe_<%=map.get("eid") %>" style="width: 97%;"><%=map.get("employment_describe")%></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>任职要求：</span><br>
-													<textarea rows="4" cols="97%" style="width: 97%;" name="demand_<%=map.get("eid") %>"><%=map.get("demand")%></textarea>
+													<textarea rows="4" cols="97%" name="demand_<%=map.get("eid") %>" style="width: 97%;"><%=map.get("demand")%></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>公司信息：</span><br>
-													<textarea rows="4" cols="97%" style="width: 97%;" name="introduce_<%=map.get("eid") %>"><%=map.get("introduce")%></textarea>
+													<textarea rows="4" cols="97%" name="introduce_<%=map.get("eid") %>" style="width: 97%;"><%=map.get("introduce")%></textarea>
 												</div>
 												<div style="margin-left: -1.5%;">
 													<span>备注：</span><br>
-													<textarea rows="2" cols="97%" style="width: 97%;" name="note_<%=map.get("eid") %>"><%=map.get("note")%></textarea>
+													<textarea rows="2" cols="97%" name="note_<%=map.get("eid") %>" style="width: 97%;"><%=map.get("note")%></textarea>
 												</div>
 											</div>
 											<div class="modal-footer">
@@ -478,23 +483,23 @@
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-											<h2 class="modal-title" id="modaltitle">查看</h2>
+											<h3 class="modal-title" id="modaltitle">查看</h3>
 										</div>
-										<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
+										<div class="modal-body" style="font-size: 14px; margin-left: 20px;">
 											<div class="row">
 												<span>
 													岗位名称：
-													<input type="text" disabled="disabled" name="postname_view" id="postname_view" value="<%=map.get("employment_name")%>" style="width: 20%;" />	
+													<input type="text" name="postname_view" id="postname_view" value="<%=map.get("employment_name")%>" disabled="disabled" style="width: 20%;outline: none;border: none;" />	
 												</span>
 												<span style="margin-left:2%;">
 													公司名称：
-													<input type="text" disabled="disabled" name="comname_view" id="comname_view" value="<%=map.get("gsname")%>" style="width: 20%;" />
+													<input type="text" name="comname_view" id="comname_view" value="<%=map.get("gsname")%>" disabled="disabled" style="width: 20%;outline: none;border: none;" />
 												</span>
 												<span style="margin-left: 2%;">
 													薪资:
-													<input type="text" disabled="disabled" name="salary_view" id="salary_view" value="<%=qian%>" style="width: 12%;"/>
+													<input type="text" name="salary_view" id="salary_view" value="<%=qian%>" disabled="disabled" style="width: 12%;outline: none;border: none;"/>
 													<span style="font-size: 32px;">·</span>
-													<input type="text" disabled="disabled" name="salarytimes_view" id="salarytimes_view" value="<%=xin%>" style="width: 5%;" />
+													<input type="text" name="salarytimes_view" id="salarytimes_view" value="<%=xin%>" disabled="disabled" style="width: 5%;outline: none;border: none;" />
 													薪
 												</span>
 											</div>
@@ -502,15 +507,15 @@
 											<div class="row">
 												<span>
 													公司规模：
-													<input type="text" disabled="disabled" name="comsize_view" id="comsize_view" value="<%=map.get("scale") %>" style="width: 20%;" />
+													<input type="text" name="comsize_view" id="comsize_view" value="<%=map.get("scale") %>" disabled="disabled" style="width: 20%;outline: none;border: none;" />
 												</span>
 												<span style="margin-left: 2%;">
 													公司性质：
-													<input type="text" disabled="disabled" name="comattr_view" id="comattr_view" value="<%=map.get("nature_name")%>" style="width: 20%;" />
+													<input type="text" name="comattr_view" id="comattr_view" value="<%=map.get("nature_name")%>" disabled="disabled" style="width: 20%;outline: none;border: none;" />
 												</span>
 												<span style="margin-left: 2%;">
 													招聘人数：
-													<input type="text" disabled="disabled" name="recruits_view" id="recruits_view" value="<%=map.get("recrultsNumb")%>" style="width: 10%;" />
+													<input type="text" name="recruits_view" id="recruits_view" value="<%=map.get("recrultsNumb")%>" disabled="disabled" style="width: 10%;outline: none;border: none;" />
 													人
 												</span>
 											</div>
@@ -518,60 +523,63 @@
 											<div class="row">
 												<span>
 													学历要求：
-													<input type="text" disabled="disabled" name="degree_view" id="comwelfare_view" value="<%=map.get("education")%>" style="width: 20%;"/>
+													<input type="text" name="degree_view" id="degree_view" value="<%=map.get("education")%>" disabled="disabled" style="width: 20%;outline: none;border: none;" />
 												</span>
 												<span style="margin-left: 2%;">
 													公司类型：
-													<input type="text" disabled="disabled" name="comtype_view" id="comtype_view" value="<%=map.get("gstype")%>" style="width: 20%;"/>
+													<input type="text" name="comtype_view" id="comtype_view" value="<%=map.get("gstype")%>" disabled="disabled" style="width: 20%;outline: none;border: none;"/>
 												</span>
 												<span style="margin-left: 2%;">
 													公司所在地：
-													<input type="text" disabled="disabled" name="comaddress_view" id="comaddress_view" value="<%=map.get("address")%>" style="width: 18%;" />
+													<input type="text" name="comaddress_view" id="comaddress_view" value="<%=map.get("address")%>" disabled="disabled" style="width: 18%;outline: none;border: none;" />
 												</span>
 											</div>
 											<br>
 											<div class="row">
 												<span>
 													岗位类型：
-													<input type="text" disabled="disabled" name="hadwork_view" id="hadwork_view" value="<%=map.get("zwtype")%>" width="5%"/>
+													<input type="text" name="posttype_view" id="posttype_view" value="<%=map.get("zwtype")%>" disabled="disabled" style="width: 20%;outline: none;border: none;"/>
 												</span>
 												<span style="margin-left: 2%;">
 													联系电话：
-													<input type="text" disabled="disabled" name="tel_view" id="comtype_view" value="<%=map.get("phone")%>" style="width: 20%;"/>
+													<input type="text" name="tel_view" id="comtype_view" value="<%=map.get("phone")%>" disabled="disabled" style="width: 20%;outline: none;border: none;"/>
 												</span>
 												<span style="margin-left: 2%;">
 													工作经验要求：
-													<input type="text" disabled="disabled" name="workexp_view" id="comaddress_view" value="<%=map.get("experience")%>" style="width: 16%;" />
+													<input type="text" name="workexp_view" id="comaddress_view" value="<%=map.get("experience")%>" disabled="disabled" style="width: 16%;outline: none;border: none;" />
 												</span>
 											</div>
 											<br>
 											<div class="row">
 												<span>
 													已招人数：
-													<input type="text" disabled="disabled" name="hadwork_view" id="hadwork_view" value="<%=map.get("readyNumb")%>" width="5%"/>
+													<input type="text" name="hadwork_view" id="hadwork_view" value="<%=map.get("readyNumb")%>" disabled="disabled" style="width: 8%;outline: none;border: none;"/>
 													人
 												</span>
+											</div>
+											<div class="row"  style="margin-top: 1.5%;">
 												<span>
 													公司福利：
-													<input type="text" name="welfare_edit" id="welfare_edit" value="<%=map.get("welfare")%>" disabled="disabled" style="width: 51%;outline: none;border: none;"/>
+													<input type="text" name="welfare_edit" id="welfare_edit" value="<%=map.get("welfare")%>" disabled="disabled" style="width: 60%;outline: none;border: none;"/>
 												</span>
 											</div>
+											
 											<br>
 											<div style="margin-left: -1.5%;">
 												<span >岗位描述：</span><br>
-												<textarea disabled="disabled" rows="2" cols="97%" style="width: 97%;" name="descript_view"><%=map.get("employment_describe")%></textarea>
+												<textarea rows="2" cols="97%" name="descript_view" disabled="disabled" style="width: 97%;outline: none;border: none;" ><%=map.get("employment_describe")%></textarea>
 											</div>
 											<div style="margin-left: -1.5%;">
 												<span>任职要求：</span><br>
-												<textarea disabled="disabled" rows="4" cols="97%" style="width: 97%;" name="workrequire_view"><%=map.get("demand")%></textarea>
+												<textarea rows="4" cols="97%" name="workrequire_view" disabled="disabled" style="width: 97%;outline: none;border: none;" ><%=map.get("demand")%></textarea>
 											</div>
 											<div style="margin-left: -1.5%;">
 												<span>公司信息：</span><br>
-												<textarea disabled="disabled" rows="4" cols="97%" style="width: 97%;" name="cominfo_view"><%=map.get("introduce")%></textarea>
+												<textarea rows="4" cols="97%" name="cominfo_view" disabled="disabled" style="width: 97%;outline: none;border: none;"><%=map.get("introduce")%></textarea>
 											</div>
 											<div style="margin-left: -1.5%;">
-													<span>备注：</span><br>
-													<textarea disabled="disabled" rows="2" cols="97%" style="width: 97%;" name=""><%=map.get("note")%></textarea>
+												<span>备注：</span><br>
+												<textarea rows="4" cols="97%" name="cominfo_view" disabled="disabled" style="width: 97%;outline: none;border: none;"><%=map.get("note")%></textarea>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -584,64 +592,67 @@
 									</div>
 								</div>
 							</div>
-							<%}%>
 							<!-- 以上都要存数据*/ -->
+							<%}%>
 							<tr>
 								<td colspan="9">
-									<div class="row" style="background-color: #dafffb;">
-										<div  style="float: left;">
-											<%if(pagej==1){%>
-												<span onclick="del()" class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span>
-											<%}else{%>
-												<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej-1)%>"><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
-											<%} %>
-											<%if(pagej==((count/10)!=0?((count/10)+1):1)){%>
-												<span onclick="add()" class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span>
-											<%}else{%>
-												<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej+1)%>"><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
-											<%} %>
+									<div class="row" style="background-color: #e5e5e5;">
+										<div  style="float: left;margin-left: 1%;">
+										<%if(pagej==1){%>
+										<span onclick="del()" class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span>
+										<%}else{%>
+											<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej-1)%>"><span class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+										<%} %>
+										<%if(pagej==((count/10)!=0&count!=10?((count/10)+1):1)){%>
+										<span onclick="add()" class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span>
+										<%}else{%>
+											<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej+1)%>"><span class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+										<%} %>
 										</div>
 										<span style="float: left; margin-left: 10px;">
 											<span><%=count %></span>条总记录数
 										</span>
 										<span style="float: left; margin-left: 20px;">
-											显示<span><%=(count/10)!=0?((count/10)+1):1%></span>页
+											显示<span><%=(count/10)!=0&count!=10?((count/10)+1):1%></span>页
 										</span>
 										<span style="float: left; margin-left: 35px;">
 											跳转至
-											<input type="text" onblur="pagenum(this.value)" name="pagenum" id="pagenum" value="<%=pagej %>" style="width: 35px;" />
+											<input type="text" onblur="pagenum1(this.value)" name="pagenum" id="pagenum" value="<%=pagej %>" style="width: 35px;" />
 											页
 										</span>
-										
 									</div>
 								</td>
 							</tr>
 						</table>
+					</form>
 				</div>
 			</div>
 		</div>
 	</body>
 	<script type="text/javascript">
-		function add() {
-			alert("已经是最后一页了！")
+	function add() {
+		alert("已经是最后一页了！")
+	}
+	function del() {
+		alert("前面没有了！")
+	}
+	
+	function pagenum1(num) {
+		if(num<=<%=(count/10)!=0?((count/10)+1):1%>){
+			var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=query&page="+num+"";	
+			  window.location.href=encodeURI(url);	
+		}else{
+			document.getElementById("pagenum").value = page;
+			alert("没有当前页数")
 		}
-		function del() {
-			alert("前面没有了！")
-		}
-		function pagenum(num) {
-			if(num<=<%=(count/10)!=0?((count/10)+1):1%>){
-				var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=query&page="+num+"";	
-				  window.location.href=encodeURI(url);	
-			}else{
-				alert("没有当前页数")
+	}
+	
+	function checkdel(delform){
+		if(confirm("确认删除该公司招聘信息？")){
+			var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=delete&eid="+delform+"";	
+			  window.location.href=encodeURI(url);	
 			}
 		}
-		function checkdel(delform){
-			if(confirm("确认删除该公司招聘信息？")){
-				var url= "<%=request.getContextPath()%>/postinfo/postin.do?method=delete&eid="+delform+"";	
-				  window.location.href=encodeURI(url);	
-				}
-			}
 		$(function(){
 			$("#upload form").submit(function(){
 				var i=0;
@@ -680,4 +691,5 @@
 		})
 	</script>
 </html>
+
     

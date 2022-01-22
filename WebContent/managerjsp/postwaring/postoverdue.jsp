@@ -10,28 +10,33 @@
 		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<style type="text/css">
 			th{
-				font-size: 20px;
+				font-size: 14px;
 				text-align: center;
 			}
 			td{
-				font-size: 20px;
+				font-size: 14px;
 				text-align: center;
 			}
 			.container{
-				width: 95%;
-				left: 2.5%;
+				width: 100%;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div id="header">
-				<div class="row" style="margin-left: 10px;margin-right: 10px;">
-					<img src="../img/userA.png" style="width: 80px;height: 80px;">
-					<span class="h3" style="position: absolute;margin-top: 50px;">岗位招满预警</span>
+				<div class="row">
+					<ul class="breadcrumb">
+					    <li>预警系统</li>
+					    <li class="active">岗位过期预警</li>
+					</ul>
+				</div>
+				<div class="row" style="margin-left: 10px;margin-right: 10px;margin-top: -10px;">
+					<img src="../img/userA.png" style="width: 50px;height: 50px;">
+					<span class="h3">岗位过期预警</span>
 					<a href="/*">
-						<span id="addclass" style="color:royalblue;float: right;padding-top: 10px;" class="h3">
-							<img src="../img/expoet2.png" width="50px" height="50px">
+						<span id="addclass" style="color:royalblue;float: right;" class="h3" onclick="return checkexport()">
+							<img src="../img/expoet2.png" width="30px" height="30px">
 							<span style="margin-top: 50px">导出信息</span>
 						</span>
 					</a>
@@ -59,8 +64,8 @@
 							<td>5</td>
 							<td>0</td>
 							<td>北京京云万峰信息技术有限公司</td>
-							<td><a href="#idenfier" data-toggle="modal" data-target="#view"><img src="../img/view.png" style="width: 38px;height: 38px;" ></a></td>
-							<td><a href="" onclick="checkdel(delform)"><img src="../img/delete.png" style="width: 30px;height: 30px;" ></a></td>
+							<td><a href="#idenfier" data-toggle="modal" data-target="#view"><img src="../img/view.png" style="width: 28px;height: 28px;" ></a></td>
+							<td><a href="" onclick="checkdel(delform)"><img src="../img/delete.png" style="width: 28px;height: 28px;" ></a></td>
 						</tr>
 		<!-- 这里也是要存数据的 -->
 						<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
@@ -68,9 +73,9 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h2 class="modal-title" id="modaltitle">查看</h2>
+										<h3 class="modal-title" id="modaltitle">查看</h3>
 									</div>
-									<div class="modal-body" style="font-size: 20px; margin-left: 20px;">
+									<div class="modal-body" style="font-size: 14px; margin-left: 20px;">
 										<div class="row">
 											<span>
 												岗位：
@@ -121,33 +126,30 @@
 		<!-- 以上 -->
 						<tr>
 							<td colspan="9">
-								<div class="row" style="background-color: #dafffb;">
-									<div  style="float: left;">
-										<a href="/*"><span class="glyphicon glyphicon-chevron-left" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
-										<a href="/*"><span class="glyphicon glyphicon-chevron-right" style="width: 30px;height: 30px;border: #000000 1px solid;"></span></a>
+								<div class="row" style="background-color: #e5e5e5;">
+									<div  style="float: left;margin-left: 1%;">
+									<%if(pagej==1){%>
+									<span onclick="del()" class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span>
+									<%}else{%>
+										<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej-1)%>"><span class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+									<%} %>
+									<%if(pagej==((count/10)!=0&count!=10?((count/10)+1):1)){%>
+									<span onclick="add()" class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span>
+									<%}else{%>
+										<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej+1)%>"><span class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+									<%} %>
 									</div>
 									<span style="float: left; margin-left: 10px;">
-										<span>150</span>条总记录数
+										<span><%=count %></span>条总记录数
 									</span>
 									<span style="float: left; margin-left: 20px;">
-										显示<span>10</span>页
+										显示<span><%=(count/10)!=0&count!=10?((count/10)+1):1%></span>页
 									</span>
 									<span style="float: left; margin-left: 35px;">
 										跳转至
-										<input type="text" name="pagenum" id="pagenum" value="1" style="width: 35px;" />
+										<input type="text" onblur="pagenum1(this.value)" name="pagenum" id="pagenum" value="<%=pagej %>" style="width: 35px;" />
 										页
 									</span>
-									<div style="float: right;">
-										<span>
-											每页显示
-											<select name="infonum" style="width:80px">
-												<option value="15">15</option>
-												<option value="20">20</option>
-												<option value="25">25</option>
-												<option value="30">30</option>
-											</select>
-										</span>
-									</div>
 								</div>
 							</td>
 						</tr>
@@ -157,10 +159,35 @@
 		</div>
 	</body>
 	<script type="text/javascript">
+		var page = <%=pagej%>;
+		function add() {
+			alert("已经是最后一页了！")
+		}
+		function del() {
+			alert("前面没有了！")
+		}
+		
+		function pagenum1(num) {
+			if(num<=<%=(count/10)!=0?((count/10)+1):1%>){
+				var url= "<%=request.getContextPath()%>/waring/stu.do?method=query&page="+num+"";	
+				  window.location.href=encodeURI(url);	
+			}else{
+				document.getElementById("pagenum").value = page;
+				alert("没有当前页数"+page)
+			}
+		}
 		function checkdel(delform){
 			if(confirm("确认删除该公司招聘信息")){
 				delform.submit();
 			}
 		}
+		function checkexport(){
+			if(confirm("你将导出预警系统中未就业学生的信息")){
+				window.location.href="/*";
+			}else{
+				return false;
+			}
+		}
 	</script>
 </html>
+
