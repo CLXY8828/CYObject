@@ -37,7 +37,7 @@ CREATE TABLE `account` (
 
 /*Data for the table `account` */
 
-insert  into `account`(`UUID`,`push_id`,`sid`,`password`,`phone`,`employment_status`,`name`,`processdate`,`Column_11`) values ('2008f270-b615-456a-b95d-393a8ef40dae',1,NULL,NULL,'18331108828',0,NULL,'0',NULL),('a1',1,'123123','11111','15128706511',1,'张三','0',NULL),('a2',1,'1234353','1231231','12312312',0,'李四','0',NULL),('a3',3,'123345','1231231','1231231',0,'王五','0',NULL),('a4',2,'12313','123123','312312',1,'马六','0',NULL);
+insert  into `account`(`UUID`,`push_id`,`sid`,`password`,`phone`,`employment_status`,`name`,`processdate`,`Column_11`) values ('2c8bc18c-9e2d-43e5-a50b-9b88421be4fb',1,NULL,NULL,'18772265433',0,NULL,'0',NULL),('a1',1,'123123','11111','15128706511',1,'张三','0',NULL),('a2',1,'1234353','1231231','12312312',0,'李四','0',NULL),('a3',3,'123345','1231231','1231231',0,'王五','0',NULL),('a4',2,'12313','123123','312312',1,'马六','0',NULL);
 
 /*Table structure for table `admin` */
 
@@ -212,7 +212,7 @@ CREATE TABLE `employment` (
 
 /*Data for the table `employment` */
 
-insert  into `employment`(`eid`,`nature_id`,`gsname`,`employment_name`,`salary`,`phone`,`employment_describe`,`introduce`,`note`,`address`,`education`,`experience`,`zwtype`,`scale`,`welfare`,`demand`,`recrultsNumb`,`subtime`,`readyNumb`,`gstype`) values ('07b2694f-9dc5-4817-98fd-2e71dc77247b','dwxz007','afsd','jasdbasd','3K以下.12','321','231','132','213','123','初中及以下','应届生','JAVA','20以下','周末双休#','23',123,'2022-01-18',0,'123'),('12fc2b05-8ef9-45c7-bf60-6eb596f00843','dwxz007','3113','pahisa','3K以下.12','132','132','无','无','123','初中及以下','应届生','JAVA','20以下','五险一金#补充医疗保险#弹性工作#交通补贴#周末双休','无',123,'2022-01-18',0,'13'),('260f9d42-4c36-4e55-98e6-30b5666377bb','dwxz007','132','132','3K以下.12','453','435','43','453','132','初中及以下','应届生','JAVA','20以下','435','435',312,'2022-01-18',0,'123'),('2a68b2fa-4360-4f92-b304-5f499c41206f','dwxz007','354','435','3K以下.12','534','354','534','354','435','初中及以下','应届生','JAVA','20以下','435','354',35,'2022-01-18',0,'453'),('68b2585d-4ed5-4534-8796-f2f62f6f38e5','dwxz007','435','534','3K以下.12','345','345','345','354','453','初中及以下','应届生','JAVA','20以下','354','354',453,'2022-01-18',0,'345'),('7f1c08cd-3553-4599-a1a7-fa39528b5c15','dwxz007','354','435','3K以下.12','435','345','435','435','435','初中及以下','应届生','JAVA','20以下','345','543',345,'2022-01-18',0,'453'),('8374b212-23a8-400e-bb07-479ad953bb41','dwxz007','543','354','3K以下.12','35','435','我是公司简介','53','354','初中及以下','应届生','JAVA','20以下','35','354',354,'2022-01-18',0,'354'),('88d80b61-fe6f-4052-b100-a3fae5ce501b','dwxz007','我是公司姓名山东分手的事都分','123','3K以下.12','123','','','','132','初中及以下','应届生','JAVA','20以下','231','',123,'2022-01-18',0,'123'),('gw001','dwxz003','我是公司姓名山东分手的事都分','java开发工程师','3K以下.12','12312312312','我是岗位描述','我是公司简介','本科','我是公司位置','大专','1年以内','前端','500-999人','五险一金','我是任职需求',300,'2022-01-18',7,'公司类型1'),('gw002','dwxz005','我是公司姓名','php开发工程师','3k-5k.12薪','124234432342','我是岗位描述','我是公司简介','本科','我是公司位置','硕士','实习生','PHP','20以下','补充医疗保险','我是任职需求',100,'2022年1月13日',5,'公司类型3'),('gw003','dwxz005','我是公司姓名','前端开发工程师','10k-20k.13薪','12312323423','我是岗位描述','我是公司简介','专科-本科','我是公司位置','初中及以下','应届生','UED','100-299人','弹性工作','我是任职需求',50,'2022年1月15日',0,'公司类型2');
+insert  into `employment`(`eid`,`nature_id`,`gsname`,`employment_name`,`salary`,`phone`,`employment_describe`,`introduce`,`note`,`address`,`education`,`experience`,`zwtype`,`scale`,`welfare`,`demand`,`recrultsNumb`,`subtime`,`readyNumb`,`gstype`) values ('07b2694f-9dc5-4817-98fd-2e71dc77247b','dwxz007','afsd','jasdbasd','3K以下.12','321','231','132','213','123','初中及以下','应届生','JAVA','20以下','周末双休#','23',123,'2022-01-18',0,'123'),('68b2585d-4ed5-4534-8796-f2f62f6f38e5','dwxz007','435','534','3K以下.12','345','345','345','354','453','初中及以下','应届生','JAVA','20以下','354','354',453,'2022-01-18',0,'345'),('8374b212-23a8-400e-bb07-479ad953bb41','dwxz007','543','354','3K以下.12','35','435','354','53','354','初中及以下','应届生','JAVA','20以下','35','354',354,'2022-01-18',0,'354'),('gw001','dwxz003','我是公司姓名','java开发工程师','3K以下.12','12312312312','我是岗位描述','我是公司简介','本科','我是公司位置','大专','1年以内','前端','500-999人','五险一金','我是任职需求',300,'2022-01-18',7,'公司类型1'),('gw002','dwxz005','我是公司姓名','php开发工程师','3k-5k.12薪','124234432342','我是岗位描述','我是公司简介','本科','我是公司位置','硕士','实习生','PHP','20以下','补充医疗保险','我是任职需求',100,'2022年1月13日',5,'公司类型3'),('gw003','dwxz005','我是公司姓名','前端开发工程师','10k-20k.13薪','12312323423','我是岗位描述','我是公司简介','专科-本科','我是公司位置','初中及以下','应届生','UED','100-299人','弹性工作','我是任职需求',50,'2022年1月15日',0,'公司类型2');
 
 /*Table structure for table `employmentapply` */
 
@@ -234,7 +234,7 @@ CREATE TABLE `employmentapply` (
 
 /*Data for the table `employmentapply` */
 
-insert  into `employmentapply`(`eid`,`UUID`,`applystate`,`Collectionstate`,`Column_5`,`Column_6`,`Column_7`) values ('gw001','a1',1,0,NULL,NULL,NULL),('gw002','a1',1,0,NULL,NULL,NULL),('gw003','a1',1,0,NULL,NULL,NULL),('gw001','a2',0,0,NULL,NULL,NULL),('gw002','a2',0,0,NULL,NULL,NULL),('gw003','a2',0,0,NULL,NULL,NULL),('gw001','a4',0,0,NULL,NULL,NULL),('gw002','a4',0,0,NULL,NULL,NULL),('gw003','a4',0,0,NULL,NULL,NULL),('gw001','a3',0,0,NULL,NULL,NULL),('gw002','a3',0,0,NULL,NULL,NULL),('07b2694f-9dc5-4817-98fd-2e71dc77247b','a1',0,0,'','',''),('07b2694f-9dc5-4817-98fd-2e71dc77247b','a2',0,0,'','',''),('07b2694f-9dc5-4817-98fd-2e71dc77247b','a4',0,0,'','',''),('07b2694f-9dc5-4817-98fd-2e71dc77247b','a3',0,0,'','',''),('12fc2b05-8ef9-45c7-bf60-6eb596f00843','a1',0,0,'','',''),('12fc2b05-8ef9-45c7-bf60-6eb596f00843','a2',0,0,'','',''),('12fc2b05-8ef9-45c7-bf60-6eb596f00843','a4',0,0,'','',''),('12fc2b05-8ef9-45c7-bf60-6eb596f00843','a3',0,0,'','',''),('07b2694f-9dc5-4817-98fd-2e71dc77247b','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('12fc2b05-8ef9-45c7-bf60-6eb596f00843','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('260f9d42-4c36-4e55-98e6-30b5666377bb','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('2a68b2fa-4360-4f92-b304-5f499c41206f','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('68b2585d-4ed5-4534-8796-f2f62f6f38e5','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('7f1c08cd-3553-4599-a1a7-fa39528b5c15','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('8374b212-23a8-400e-bb07-479ad953bb41','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('88d80b61-fe6f-4052-b100-a3fae5ce501b','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('gw001','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('gw002','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','',''),('gw003','2008f270-b615-456a-b95d-393a8ef40dae',0,0,'','','');
+insert  into `employmentapply`(`eid`,`UUID`,`applystate`,`Collectionstate`,`Column_5`,`Column_6`,`Column_7`) values ('gw001','a1',1,0,NULL,NULL,NULL),('gw002','a1',0,0,NULL,NULL,NULL),('gw003','a1',0,0,NULL,NULL,NULL),('gw001','a2',0,0,NULL,NULL,NULL),('gw002','a2',0,0,NULL,NULL,NULL),('gw003','a2',0,0,NULL,NULL,NULL),('gw001','a4',0,0,NULL,NULL,NULL),('gw002','a4',0,0,NULL,NULL,NULL),('gw003','a4',0,0,NULL,NULL,NULL),('gw001','a3',0,0,NULL,NULL,NULL),('gw002','a3',0,0,NULL,NULL,NULL),('07b2694f-9dc5-4817-98fd-2e71dc77247b','a1',0,0,'','',''),('07b2694f-9dc5-4817-98fd-2e71dc77247b','a2',0,0,'','',''),('07b2694f-9dc5-4817-98fd-2e71dc77247b','a4',0,0,'','',''),('07b2694f-9dc5-4817-98fd-2e71dc77247b','a3',0,0,'','',''),('07b2694f-9dc5-4817-98fd-2e71dc77247b','2c8bc18c-9e2d-43e5-a50b-9b88421be4fb',0,0,'','',''),('68b2585d-4ed5-4534-8796-f2f62f6f38e5','2c8bc18c-9e2d-43e5-a50b-9b88421be4fb',0,0,'','',''),('8374b212-23a8-400e-bb07-479ad953bb41','2c8bc18c-9e2d-43e5-a50b-9b88421be4fb',0,0,'','',''),('gw001','2c8bc18c-9e2d-43e5-a50b-9b88421be4fb',0,0,'','',''),('gw002','2c8bc18c-9e2d-43e5-a50b-9b88421be4fb',0,0,'','',''),('gw003','2c8bc18c-9e2d-43e5-a50b-9b88421be4fb',0,0,'','','');
 
 /*Table structure for table `import` */
 
@@ -360,7 +360,7 @@ insert  into `school_department`(`department_id`,`department_name`,`Column_3`,`C
 DROP TABLE IF EXISTS `students`;
 
 CREATE TABLE `students` (
-  `id` int(64) NOT NULL,
+  `id` int(64) NOT NULL AUTO_INCREMENT,
   `UUID` varchar(100) DEFAULT NULL,
   `examinee_id` varchar(64) DEFAULT NULL,
   `IDnumber` varchar(64) DEFAULT NULL,
@@ -374,7 +374,7 @@ CREATE TABLE `students` (
   `industry_id` varchar(100) DEFAULT NULL,
   `ssex` varchar(64) DEFAULT NULL,
   `cell_phone` int(12) DEFAULT NULL,
-  `phone` int(12) DEFAULT NULL,
+  `sphone` int(12) DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
   `time` varchar(65) CHARACTER SET utf16 COLLATE utf16_bin DEFAULT NULL,
   `Column_20` char(10) DEFAULT NULL,
@@ -398,11 +398,11 @@ CREATE TABLE `students` (
   CONSTRAINT `FK_Reference_7` FOREIGN KEY (`destination_id`) REFERENCES `destination` (`destination_id`),
   CONSTRAINT `FK_Reference_8` FOREIGN KEY (`company_id`) REFERENCES `companymessage` (`company_id`),
   CONSTRAINT `FK_Reference_9` FOREIGN KEY (`nature_id`) REFERENCES `companynature` (`nature_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `students` */
 
-insert  into `students`(`id`,`UUID`,`examinee_id`,`IDnumber`,`destination_id`,`company_id`,`nature_id`,`department_id`,`class_id`,`positiontype_id`,`companyaddress_id`,`industry_id`,`ssex`,`cell_phone`,`phone`,`email`,`time`,`Column_20`,`Column_21`) values (1,'a1','12312234','12341242342342342',1,'dw001','dwxz001','x1','c001','gzzw1','dwszd10','dwhy1','男',14124124,23423234,'124234@qq.com','2022-01-01',NULL,NULL),(2,'a2','12335345345','23423423423423425345',3,'dw002','dwxz002','x1','c002','gzzw10','dwszd1006','dwhy4','男',124124,234234,'23423532@123.com','2022-01-12',NULL,NULL),(3,'a3','32435345','2342342342342342342',9,'dw002','dwxz003','x1','c003','gzzw9','dwszd1011','dwhy5','女',23423545,234235,'124234@qq.com','2022-01-26',NULL,NULL),(4,'a4','2345235643','2343453453234234234',6,'dw001','dwxz004','x2','c009','gzzw3','dwszd1014','dwhy8','女',234545345,2354353,'12434534@qq.com','2022-02-20',NULL,NULL);
+insert  into `students`(`id`,`UUID`,`examinee_id`,`IDnumber`,`destination_id`,`company_id`,`nature_id`,`department_id`,`class_id`,`positiontype_id`,`companyaddress_id`,`industry_id`,`ssex`,`cell_phone`,`sphone`,`email`,`time`,`Column_20`,`Column_21`) values (1,'a1','12312234','12341242342342342',1,'dw001','dwxz001','x1','c001','gzzw1','dwszd10','dwhy1','男',14124124,23423234,'124234@qq.com','2022-01-01',NULL,NULL),(2,'a2','12335345345','23423423423423425345',3,'dw002','dwxz002','x1','c002','gzzw10','dwszd1006','dwhy4','男',124124,234234,'23423532@123.com','2022-01-12',NULL,NULL),(3,'a3','32435345','2342342342342342342',9,'dw002','dwxz003','x1','c003','gzzw9','dwszd1011','dwhy5','女',23423545,234235,'124234@qq.com','2022-01-26',NULL,NULL),(4,'a4','2345235643','2343453453234234234',6,'dw001','dwxz004','x2','c009','gzzw3','dwszd1014','dwhy8','女',234545345,2354353,'12434534@qq.com','2022-02-20',NULL,NULL);
 
 /*Table structure for table `subquestionnaire` */
 

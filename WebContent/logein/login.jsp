@@ -26,6 +26,17 @@
 		        /*点击改变按钮状态，已经简略掉ajax发送短信验证的代码*/  
 		        $('#lg-get').click(function()
 		        {
+		        	var inputphone=$("#lg-inputphone").val();
+		        	var pattern = /0?(13|14|15|18|17)[0-9]{9}/;
+		        	if (inputphone=="") {
+						exception("手机号不能为空!",0)
+						return false;
+						
+					}
+		        	if(!pattern.test(inputphone)){
+						exception("手机号输入不正确!",0)
+						return false;
+					}
 		            var btn = $(this);  
 		            var count = 60;  
 		            var resend = setInterval(function(){  
@@ -41,7 +52,7 @@
 		            btn.attr('disabled',true).css('cursor','not-allowed');  
 		            $.ajax({
 			    	    url: "<%=request.getContextPath()%>/users/logein.do?method=logephone",
-			    	    data: {name: phonecode},
+			    	    data: {name: inputphone},
 			    	    type: "POST",
 			    	    dataType: "json",
 			    	    success: function(data) {
@@ -50,6 +61,16 @@
 		        });  
 		   		$('#sm-get').click(function()
 		        {
+		   			var inputphone=$("#sm-inputphone").val();
+		   			var pattern = /0?(13|14|15|18|17)[0-9]{9}/;
+		        	if (inputphone=="") {
+						exception("手机号不能为空!",0)
+						return false;
+					}
+		        	if(!pattern.test(inputphone)){
+						exception("手机号输入不正确!",0)
+						return false;
+					}
 		            var btn = $(this);  
 		            var count = 60;  
 		            var resend = setInterval(function(){  
@@ -65,7 +86,7 @@
 		            btn.attr('disabled',true).css('cursor','not-allowed'); 
 		            $.ajax({
 			    	    url: "<%=request.getContextPath()%>/users/logein.do?method=logephone",
-			    	    data: {name: phonecode},
+			    	    data: {name: inputphone},
 			    	    type: "POST",
 			    	    dataType: "json",
 			    	    success: function(data) {

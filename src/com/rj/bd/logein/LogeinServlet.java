@@ -78,8 +78,8 @@ public class LogeinServlet extends HttpServlet {
 	 */
 	private void logephone(HttpServletRequest request, HttpServletResponse response) throws ClientProtocolException, IOException, SmsCodeException, ServletException {
 		String phonecode = request.getParameter("name");//获取用户输入的验证码
-//		System.out.println(phonecode);
-//		utrl.createPhoneCode(phonecode);//发送验证码
+		System.out.println(phonecode);
+		utrl.createPhoneCode(phonecode);//发送验证码
 	}
 
 	/**
