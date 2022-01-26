@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/loge.css"/>
@@ -99,7 +99,6 @@
 		</script>
 	</head>
 	
-	
 	<body>
 		<div class="container-fluid">
 			<div class="row">
@@ -127,6 +126,9 @@
 					  <div class="panel-body">
 					  	<div class=" visible-lg-block col-lg-7">
 					  		 <img id="tp" class="img-responsive" alt="Responsive image" src="<%=request.getContextPath() %>/img/003.jpg">
+					  	</div>
+					  	<div class="visible-sm-block col-sm-12">
+					  		<img  class="img-responsive" alt="Responsive image" src="<%=request.getContextPath() %>/img/003.jpg">
 					  	</div>
 					  	<div class="col-sm-12 col-lg-5">
 					  		<div class="row visible-lg-block">
@@ -318,7 +320,7 @@
 													    <label class="col-sm-1 control-label" for="exampleInputAmount"></label>
 													    <div class="col-sm-11">
 														    <div class="input-group">
-														      <div class="input-group-addon">学号</div>
+														      <div class="input-group-addon" style="font-size: 18px;">学号</div>
 														      <input type="text" class="form-control" name="sid" id="input-all-xh-sm" placeholder="请输入学号">
 														    </div>
 														 </div>
@@ -327,7 +329,7 @@
 														<label class="col-sm-1 control-label" for="exampleInputAmount"></label>
 														<div class="col-sm-11">
 														    <div class="input-pudding input-group">
-														      <div class="input-group-addon">密码</div>
+														      <div class="input-group-addon" style="font-size: 18px;">密码</div>
 														      <input type="password" class="form-control" name="password" id="input-all-pass-sm" placeholder="请输入密码">
 														    </div>
 														 </div>
@@ -336,14 +338,15 @@
 														<label class="col-sm-1 control-label" for="exampleInputAmount"></label>
 														<div class="col-sm-11">
 															<div class="row row-no-gutters">
-																<div class="col-xs-6">
+																<div class="col-sm-6">
 																	<div class="input-pudding input-group">
-															      <div class="input-group-addon">验证码</div>
+															      <div class="input-group-addon" style="font-size: 18px;">验证码</div>
 															      <input type="text" class="form-control" id="input-all-code-sm" placeholder="请输入验证码">
 																</div>
 																</div>
-															     <div class="col-xs-6">
-	  																<a href="#" id="changeImg2"><canvas class="input-pudding" id="canvas2" width="100" height="40" style="margin-left: 20px;"></canvas></a>
+															     <div class="col-xs-7">
+															     	<canvas class="input-pudding" id="canvas2" width="100" height="40" style="margin-left: 20px;"></canvas>
+	  																<a href="#" id="changeImg2" style="font-size: 5px;">看不清,换一张</a>
 															     </div>
 															    
 														    </div>
@@ -352,7 +355,7 @@
 													 <div class="input-pudding-sub form-group">
 													 	<div class="row" >
 													 		<div style="margin-top: 23px;" class="col-xs-4">
-													 			<a href="<%=request.getContextPath()%>/users/logein.do?method=nopassword" style=" margin-left: 18px;"  ><strong>忘记密码</strong></a>
+													 			<a style=" margin-left: 18px;" ><strong>忘记密码</strong></a>
 													 		</div>
 													 		<div class="col-xs-7">
 													 			<button type="submit" class="pull-right btn btn-primary btn-lg sub-all-lg">登录</button>

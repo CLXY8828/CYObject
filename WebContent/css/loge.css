@@ -1,8 +1,9 @@
-#loge{
+			#loge{
 				width: 50px;
 				height: 45px;
 			}
 			#top{
+				padding-left: 60px;
 				height: 70px;
 				background-color: #011536;
 			}
@@ -13,61 +14,14 @@
 				padding-top: 100px; 
 				background-color: #f6f6f8;
 				}
-			#sm-top-padding{
-				padding-top: 250px;
-			}
 			#lg-inputphone{
 				width: 335px;
-			}
-			#sm-inputphone{
-				width: 500px;
-				height: 45px;
-				font-size: 18px;
 			}
 			#lg-inputcode{
 				width: 228px;
 			}
-			#sm-inputcode{
-				width: 380px;
-				height: 45px;
-				font-size: 18px;
-			}
 			#lg-get{
 				width: 93px;
-			}
-			#sm-get{
-				width: 115px;
-				height: 45px;
-				font-size: 18px;
-			}
-			.input-from{
-				font-size: 18px;
-				width: 80px;
-				height: 45px;
-			}
-			#input-all-xh-lg{
-				width: 335px;
-			}
-			#input-all-xh-sm{
-				width: 500px;
-				height: 45px;
-				font-size: 18px;
-			}
-			#input-all-pass-lg{
-				width: 335px;
-			}
-			#input-all-pass-sm{
-				width: 500px;
-				height: 45px;
-				font-size: 18px;
-			}
-			#input-all-code-lg{
-				width: 170px;
-			}
-			#input-all-code-sm{
-				width: 280px;
-				height: 45px;
-				font-size: 18px;
 			}
 			.sub-all-lg{
 				width: 160px;
@@ -85,10 +39,11 @@
 				letter-spacing: 15px;
 			}
 			.subsm{
-				width: 720px;
-				height: 55px;
-				font-size:23px ;
+				width: 355px;
 				letter-spacing: 15px;
+			}
+			#input-all-code-sm{
+				width: 120px;
 			}
 			#h1-text{
 				font-size: 18px;
