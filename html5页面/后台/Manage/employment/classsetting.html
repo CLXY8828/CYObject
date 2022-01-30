@@ -26,16 +26,16 @@
 				<div class="row">
 					<ul class="breadcrumb">
 					    <li>就业</li>
-					    <li class="active">年级就业</li>
+					    <li class="active">班级就业</li>
 					</ul>
 				</div>
 				<div class="row" style="margin-left: 10px;margin-right: 10px;margin-top: -10px;">
 					<img src="../img/userA.png" style="width: 50px;height: 50px;">
-					<span class="h3">年级就业</span>
+					<span class="h3">班级就业</span>
 					<a href="#idenfier" data-toggle="modal" data-target="#addmodal">
 						<span id="addclass" style="color:royalblue;float: right;" class="h3">
 							<img src="../img/newfolder.png" width="30px" height="30px">
-							<span style="">新建就业年级</span>
+							<span style="">新建就业班级</span>
 						</span>
 					</a>
 				</div>
@@ -49,12 +49,29 @@
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 									<h3 class="modal-title" id="modaltitle">新建就业年级</h3>
 								</div>
-								<div class="modal-body" style="font-size: 14px; margin-left: 20px;">
-									
-									<span>
-										名称：
-										<input type="test" name="add_class_name" id="add_class_name" value=""/>	
-									</span>
+								<div class="modal-body" style="font-size: 16px;">
+									<div class="row">
+										<span style="margin-left: 20%;">
+											名称：
+											<input type="test" name="add_class_name" id="add_class_name" value=""/>	
+										</span>
+									</div>
+									<div class="row" style="margin-top: 3.8%;">
+										<span style="margin-left: 14.8%;">
+											隶属年级：
+											<select name="grade" style="width: 30%;">
+												<option value="18级就业">18级就业</option>
+											</select>
+										</span>
+									</div>
+									<div class="row"  style="margin-top: 3.8%;">
+										<span style="margin-left:9.2%;">
+											设定专业老师：
+											<select name="teacher" style="width: 30%;">
+												<option value="张三">张三</option>
+											</select>
+										</span>
+									</div>
 									<br><br>
 								</div>
 								<div class="modal-footer">
@@ -76,9 +93,8 @@
 								<th width="9%">名称</th>
 								<th width="8%">总人数</th>
 								<th width="9%">就业人数</th>
-								<th width="10%">未就业人数</th>
 								<th width="8%">就业率</th>
-								<th width="10%">下创班级</th>
+								<th width="10%">隶属年级</th>
 								<th width="6%">编辑</th>
 								<th width="9%">就业信息</th>
 								<th width="6%">删除</th>
@@ -90,10 +106,9 @@
 								<td>1</td>
 								<td>18级就业</td>
 								<td>150<span>人</span></td>
-								<td>100<span>人</span></td>
 								<td>50<span>人</span></td>
 								<td>66.66<span>%</span></td>
-								<td>三个班</td>
+								<td>18级就业</td>
 								<td><a href="#idenfier" data-toggle="modal" data-target="#edit"><img src="../img/edit.png" style="width: 28px;height:28px;" ></a></td>
 								<td><a href="#idenfier" data-toggle="modal" data-target="#export"><img src="../img/export3.png" style="width: 28px;height:28px;" ></a></td>
 								<td><a href="#idenfier" data-toggle="modal" data-target="#delete"><img src="../img/delete.png" style="width: 28px;height: 28px;" ></a></td>
@@ -113,7 +128,7 @@
 											<h3 class="modal-title" id="modaltitle">导出学生信息</h3>
 										</div>
 										<div class="modal-body">
-											<span class="h4" style="margin-left: 10%;">你将导出该年级所有学生信息</span>
+											<span class="h4" style="margin-left: 10%;">你将导出该班级所有学生信息</span>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -133,7 +148,7 @@
 										</div>
 										<div class="modal-body" style="font-size: 16px; margin-left: 20px;">
 											<span class="row">
-												年级名称：
+												班级名称：
 												<input type="input" name="grade" id="grade" value="" disabled="" style="outline: none;border: none;" />
 											</span>
 											<span class="row">
@@ -210,7 +225,7 @@
 											<h3 class="modal-title" id="modaltitle">导出就业信息</h3>
 										</div>
 										<div class="modal-body">
-											<span class="h4" style="margin-left: 10%;">你将导出该年级就业信息</span>
+											<span class="h4" style="margin-left: 10%;">你将导出该班级就业信息</span>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -228,7 +243,7 @@
 											<h3 class="modal-title" id="modaltitle">删除</h3>
 										</div>
 										<div class="modal-body">
-											<span class="h4" style="margin-left: 10%;">你将删除该年级就业信息</span>
+											<span class="h4" style="margin-left: 10%;">你将删除该班级就业信息</span>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -246,7 +261,7 @@
 											<h3 class="modal-title" id="modaltitle">删除</h3>
 										</div>
 										<div class="modal-body">
-											<span class="h4" style="margin-left: 10%;">这将删除该年级下所有班级</span>
+											<span class="h4" style="margin-left: 10%;">这将删除该班级下所有学生</span>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -264,18 +279,37 @@
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 												<h3 class="modal-title" id="modaltitle">编辑</h3>
 											</div>
-											<div class="modal-body" style="font-size: 14px; margin-left: 20px;">
-												<span>
-													名称：
-													<input type="text" name="edit_class" id="edit_class" value="" />
-												</span><br>
+											<div class="modal-body" style="font-size: 16px;">
+												<div class="row">
+													<span style="margin-left: 20%;">
+														名称：
+														<input type="test" name="add_class_name" id="add_class_name" value=""/>	
+													</span>
+												</div>
+												<div class="row" style="margin-top: 3.8%;">
+													<span style="margin-left: 14.8%;">
+														隶属年级：
+														<select name="grade" style="width: 30%;">
+															<option value="18级就业">18级就业</option>
+														</select>
+													</span>
+												</div>
+												<div class="row"  style="margin-top: 3.8%;">
+													<span style="margin-left:9.2%;">
+														设定专业老师：
+														<select name="teacher" style="width: 30%;">
+															<option value="张三">张三</option>
+														</select>
+													</span>
+												</div>
+												<br><br>
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 												</button>
 												<button type="submit" class="btn btn-primary">
-													确定
-												</button>	
+													新建
+												</button>
 											</div>
 										</form>
 									</div>
@@ -311,7 +345,7 @@
 	</body>
 	<script type="text/javascript">
 		function gradeindex(){
-			top.location.href="gradeinfo/gradeindex.html"
+			top.location.href="classinfo/classindex.html"
 		}
 	</script>
 </html>

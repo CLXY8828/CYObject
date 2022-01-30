@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			.container{
+				width: 100%;
+			}
+			th{
+				font-size: 14px;
+				text-align: center;
+			}
+			td{
+				font-size: 14px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="header">
+				<div class="row" style="margin-left: 10px;margin-right: 10px;">
+					<img src="../../img/userA.png" style="width: 80px;height: 80px;">
+					<span class="h3" style="position: absolute;margin-top: 50px;">18级就业</span>
+					<a href="#idenfier" data-toggle="modal" data-target="#addmodal">
+						<span id="addclass" style="color:royalblue;float: right;padding-top: 10px;" class="h3">
+							<img src="../../img/newfolder.png" width="50px" height="50px">
+							<span style="margin-top: 50px">新建就业班级</span>
+						</span>
+					</a>
+				</div>
+				<hr style="border: #000000 2px solid;margin-top: -1px; width: 100%;" />
+				<!-- /*模态框 -->
+				<div class="modal fade" id="addmodal" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form action="/*" method="post">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h2 class="modal-title" id="modaltitle">新建就业班级</h4>
+								</div>
+								<div class="modal-body" style="font-size: 25px; margin-left: 20px;">
+									
+									<span style="margin-left: 18%;">
+										名称：
+										<input type="test" name="add_class_name" id="add_class_name" value="" />	
+									</span>
+									<br><br>
+									<span>
+										设定专业老师：
+										<select name="setteacher" style="width: 50%;">
+											<option value="张三">张三</option>
+											<option value="张三">张三</option>
+											<option value="张三">张三</option>
+										</select>
+									</span>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+									</button>
+									<button type="submit" class="btn btn-primary">
+										新建
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- 模态框*/ -->
+				<div style="width: 100%;">
+					<form action="/*" method="post" name="delform">
+						<table border="0px" cellspacing="5px" cellpadding="0px" style="width: 100%;" class="table">
+							<tr>
+								<th width="8%">序号</th>
+								<th width="13%">名称</th>
+								<th width="10%">总人数</th>
+								<th width="10%">就业人数</th>
+								<th width="10%">未就业人数</th>
+								<th width="10%">就业率</th>
+								<th width="6%">编辑</th>
+								<th width="8%">就业信息</th>
+								<th width="6%">删除</th>
+								<th width="14%">导入导出学生信息</th>
+							</tr>
+							<!-- /*以下放数据 -->
+							<tr>
+								<td>1</td>
+								<td>18级就业</td>
+								<td>150<span>人</span></td>
+								<td>100<span>人</span></td>
+								<td>50<span>人</span></td>
+								<td>66.66<span>%</span></td>
+								<td><a href="#idenfier" data-toggle="modal" data-target="#edit"><img src="../../img/edit.png" style="width: 30px;height:30px;" ></a></td>
+								<td><a href="/*"><img src="../../img/export3.png" style="width: 30px;height:30px;" ></a></td>
+								<td><a  onclick="checkdel(delform)"><img src="../../img/delete.png" style="width: 30px;height: 30px;" ></a></td>
+								<td>
+									<a href="/*"><img src="../../img/import.png" style="width:30px;height: 30px; margin-right: 50px;" ></a>
+									<a href="/*"><img src="../../img/expoet2.png" style="width: 30px;height: 30px;" ></a>
+								</td>
+							</tr>
+							<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<form action="/*" method="post">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h2 class="modal-title" id="modaltitle">编辑</h4>
+											</div>
+											<div class="modal-body" style="font-size: 25px; margin-left: 20px;">
+												<span>
+													名称：
+													<input type="text" name="edit_class" id="edit_class" value="" />
+												</span><br>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+												</button>
+												<button type="submit" class="btn btn-primary">
+													确定
+												</button>	
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+			<!-- 以上存数据*/ -->
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function checkdel(delform){
+			if(confirm("确认删除该公司招聘信息？")){
+				delform.submit();
+			}
+		}
+	</script>
+</html>
