@@ -118,6 +118,7 @@
  })
   /*验证码正确性验证*/
  function iscode (inputcode) {
+	  alert(inputcode+","+phonecode+","+code)
    	if((inputcode.toLowerCase())==(phonecode.toLowerCase())){
    		return false;
    	}

@@ -1,789 +1,872 @@
-<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
- <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+  <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+  <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>主页面</title>
-		
-		<!--1.移动设备积极响应的语句 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<!--2.引入基本的bootstrap的样式和js文件 -->
+		<meta charset="UTF-8">
+		<title></title>
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/jquery.js"></script>
 		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<script src="<%=request.getContextPath() %>/js/zym.js"></script>
-		<style type="text/css">
-			#address{
-			  border:1px solid #CCCCCC;
-			  padding:6px 16px 4px 4px;
-			  /*background: url(img/1.jpg) no-repeat 80px center;*/
-			  width:80px;
-			  height:30px;
-			  text-align:center;
-			  cursor:pointer;
-			}
-			*{
-			  padding:0;
-			  margin:0;
-			}
-			ul{
-			  margin:0px;
-			  padding:5px;
-			  font-size:12px;
-			}
-			a{
-			  color:#009999;
-			  text-decoration:none;
-			}
-			a:hover{
-			  background-color:#006699;
-			  color:#FFFFFF;
-			  text-decoration:underline;
-			}
-			li{
-			  list-style:none;
-			  width:38px;
-			  padding:2px 2px;
-			  display:inline-block;
-			}
-			#citys{
-			  border:1px solid #FF0000;
-			  width:336px;
-			  position:relative;
-			}
-			#citys span{
-			  padding:5px;
-			}
-			#smallCity{
-			  border-top:1px solid #CCCCCC;
-			}
-			#cancel{
-			  position:absolute;
-			  width:20px;
-			  height:20px;
-			  cursor:pointer;
-			  top:0px;
-			  right:0px;
-			  border:1px solid #333;
-			  text-align:center;
-			  font-size:16px;
-			  line-height:20px;
-			  background-color:#ddd;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/index.css"/>
+		<script src="<%=request.getContextPath() %>/js/index.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-		$(document).ready(function(){
-			if(<%=request.getAttribute("list")==null%>){//
-				<%Map user=(Map)request.getSession().getAttribute("user");%>
-				window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
-			}
-			if(<%=request.getSession().getAttribute("user")==null%>){
-				$('#login').modal('show');
-				
-			}
-			else{
-				if(<%=(List)request.getAttribute("ws")==null%>){
-					$('#myModal001').modal('show');
+			$(document).ready(function () {
+				if(<%=request.getAttribute("list")==null%>){//
+					<%Map user=(Map)request.getSession().getAttribute("user");%>
+					window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
 				}
+				if(<%=request.getSession().getAttribute("user")==null%>){
+					modaltt("#logeink");
+					
+				}
+				else{
+					if(<%=(List)request.getAttribute("ws")==null%>){
+						modaltt("#okxx");
+					}
+				}
+				var action=mqueryform()
+				$("#mqueryform").attr('action',action); 
+				$('#sqzw').on('hidden.bs.modal', function (e) {
+					eid="";
+					okid="";
+					})
+				$('#sqzwok').on('hidden.bs.modal', function (e) {
+					eid="";
+					okid="";
+					})
+				});
+			function mqueryform() {
+				var select=$("#select").val();
+				return '<%=request.getContextPath() %>/users/index.do?method=mquery&type=1&select='+select;
 			}
-			});
-		function sc(userid,eid) {
-			var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
-				$.post(url,{userid:userid,eid:eid},function(data)
-				{
-					
-				});
-		}
-		function sq(userid,eid,id,mid) {
-			var url ="<%=request.getContextPath()%>/users/index.do?method=sq";
-				$.post(url,{userid:userid,eid:eid},function(data)
-				{
-					shenqing(id,true,mid);
-				});
-		}
-		function qsc(userid,eid) {
-			var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
-				$.post(url,{userid:userid,eid:eid},function(data)
-				{
-					
-				});
-		}
-		
-		function login () {
-					if(<%=request.getSession().getAttribute("user")==null%>){
-						$('#login').modal('show');
+			function mquerya(type,values) {
+					$(type).text(values);
+					var xxz=$("#xxz").text();
+					var xl=$("#xl").text();
+					var jy=$("#jy").text();
+					var zw=$("#zw").text();
+					var xz=$("#xz").text();
+					var gm =$("#gm").text();
+					window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
+			}
+			function scok(img,text,type,userid,eid) {
+				if (type==0) {
+					if($("#"+text).text()!="已收藏"){
+						var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
+						$.post(url,{userid:userid,eid:eid},function(data)
+						{	
+							var count =$("#sc-count").text();
+							$("#sc-count").text(Number(count)+1);
+							$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc-s.png");
+							$("#"+text).text("已收藏")
+						});
+					}
+					else {
+						var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
+						$.post(url,{userid:userid,eid:eid},function(data)
+						{
+							var count =$("#sc-count").text();
+							$("#sc-count").text(Number(count)-1);
+							$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc.png");
+							$("#"+text).text("收藏")
+						});
+					}
+				}
+				else if(type==1){
+					if($("#"+text).text()!="收藏"){
+						var count =$("#sc-count").text();
+						$("#sc-count").text(Number(count)-1);
+						var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
+						$.post(url,{userid:userid,eid:eid},function(data)
+						{
+							$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc.png");
+							$("#"+text).text("收藏")
+						});
+					}
+					else {
+						var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
+						$.post(url,{userid:userid,eid:eid},function(data)
+						{
+							var count =$("#sc-count").text();
+							$("#sc-count").text(Number(count)+1);
+							$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc-s.png");
+							$("#"+text).text("已收藏")
+						});
 					}
 					
 				}
-		
-		//筛选
-		//选择之后改变薪资要求的内容
-		function gxnr01(xxz)
-		{
-			var xl=$("#xzyq02").text();
-			var jy=$("#xzyq03").text();
-			var zw=$("#xzyq04").text();
-			var xz=$("#xzyq05").text();
-			var gm =$("#xzyq06").text();
-			
-			document.getElementById("xzyq01").innerHTML=xxz;
-			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
-		}
-		//选择之后改变学历要求的内容
-		function xlyq01(xl)
-		{
-			
-			var xxz=$("#xzyq01").text();
-			var jy=$("#xzyq03").text();
-			var zw=$("#xzyq04").text();
-			var xz=$("#xzyq05").text();
-			var gm =$("#xzyq06").text();
-			document.getElementById("xzyq02").innerHTML=xl;
-			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
-		}
-		
-		//选择之后改变学历要求的内容
-		function gzjy01(jy)
-		{	
-			var xxz=$("#xzyq01").text();
-			var xl=$("#xzyq02").text();
-			var zw=$("#xzyq04").text();
-			var xz=$("#xzyq05").text();
-			var gm =$("#xzyq06").text();
-			document.getElementById("xzyq03").innerHTML=jy;
-			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
-		}
-		//选择之后改变职位类型的内容
-		function zwlx01(zw)
-		{
-			var xxz=$("#xzyq01").text();
-			var xl=$("#xzyq02").text();
-			var jy=$("#xzyq03").text();
-			var xz=$("#xzyq05").text();
-			var gm =$("#xzyq06").text();
-			document.getElementById("xzyq04").innerHTML=zw;
-			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
-		}
-		//选择之后改变公司性质的内容
-		function gsxz01(xz)
-		{
-			var xxz=$("#xzyq01").text();
-			var xl=$("#xzyq02").text();
-			var jy=$("#xzyq03").text();
-			var zw=$("#xzyq04").text();
-			var gm=$("#xzyq06").text();
-			document.getElementById("xzyq05").innerHTML=xz;
-			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);		}
-		//选择之后改变公司规模的内容   
-		function gsgm01(gm)
-		{
-			var xxz=$("#xzyq01").text();
-			var xl=$("#xzyq02").text();
-			var jy=$("#xzyq03").text();
-			var zw=$("#xzyq04").text();
-			var xz=$("#xzyq05").text();
-			document.getElementById("xzyq06").innerHTML=gm;
-			window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
-		}
-		//清空筛选条件，把选择条件全部清空还原
-		function xs07()
-		{
-			document.getElementById("xzyq01").innerHTML="薪资要求";
-			document.getElementById("xzyq02").innerHTML="学历要求";
-			document.getElementById("xzyq03").innerHTML="工作经验";
-			document.getElementById("xzyq04").innerHTML="职位类型";
-			document.getElementById("xzyq05").innerHTML="公司性质";
-			document.getElementById("xzyq06").innerHTML="公司规模";
-			window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
-		}
-		function shenqing(id,data,mid)
-		{
-			if(data==true)
-			{	
-				$("#"+id).html("已申请");
-				$("#"+id).attr("disabled","disabled");
-				$('#'+mid).modal('hide');
 			}
-		}
-		
-	</script>
+			function sqok(userid) {
+				var eid=geteid();
+				var okid=getokid();
+				var url ="<%=request.getContextPath()%>/users/index.do?method=sq";
+				$.post(url,{userid:userid,eid:eid},function(data)
+				{
+					sqzwok ();
+					$("#"+okid).attr("disabled","disabled");
+					$("#"+okid).html('已申请')
+				});
+			}
+		</script>
 	</head>
-	<body style="background-color: #F8F8F8">
-	<script type="text/javascript">
-
-	
-	</script>
-		<div class="container" style="background-image: url(<%=request.getContextPath() %>/img/004.jpg); height: 300px;width: 1518px; " >
-			<div class="row">
-			<div class="col-md-1 col-md-offset-1" style="height: 80px; width: 120px; margin: 20px 0px 0px 50px; ">
-			  	<img src="<%=request.getContextPath() %>/img/001.png" class="img-responsive" alt="Responsive image" style="width:100%;height:100%; ">
-			</div>
-			<div class="col-md-3" style="font-size: 40px; text-align: center; font-weight: bold; color: white ; margin: 30px 0px 0px 0px; ">高 校 就 业 平 台</div>
-			
-			
-			<div class="col-md-6 " style="margin:50px 0px 0px 200px ; ">
-					<div id="address" class="col-md-4 col-md-offset-4">
-					<span class="glyphicon glyphicon-map-marker" aria-hidden="true">河北</span>
-					</div>
-			</div>
-			
-			
-				<div class=" btn-group col-md-1 " style="margin: 0px 0px 0px 1300px; bottom: 70px;  ">
-				<c:set var="user" scope="session" value="${sessionScope.user}"></c:set>
-			<c:choose>
-				
-				<c:when test="${!empty user}">
-				  <button type="button" class="btn btn-success">我的</button>
-				  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    <span class="caret"></span>
-				    <span class="sr-only">Toggle Dropdown</span>
-				  </button>
-				
-				  <ul class="dropdown-menu">
-				    <li><a href="wd.html">个人信息</a></li>
-				    <br />
-				    <li><a href="#">个人中心</a></li>
-				    <br />
-				    <li><a href="<%=request.getContextPath() %>/users/logein.do?method=out">退出</a></li>
-				  </ul>
-				  </c:when>
-				 <c:otherwise>
-					  <a href="<%=request.getContextPath() %>/users/index.do?method=loginpage" style="width: 70px;font-size: 15px" type="button" class="btn btn-primary">登录</a>
-				 </c:otherwise>
-				 </c:choose>
-				 
-				</div>
-				
-			
-				
-							    				
-				<!-- 引导个人信息的填写 -->
-					<div class="modal fade" id="myModal001" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style=" margin: 250px 0px 0px 0px;">
-					  <div class="modal-dialog modal-sm" role="document">
-					    <div class="modal-content">
-					      
-					      <div class="modal-body">
-					      	 <br />
-					      	 <h4 class="modal-title" id="myModalLabel">请完善个人信息:</h4>
-					      	 <br />
-					        <h5 class="modal-title" id="myModalLabel">步骤：点击右上角我的---------->完善个人基本信息的填写</h5>
-					       	<br />
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 95px 0px 0px;">稍后填写</button>
-					        <a class="btn btn-primary" ">立即填写</a>
-					      </div>
-					    </div>
+	<!--
+    	作者：1977455153@qq.com
+    	时间：2022-01-24
+    	描述：导航栏
+    -->
+    <c:set var="user" scope="session" value="${sessionScope.user}"></c:set>
+	<nav id="top" class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	    	 <button id="button-top" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+	      <a class="navbar-brand" href="#">
+	      	<div id="lg-top-padding">
+	      		
+	      	</div>
+	        <img id="loge" class="img-responsive" alt="Responsive image" src="<%=request.getContextPath() %>/img/001.png">
+	      </a>
+	      <p class="navbar-text"><strong>高校就业平台</strong></p>
+	    </div>
+	     <div class="collapse navbar-collapse " id="top-text">
+	     	 <ul class="nav visible-lg-block navbar-nav navbar-right">
+	     	 <c:choose>
+	     	 	<c:when test="${!empty user}">
+		        <li id="address"><span class="glyphicon glyphicon-map-marker" aria-hidden="true">保定<a href="#">[切换城市]</a></span></li>
+		        <li class="dropdown" id="mine">
+		          <a style="color: white; width: 159px; font-size: 16px;background-color:#011536;" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li class="text-center"><a href="#">个人信息</a></li>
+		            <li class="text-center"><a href="#">个人中心</a></li>
+		            <li class="text-center"><a href="#">退出</a></li>
+		          </ul>
+		        </li>
+		        </c:when>
+		        
+                <c:otherwise>
+                <!--
+                	作者：1977455153@qq.com
+                	时间：2022-01-24
+                	描述：未登录
+                -->
+		        <li id="mine">
+		          <a href="<%=request.getContextPath() %>/users/index.do?method=loginpage" style="color: white; width: 159px; font-size: 16px;background-color:#011536;" class="text-center">登录</a>
+		        </li>
+		        </c:otherwise>
+		       </c:choose>
+		      </ul>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    	<c:choose>
+	    	<c:when test="${!empty user}">
+	     	 <ul class="nav visible-xs-block navbar-nav">
+		        <li><a href="#"style="color: white;">切换城市</a>	</li>
+	            <li><a class="top-text" href="#" style="color: white;">个人信息</a></li>
+	            <li><a class="top-text" href="#" style="color: white;">个人中心</a></li>
+	            <li><a class="top-text" href="#" style="color: white;">上传简历</a></li>
+	            <li><a class="top-text" href="#" style="color: white;">历史简历</a></li>
+	            <li><a class="top-text" href="#" style="color: white;">我的收藏</a></li>
+	            <li><a class="top-text" href="#" style="color: white;">申请记录</a></li>
+	            <li><a class="top-text" href="#" style="color: white;">退出</a></li>
+		      </ul>
+		      </c:when>
+		      <c:otherwise>
+		      <ul class="nav visible-xs-block navbar-nav">
+		      <li><a class="top-text" href="<%=request.getContextPath() %>/users/index.do?method=loginpage" style="color: white;">登录</a></li>
+		        <li><a href="#"style="color: white;">切换城市</a></li>
+		      </ul>
+		      </c:otherwise>
+			</c:choose>
+	    </div>
+	    
+	  </div>
+	</nav>
+	<body>
+		<div class="container-fluid">
+		  <div class="row">
+		  	<div class="col-lg-8 col-xs-12  col-lg-offset-1">
+		  		<!--
+                  	作者：1977455153@qq.com
+                  	时间：2022-01-24
+                  	描述：搜索表单
+                  -->
+                <div class="row">
+                	<div class="col-lg-12 col-xs-12">
+                		<form class="form" id="mqueryform" action="ss" method="post">
+				  			<div class="form-group">
+						  		<div class="input-group input-group-lg">
+							      <div class="input-group-btn">
+							        <button type="button" class="btn btn-default dropdown-toggle" name="select" value="职位" id="select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">职位<span class="caret"></span></button>
+							        <ul class="dropdown-menu">
+							          <li id="select-li"><a onclick="selectqh('公司')">公司</a></li>
+							        </ul>
+							      </div><!-- /btn-group -->
+							       <input type="text" class="form-control" aria-label="...">
+							        <span class="input-group-btn">
+							        <button type="submit" class="btn btn-primary btn-lg" type="button" id="query-btn">
+							        	<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
+							        </button>
+							      </span>
+						  		</div>
+					  		</div>
+		  				</form>
+                	</div>
+                </div>
+                <c:set var="tj" scope="request" value="${requestScope.tj}"></c:set>
+                <div class="row">
+                	<div class="col-lg-12 visible-lg-block">
+                		<table border="0"cellspacing="0" cellpadding="0">
+                			<tr>
+                				<td>
+			                		<div class="btn-group">
+									  <button id="xxz" type="button" class="btn btn-default dropdown-toggle btn-nobor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${empty tj?"薪资要求":tj.xxz } <span class="caret"></span>
+									  </button>
+									  <ul class="dropdown-menu">
+									    <li><a class="sx-lg-text" onclick="mquerya('#xxz','3k以下')">3k以下</a></li>
+									    <li><a class="sx-lg-text" onclick="mquerya('#xxz','3k-5k')">3k-5k</a></li>
+									    <li><a class="sx-lg-text" onclick="mquerya('#xxz','5k-10k')">5k-10k</a></li>
+									    <li><a class="sx-lg-text" onclick="mquerya('#xxz','10k-20k')">10k-20k</a></li>
+									    <li><a class="sx-lg-text" onclick="mquerya('#xxz','40k-60')">40k-60k</a></li>
+									    <li><a class="sx-lg-text" onclick="mquerya('#xxz','60k以上')">60k以上</a></li>
+									    <li><a class="sx-lg-text" onclick="mquerya('#xxz','')">不限</a></li>
+									  </ul>
+				                	</div>
+                				</td>
+                				<td style="padding-left: 18px;">
+                					<div class="col-lg-1">
+				                		<div class="btn-group">
+										  <button type="button" id="xl" class="btn btn-default dropdown-toggle btn-nobor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${empty tj?"学历要求":tj.xl }<span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li><a class="sx-lg-text" onclick="mquerya('#xl','初中及以下')">初中及以下</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xl','高中')">高中</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xl','大专')">大专</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xl','本科')">本科</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xl','硕士')">硕士</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xl','博士')">博士</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xl','MBA/EMBA')">MBA/EMBA</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xl','')">不限</a></li>
+										  </ul>
+										</div>
+				                	</div>
+                				</td>
+                				<td>
+                					<div class="col-lg-1">
+				                		<div class="btn-group">
+										  <button type="button" id="jy" class="btn btn-default dropdown-toggle btn-nobor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${empty tj?"工作经验":tj.jy }<span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li><a class="sx-lg-text" onclick="mquerya('#jy','应届生')">应届生</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#jy','实习生')">实习生</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#jy','1年以内')">1年以内</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#jy','1-3年')">1-3年</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#jy','3-5年')">3-5年</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#jy','5-10年')">5-10年</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#jy','10年以上')">10年以上</a></li>
+											<li><a class="sx-lg-text" onclick="mquerya('#jy','')">不限</a></li>
+										  </ul>
+										</div>
+				                	</div>
+                				</td>
+                				<td>
+                					<div class="col-lg-1">
+				                		<div class="btn-group">
+										  <button type="button" id="zw" class="btn btn-default dropdown-toggle btn-nobor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${empty tj?"职位类型":tj.zw }<span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','JAVA')">JAVA</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','Python')">Python</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','PHP')">PHP</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','UED')">UED</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','AI')">AI</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','前端')">前端</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','运维')">运维</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','产品设计')">产品设计</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','其他')">其他</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#zw','')">不限</a></li>
+										  </ul>
+										</div>
+				                	</div>
+                				</td>
+                				<td>
+                					<div class="col-lg-1">
+				                		<div class="btn-group">
+										  <button type="button" id="xz" class="btn btn-default dropdown-toggle btn-nobor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${empty tj?"公司性质":tj.xz } <span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li><a class="sx-lg-text" onclick="mquerya('#xz','国有企业')">国有企业</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xz','民营企业')">民营企业</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xz','外资企业')">外资企业</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xz','合伙企业')">合伙企业</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xz','有限责任公司')">有限责任公司</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xz','股份有限公司')">股份有限公司</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#xz','')">不限</a></li>
+										  </ul>
+										</div>
+				                	</div>
+                				</td>
+                				<td>
+                					<div class="col-lg-1">
+				                		<div class="btn-group">
+										  <button type="button" id="gm" class="btn btn-default dropdown-toggle btn-nobor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${empty tj?"公司规模":tj.gm } <span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li><a class="sx-lg-text" onclick="mquerya('#gm','20人以下')">20人以下</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#gm','20-99人')">20-99人</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#gm','100-299人')">100-299人</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#gm','500-999人')">500-999人</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#gm','1000-9999人')">1000-9999人</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#gm','万人以上')">万人以上</a></li>
+										    <li><a class="sx-lg-text" onclick="mquerya('#gm','')">不限</a></li>
+										  </ul>
+										</div>
+				                	</div>
+                				</td>
+                				<td>
+                					
+                				</td>
+                				<td>
+                					<div class="col-lg-1">
+                						<a href="<%=request.getContextPath()%>/users/index.do?method=query" type="button" class="btn btn-default btn-nobor">清空筛选条件</a>
+				                	</div>
+                				</td>
+                			</tr>
+                		</table>
+                	</div>
+                	<div class="col-xs-12 visible-xs-block">
+                		<div  style="border: 1px solid #C0C0C0;">
+	                		<table>
+	                			<tr>
+	                				<td>
+				                		<div class="btn-group">
+										  <button type="button" class="btn btn-default dropdown-toggle btn-nobor-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">薪资<span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li class="${tj.xxz=='3k以下'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xxz','3k以下')">3k以下</a></li>
+										    <li class="${tj.xxz=='3k-5k'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xxz','3k-5k')">3k-5k</a></li>
+										    <li class="${tj.xxz=='5k-10k'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xxz','5k-10k')">5k-10k</a></li>
+										    <li class="${tj.xxz=='10k-20k'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xxz','10k-20k')">10k-20k</a></li>
+										    <li class="${tj.xxz=='40k-60k'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xxz','40k-60k')">40k-60k</a></li>
+										    <li class="${tj.xxz=='60k以上'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xxz','60k以上')">60k以上</a></li>
+										    <li class="${tj.xxz=='不限'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xxz','')">不限</a></li>
+										  </ul>
+					                	</div>
+	                				</td>
+	                				<td>
+				                		<div class="btn-group">
+										  <button type="button" class="btn btn-default dropdown-toggle btn-nobor-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">学历<span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li class="${tj.xl=='初中及以下'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xl','初中及以下')">初中及以下</a></li>
+										    <li class="${tj.xl=='高中'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xl','高中')">高中</a></li>
+										    <li class="${tj.xl=='大专'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xl','大专')">大专</a></li>
+										    <li class="${tj.xl=='本科'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xl','本科')">本科</a></li>
+										    <li class="${tj.xl=='硕士'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xl','硕士')">硕士</a></li>
+										    <li class="${tj.xl=='博士'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xl','博士')">博士</a></li>
+										    <li class="${tj.xl=='MBA/EMBA'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xl','MBA/EMBA')">MBA/EMBA</a></li>
+										    <li class="${tj.xl=='不限'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#xl','')">不限</a></li>
+										  </ul>
+										</div>
+	                				</td>
+	                				<td>
+				                		<div class="btn-group">
+										  <button type="button" class="btn btn-default dropdown-toggle btn-nobor-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">工作<span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li class="${tj.jy=='应届生'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#jy','应届生')">应届生</a></li>
+										    <li class="${tj.jy=='实习生'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#jy','实习生')">实习生</a></li>
+										    <li class="${tj.jy=='1年以内'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#jy','1年以内')">1年以内</a></li>
+										    <li class="${tj.jy=='1-3年'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#jy','1-3年')">1-3年</a></li>
+										    <li class="${tj.jy=='3-5年'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#jy','3-5年')">3-5年</a></li>
+										    <li class="${tj.jy=='5-10年'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#jy','5-10年')">5-10年</a></li>
+										    <li class="${tj.jy=='10年以上'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#jy','10年以上')">10年以上</a></li>
+											<li class="${tj.jy=='不限'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#jy','')">不限</a></li>
+										  </ul>
+										</div>
+	                				</td>
+	                				<td>
+				                		<div class="btn-group">
+										  <button type="button" class="btn btn-default dropdown-toggle btn-nobor-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">职位<span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li class="${tj.zw=='JAVA'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','JAVA')">JAVA</a></li>
+										    <li class="${tj.zw=='Python'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','Python')">Python</a></li>
+										    <li class="${tj.zw=='PHP'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','PHP')">PHP</a></li>
+										    <li class="${tj.zw=='UED'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','UED')">UED</a></li>
+										    <li class="${tj.zw=='AI'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','AI')">AI</a></li>
+										    <li class="${tj.zw=='前端'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','前端')">前端</a></li>
+										    <li class="${tj.zw=='运维'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','运维')">运维</a></li>
+										    <li class="${tj.zw=='产品设计'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','产品设计')">产品设计</a></li>
+										    <li class="${tj.zw=='其他'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','其他')">其他</a></li>
+										    <li class="${tj.zw=='不限'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#zw','')">不限</a></li>
+										  </ul>
+										</div>
+	                				</td>
+	                				<td>
+				                		<div class="btn-group">
+										  <button type="button" class="btn btn-default dropdown-toggle btn-nobor-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">规模<span class="caret"></span>
+										  </button>
+										  <ul class="dropdown-menu">
+										    <li class="${tj.gm=='20人以下'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#gm','20人以下')">20人以下</a></li>
+										    <li class="${tj.gm=='20-99人'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#gm','20-99人')">20-99人</a></li>
+										    <li class="${tj.gm=='100-299人'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#gm','100-299人')">100-299人</a></li>
+										    <li class="${tj.gm=='500-999人'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#gm','500-999人')">500-999人</a></li>
+										    <li class="${tj.gm=='1000-9999人'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#gm','1000-9999人')">1000-9999人</a></li>
+										    <li class="${tj.gm=='万人以上'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#gm','万人以上')">万人以上</a></li>
+										    <li class="${tj.gm=='不限'?'disabled':'' }"><a class="sx-xs-text" onclick="mquerya('#gm','')">不限</a></li>
+										  </ul>
+										</div>
+	                				</td>
+	                				<td>
+	                					
+	                				</td>
+	                				<td>
+	            						<a href="<%=request.getContextPath()%>/users/index.do?method=query" type="button" class="btn btn-default btn-nobor-xs">清空</a>
+	                				</td>
+	                			</tr>
+	                		</table>
+	                	</div>
+                	</div>
+                </div>
+               <c:forEach var="map" items="${list}" varStatus="i">
+               <div class="row">
+               	<div class="col-lg-12 col-xs-12">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+					  	<!--
+                          	作者：1977455153@qq.com
+                          	时间：2022-01-26
+                          	描述：数据第一行
+                          -->
+					  	<div class="row">
+					  		<div class="col-lg-5 col-xs-6">
+					  			<div class="col-lg-6 visible-lg-block">
+					  				<h4>${map.employment_name}</h4>
+					  			</div>
+					  			<h4 class="visible-xs-block">${map.employment_name}</h4>
+					  			<div class="col-lg-6 visible-lg-block">
+					  				<h4><small>
+					  				 ${fn:substring(map.subtime,fn:indexOf(map.subtime,"-")+1, -1)}发布  
+					  				</small></h4>
+					  			</div>
+					  			
+					  		</div>
+					  		<div class="col-lg-3 col-xs-6 col-lg-push-1 col-xs-push-1 pull-right" >
+						  			<div class="col-lg-9 col-lg-pull-3 visible-lg-block">
+						  				<h4 class="gsname text-right"><small>${map.gsname}</small></h4>
+						  			</div>
+						  			<div class="col-xs-12">
+						  				<h5 class="visible-xs-block gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12"?fn:split(map.salary, ".")[0]:map.salary}${fn:split(map.salary, ".")[1]=="12"?"":"薪"}</h5>
+						  			</div>
+					  		</div>
+					  	</div>
+					  	<!--
+                          	作者：1977455153@qq.com
+                          	时间：2022-01-26
+                          	描述：数据第二行
+                          -->
+					  	<div class="row">
+					  		<div class="col-lg-12 visible-lg-block">
+					  			<div class="col-lg-2">
+					  				<h4 class="gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12"?fn:split(map.salary, ".")[0]:map.salary}${fn:split(map.salary, ".")[1]=="12"?"":"薪"}</h4>
+					  			</div>
+					  			<div class="col-lg-2">
+					  				<h4 class="gsname">${map.address}</h4>
+					  			</div>
+					  			<div class="col-lg-3">
+					  				<div class="col-lg-4 gsname">
+					  					<h5>|${map.experience}</h5>
+					  					
+					  				</div>
+					  				<div class="col-lg-5 gsname">
+					  					<h5>${map.education}</h5>
+					  				</div>
+					  			</div>
+					  		</div>
+					  		<div class="col-xs-12 visible-xs-block">
+					  			<div class="col-xs-3" style="padding-left: 0px;">
+					  				<h5 class="gsname">${map.address}</h5>
+					  			</div>
+					  			<div class="col-xs-6">
+					  				<h5 class="gsname">${map.gsname}</h5>
+					  			</div>
+					  		</div>
+					  	</div>
+					  	<!--
+                          	作者：1977455153@qq.com
+                          	时间：2022-01-28
+                          	描述：数据第三行
+                          -->
+					  	<div class="row visible-lg-block">
+					  		<div class="col-lg-7" style="padding-top: 10px;">
+					  			<c:forTokens items="${map.welfare}" delims="#" var="name">
+					  			<span class="label label-default">${name}</span>
+					  			</c:forTokens>
+					  		</div>
+					  		<div class="col-lg-5">
+					  		<c:choose>
+					  			<c:when test="${map.Collectionstate==1&&!empty user}">
+					  			
+					  			<div class="col-lg-6 col-lg-push-2 col-lg-offset-1">
+					  				<a onclick="scok('sc-lg-img${i.count}','sc-lg-text${i.count}',1,'${user.UUID}','${map.eid}')">
+						  				<div class="col-lg-4">
+						  					<img id="sc-lg-img${i.count}" src="<%=request.getContextPath() %>/img/sc-s.png" class="img-responsive"/>
+						  				</div>
+						  				<div class="col-lg-8 col-lg-pull-2">
+						  					<p id="sc-lg-text${i.count}" class="sc-text">已收藏</p>
+						  				</div>
+					  				</a>
+					  			</div>
+					  			</c:when>
+					  			<c:otherwise>
+						  			<div class="col-lg-6 col-lg-push-2 col-lg-offset-1 " style="padding-top: 6px;">
+						  				<a onclick="scok('sc-lg-img${i.count}','sc-lg-text${i.count}',0,'${user.UUID}','${map.eid}')">
+							  				<div class="col-lg-4" >
+							  					<img id="sc-lg-img${i.count}" src="<%=request.getContextPath() %>/img/sc.png" class="img-responsive"/>
+							  				</div>
+							  				<div class="col-lg-8 col-lg-pull-2">
+							  					<p id="sc-lg-text${i.count}" class="sc-text">收藏</p>
+							  				</div>
+						  				</a>
+						  			</div>
+					  			</c:otherwise>
+					  			</c:choose>
+					  			<c:choose>
+					  			<c:when test="${map.applystate==1&&!empty user}">
+					  			<div class="col-lg-3">
+					  				<div class="col-lg-12">
+					  					<a type="button" class="btn btn-primary" disabled="disabled">已申请</a>
+					  				</div>
+					  			</div>
+					  			</c:when>
+					  			<c:otherwise>
+					  			<div class="col-lg-3">
+					  				<div class="col-lg-12">
+					  					<a type="button" id="sq-a${i.count}" class="btn btn-primary" onclick="sqzwtt('#sqzw','${map.gsname}','${map.employment_name}','${map.eid}','sq-a${i.count}')">申请职位</a>
+					  				</div>
+					  			</div>
+					  			</c:otherwise>
+					  			</c:choose>
+					  		</div>
+					  	</div>
+					  	<div class="row visible-xs-block">
+					  		<div class="col-xs-11">
+					  			<span class="label label-default">${map.experience}</span>
+					  			<span class="label label-default">${map.education}</span>
+					  			<c:forTokens items="${map.welfare}" delims="#" var="name">
+					  			<span class="label label-default">${name}</span>
+					  			</c:forTokens>
+					  		</div>
+					  	</div>
+					  	<!--
+                          	作者：1977455153@qq.com
+                          	时间：2022-01-28
+                          	描述：数据第四行
+                          -->
+                          <div class="row visible-xs-block" style="padding-top: 6px;">
+                          <c:choose>
+                          	<c:when test="${map.Collectionstate==1&&!empty user}">
+					  			<div class="col-xs-6" style="padding-left: 0px; padding-top: 6px;">
+					  				<a onclick="scok('sc-xs-img${i.count}','sc-xs-text${i.count}',1,'${user.UUID}','${map.eid}')">
+ 						  				<div class="col-xs-4">
+						  					<img id="sc-xs-img${i.count}" src="<%=request.getContextPath() %>/img/sc-s.png" class="img-responsive"/>
+						  				</div>
+						  				<div class="col-xs-8 col-xs-pull-2">
+						  					<p id="sc-xs-img${i.count}" class="sc-text${i.count}">已收藏</p>
+						  				</div>
+					  				</a>
+					  			</div>
+					  		</c:when>
+					  		<c:otherwise>
+						  		<div class="col-xs-6" style="padding-left: 0px; padding-top: 6px;">
+						  				<a onclick="scok('sc-xs-img${i.count}','sc-xs-text${i.count}',0,'${user.UUID}','${map.eid}')">
+							  				<div class="col-xs-4">
+							  					<img id="sc-xs-img${i.count}" src="<%=request.getContextPath() %>/img/sc.png" class="img-responsive"/>
+							  				</div>
+							  				<div class="col-xs-8 col-xs-pull-2">
+							  					<p id="sc-xs-text${i.count}" class="sc-text${i.count}">收藏</p>
+							  				</div>
+						  				</a>
+						  			</div>
+					  		</c:otherwise>
+					  		</c:choose>
+                          	<div class="col-xs-3 col-xs-push-2">
+					  				<a type="button" id="sq-xs-a${i.count}" class="btn btn-primary" onclick="sqzwtt('#sqzw','${map.gsname}','${map.employment_name}','${map.eid}','sq-xs-a${i.count}')">申请职位</a>
+					  			</div>
+					  			<div class="col-xs-3 hidden">
+					  				<a type="button" class="btn btn-primary" disabled="disabled">已申请</a>
+					  			</div>
+                          	
+                          </div>
+					  	
 					  </div>
-					</div>
-			
-			
-			
-			
-			<div  style="  height: 80px ; width: 1000px; margin: 210px 0px 0px  230px; font-size: 40px; font: '宋体'; ">
-				
-					<form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath() %>/users/index.do?method=mquery&type=1" method="post">
-						
-					  <div class="form-group" >
-					  
-					  	<select class="form-control" name="select">
-	          					<option value="全文">全文</option>
-	          					<option value="公司">公司</option>
-	          			</select>
-						<div class="input-group" >		        
-						    <input type="text" name="text" class="form-control" placeholder="请输入关键字" style="height: 40px; width: 538px; ">
-						  	<span class="input-group-btn">
-					        	<button class="btn btn-default" type="button" style="height: 40px;">河北</button>
-					      	</span>
-				      	</div>
-					  </div>
-					  <button type="submit" class="btn btn-default" style=" background-color: #E38D13; color: white; ">&nbsp;&nbsp;&nbsp;&nbsp;搜 索&nbsp;&nbsp;&nbsp;&nbsp;</button>
-					</form>
-				
-			</div>
-			
-			<div class="col-md-3" onclick="login()" style="border:2px solid #E5E5E5;  height: 160px; width: 180px;  bottom:150px; left: 1070px;">
-				
-				<div class=" " style="margin: 0px 0px 0px 140px;">
-					<img src="<%=request.getContextPath() %>/img/006.png" alt="..." class="img-rounded" style=" height: 15px; width: 15px; ">
+					</div>	               		
+               	</div>
+               </div>
+               </c:forEach>
+               
+		  		
+		  	</div>
+		  	<div class="col-lg-2 visible-lg-block">
+		  		<!--
+                  	作者：1977455153@qq.com
+                  	时间：2022-01-24
+                  	描述：我的简历
+                  -->
+		  		<div class="row">
+		  			<div class="col-lg-12">
+				  		<div class="panel panel-default">
+				  		<c:choose>
+				  			<c:when test="${!empty user}">
+						  <div class="panel-body">
+						    <div id="userimg" class="row">
+						    	<div class="col-lg-5 col-lg-offset-1">
+						    		<img src="<%= request.getContextPath()%>/img/usertx.png" class="img-responsive" alt="Responsive image">
+						    	</div>
+						    	<div class="col-lg-6 col-lg-pull-2">
+						    		<h4>我的简历</h4>
+						    	</div>
+						    </div>
+						    <div class="row">
+						    	<br />
+						    	<div class="col-lg-6">
+						    		<a type="button" class="btn btn-primary">上传简历</a>
+						    	</div>
+						    	<div class="col-lg-6">
+						    		<a type="button" class="btn btn-primary">历史简历</a>
+						    	</div>
+						    </div>
+						    <div class="row">
+						    	<div class="col-lg-6 text-center">
+						    		<h3 class="user-text-h3" id="sc-count">${sessionScope.sc}</h3>
+						    		<a href="#"><p>我的收藏</p></a>
+						    	</div>
+						    	<div class="col-lg-6 text-center">
+						    		<h3 class="user-text-h3" id="sq-count">${sessionScope.sq}</h3>
+						    		<a href="#"><p>申请记录</p></a>
+						    	</div>
+						    </div>
+						  </div>
+						  </c:when>
+						  <c:otherwise>
+						  <!--
+	                      	作者：1977455153@qq.com
+	                      	时间：2022-01-24
+	                      	描述：未登录
+	                      -->
+						  <div class="panel-body text-center">
+						    <a style="font-size: 15px;" href=""><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> 登录，解锁更多功能</a>
+						  </div>
+						  </c:otherwise>
+						  </c:choose>
+						</div>
+		  			</div>
 				</div>
-				
-				<img src="<%=request.getContextPath() %>/img/034.jpg" alt="..." class="img-circle" style=" height: 40px; width: 40px;">
-				<span style="font-size: 13px; font: arial; font-weight: 550;">我的简历</span>
-				<br />
-				
-				
-				
-
-				<table style=" border-collapse: separate; border-spacing: 6px; font: arial;">
-					<tr>
-						<td>
-							<button type="button" class="btn btn-primary btn-sm" style="background-color: #E38D13 ; color: white;">上传简历</button>
-						</td>
-						<td>
-							<button type="button" class="btn btn-default btn-sm" style="color: #E38D13;">历史简历</button>
-						</td>
-					</tr>
-					<tr align="center" style="font-size: 20px;">
-						<td>${sessionScope.sc}</td>
-						<td>${sessionScope.sq}</td>
-					</tr>
-					<tr  align="center" style="font-size: 13px; font-weight: 500;">
-						<td>我的收藏</td>
-						<td>申请记录</td>
-					</tr>
-				</table>
-				
-			</div>
-			
-			<div id="citys"  style="display:none ; margin: 0px 0px 0px 1180px; bottom: 150px;">
-				  <span>请选择省份:</span>
-				  <ul id="bigCity">
-				  	 <li><a href="#" class="city">北京</a></li>
-					 <li><a href="#" class="city">河北</a></li>
-					 <li><a href="#" class="city">上海</a></li>
-					 <li><a href="#" class="city">天津</a></li>
-				
-				  </ul>
-				  <ul id="province">
-				  	<li><a id="hb" class="province" href="#">河北</a></li>
-					<li><a id="zj" class="province" href="#">浙江</a></li>
-					 <li><a id="ah" class="province" href="#">安徽</a></li>
-					 <li><a id="sc" class="province" href="#">四川</a></li>
-					 <li><a id="gz" class="province" href="#">贵州</a></li>
-					 <li><a id="yn" class="province" href="#">云南</a></li>
-					 <li><a id="hn" class="province" href="#">湖南</a></li>
-					 <li><a id="gd" class="province" href="#">广东</a></li>
-					 <li><a id="sd" class="province" href="#">山东</a></li>
-				 
-				  </ul>
-				  <ul id="smallCity" style="display:none">
-				 <!--浙江-->
-				 <li><a class="zjCity" href="#">宁波</a></li>
-				  <li><a class="zjCity" href="#">杭州</a></li>
-				  <li><a class="zjCity" href="#">温州</a></li>
-				  <li><a class="zjCity" href="#">台州</a></li>
-				  <li><a class="zjCity" href="#">绍兴</a></li>
-				  <!--广东-->
-				  <li><a class="gdCity" href="#">广州</a></li>
-				  <li><a class="gdCity" href="#">深圳</a></li>
-				  <li><a class="gdCity" href="#">中山</a></li>
-				  <li><a class="gdCity" href="#">珠海</a></li>
-				  <li><a class="gdCity" href="#">汕头</a></li>
-				  <li><a class="gdCity" href="#">东莞</a></li>
-				  <li><a class="gdCity" href="#">梅州</a></li>
-				  <!--安徽-->
-				  <li><a class="ahCity" href="#">合肥</a></li>
-				  <li><a class="ahCity" href="#">芜湖</a></li>
-				  <li><a class="ahCity" href="#">宣城</a></li>
-				  <li><a class="ahCity" href="#">池州</a></li>
-				  <li><a class="ahCity" href="#">六安</a></li>
-				  <!--四川-->
-				  <li><a class="scCity" href="#">成都</a></li>
-				  <li><a class="scCity" href="#">雅安</a></li>
-				  <li><a class="scCity" href="#">广安</a></li>
-				  <!--贵州-->
-				  <li><a class="gzCity" href="#">贵阳</a></li>
-				  <li><a class="gzCity" href="#">遵义</a></li>
-				  <!--云南-->
-				  <li><a class="ynCity" href="#">昆明</a></li>
-				  <li><a class="ynCity" href="#">丽江</a></li>
-				  <!--湖南-->
-				  <li><a class="hnCity" href="#">长沙</a></li>
-				  <li><a class="hnCity" href="#">株洲</a></li>
-				  <li><a class="hnCity" href="#">常德</a></li>
-				  <!--山东-->
-				  <li><a class="sdCity" href="#">济南</a></li>
-				  <li><a class="sdCity" href="#">青岛</a></li>
-				  <!--河北-->
-				  <li><a class="hbCity" href="#">石家庄</a></li>
-				  <li><a class="hbCity" href="#">保定</a></li>
-				  <li><a class="hbCity" href="#">秦皇岛</a></li>
-				  <li><a class="hbCity" href="#">邢台</a></li>
-				  <li><a class="hbCity" href="#">唐山</a></li>
-				  <li><a class="hbCity" href="#">邯郸</a></li>
-				  <li><a class="hbCity" href="#">张家口</a></li>
-				  <li><a class="hbCity" href="#">承德</a></li>
-				  <li><a class="hbCity" href="#">沧州</a></li>
-				  <li><a class="hbCity" href="#">廊坊</a></li>
-				  <li><a class="hbCity" href="#">衡水</a></li>
-				  </ul>
-				  <p id="cancel">×</p>
-				</div>
-			
-			
-			</div>
+				<!--
+                	作者：1977455153@qq.com
+                	时间：2022-01-28
+                	描述：热门推荐
+                -->
+               	<div class="row visible-lg-block">
+               		<div class="col-lg-12">
+               			<h5>热门职业</h5>
+               			<table class="table">
+               				<tr>
+               					<td>
+               						<div class="row">
+               							<div class="col-lg-6 visible-lg-block">
+					  					<h6 class="yc">Java开发工程师</h6>
+							  			</div>
+							  			<div class="col-lg-6 visible-lg-block">
+							  				<h6><small>01-02发布</small></h6>
+							  			</div>
+               						</div>
+               						<div class="row">
+               							<div class="col-lg-8 col-lg-push-5">
+               								<h6 class="gsname">北京京云万峰信息技术有限公司</h6>
+               							</div>
+               						</div>
+               						<div class="row">
+               							<div class="col-lg-6">
+               								<h6 class="gsname" style="color: red;">1.5万-3万.13薪</h6>
+               							</div>
+               							<div class="col-lg-5">
+               								<h6 class="yc">北京.海淀区</h6>
+               							</div>
+               						</div>
+               					</td>
+               				</tr>
+               				<tr>
+               					<td>
+               						<div class="row">
+               							<div class="col-lg-6 visible-lg-block">
+					  					<h6 class="yc">Java开发工程师</h6>
+							  			</div>
+							  			<div class="col-lg-6 visible-lg-block">
+							  				<h6><small>01-02发布</small></h6>
+							  			</div>
+               						</div>
+               						<div class="row">
+               							<div class="col-lg-8 col-lg-push-5">
+               								<h6 class="gsname">北京京云万峰信息技术有限公司</h6>
+               							</div>
+               						</div>
+               						<div class="row">
+               							<div class="col-lg-6">
+               								<h6 class="gsname" style="color: red;">1.5万-3万.13薪</h6>
+               							</div>
+               							<div class="col-lg-5">
+               								<h6 class="yc">北京.海淀区</h6>
+               							</div>
+               						</div>
+               					</td>
+               				</tr>
+               				<tr>
+               					<td>
+               						<div class="row">
+               							<div class="col-lg-6 visible-lg-block">
+					  					<h6 class="yc">Java开发工程师</h6>
+							  			</div>
+							  			<div class="col-lg-6 visible-lg-block">
+							  				<h6><small>01-02发布</small></h6>
+							  			</div>
+               						</div>
+               						<div class="row">
+               							<div class="col-lg-8 col-lg-push-5">
+               								<h6 class="gsname">北京京云万峰信息技术有限公司</h6>
+               							</div>
+               						</div>
+               						<div class="row">
+               							<div class="col-lg-6">
+               								<h6 class="gsname" style="color: red;">1.5万-3万.13薪</h6>
+               							</div>
+               							<div class="col-lg-5">
+               								<h6 class="yc">北京.海淀区</h6>
+               							</div>
+               						</div>
+               					</td>
+               				</tr>
+               			</table>
+               		</div>
+               	</div>
+		  	</div>
+		  </div>
+		  
 		</div>
-		
-		
-		
-		<div class="container-fluid" style=" box-shadow:0 0 0px 0px #c3c3c3;   align-content: center; width: 1150px; ">
-		  	<div class="row" >
-		  		<c:set var="tj" scope="request" value="${requestScope.tj}"></c:set>
-		  		<div class="table-responsive col-md-12">
-		  		<form action="<%=request.getContextPath() %>/logein.do?method=loge" method="post">
-				  <table style="font-family: arial;" border="0">
-				    	<thead  class="active"  style="font-size: 15PX;">
-				    		
-				    		<th>
-				    		<div class="btn-group btn-group-justified" role="group" aria-label="...">
-				    			
-							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default btn-lg" id="xzyq01" onclick="xs01()">${empty tj?"薪资要求":tj.xxz }</button>
-							  </div>
-							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default btn-lg" id="xzyq02" onclick="xs02()">${empty tj?"学历要求":tj.xl }</button>
-							  </div>
-							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default btn-lg" id="xzyq03" onclick="xs03()">${empty tj?"工作经验":tj.jy }</button>
-							  </div>
-							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default btn-lg" id="xzyq04" onclick="xs04()">${empty tj?"职位类型":tj.zw }</button>
-							  </div>
-							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default btn-lg" id="xzyq05" onclick="xs05()">${empty tj?"公司性质":tj.xz }</button>
-							  </div>
-							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default btn-lg" id="xzyq06" onclick="xs06()">${empty tj?"公司规模":tj.gm }</button>
-							  </div>
-							  <div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default btn-lg" onclick="xs07()">清空筛选条件</button>
-							  </div>
-							  
-							</div>
-							</th>
-							
-				    	</thead>
-				    	
-				    	<tbody style="font-family: arial;" align="center">
-				    		
-				    		<tr>
-				    			<td colspan="7">
-					    			<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="xzyq">
-					    			
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gxnr01('3K以下')">3K以下</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gxnr01('3K-5K')">3K-5K</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gxnr01('5K-10K')">5K-10K</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gxnr01('10K-20K')">10K-20K</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gxnr01('40-60K')">40-60K</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gxnr01('60K以上')">60K以上</button>
-									  </div>
-
-									  
-				
-									  
-									</div>
-									
-									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="xlyq">
-					    			
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="xlyq01('初中及以下')">初中及以下</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="xlyq01('高中')">高中</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="xlyq01('大专')">大专</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="xlyq01('本科')">本科</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="xlyq01('硕士')">硕士</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="xlyq01('博士')">博士</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="xlyq01('MBA/EMBA')">MBA/EMBA</button>
-									  </div>
-				
-									  
-									</div>
-									
-									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="gzjy">
-					    			
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gzjy01('应届生')">应届生</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gzjy01('实习生')">实习生</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gzjy01('1年以内')">1年以内</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gzjy01('1-3年')">1-3年</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gzjy01('3-5年')">3-5年</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gzjy01('5-10年')">5-10年</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gzjy01('10年以上')">10年以上</button>
-									  </div>
-				
-									</div>
-									
-									
-									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="zwlx">
-					    			
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('JAVA')">JAVA</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('Python')">Python</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('PHP')">PHP</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('UED')">UED</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('AI')">AI</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('前端')">前端</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('运维')">运维</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('产品设计')">产品设计</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="zwlx01('其他')">其他</button>
-									  </div>
-				
-									</div>
-									
-									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="gsxz">
-					    			
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsxz01('国有企业')">国有企业</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsxz01('民营企业')">民营企业</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsxz01('外资企业')">外资企业</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsxz01('合伙企业')">合伙企业</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsxz01('有限责任公司')">有限责任公司</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsxz01('股份有限公司')">股份有限公司</button>
-									  </div>
-				
-									</div>
-									
-									<div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: none " id="gsgm">
-					    			
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsgm01('20人以下')">20人以下</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsgm01('20-99人')">20-99人</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsgm01('100-299人')">100-299人</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsgm01('500-999人')">500-999人</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsgm01('1000-9999人')">1000-9999人</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsgm01('万人以上')">万人以上</button>
-									  </div>
-									  <div class="btn-group" role="group">
-									    <button type="button" class="btn btn-default btn-lg" onclick="gsgm01('不限')">不限</button>
-									  </div>
-									  
-									</div>
-									
-									<br />
-								</td>
-				    		</tr>
-				    		
-				 			<c:set value="1" var="i"></c:set>
-				    		<c:forEach var="map" items="${requestScope.list}">
-				    		<tr onclick="login()">
-				    			<td colspan="7">
-				    			<div class="panel panel-info" style=" width: 1116px; height: 160px;">
-						    		<div class="panel-body">
-						    		<div class="row row-no-gutters">
-						    		<div class="col-xs-12 col-md-10 col-md-offset-1">
-				    				<a href="fym.html" style="color: black;">
-						    			
-						    			<div class="row" style="white-space: nowrap;">
-							    			<span class="pull-left"  style="font-size: 25px; font-weight: bold;">${map.employment_name}</span>
-							    			<span class="pull-right"  style="text-overflow: ellipsis;" >${map.gsname}</span>
-						    			</div>
-						    			
-						    			
-						    			<div class="row">
-						    				<div class="pull-left">
-							    			<span  style="font-size: 24px; color: red; ">${map.salary}</span>
-							    			<span style="margin: 0px 0px 0px 50px;">${map.address}</span>
-							    			<span style="margin: 0px 0px 0px 0px; ">| ${map.experience} ${map.education}</span>
-							    			</div>
-						    			</div>
-									    <br />		
-						    			</a>
-						    		</div>
-						    		</div>
-						    			
-						    			<div class="row">
-						    			<div class="col-md-4 col-md-offset-1" style=" padding: 0px 0px 0px 0px;">
-						    				<div class="pull-left" style="padding: 0px 0px 0px 0px;">
-											 <c:forTokens items="${map.welfare}" delims="#" var="name">
-											<span class="label label-info">${name}</span>
-						    				</c:forTokens>
-						    				</div>
-						    			</div>
-						    			
-						    				<div class="col-md-4 col-md-offset-3" style="" >
-							    				<c:choose>
-						    					<c:when test="${empty user}">
-						    					<a>
-						    					<div class="col-md-7 ">
-						    						
-							    					<img src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span style="font-size: 16px; font: arial;">收藏&nbsp;&nbsp;</span>
-												</div>
-												</a>
-												<button type="button" class="btn btn-primary" onclick="login()">申 请 职 位</button>
-												</c:when>
-												<c:otherwise>
-												<c:if test="${map.Collectionstate==1}">
-												<a href=""  onclick="qsc('${map.UUID}','${map.eid}')">
-												<div class="col-md-7 "  >
-							    					<img  id="shoucang" src="<%=request.getContextPath() %>/img/收藏-已收藏.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span id="shoucang01" style="font-size: 16px; font: arial; ">已收藏&nbsp;&nbsp;</span>
-												</div>
-												</a>
-												</c:if>
-												<c:if test="${map.Collectionstate==0}">
-												<a href=""  onclick="sc('${map.UUID}','${map.eid}')">
-												<div class="col-md-7 ">
-							    					<img id="shoucang" src="<%=request.getContextPath() %>/img/005.png" alt="..." class="..." style=" height: 35px; width: 38px;">
-													<span id="shoucang01" style="font-size: 16px; font: arial;">收藏&nbsp;&nbsp;</span>
-												</div>
-												</a>
-												</c:if>
-												<c:if test="${map.applystate==1}">
-												
-												<button id="sq${i}" disabled="disabled" type="button" class="btn btn-primary">已申请</button>
-												</c:if>
-												<c:if test="${map.applystate==0}">
-												<button type="button" id="sq${i}" class="btn btn-primary"  data-toggle="modal" data-target="#myModa${i}">申 请 职 位</button>
-												</c:if>
-												</c:otherwise>
-												</c:choose>
-							    				
-							    				
-							    				<!-- Modal模态框 -->
-													<div class="modal fade" id="myModa${i}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-													  <div class="modal-dialog" role="document">
-													    <div class="modal-content">
-													      <div class="modal-header">
-													        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        <h4 class="modal-title" id="myModalLabel">您所要申请的是${map.gsname}</h4>
-													        <h5 class="modal-title" id="myModalLabel">${map.employment_name}</h5>
-													      </div>
-													      <div class="modal-body">
-													        <img src="<%=request.getContextPath() %>/img/008.jpg" alt="..." class="img-thumbnail">
-													      </div>
-													      <div class="modal-footer">
-													        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 430px 0px 0px;">再想想</button>
-													        <button type="button"  onclick="sq('${map.UUID}','${map.eid}','sq${i}','myModa${i}')" class="btn btn-primary" data-toggle="modal" data-target="#myModal${i}">确 定</button>
-													        
-													      </div>
-													    </div>
-													  </div>
-													</div>
-													
-													<!-- Small modal -->
-													<div class="modal fade" id="myModal${i}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-													  <div class="modal-dialog" role="document">
-													    <div class="modal-content">
-													      <div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-														        <h4 class="modal-title" id="myModalLabel">您所要申请的是${map.gsname}</h4>
-														        <h5 class="modal-title" id="myModalLabel">${map.employment_name}</h5>
-														      </div>
-														      <div class="modal-body">
-														      	<h4 class="modal-title" id="myModalLabel">上传简历成功</h4>
-														      </div>
-														      <div class="modal-footer" align="center">
-														        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" style="margin: 0px 250px 0px 0px;">确定</button>
-														        
-														      </div>
-															</div>
-													    	</div>
-													  </div>
-													
-												</div>	
-							    			</div>
-							    			
-						    			</div>
-					    		</div>
-					    		</td>
-					    	</tr>
-					    	<c:set var="i" value="${i+1}"></c:set>
-					    	</c:forEach>
-				    	</tbody>
-				    	
-				    	
-				  </table>
-				  </form>
-
-				  
-				
-		  	
-			</div>
-		</div>
-		<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style=" margin: 250px 0px 0px 0px;">
+		<!--
+        	作者：1977455153@qq.com
+        	时间：2022-01-28
+        	描述：登录模态框
+        -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="logeink" style="margin-top: 250px;">
 		  <div class="modal-dialog modal-sm" role="document">
 		    <div class="modal-content">
-		      
-		      <div class="modal-body" align="center">
-		      	 <br />
-		      	 <br />
-		      	 <h4 class="modal-title" id="myModalLabel">请先进行登录</h4>
-		      	 <br />
-		       	<br />
+		      <div class="modal-body text-center">
+		        <h4>请先进行登录</h4>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin: 0px 95px 0px 0px;">稍后登录</button>
-		        <a class="btn btn-primary" href="<%=request.getContextPath()%>/users/index.do?method=loginpage">立即登录</a>
+		      	<div class="row">
+		      		<div class="col-lg-4 col-xs-4">
+		      		<button type="button" class="btn btn-default" data-dismiss="modal">稍后登录</button>
+			      	</div>
+			      	<div class="col-lg-8 col-xs-8">
+			      		<a href="<%=request.getContextPath() %>/users/index.do?method=loginpage" type="button" class="btn btn-primary">立即登录</a>
+			      	</div>
+		      	</div>
 		      </div>
 		    </div>
 		  </div>
 		</div>
-
+		<!--
+        	作者：1977455153@qq.com
+        	时间：2022-01-28
+        	描述：完善信息
+        -->
+		<div class="modal fade" tabindex="-1" role="dialog" id="okxx" style="margin-top: 250px;">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		    	<div class="modal-header">
+		    		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       					 <h4 class="modal-title">请完善个人信息</h4>
+		    	</div>
+		      <div class="modal-body">
+		        <p>步骤:点击"立即填写"直接跳转，或点击右上角"我的"---->"个人信息"</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<div class="row">
+		      		<div class="col-lg-4 col-xs-4">
+		      		<button type="button" class="btn btn-default" data-dismiss="modal">稍后填写</button>
+			      	</div>
+			      	<div class="col-lg-8 col-xs-8">
+			      		<a href="#" type="button" class="btn btn-primary">立即填写</a>
+			      	</div>
+		      	</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!--
+        	作者：1977455153@qq.com
+        	时间：2022-01-28
+        	描述：申请职位
+        -->
+		<div class="modal fade" tabindex="-1" role="dialog" id="sqzw" style="margin-top: 150px;">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    	<div class="modal-header text-center">
+		    		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       					 <h4 class="modal-title modal-sqzw-h4"></h4>
+       					 <h5 class="modal-title modal-sqzw-h5"></h5>
+		    	</div>
+		      <div class="modal-body" align="center">
+		      		<img src="<%=request.getContextPath() %>/img/008.jpg" class="img-responsive"/>
+		      </div>
+		      <div class="modal-footer">
+		      		<div class="col-lg-2 col-xs-2">
+		      		<button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
+			      	</div>
+			      	<div class="col-lg-10 col-xs-10">
+			      		<a type="button" class="btn btn-primary" onclick="sqok('${user.UUID}')">确&nbsp;定</a>
+			      	</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!--
+        	作者：1977455153@qq.com
+        	时间：2022-01-28
+        	描述：申请确定
+        -->
+		<div class="modal fade" tabindex="-1" role="dialog" id="sqzwok" style="margin-top: 150px;">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    	<div class="modal-header text-center">
+		    		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       					 <h4 class="modal-title modal-sqzw-h4" ></h4>
+       					 <h5 class="modal-title modal-sqzw-h5"></h5>
+		    	</div>
+		      <div class="modal-body" align="center">
+		      		<h4>上传简历成功</h4>
+		      </div>
+		      <div class="modal-footer" align="center">
+		      	<div class="row">
+		      		<div class="col-lg-7 col-xs-8">
+		      			<a type="button" class="btn btn-primary" data-dismiss="modal" style="width: 100px;">确定</a>
+		      		</div>
+		      	</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	</body>
 </html>

@@ -1,0 +1,132 @@
+			a:hover{
+				cursor:Pointer;
+			}
+			#loge{
+				width: 50px;
+				height: 45px;
+			}
+			#top{
+				height: 70px;
+				border-color: #011536;;
+				background-color: #011536;
+			}
+			#tp{
+				height: 450px;
+			}
+			.navbar-brand
+			{
+				padding-top: 13px;
+				padding-left: 80px;
+				padding-right: 0px;
+			}
+			#lg-top-padding{
+				width: 30px;
+				height: 1px;
+			}
+			.navbar-text
+			{
+				padding-top:5px;
+				font-size: 25px;
+				letter-spacing: 3px;
+				
+			}
+			.navbar-text strong
+			{
+				color: white;
+			}
+			.top-text{
+				color: white;
+			}
+			body{
+				padding-top: 80px;
+				background-color: #f6f6f8;
+			}
+			.btn-nobor{
+				border: none;
+				font-size: 15px;
+				letter-spacing: 3px;
+				background-color: #f6f6f8;
+			}
+			.btn-nobor-xs{
+				border: none;
+				font-size: 5px;
+				letter-spacing: 2px;
+				background-color: #f6f6f8;
+			}
+			.sx-lg-text{
+				font-size: 15px;
+				letter-spacing: 1px;
+			}
+			.sx-xs-text{
+				font-size: 5px;
+				letter-spacing: 1px;
+			}
+			.gsname{
+				
+				text-overflow: ellipsis;/*用...代替超出部分*/
+				
+				white-space: nowrap;/*一行显示*/
+				 
+				overflow: hidden;/*超出部分隐藏*/
+				 
+				color: #777;
+				
+			}
+			.yc{
+				text-overflow: ellipsis;/*用...代替超出部分*/
+				
+				white-space: nowrap;/*一行显示*/
+				 
+				overflow: hidden;/*超出部分隐藏*/
+			}
+			.label-default{
+				background-color: white;
+				color: #777;
+				border: solid #777 1px;
+			}
+			.sc-img{
+				font-size: 30px;
+			}
+			.sc-text{
+				font-size: 18px;
+				color: #777;
+			}
+			#address{
+				padding-top: 20px;
+			}
+			#button-top{
+				margin-top: 18px;
+				border-color: #011536;
+				background-color: #011536;
+			}
+			#bs-example-navbar-collapse-1{
+				border-color: #011536;;
+				background-color: #011536;
+			}
+			#mine{
+				padding-top: 19px;
+				padding-right: 40px;
+			}
+			#top-text{
+				padding-right:30px;
+			}
+			#address{
+				margin-top: 13px;
+				font-size: 16px;
+				color: white;
+			}
+			#address a{
+				font-size: 16px;
+				color: white;
+			}
+			#query-btn{
+				letter-spacing: 2px;
+			}
+			#userimg img{
+				width: 40px;
+			}
+			p{
+				color: black;
+				font-family: "微软雅黑";
+				font-size: 16px;
+			}

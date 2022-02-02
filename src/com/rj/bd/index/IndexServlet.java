@@ -59,9 +59,11 @@ public class IndexServlet extends HttpServlet {
 		String userid = (String) request.getSession().getAttribute("userid");
 		String type = request.getParameter("type");
 		if ("1".equals(type)) {
+			System.out.println(1111);
 			String select = request.getParameter("select");
+			System.out.println(select);
 			String text = request.getParameter("text");
-			if ("全文".equals(select)) {
+			if ("职位".equals(select)) {
 				List<Map<String, Object>> list =service.mqueryByQW(text,userid);
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -75,21 +77,21 @@ public class IndexServlet extends HttpServlet {
 			}
 		}
 		else if ("2".equals(type)) {
-			String xxz = request.getParameter("xxz");
-			String xl = request.getParameter("xl");
-			String jy = request.getParameter("jy");
-			String zw = request.getParameter("zw");
-			String xz = request.getParameter("xz");
-			String gm = request.getParameter("gm");
+			String xxz = request.getParameter("xxz").trim();
+			String xl = request.getParameter("xl").trim();
+			String jy = request.getParameter("jy").trim();
+			String zw = request.getParameter("zw").trim();
+			String xz = request.getParameter("xz").trim();
+			String gm = request.getParameter("gm").trim();
 			
 			List<Map<String, Object>> list =service.mqueryBytwo(userid,xxz,xl,jy,zw,xz,gm);
 			Map<String, String> tj= new HashMap<String, String>();
-			tj.put("xxz", xxz);
-			tj.put("xl", xl);
-			tj.put("jy", jy);
-			tj.put("zw", zw);
-			tj.put("xz", xz);
-			tj.put("gm", gm);
+			tj.put("xxz", xxz==""?"不限":xxz);
+			tj.put("xl", xl==""?"不限":xl);
+			tj.put("jy", jy==""?"不限":jy);
+			tj.put("zw", zw==""?"不限":zw);
+			tj.put("xz", xz==""?"不限":xz);
+			tj.put("gm", gm==""?"不限":gm);
 			request.setAttribute("list", list);
 			request.setAttribute("tj", tj);
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
