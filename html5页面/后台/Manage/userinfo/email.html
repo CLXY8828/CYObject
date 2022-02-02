@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>身份验证</title>
+		<title></title>
 		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -55,19 +55,50 @@
 				<div class="card">
 					<div class="row h2" style="margin-left: 10%;padding-top: 2%;">
 						<span style="color: #00FFFF; font-weight: 900;">|</span>
-						<span>身份验证</span>
+						<span>邮箱绑定</span>
 					</div>
 					<div class="row h4" style="margin-left: 10%;padding-top: 2%;width: 67%;">
-						<span>为保证账号安全，只有当你提供的资料足够真实完整，才能通过身份验证</span>
+						<span>我们将通过邮箱给你发送验证码，请注意查收</span>
 					</div>
 					<div class="row" style="margin-left: 10%;padding-top: 5%;">
-						<input type="text" name="user_password" id="user_password" value="" style="width: 85%;height: 45px;border-radius: 5px;font-size: 20px;" placeholder="请输入原密码" />
+						<input type="email" name="email" id="email" value="" style="width: 85%;height: 45px;border-radius: 5px;font-size: 20px;" placeholder="请输入邮箱地址" />
 					</div>
-					<div class="row" style="margin-left: 10%;padding-top: 8%;padding-bottom: 10%;">
-						<a href="nextsteppassword.html" class="btn btn-primary" style="width: 85%;height: 45px;border-radius: 5px;font-size: 25px;">下一步</a>
+					<div class="row" style="margin-left: 10%;padding-top: 5%;">
+						<input type="text" name="verification" id="verification" onblur="checkver()" value="" style="float:left;width: 65%;height: 45px;border-radius: 5px;font-size: 20px;" placeholder="验证码" />
+						<input id="btn" type="button" style="float:left;height: 45px;width: 20%;" value="获取验证码" onclick="time(this)"/>
+					</div>
+					<div class="row" style="margin-left: 10%;padding-top: 5%;padding-bottom: 10%;">
+						<button id="next" onclick="nextstep()" href="selfinfo.html" class="btn btn-primary" style="width: 85%;height: 45px;border-radius: 5px;font-size: 25px;" disabled="disabled">下一步</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript">
+		var wait=60;
+		function time(o) {
+			if (wait == 0) {
+				o.removeAttribute("disabled");
+				o.value="重新获取验证码";
+				wait = 60;
+			} else {
+				o.setAttribute("disabled", true);
+				o.value="重新发送(" + wait + ")";
+				wait--;
+				setTimeout(function() {
+						time(o)
+				}, 1000)
+			}
+		}
+		function checkver(){
+			if($('#verification').val()=="123"){
+				$('#next').removeAttr("disabled");
+			}else{
+				$('#next').attr("disabled","disabled");
+			}
+		}
+		function nextstep(){
+			window.location.href="selfinfo.html";
+		}
+	</script>
 </html>
