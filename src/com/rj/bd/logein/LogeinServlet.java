@@ -107,12 +107,22 @@ public class LogeinServlet extends HttpServlet {
 				map=service.queryByPhone(phonenumber);
 				request.getSession().setAttribute("user", map);
 				request.getSession().setAttribute("userid", map.get("UUID"));
+				List<Map<String, Object>> ws = service.executewsForUUID(((String)map.get("UUID")));
+				if (ws.size()>0) {
+					request.getSession().setAttribute("ws", ws);
+					System.out.println(ws);
+				}
 				response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
 				return;
 			}
 			else {//已注册的用户登录
 				request.getSession().setAttribute("user", map);
 				request.getSession().setAttribute("userid", map.get("UUID"));
+				List<Map<String, Object>> ws = service.executewsForUUID(((String)map.get("UUID")));
+				if (ws.size()>0) {
+					request.getSession().setAttribute("ws", ws);
+					System.out.println(ws);
+				}
 				response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
 			}
 		}
@@ -141,8 +151,13 @@ public class LogeinServlet extends HttpServlet {
 		//数据库存在的用户
 		if (map!=null) {
 			if (map.get("password").equals(password)) {
+					List<Map<String, Object>> ws = service.executewsForUUID(((String)map.get("UUID")));
 					request.getSession().setAttribute("user", map);
 					request.getSession().setAttribute("userid", map.get("UUID"));
+					if (ws.size()>0) {
+						request.getSession().setAttribute("ws", ws);
+						System.out.println(ws);
+					}
 					response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
 			}
 			else {//登录失败

@@ -40,6 +40,18 @@ public class IndexServlet extends HttpServlet {
 			else if ("mquery".equals(q)){
 				mquery(request,response);
 			}
+			else if ("minesc".equals(q)) {
+				minesc(request,response);
+			}
+			else if ("minesq".equals(q)) {
+				minesq(request,response);
+			}
+			else if ("details".equals(q)) {
+				detailspage(request,response);
+			}
+			else if ("securitypage".equals(q)) {
+				securitypage(request,response);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -47,13 +59,94 @@ public class IndexServlet extends HttpServlet {
 	}
 
 	
-	private void saveSQ(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
-		String userid = request.getParameter("userid");
-		String eid = request.getParameter("eid");
-		service.saveSQ(userid,eid);
+	private void securitypage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/security/security.jsp").forward(request, response);
+		
 	}
 
 
+	/**
+	 * @desc 跳转详情页
+	 * @param request
+	 * @param response
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void detailspage(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+		String eid = request.getParameter("eid");
+		Map user = (Map)request.getSession().getAttribute("user");
+		List<Map<String, Object>> list=service.query(user==null?null:(String)user.get("UUID"));
+		Map<String, Object> map = service.detailquery(user,eid);
+		System.out.println(map);
+		request.setAttribute("map", map);
+		request.setAttribute("list",list);
+		request.getRequestDispatcher("/detailspage/detailspage.jsp").forward(request, response);
+	}
+
+
+	private void minesq(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+		String userid = request.getParameter("userid");
+		List<Map<String, Object>> list = service.queryminesq(userid);
+		request.setAttribute("list", list);
+		int sc=service.scquery(userid);
+		int sq=service.sqquery(userid);
+		request.getSession().setAttribute("sc", sc);
+		request.getSession().setAttribute("sq", sq);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+
+
+	/**
+	 * @desc 用户查询已收藏职业
+	 * @param request
+	 * @param response
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void minesc(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+		String userid = request.getParameter("userid");
+		List<Map<String, Object>> list = service.queryminesc(userid);
+		request.setAttribute("list", list);
+		int sc=service.scquery(userid);
+		int sq=service.sqquery(userid);
+		request.getSession().setAttribute("sc", sc);
+		request.getSession().setAttribute("sq", sq);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		
+	}
+
+
+	/**
+	 * @desc 申请职位
+	 * @param request
+	 * @param response
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
+	private void saveSQ(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		String userid = request.getParameter("userid");
+		String eid = request.getParameter("eid");
+		if (userid!=null&&!userid.equals("")) {
+			service.saveSQ(userid,eid);
+		}
+	}
+
+
+	/**
+	 * @desc 筛选条件模糊查询
+	 * @param request
+	 * @param response
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private void mquery(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
 		
 		String userid = (String) request.getSession().getAttribute("userid");
@@ -101,6 +194,15 @@ public class IndexServlet extends HttpServlet {
 	}
 
 
+	/**
+	 * @desc 用户取消收藏
+	 * @param request
+	 * @param response
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	private void saveqSC(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		String userid = request.getParameter("userid");
 		String eid = request.getParameter("eid");
@@ -109,6 +211,15 @@ public class IndexServlet extends HttpServlet {
 	}
 
 
+	/**
+	 * @desc 用户收藏
+	 * @param request
+	 * @param response
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	private void saveSC(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		String userid = request.getParameter("userid");
 		String eid = request.getParameter("eid");
@@ -118,6 +229,7 @@ public class IndexServlet extends HttpServlet {
 
 
 	/**
+	 * @desc 查询展示
 	 * @param request
 	 * @param response
 	 * @throws ClassNotFoundException
@@ -127,11 +239,9 @@ public class IndexServlet extends HttpServlet {
 	 */
 	private void query(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
 			String userid = (String) request.getSession().getAttribute("userid");
-			System.out.println(userid);
 			List<Map<String, Object>> list=service.query(userid);
 			int sc=service.scquery(userid);
 			int sq=service.sqquery(userid);
-			System.out.println(list);
 			request.getSession().setAttribute("sc", sc);
 			request.getSession().setAttribute("sq", sq);
 			request.setAttribute("list", list);

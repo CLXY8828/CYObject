@@ -204,9 +204,62 @@ public class IndexService {
 		return dao.executeQueryForList(sql, types, values);
 	}
 
+	/**
+	 * @desc 申请职业
+	 * @param userid
+	 * @param eid
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public void saveSQ(String userid, String eid) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		String sql = "update employmentapply set applystate=? where UUID=? and eid=?";
 		dao.executeUpdate(sql, new int[]{Types.INTEGER,Types.VARCHAR,Types.VARCHAR}, new Object[]{1,userid,eid});
+		
+	}
+
+	/**
+	 * @desc 查询已收藏
+	 * @param userid
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public List<Map<String, Object>> queryminesc(String userid) throws ClassNotFoundException, SQLException {
+		String sql ="SELECT * FROM employment ,employmentapply where employment.eid=employmentapply.eid AND UUID =? AND employmentapply.Collectionstate=1";
+		
+		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR}, new Object[]{userid});
+		
+	}
+
+	/**
+	 * @desc 查询已申请
+	 * @param userid
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public List<Map<String, Object>> queryminesq(String userid) throws ClassNotFoundException, SQLException {
+		String sql ="SELECT * FROM employment ,employmentapply where employment.eid=employmentapply.eid AND UUID =? AND employmentapply.applystate=1";
+		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR}, new Object[]{userid});
+	}
+
+	/**
+	 * @desc
+	 * @param userid
+	 * @param eid
+	 * @return 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public Map<String, Object> detailquery(Map userid,String eid) throws ClassNotFoundException, SQLException {
+		if (userid!=null) {
+			String sql = "select * from employment,employmentapply,companynature where companynature.nature_id=employment.nature_id and employment.eid=employmentapply.eid AND UUID =? and employment.eid=?";
+			return dao.executeQueryForMap(sql, new int[]{Types.VARCHAR,Types.VARCHAR}, new Object[]{(String)userid.get("UUID"),eid});
+		}
+		String sql = "select * from employment where employment.eid=?";
+		return dao.executeQueryForMap(sql, new int[]{Types.VARCHAR}, new Object[]{eid});
 		
 	}
 

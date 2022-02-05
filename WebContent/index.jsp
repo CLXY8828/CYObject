@@ -26,7 +26,7 @@
 					
 				}
 				else{
-					if(<%=(List)request.getAttribute("ws")==null%>){
+					if(<%=(List)request.getSession().getAttribute("ws")==null%>){
 						modaltt("#okxx");
 					}
 				}
@@ -56,62 +56,76 @@
 					window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 			}
 			function scok(img,text,type,userid,eid) {
-				if (type==0) {
-					if($("#"+text).text()!="已收藏"){
-						var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
-						$.post(url,{userid:userid,eid:eid},function(data)
-						{	
-							var count =$("#sc-count").text();
-							$("#sc-count").text(Number(count)+1);
-							$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc-s.png");
-							$("#"+text).text("已收藏")
-						});
+				if(<%=(List)request.getSession().getAttribute("ws")==null%>){
+					modaltt("#okxx");
+				}
+				else{
+					if (type==0) {
+						if($("#"+text).text()!="已收藏"){
+							var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
+							$.post(url,{userid:userid,eid:eid},function(data)
+							{	
+								var count =$("#sc-count").text();
+								$("#sc-count").text(Number(count)+1);
+								$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc-s.png");
+								$("#"+text).text("已收藏")
+							});
+						}
+						else {
+							var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
+							$.post(url,{userid:userid,eid:eid},function(data)
+							{
+								var count =$("#sc-count").text();
+								$("#sc-count").text(Number(count)-1);
+								$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc.png");
+								$("#"+text).text("收藏")
+							});
+						}
 					}
-					else {
-						var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
-						$.post(url,{userid:userid,eid:eid},function(data)
-						{
+					else if(type==1){
+						if($("#"+text).text()!="收藏"){
 							var count =$("#sc-count").text();
 							$("#sc-count").text(Number(count)-1);
-							$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc.png");
-							$("#"+text).text("收藏")
-						});
+							var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
+							$.post(url,{userid:userid,eid:eid},function(data)
+							{
+								$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc.png");
+								$("#"+text).text("收藏")
+							});
+						}
+						else {
+							var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
+							$.post(url,{userid:userid,eid:eid},function(data)
+							{
+								var count =$("#sc-count").text();
+								$("#sc-count").text(Number(count)+1);
+								$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc-s.png");
+								$("#"+text).text("已收藏")
+							});
+						}
+						
 					}
-				}
-				else if(type==1){
-					if($("#"+text).text()!="收藏"){
-						var count =$("#sc-count").text();
-						$("#sc-count").text(Number(count)-1);
-						var url ="<%=request.getContextPath()%>/users/index.do?method=qsc";
-						$.post(url,{userid:userid,eid:eid},function(data)
-						{
-							$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc.png");
-							$("#"+text).text("收藏")
-						});
-					}
-					else {
-						var url ="<%=request.getContextPath()%>/users/index.do?method=sc";
-						$.post(url,{userid:userid,eid:eid},function(data)
-						{
-							var count =$("#sc-count").text();
-							$("#sc-count").text(Number(count)+1);
-							$("#"+img).attr("src","<%=request.getContextPath() %>/img/sc-s.png");
-							$("#"+text).text("已收藏")
-						});
-					}
-					
 				}
 			}
 			function sqok(userid) {
-				var eid=geteid();
-				var okid=getokid();
-				var url ="<%=request.getContextPath()%>/users/index.do?method=sq";
-				$.post(url,{userid:userid,eid:eid},function(data)
-				{
-					sqzwok ();
-					$("#"+okid).attr("disabled","disabled");
-					$("#"+okid).html('已申请')
-				});
+				if(<%=(List)request.getSession().getAttribute("ws")==null%>){
+					$("#sqzw").modal('hide');
+					modaltt("#okxx");
+				}
+				else {
+					var eid=geteid();
+					var okid=getokid();
+					var count= $("#sq-count").text();
+					var url ="<%=request.getContextPath()%>/users/index.do?method=sq";
+					$.post(url,{userid:userid,eid:eid},function(data)
+					{
+						sqzwok ();
+						$("#sq-count").text(Number(count)+1);
+						$("#"+okid).removeAttr("onclick");
+						$("#"+okid).attr("disabled","disabled");
+						$("#"+okid).html('已申请')
+					});
+				}
 			}
 		</script>
 	</head>
@@ -147,8 +161,13 @@
 		          <a style="color: white; width: 159px; font-size: 16px;background-color:#011536;" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li class="text-center"><a href="#">个人信息</a></li>
-		            <li class="text-center"><a href="#">个人中心</a></li>
-		            <li class="text-center"><a href="#">退出</a></li>
+		            <c:if test="${empty ws}">
+		            <li class="text-center"><a href="#" onclick="modaltt('#okxx')">安全中心</a></li>
+		            </c:if>
+		            <c:if test="${!empty ws}">
+		            <li class="text-center"><a href="<%=request.getContextPath() %>/users/index.do?method=securitypage">安全中心</a></li>
+		            </c:if>
+		            <li class="text-center"><a href="<%=request.getContextPath() %>/users/logein.do?method=out">退出</a></li>
 		          </ul>
 		        </li>
 		        </c:when>
@@ -172,12 +191,12 @@
 	     	 <ul class="nav visible-xs-block navbar-nav">
 		        <li><a href="#"style="color: white;">切换城市</a>	</li>
 	            <li><a class="top-text" href="#" style="color: white;">个人信息</a></li>
-	            <li><a class="top-text" href="#" style="color: white;">个人中心</a></li>
+	            <li><a class="top-text" href="#" style="color: white;">安全中心</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">上传简历</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">历史简历</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">我的收藏</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">申请记录</a></li>
-	            <li><a class="top-text" href="#" style="color: white;">退出</a></li>
+	            <li><a class="top-text" href="<%=request.getContextPath() %>/users/logein.do?method=out" style="color: white;">退出</a></li>
 		      </ul>
 		      </c:when>
 		      <c:otherwise>
@@ -448,6 +467,7 @@
                           	时间：2022-01-26
                           	描述：数据第一行
                           -->
+                        <a href="<%=request.getContextPath() %>/users/index.do?method=details&eid=${map.eid}">
 					  	<div class="row">
 					  		<div class="col-lg-5 col-xs-6">
 					  			<div class="col-lg-6 visible-lg-block">
@@ -470,6 +490,7 @@
 						  			</div>
 					  		</div>
 					  	</div>
+					  	</a>
 					  	<!--
                           	作者：1977455153@qq.com
                           	时间：2022-01-26
@@ -530,6 +551,7 @@
 					  			</c:when>
 					  			<c:otherwise>
 						  			<div class="col-lg-6 col-lg-push-2 col-lg-offset-1 " style="padding-top: 6px;">
+						  				<c:if test="${!empty user }">
 						  				<a onclick="scok('sc-lg-img${i.count}','sc-lg-text${i.count}',0,'${user.UUID}','${map.eid}')">
 							  				<div class="col-lg-4" >
 							  					<img id="sc-lg-img${i.count}" src="<%=request.getContextPath() %>/img/sc.png" class="img-responsive"/>
@@ -538,6 +560,17 @@
 							  					<p id="sc-lg-text${i.count}" class="sc-text">收藏</p>
 							  				</div>
 						  				</a>
+						  				</c:if>
+						  				<c:if test="${empty user }">
+						  				<a onclick="modaltt('#logeink');">
+							  				<div class="col-lg-4" >
+							  					<img id="sc-lg-img${i.count}" src="<%=request.getContextPath() %>/img/sc.png" class="img-responsive"/>
+							  				</div>
+							  				<div class="col-lg-8 col-lg-pull-2">
+							  					<p id="sc-lg-text${i.count}" class="sc-text">收藏</p>
+							  				</div>
+						  				</a>
+						  				</c:if>
 						  			</div>
 					  			</c:otherwise>
 					  			</c:choose>
@@ -551,9 +584,16 @@
 					  			</c:when>
 					  			<c:otherwise>
 					  			<div class="col-lg-3">
+					  				<c:if test="${!empty user}">
 					  				<div class="col-lg-12">
 					  					<a type="button" id="sq-a${i.count}" class="btn btn-primary" onclick="sqzwtt('#sqzw','${map.gsname}','${map.employment_name}','${map.eid}','sq-a${i.count}')">申请职位</a>
 					  				</div>
+					  				</c:if>
+					  				<c:if test="${empty user}">
+					  				<div class="col-lg-12">
+					  					<a type="button" id="sq-a${i.count}" class="btn btn-primary" onclick="modaltt('#logeink')">申请职位</a>
+					  				</div>
+					  				</c:if>
 					  			</div>
 					  			</c:otherwise>
 					  			</c:choose>
@@ -589,6 +629,7 @@
 					  		</c:when>
 					  		<c:otherwise>
 						  		<div class="col-xs-6" style="padding-left: 0px; padding-top: 6px;">
+						  				<c:if test="${!empty user}">
 						  				<a onclick="scok('sc-xs-img${i.count}','sc-xs-text${i.count}',0,'${user.UUID}','${map.eid}')">
 							  				<div class="col-xs-4">
 							  					<img id="sc-xs-img${i.count}" src="<%=request.getContextPath() %>/img/sc.png" class="img-responsive"/>
@@ -597,11 +638,27 @@
 							  					<p id="sc-xs-text${i.count}" class="sc-text${i.count}">收藏</p>
 							  				</div>
 						  				</a>
+						  				</c:if>
+						  				<c:if test="${empty user}">
+						  					<a onclick="modaltt('#logeink');">
+							  				<div class="col-xs-4">
+							  					<img id="sc-xs-img${i.count}" src="<%=request.getContextPath() %>/img/sc.png" class="img-responsive"/>
+							  				</div>
+							  				<div class="col-xs-8 col-xs-pull-2">
+							  					<p id="sc-xs-text${i.count}" class="sc-text${i.count}">收藏</p>
+							  				</div>
+						  					</a>
+						  				</c:if>
 						  			</div>
 					  		</c:otherwise>
 					  		</c:choose>
                           	<div class="col-xs-3 col-xs-push-2">
+                          		<c:if test="${!empty user}">
 					  				<a type="button" id="sq-xs-a${i.count}" class="btn btn-primary" onclick="sqzwtt('#sqzw','${map.gsname}','${map.employment_name}','${map.eid}','sq-xs-a${i.count}')">申请职位</a>
+					  			</c:if>
+					  			<c:if test="${empty user}">
+					  				<a type="button" id="sq-xs-a${i.count}" class="btn btn-primary" onclick="modaltt('#logeink');">申请职位</a>
+					  			</c:if>
 					  			</div>
 					  			<div class="col-xs-3 hidden">
 					  				<a type="button" class="btn btn-primary" disabled="disabled">已申请</a>
@@ -649,11 +706,11 @@
 						    <div class="row">
 						    	<div class="col-lg-6 text-center">
 						    		<h3 class="user-text-h3" id="sc-count">${sessionScope.sc}</h3>
-						    		<a href="#"><p>我的收藏</p></a>
+						    		<a href="<%=request.getContextPath() %>/users/index.do?method=minesc&userid=${user.UUID}"><p>我的收藏</p></a>
 						    	</div>
 						    	<div class="col-lg-6 text-center">
 						    		<h3 class="user-text-h3" id="sq-count">${sessionScope.sq}</h3>
-						    		<a href="#"><p>申请记录</p></a>
+						    		<a href="<%=request.getContextPath() %>/users/index.do?method=minesq&userid=${user.UUID}"><p>申请记录</p></a>
 						    	</div>
 						    </div>
 						  </div>
@@ -680,12 +737,15 @@
                	<div class="row visible-lg-block">
                		<div class="col-lg-12">
                			<h5>热门职业</h5>
+               			
                			<table class="table">
+               			<c:forEach items="${list}" var="map" end="4">
                				<tr>
                					<td>
+               					<a href="<%=request.getContextPath() %>/users/index.do?method=details&eid=${map.eid}">
                						<div class="row">
                							<div class="col-lg-6 visible-lg-block">
-					  					<h6 class="yc">Java开发工程师</h6>
+					  					<h6 class="yc" title="${map.employment_name}">${map.employment_name}</h6>
 							  			</div>
 							  			<div class="col-lg-6 visible-lg-block">
 							  				<h6><small>01-02发布</small></h6>
@@ -693,69 +753,21 @@
                						</div>
                						<div class="row">
                							<div class="col-lg-8 col-lg-push-5">
-               								<h6 class="gsname">北京京云万峰信息技术有限公司</h6>
+               								<h6 class="gsname" title="${map.gsname}">${map.gsname}</h6>
                							</div>
                						</div>
                						<div class="row">
                							<div class="col-lg-6">
-               								<h6 class="gsname" style="color: red;">1.5万-3万.13薪</h6>
+               								<h6 class="gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12"?fn:split(map.salary, ".")[0]:map.salary}${fn:split(map.salary, ".")[1]=="12"?"":"薪"}</h6>
                							</div>
                							<div class="col-lg-5">
-               								<h6 class="yc">北京.海淀区</h6>
+               								<h6 class="yc" title="${map.address}">${map.address}</h6>
                							</div>
                						</div>
+               						</a>
                					</td>
                				</tr>
-               				<tr>
-               					<td>
-               						<div class="row">
-               							<div class="col-lg-6 visible-lg-block">
-					  					<h6 class="yc">Java开发工程师</h6>
-							  			</div>
-							  			<div class="col-lg-6 visible-lg-block">
-							  				<h6><small>01-02发布</small></h6>
-							  			</div>
-               						</div>
-               						<div class="row">
-               							<div class="col-lg-8 col-lg-push-5">
-               								<h6 class="gsname">北京京云万峰信息技术有限公司</h6>
-               							</div>
-               						</div>
-               						<div class="row">
-               							<div class="col-lg-6">
-               								<h6 class="gsname" style="color: red;">1.5万-3万.13薪</h6>
-               							</div>
-               							<div class="col-lg-5">
-               								<h6 class="yc">北京.海淀区</h6>
-               							</div>
-               						</div>
-               					</td>
-               				</tr>
-               				<tr>
-               					<td>
-               						<div class="row">
-               							<div class="col-lg-6 visible-lg-block">
-					  					<h6 class="yc">Java开发工程师</h6>
-							  			</div>
-							  			<div class="col-lg-6 visible-lg-block">
-							  				<h6><small>01-02发布</small></h6>
-							  			</div>
-               						</div>
-               						<div class="row">
-               							<div class="col-lg-8 col-lg-push-5">
-               								<h6 class="gsname">北京京云万峰信息技术有限公司</h6>
-               							</div>
-               						</div>
-               						<div class="row">
-               							<div class="col-lg-6">
-               								<h6 class="gsname" style="color: red;">1.5万-3万.13薪</h6>
-               							</div>
-               							<div class="col-lg-5">
-               								<h6 class="yc">北京.海淀区</h6>
-               							</div>
-               						</div>
-               					</td>
-               				</tr>
+               				</c:forEach>
                			</table>
                		</div>
                	</div>

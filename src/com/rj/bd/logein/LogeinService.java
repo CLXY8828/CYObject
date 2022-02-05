@@ -90,5 +90,19 @@ public class LogeinService {
 	public Map<String, Object> queryAdmin(String sid, String password) throws ClassNotFoundException, SQLException {
 		return dao.executeQueryForMap("select * from admin where admin_UUID=? and admin_password=?", new int[]{Types.VARCHAR,Types.VARCHAR},new Object[]{sid,password});
 	}
+
+	/**
+	 * @desc 查询用户是否完善信息
+	 * @param sid
+	 * @return 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public List<Map<String, Object>> executewsForUUID(String UUID) throws ClassNotFoundException, SQLException {
+		
+		String sql = "select * from students where UUID=?";
+		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR}, new Object[]{UUID});
+		
+	}
 	
 }
