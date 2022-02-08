@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.css"/>
+	<script src="bootstrap-3.3.7-dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
     <title>后台我的</title>
 </head>
 <style type="text/css">
@@ -139,8 +139,7 @@
 					<div class="menu">
 						<div class="menu-title inacitve"><img src="img/postinfo.png" class="nav-icon"><span style="font-size:22px;margin-right:110px;">岗位</span><span class="glyphicon glyphicon-menu-down"></span></div>
 						<ul class="menu-content">
-							<li><a href="#postinfo" tabindex="-1" aria-controls="postinfo" role="tab" data-toggle="tab" onclick="postinfopage()"><span style="margin-right: 26%;font-size: 20px;">岗位信息</span></a></li>
-							<li style="margin-bottom: -8%;"><a href="#" tabindex="-1" aria-controls="postinfo" role="tab" data-toggle="tab" onclick=""><span style="margin-right: -6%;font-size: 20px;">学生急需岗位信息</span></a></li>
+							<li style="margin-bottom: -8%;"><a href="#postinfo" tabindex="-1" aria-controls="postinfo" role="tab" data-toggle="tab" onclick="postinfopage()"><span style="margin-right: 26%;font-size: 20px;">岗位信息</span></a></li>
 						</ul>
 					</div>
 					<hr class="norhr" />
@@ -148,7 +147,7 @@
 						<div class="menu-title inacitve"><img src="img/warningsystem.png" class="nav-icon"><span style="font-size:22px;margin-right:65px;">预警系统</span><span class="glyphicon glyphicon-menu-down"></span></div>
 						<ul class="menu-content">
 							<li><a href="#stuworkwarn" tabindex="-1" aria-controls="stuworkwarn" role="tab" data-toggle="tab" onclick="stuworkwarnpage()"><span style="margin-right: 11%;font-size: 20px;">学生就业预警</span></a></li>
-							<li><a href="#postfillwarn" tabindex="-1" aria-controls="gradeset" role="tab" data-toggle="tab" onclick="postfillwarnpage()"><span style="margin-right: 11%;font-size: 20px;">岗位招满预警</span></a></li>
+							<li><a href="#postfillwarn" tabindex="-1" aria-controls="postfillwarn" role="tab" data-toggle="tab" onclick="postfillwarnpage()"><span style="margin-right: 11%;font-size: 20px;">岗位招满预警</span></a></li>
 							<li style="margin-bottom: -8%;"><a href="#postoverdue" tabindex="-1" aria-controls="gradeset" role="tab" data-toggle="tab" onclick="postoverduepage()"><span style="margin-right: 11%;font-size: 20px;">岗位过期预警</span></a></li>
 						</ul>
 					</div>
@@ -156,13 +155,13 @@
 					<div class="menu">
 						<div class="menu-title inacitve"><img src="img/stuinfo.png" class="nav-icon"><span style="font-size:22px;margin-right:20px;">学生信息管理</span><span class="glyphicon glyphicon-menu-down"></span></div>
 						<ul class="menu-content">
-							<li><a href="#" tabindex="-1" aria-controls="stuworkwarn" role="tab" data-toggle="tab" onclick=""><span style="margin-right: 26%;font-size: 20px;">批量注册</span></a></li>
-							<li style="margin-bottom: -8%;"><a href="#" tabindex="-1" aria-controls="stuworkwarn" role="tab" data-toggle="tab" onclick=""><span style="margin-right: 26%;font-size: 20px;">批量删除</span></a></li>
+							<li><a href="#bareg" tabindex="-1" aria-controls="bareg" role="tab" data-toggle="tab" onclick="baregpage()"><span style="margin-right: 26%;font-size: 20px;">批量注册</span></a></li>
+							<li style="margin-bottom: -8%;"><a href="#badel" tabindex="-1" aria-controls="badel" role="tab" data-toggle="tab" onclick="badelpage()"><span style="margin-right: 26%;font-size: 20px;">批量删除</span></a></li>
 						</ul>
 					</div>
 					<hr class="norhr" />
 					<div class="menu">
-						<div class="menu-title"><img src="img/authority.png" class="nav-icon"><span style="font-size:22px;margin-right:90px;">权限管理</span></div>
+						<div class="menu-title"><img src="img/authority.png" class="nav-icon"><a href="#author" tabindex="-1" aria-controls="author" role="tab" data-toggle="tab" onclick="authorpage()" style="font-size:22px;margin-right:90px;">权限管理</a></div>
 					</div>
 				</div>
 				<div class="content_right tab-content" style="box-shadow: 1 0 3px 3px gray;">
@@ -187,7 +186,15 @@
 					<div id="postoverdue" class="tab-pane" style="width: 100%;height: 100%;">
 						<iframe src="postwaring/postoverdue.html" width="100%" height="100%"></iframe>
 					</div>
-					
+					<div id="bareg" class="tab-pane" style="width: 100%;height: 100%;">
+						<iframe src="studentinfo/batchregistration.html" width="100%" height="100%"></iframe>
+					</div>
+					<div id="badel" class="tab-pane" style="width: 100%;height: 100%;">
+						<iframe src="studentinfo/batchdeletion.html" width="100%" height="100%"></iframe>
+					</div>
+					<div id="author" class="tab-pane" style="width: 100%;height: 100%;">
+						<iframe src="management/authority.html" width="100%" height="100%"></iframe>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -219,6 +226,9 @@
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function classsetpage(){
 			$('#gradeset').attr("class","tab-pane");
@@ -227,6 +237,9 @@
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function postinfopage(){
 			$('#gradeset').attr("class","tab-pane");
@@ -235,6 +248,9 @@
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function stuworkwarnpage(){
 			$('#gradeset').attr("class","tab-pane");
@@ -243,6 +259,9 @@
 			$('#stuworkwarn').attr("class","tab-pane active");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function postfillwarnpage(){
 			$('#gradeset').attr("class","tab-pane");
@@ -251,6 +270,9 @@
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane active");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function postoverduepage(){
 			$('#gradeset').attr("class","tab-pane");
@@ -259,6 +281,42 @@
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane active");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
+		}
+		function baregpage(){
+			$('#gradeset').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
+			$('#postinfo').attr("class","tab-pane");
+			$('#stuworkwarn').attr("class","tab-pane");
+			$('#postfillwarn').attr("class","tab-pane");
+			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane active");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
+		}
+		function badelpage(){
+			$('#gradeset').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
+			$('#postinfo').attr("class","tab-pane");
+			$('#stuworkwarn').attr("class","tab-pane");
+			$('#postfillwarn').attr("class","tab-pane");
+			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane active");
+			$('#author').attr("class","tab-pane");
+		}
+		function authorpage(){
+			$('#gradeset').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
+			$('#postinfo').attr("class","tab-pane");
+			$('#stuworkwarn').attr("class","tab-pane");
+			$('#postfillwarn').attr("class","tab-pane");
+			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane active");
 		}
     </script>
 </body>

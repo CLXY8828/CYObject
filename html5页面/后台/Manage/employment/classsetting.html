@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+		<script src="../bootstrap-3.3.7-dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			.container{
 				width: 100%;
@@ -53,7 +53,7 @@
 									<div class="row">
 										<span style="margin-left: 20%;">
 											名称：
-											<input type="test" name="add_class_name" id="add_class_name" value=""/>	
+											<input type="test" name="add_class_name" id="add_class_name" value="" onblur="checkadd()"/>	
 										</span>
 									</div>
 									<div class="row" style="margin-top: 3.8%;">
@@ -77,7 +77,7 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 									</button>
-									<button type="submit" class="btn btn-primary">
+									<button type="submit" class="btn btn-primary" id="addnew" disabled="disabled">
 										新建
 									</button>
 								</div>
@@ -295,7 +295,7 @@
 													</span>
 												</div>
 												<div class="row"  style="margin-top: 3.8%;">
-													<span style="margin-left:9.2%;">
+													<span style="margin-left:10%;">
 														设定专业老师：
 														<select name="teacher" style="width: 30%;">
 															<option value="张三">张三</option>
@@ -346,6 +346,14 @@
 	<script type="text/javascript">
 		function gradeindex(){
 			top.location.href="classinfo/classindex.html"
+		}
+		function checkadd(){
+			var name=$("#add_class_name").val().trim();
+			if(name==""){
+				$("#addnew").attr("disabled","disabled");
+			}else{
+				$('#addnew').removeAttr("disabled");
+			}
 		}
 	</script>
 </html>

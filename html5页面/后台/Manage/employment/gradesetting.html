@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+		<script src="../bootstrap-3.3.7-dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			.container{
 				width: 100%;
@@ -40,7 +40,7 @@
 					</a>
 				</div>
 				<hr style="border: #000000 2px solid;margin-top: -1px; width: 100%;" />
-				<!-- /*模态框 -->
+	<!-- /*新建模态框 -->
 				<div class="modal fade" id="addmodal" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -50,17 +50,17 @@
 									<h3 class="modal-title" id="modaltitle">新建就业年级</h3>
 								</div>
 								<div class="modal-body" style="font-size: 14px; margin-left: 20px;">
-									
-									<span>
+									<br>
+									<div class="row" style="margin-left:8%;">
 										名称：
-										<input type="test" name="add_class_name" id="add_class_name" value=""/>	
-									</span>
+										<input type="test" name="add_class_name" id="add_class_name" value="" onblur="checkadd()"/>	
+									</div>
 									<br><br>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 									</button>
-									<button type="submit" class="btn btn-primary">
+									<button id="addnew" type="submit" class="btn btn-primary" disabled="disabled">
 										新建
 									</button>
 								</div>
@@ -82,7 +82,7 @@
 								<th width="6%">编辑</th>
 								<th width="9%">就业信息</th>
 								<th width="6%">删除</th>
-								<th width="16%">导入导出学生信息</th>
+								<th width="9%">导出信息</th>
 								<th width="6%">进入</th>
 							</tr>
 							<!-- /*以下放数据 -->
@@ -98,7 +98,6 @@
 								<td><a href="#idenfier" data-toggle="modal" data-target="#export"><img src="../img/export3.png" style="width: 28px;height:28px;" ></a></td>
 								<td><a href="#idenfier" data-toggle="modal" data-target="#delete"><img src="../img/delete.png" style="width: 28px;height: 28px;" ></a></td>
 								<td>
-									<a href="#idenfier" data-toggle="modal" data-target="#import"><img src="../img/import.png" style="width:28px;height: 28px; margin-right: 20%" ></a>
 									<a href="#idenfier" data-toggle="modal" data-target="#exportstu"><img src="../img/expoet2.png" style="width: 28px;height: 28px;" ></a>
 								</td>
 								<td>
@@ -120,85 +119,6 @@
 											</button>
 											<a href="*" class="btn btn-primary">确认</a>
 										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-											<h3 class="modal-title" id="modaltitle">导入学生信息</h3>
-											<a href="#idenfier" data-toggle="modal" data-target="#importsingle" class="h3" data-dismiss="modal" style="color: skyblue;">单条信息导入</a>
-										</div>
-										<div class="modal-body" style="font-size: 16px; margin-left: 20px;">
-											<span class="row">
-												年级名称：
-												<input type="input" name="grade" id="grade" value="" disabled="" style="outline: none;border: none;" />
-											</span>
-											<span class="row">
-												导入学生信息：
-												<input type="file" name="stuinfo" id="stuinfo" value="" />
-											</span>
-											<span class="row">
-												<a href="/*"><span style="color:skyblue;">下载Excel模板</span></a>
-											</span>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-											</button>
-											<a href="*" class="btn btn-primary">确认</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal fade" id="importsingle" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<form action="/*" method="post">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h3 class="modal-title" id="modaltitle">单条信息导入</h3>
-											</div>
-											<div class="modal-body" font-size: 14px; margin-left: 20px;>
-												<span class="row">
-													<span style="margin-left: 6%;">
-														姓名：
-														<input type="text" name="name" id="name" value="" />
-													</span>
-													<span style="margin-left: 5%;">
-														性别：
-														<input type="radio" name="sex" id="sex" value="男" />男
-														<input type="radio" name="sex" id="sex" value="女" />女
-													</span>
-												</span>
-												<span class="row">
-													<span style="margin-left: 6%;">
-														学号：
-														<input type="text" name="stuid" id="stuid" value="" />
-													</span>
-													<span style="margin-left: 5%;">
-														考生号：
-														<input type="text" name="gradeid" id="gradeid" value="" />
-													</span>
-												</span>
-												<span class="row">
-													<span style="margin-left: 3.7%;">
-														手机号：
-														<input type="text" name="tel" id="tel" value="" />
-													</span>
-													<span style="margin-left: 5%;">
-														身份证：
-														<input type="text" name="selid" id="selid" value="" />
-													</span>
-												</span>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">关闭
-												</button>
-												<a href="*" class="btn btn-primary">确认</a>
-											</div>
-										</form>
 									</div>
 								</div>
 							</div>
@@ -309,9 +229,18 @@
 			</div>
 		</div>
 	</body>
+	
 	<script type="text/javascript">
 		function gradeindex(){
 			top.location.href="gradeinfo/gradeindex.html"
+		}
+		function checkadd(){
+			var name=$("#add_class_name").val().trim();
+			if(name==""){
+				$("#addnew").attr("disabled","disabled");
+			}else{
+				$('#addnew').removeAttr("disabled");
+			}
 		}
 	</script>
 </html>

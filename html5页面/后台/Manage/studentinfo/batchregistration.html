@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>批量注册班</title>
+		<link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+		<script src="../bootstrap-3.3.7-dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.container{
+				width: 100%;
+			}
+			th{
+				font-size: 14px;
+				text-align: center;
+			}
+			td{
+				font-size: 14px;
+				text-align: center;
+			}
+			.modal-lg{
+				width: 90%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<ul class="breadcrumb">
+				    <li>学生信息管理</li>
+				    <li class="active">批量注册</li>
+				</ul>
+			</div>
+			<div class="row" style="margin-left: 10px;margin-right: 10px;margin-top: -10px;">
+				<form action="/*" method="post">
+					<img src="../img/userA.png" style="width: 50px;height: 50px;">
+					<span class="h3">批量注册</span>
+					<span style="color: #00FFFF;top: 28px;position: absolute;left:80px;top:73px;" class="h4"><a href="#idenfier" data-toggle="modal" data-target="#importba" style="margin-right: 20px;">导入学生信息</a></span>
+					<span style="float: right;padding-top: 10px;" class="h4">
+						<select name="queryinfo" style="width: 90px;height: 30.5px;border-radius: 10px 0px 0px 10px;">
+							<option value="name">姓名</option>
+							<option value="stu_id">学号</option>
+						</select>
+						<input type="text" name="queryCondition" id="queryCondition" value="" style="width: 300px;height: 30px;margin-left: -8px;border-radius: 0px 10px 10px 0px;" />
+						<input type="submit" value="搜索" style="height: 33px;width: 90px;margin-left: -8px;font-size: 14px;margin-top: -3px;border-radius: 10px;" class="btn btn-primary" />
+					</span>
+				</form>
+			</div>
+	<!-- 批量导入 -->
+			<div class="modal fade" id="importba" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 class="modal-title" id="modaltitle">导入学生信息</h3>
+							<a href="#idenfier" data-toggle="modal" data-target="#importsingle" class="h3" data-dismiss="modal" style="color: skyblue;">单条信息导入</a>
+						</div>
+						<div class="modal-body" style="font-size: 16px; margin-left: 20px;">
+							<span class="row">
+								导入学生信息：
+								<input type="file" name="stuinfo" id="stuinfo" value="" />
+							</span>
+							<span class="row">
+								<a href="/*"><span style="color:skyblue;">下载Excel模板</span></a>
+							</span>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+							</button>
+							<a href="*" class="btn btn-primary">确认</a>
+						</div>
+					</div>
+				</div>
+			</div>
+	<!-- 单条导入 -->
+			<div class="modal fade" id="importsingle" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<form action="/*" method="post">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h3 class="modal-title" id="modaltitle">单条信息导入</h3>
+							</div>
+							<div class="modal-body" font-size: 14px; margin-left: 20px;>
+								<span class="row">
+									<span style="margin-left: 8%;">
+										姓名：
+										<input type="text" name="name_import" id="name_import" value="" style="width: 35%;" />
+									</span>
+									<span style="margin-left: 8%;">
+										性别：
+										<input type="radio" name="sex_import" id="sex" value="男" />男
+										<input type="radio" name="sex_import" id="sex" value="女" />女
+									</span>
+									<span style="margin-left: 4.2%;">
+										民族：
+										<input type="text" name="ethnic_import" id="ethnic_import" value="" style="width: 17%;" />
+									</span>
+								</span>
+								<span class="row">
+									<span style="margin-left: 8%;">
+										班级：
+										<input type="text" name="class_import" id="class_import" value="" style="width: 35%;" />
+									</span>
+									<span style="margin-left: 5.8%;">
+										学籍号：
+										<input type="text" name="status_import" id="status_import" value="" style="width: 35%;" />
+									</span>
+									
+								</span>
+								<span class="row">
+									<span style="margin-left: 1.1%;">
+										家庭联系方式：
+										<input type="text" name="hometel_import" id="hometel_import" value="" style="width: 35%;" />
+									</span>
+									<span style="margin-left: 8.2%;">
+										QQ：
+										<input type="text" name="qq_import" id="qq_import" value="" style="width: 35%;" />
+									</span>
+								</span>
+								<span class="row">
+									<span style="margin-left: 6.4%;">
+										身份证：
+										<input type="text" name="selid_import" id="selid_import" value="" style="width: 35%;" />
+									</span>
+									<span style="margin-left: 5.7%;">
+										考生号：
+										<input type="text" name="stuid_import" id="stuid_import" value="" style="width: 35%;" />
+									</span>
+									
+								</span>
+								<span class="row">
+									<span style="margin-left: 3%;">
+										户籍所在地：
+										<input type="text" name="household_import" id="household_import" value="" style="width: 35%;" />
+									</span>
+									<span style="margin-left: 7.3%;">
+										学号：
+										<input type="text" name="stuid_import" id="stuid_import" value="" style="width: 35%;" />
+									</span>
+								</span>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+								</button>
+								<a href="*" class="btn btn-primary">确认</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<hr style="border: #000000 2px solid;margin-top: -1px; width: 100%;" />
+	<!-- 查询数据 -->
+			<div style="width: 100%;">
+				<form action="/*" method="post" name="exportform">
+					<table border="0px" cellspacing="5px" cellpadding="0px" class="table" style="width:100%">
+						<tr>
+							<th width="5%">序号</th>
+							<th width="10%">姓名</th>
+							<th width="10%">学号</th>
+							<th width="15%">身份证</th>
+							<th width="13%">考生号</th>
+							<th width="10%">家庭联系电话</th>
+							<th width="10%">是否绑定</th>
+							<th width="5%">编辑</th>
+							<th width="5%">详情</th>
+							<th width="5%">删除</th>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>张三</td>
+							<td>1511307526</td>
+							<td>130603********0918</td>
+							<td>17130601111</td>
+							<td>15123641546</td>
+							<td>否</td>
+							<td><a href="#idenfier" data-toggle="modal" data-target="#edit"><img src="../img/edit.png" style="width: 28px;height:28px;" ></a></td>
+							<td><a href="#idenfier" data-toggle="modal" data-target="#view"><img src="../img/view.png" style="width: 28px;height: 28px;" ></a></td>
+							<td><a href="#idenfier" data-toggle="modal" data-target="#checkdel"><img src="../img/delete.png" style="width:28px;height: 28px;" ></a></td>
+						</tr>
+		<!-- 删除 -->
+						<div class="modal fade" id="checkdel" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h3 class="modal-title" id="modaltitle" style="margin-left: 2%;color: red;">删除</h3>
+									</div>
+									<div class="modal-body">
+										<span class="h4" style="margin-left: 10%;">你将删除该学生的信息</span>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+										</button>
+										<a href="/*" class="btn btn-danger">确认</a>
+									</div>
+								</div>
+							</div>
+						</div>
+		<!-- 查看模态框 -->
+						<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h3 class="modal-title" id="modaltitle">查看</h3>
+									</div>
+									<div class="modal-body" font-size: 14px; margin-left: 20px;>
+										<span class="row">
+											<span style="margin-left: 8%;">
+												姓名：
+												<input type="text" name="name_view" id="name_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+											<span style="margin-left: 7.6%;">
+												性别：
+												<input type="text" name="sex_view" id="sex_view" value="" style="width: 10%;border: none;outline: none;" disabled="disabled" />
+											</span>
+											<span style="margin-left: 2.7%;">
+												民族：
+												<input type="text" name="ethnic_view" id="ethnic_view" value="" style="width: 16%;border: none;outline: none;" disabled="disabled" />
+											</span>
+										</span>
+										<span class="row">
+											<span style="margin-left: 8%;">
+												班级：
+												<input type="text" name="class_view" id="class_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+											<span style="margin-left: 5.8%;">
+												学籍号：
+												<input type="text" name="status_view" id="status_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+											
+										</span>
+										<span class="row">
+											<span style="margin-left: 1.1%;">
+												家庭联系方式：
+												<input type="text" name="hometel_view" id="hometel_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+											<span style="margin-left: 8.2%;">
+												QQ：
+												<input type="text" name="qq_view" id="qq_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+										</span>
+										<span class="row">
+											<span style="margin-left: 6.4%;">
+												身份证：
+												<input type="text" name="selid_view" id="selid_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+											<span style="margin-left: 5.7%;">
+												考生号：
+												<input type="text" name="stuid_view" id="stuid_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+											
+										</span>
+										<span class="row">
+											<span style="margin-left: 3%;">
+												户籍所在地：
+												<input type="text" name="household_view" id="household_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+											<span style="margin-left: 7.3%;">
+												学号：
+												<input type="text" name="stuid_view" id="stuid_view" value="" style="width: 35%;border: none;outline: none;" disabled="disabled" />
+											</span>
+										</span>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+										</button>
+										<a href="*" class="btn btn-primary">确认</a>
+									</div>
+								</div>
+							</div>
+						</div>
+		<!-- 编辑模态框 -->
+						<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<form action="/*" method="post" name="editform">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h3 class="modal-title" id="modaltitle">编辑</h3>
+										</div>
+										<div class="modal-body" font-size: 14px; margin-left: 20px;>
+											<span class="row">
+												<span style="margin-left: 8%;">
+													姓名：
+													<input type="text" name="name_edit" id="name_edit" value="" style="width: 35%;" />
+												</span>
+												<span style="margin-left: 7.6%;">
+													性别：
+													<input type="text" name="sex_edit" id="sex_edit" value="" style="width: 10%;" />
+												</span>
+												<span style="margin-left: 2.7%;">
+													民族：
+													<input type="text" name="ethnic_edit" id="ethnic_edit" value="" style="width: 16%;" />
+												</span>
+											</span>
+											<span class="row">
+												<span style="margin-left: 8%;">
+													班级：
+													<input type="text" name="class_edit" id="class_edit" value="" style="width: 35%;" />
+												</span>
+												<span style="margin-left: 5.8%;">
+													学籍号：
+													<input type="text" name="status_edit" id="status_edit" value="" style="width: 35%;" />
+												</span>
+												
+											</span>
+											<span class="row">
+												<span style="margin-left: 1.1%;">
+													家庭联系方式：
+													<input type="text" name="hometel_edit" id="hometel_edit" value="" style="width: 35%;" />
+												</span>
+												<span style="margin-left: 8.2%;">
+													QQ：
+													<input type="text" name="qq_edit" id="qq_edit" value="" style="width: 35%;" />
+												</span>
+											</span>
+											<span class="row">
+												<span style="margin-left: 6.4%;">
+													身份证：
+													<input type="text" name="selid_edit" id="selid_edit" value="" style="width: 35%;" />
+												</span>
+												<span style="margin-left: 5.7%;">
+													考生号：
+													<input type="text" name="stuid_edit" id="stuid_edit" value="" style="width: 35%;" />
+												</span>
+												
+											</span>
+											<span class="row">
+												<span style="margin-left: 3%;">
+													户籍所在地：
+													<input type="text" name="household_edit" id="household_edit" value="" style="width: 35%;" />
+												</span>
+												<span style="margin-left: 7.3%;">
+													学号：
+													<input type="text" name="stuid_edit" id="stuid_edit" value="" style="width: 35%;" />
+												</span>
+											</span>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+											</button>
+											<a href="*" class="btn btn-primary">确认</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<tr>
+							<td colspan="10">
+								<div class="row" style="background-color: #e5e5e5;">
+									<div  style="float: left;margin-left: 1%;">
+										<a href="/*"><span class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+										<a href="/*"><span class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+									</div>
+									<span style="float: left; margin-left: 10px;">
+										<span>150</span>条总记录数
+									</span>
+									<span style="float: left; margin-left: 20px;">
+										显示<span>10</span>页
+									</span>
+									<span style="float: left; margin-left: 35px;">
+										跳转至
+										<input type="text" name="pagenum" id="pagenum" value="1" style="width: 35px;" />
+										页
+									</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	</script>
+</html>
