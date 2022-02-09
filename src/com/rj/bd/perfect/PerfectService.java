@@ -24,6 +24,7 @@ public class PerfectService {
 		Object values = new Object[32];
 		
 		types[0]=Types.VARCHAR;
+		types[1]=Types.VARCHAR;
 		
 		
 		
