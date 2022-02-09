@@ -26,7 +26,7 @@
 					
 				}
 				else{
-					if(<%=(List)request.getSession().getAttribute("ws")==null%>){
+					if(<%=(Map)request.getSession().getAttribute("ws")==null%>){
 						modaltt("#okxx");
 					}
 				}
@@ -56,7 +56,7 @@
 					window.location.href=encodeURI("<%=request.getContextPath()%>"+"/users/index.do?method=mquery&type=2&xl="+xl+"&jy="+jy+"&zw="+zw+"&gm="+gm+"&xxz="+xxz+"&xz="+xz);
 			}
 			function scok(img,text,type,userid,eid) {
-				if(<%=(List)request.getSession().getAttribute("ws")==null%>){
+				if(<%=(Map)request.getSession().getAttribute("ws")==null%>){
 					modaltt("#okxx");
 				}
 				else{
@@ -108,7 +108,7 @@
 				}
 			}
 			function sqok(userid) {
-				if(<%=(List)request.getSession().getAttribute("ws")==null%>){
+				if(<%=(Map)request.getSession().getAttribute("ws")==null%>){
 					$("#sqzw").modal('hide');
 					modaltt("#okxx");
 				}

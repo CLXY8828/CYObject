@@ -11,9 +11,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<!--2.引入基本的bootstrap的样式和js文件 -->
 		
-		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
-		<script src="../bootstrap-3.3.7-dist/js/jquery.js"></script>
-		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/jquery.js"></script>
+		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 		
 			
@@ -150,10 +150,10 @@
 		  	<div class="panel panel-default">
 			  <div class="panel-body">
 			  	<div class="row">
-			  		<div class="col-lg-2 col-xs-8  " style="padding-top: 10px;">
+			  		<div class="col-lg-2 col-xs-3  " style="padding-top: 10px;">
 			   			<img src="<%=request.getContextPath() %>/img/tx.png" alt="..." class="img-rounded" style=" width: 50px;">
 				   	</div>
-					<div class=" col-lg-6 col-xs-4 col-lg-pull-1 col-xs-pull-5 ">
+					<div class=" col-lg-6 col-xs-5 col-lg-pull-1  ">
 						<h2>${user.name}</h2>
 					</div>
 			  	</div>
@@ -193,7 +193,7 @@
                           	描述：修改密码
                           -->
 			  			<div class="row visible-lg-block" >
-			  				<a href="xgmm.html">
+			  				<a href="<%=request.getContextPath()%>/users/security.do?method=changepasswordpage">
 			  				<div class="panel panel-default">
 							  <div class="panel-body">
 							    <div class="col-lg-2 visible-lg-block" style="padding-top: 5px;">
@@ -221,7 +221,7 @@
                           	描述：手机端的修改密码
                           -->
                           <div class="row visible-xs-block">
-                          	<a href="xgmm.html">
+                          	<a href="<%=request.getContextPath()%>/users/security.do?method=changepasswordpage">
                           		<div class="panel panel-default">
 								  <div class="panel-body">
 								    <div class="col-xs-2" style="padding-left: 0px; padding-top: 5px;">
@@ -249,7 +249,7 @@
                           	描述：修改手机号
                           -->
                           <div class="row visible-lg-block" >
-                          	<a href="xgsjh.html">
+                          	<a href="<%=request.getContextPath()%>/users/security.do?method=changephonepage">
 			  				<div class="panel panel-default">
 							  <div class="panel-body">
 							    <div class="col-lg-2 " style="padding-top: 8px;">
@@ -278,7 +278,7 @@
                           	描述：手机端的修改手机号
                           -->
                           <div class="row visible-xs-block">
-                          	<a href="xgsjh.html">
+                          	<a href="<%=request.getContextPath()%>/users/security.do?method=changephonepage">
                           		<div class="panel panel-default">
 								  <div class="panel-body">
 								    <div class="col-xs-2" style="padding-left: 0px; padding-top: 8px;">
@@ -339,6 +339,7 @@
                           		<div class="panel panel-default">
 								  <div class="panel-body">
 								    <div class="col-xs-2" style="padding-left: 0px; padding-top: 8px;">
+								    	<img src="<%=request.getContextPath() %>/img/114.png" alt="..." class="img-rounded" style=" width: 50px;">
 								    </div>
 								    <div class="col-xs-5">
 								    	<p>修改信息</p>

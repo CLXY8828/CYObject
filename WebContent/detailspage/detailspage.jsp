@@ -37,7 +37,7 @@
 					$("#sqzw").modal('hide');
 					modaltt("#logeink");
 				}
-				else if(<%=(List)request.getSession().getAttribute("ws")==null%>){
+				else if(<%=(Map)request.getSession().getAttribute("ws")==null%>){
 					$("#sqzw").modal('hide');
 					modaltt("#okxx");
 				}
@@ -62,7 +62,7 @@
 				if(<%=(Map)request.getSession().getAttribute("user")==null%>){
 					modaltt("#logeink");
 				}
-				else if(<%=(List)request.getSession().getAttribute("ws")==null%>){
+				else if(<%=(Map)request.getSession().getAttribute("ws")==null%>){
 					modaltt("#okxx");
 				}
 				else{

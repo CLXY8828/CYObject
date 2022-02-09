@@ -98,10 +98,10 @@ public class LogeinService {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public List<Map<String, Object>> executewsForUUID(String UUID) throws ClassNotFoundException, SQLException {
+	public Map<String, Object> executewsForUUID(String UUID) throws ClassNotFoundException, SQLException {
 		
 		String sql = "select * from students where UUID=?";
-		return dao.executeQueryForList(sql, new int[]{Types.VARCHAR}, new Object[]{UUID});
+		return dao.executeQueryForMap(sql, new int[]{Types.VARCHAR}, new Object[]{UUID});
 		
 	}
 	

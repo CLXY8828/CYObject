@@ -16,6 +16,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.jasper.tagplugins.jstl.core.Out;
 
 import com.rj.bd.messageutrl.SmsCodeException;
+import com.rj.bd.utrl.CodeUtrl;
 
 @SuppressWarnings("serial")
 public class LogeinServlet extends HttpServlet {
@@ -107,7 +108,7 @@ public class LogeinServlet extends HttpServlet {
 				map=service.queryByPhone(phonenumber);
 				request.getSession().setAttribute("user", map);
 				request.getSession().setAttribute("userid", map.get("UUID"));
-				List<Map<String, Object>> ws = service.executewsForUUID(((String)map.get("UUID")));
+				Map<String, Object> ws = service.executewsForUUID(((String)map.get("UUID")));
 				if (ws.size()>0) {
 					request.getSession().setAttribute("ws", ws);
 					System.out.println(ws);
@@ -118,7 +119,7 @@ public class LogeinServlet extends HttpServlet {
 			else {//已注册的用户登录
 				request.getSession().setAttribute("user", map);
 				request.getSession().setAttribute("userid", map.get("UUID"));
-				List<Map<String, Object>> ws = service.executewsForUUID(((String)map.get("UUID")));
+				Map<String, Object> ws = service.executewsForUUID(((String)map.get("UUID")));
 				if (ws.size()>0) {
 					request.getSession().setAttribute("ws", ws);
 					System.out.println(ws);
@@ -151,7 +152,7 @@ public class LogeinServlet extends HttpServlet {
 		//数据库存在的用户
 		if (map!=null) {
 			if (map.get("password").equals(password)) {
-					List<Map<String, Object>> ws = service.executewsForUUID(((String)map.get("UUID")));
+					Map<String, Object> ws = service.executewsForUUID(((String)map.get("UUID")));
 					request.getSession().setAttribute("user", map);
 					request.getSession().setAttribute("userid", map.get("UUID"));
 					if (ws.size()>0) {
