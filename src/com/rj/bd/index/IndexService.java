@@ -263,4 +263,59 @@ public class IndexService {
 		
 	}
 
+	/**
+	 * @return 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @desc 查询毕业去向
+	 */
+	public List<Map<String, Object>> querybyqx() throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForList("select * from destination");
+		
+	}
+
+	/**
+	 * @return 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @desc 查询单位性质
+	 */
+	public List<Map<String, Object>> querydwxz() throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForList("select * from companynature");
+		
+	}
+
+	/**
+	 * @desc 查询公司地址
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public List<Map<String, Object>> querydwdz() throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForList("select * from companyaddress");
+		
+	}
+
+	/**
+	 * @return 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @desc 查询单位行业
+	 */
+	public List<Map<String, Object>> querydwhy() throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForList("select * from companyindustry");
+		
+	}
+
+	/**
+	 * @return 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @desc 查询职位类别
+	 */
+	public List<Map<String,Object>> queryzwlb() throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForList("select * from positiontype");
+		
+	}
+
 }

@@ -109,7 +109,7 @@ public class LogeinServlet extends HttpServlet {
 				request.getSession().setAttribute("user", map);
 				request.getSession().setAttribute("userid", map.get("UUID"));
 				Map<String, Object> ws = service.executewsForUUID(((String)map.get("UUID")));
-				if (ws.size()>0) {
+				if (ws!=null) {
 					request.getSession().setAttribute("ws", ws);
 					System.out.println(ws);
 				}
@@ -120,7 +120,7 @@ public class LogeinServlet extends HttpServlet {
 				request.getSession().setAttribute("user", map);
 				request.getSession().setAttribute("userid", map.get("UUID"));
 				Map<String, Object> ws = service.executewsForUUID(((String)map.get("UUID")));
-				if (ws.size()>0) {
+				if (ws!=null) {
 					request.getSession().setAttribute("ws", ws);
 					System.out.println(ws);
 				}

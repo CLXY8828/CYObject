@@ -73,6 +73,15 @@
     <url-pattern>/users/security.do</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>PerfectServlet</servlet-name>
+    <servlet-class>com.rj.bd.perfect.PerfectServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PerfectServlet</servlet-name>
+    <url-pattern>/users/perfect.do</url-pattern>
+  </servlet-mapping>
+  
    <servlet>
   	<servlet-name>NoPasswordServlet</servlet-name>
   	<servlet-class>com.rj.bd.logein.nopassword.NoPasswordServlet</servlet-class>

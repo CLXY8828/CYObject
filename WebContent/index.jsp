@@ -160,7 +160,7 @@
 		        <li class="dropdown" id="mine">
 		          <a style="color: white; width: 159px; font-size: 16px;background-color:#011536;" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li class="text-center"><a href="#">个人信息</a></li>
+		            <li class="text-center"><a href="<%=request.getContextPath() %>/users/index.do?method=perfactpage">个人信息</a></li>
 		            <c:if test="${empty ws}">
 		            <li class="text-center"><a href="#" onclick="modaltt('#okxx')">安全中心</a></li>
 		            </c:if>

@@ -52,6 +52,9 @@ public class IndexServlet extends HttpServlet {
 			else if ("securitypage".equals(q)) {
 				securitypage(request,response);
 			}
+			else if ("perfactpage".equals(q)) {
+				perfactpage(request,response);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -59,6 +62,39 @@ public class IndexServlet extends HttpServlet {
 	}
 
 	
+	/**
+	 * @desc 跳转信息完善页面
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	private void perfactpage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
+
+		List<Map<String, Object>> byqx = service.querybyqx();
+		List<Map<String, Object>> dwxz = service.querydwxz();
+		List<Map<String, Object>> dwdz = service.querydwdz();
+		List<Map<String, Object>> dwhy = service.querydwhy();
+		List<Map<String, Object>> zwlb = service.queryzwlb();
+		request.setAttribute("byqx", byqx);
+		request.setAttribute("dwxz", dwxz);
+		request.setAttribute("dwdz", dwdz);
+		request.setAttribute("dwhy", dwhy);
+		request.setAttribute("zwlb", zwlb);
+		request.getRequestDispatcher("/perfect/perfectpage.jsp").forward(request, response);
+		
+	}
+
+
+	/**
+	 * @desc 跳转安全中心
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private void securitypage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/security/security.jsp").forward(request, response);
 		
