@@ -3,14 +3,20 @@ package com.rj.bd.index;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.rj.bd.utrl.EmailUtils;
 
 @SuppressWarnings("serial")
 public class IndexServlet extends HttpServlet {
@@ -55,7 +61,7 @@ public class IndexServlet extends HttpServlet {
 			else if ("perfactpage".equals(q)) {
 				perfactpage(request,response);
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException | ParseException | MessagingException e) {
 			System.out.println(e.getMessage());
 		}
 		
@@ -164,13 +170,36 @@ public class IndexServlet extends HttpServlet {
 	 * @throws FileNotFoundException
 	 * @throws SQLException
 	 * @throws IOException
+	 * @throws ParseException 
+	 * @throws MessagingException 
 	 */
-	private void saveSQ(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+	private void saveSQ(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException, ParseException, MessagingException {
+		Map user = (Map)request.getSession().getAttribute("user");
 		String userid = request.getParameter("userid");
 		String eid = request.getParameter("eid");
 		if (userid!=null&&!userid.equals("")) {
 			service.saveSQ(userid,eid);
+			emailto(userid,user,eid);
 		}
+	}
+
+
+	private void emailto(String userid, Map user, String eid) throws ClassNotFoundException, SQLException, ParseException, MessagingException, IOException {
+		List<Map<String, Object>> list = service.queryjl(userid);
+		String time=(String)(list.get(0).get("resume_time"));
+		String id=(list.get(0).get("resume_id"))+"";
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+		 Date date1 = sdf.parse(time);
+		 for (Map<String, Object> map : list) {
+	        Date date2 = sdf.parse((String)map.get("resume_time"));
+	        if (date2.after(date1)) {
+	        	date1=date2;
+	        	id=(String)map.get("resume_id");
+	        }
+		}
+		 Map<String, Object> map = service.queryjlmap(id);
+	     Map<String, Object> emap = service.queryeid(eid);
+		 EmailUtils.enclosureMessage("1977455153@qq.com",user.get("name")+"-"+emap.get("gsname")+"-"+emap.get("employment_name"), "", "D:/tools/"+map.get("resume_one"));
 	}
 
 

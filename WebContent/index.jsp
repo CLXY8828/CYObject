@@ -197,7 +197,7 @@
 		        <li><a href="#"style="color: white;">切换城市</a>	</li>
 	            <li><a class="top-text" href="#" style="color: white;">个人信息</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">安全中心</a></li>
-	            <li><a class="top-text" href="#" style="color: white;">上传简历</a></li>
+	            <li><a class="top-text" href="<%=request.getContextPath() %>/users/resume.do?method=page" style="color: white;">上传简历</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">历史简历</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">我的收藏</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">申请记录</a></li>
@@ -702,7 +702,7 @@
 						    <div class="row">
 						    	<br />
 						    	<div class="col-lg-6">
-						    		<a type="button" class="btn btn-primary">上传简历</a>
+						    		<a type="button" href="<%=request.getContextPath() %>/users/resume.do?method=page" class="btn btn-primary">上传简历</a>
 						    	</div>
 						    	<div class="col-lg-6">
 						    		<a type="button" class="btn btn-primary">历史简历</a>

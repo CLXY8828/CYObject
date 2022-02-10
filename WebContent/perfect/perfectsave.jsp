@@ -209,13 +209,13 @@
 	    </div>
 	     <div class="collapse navbar-collapse " id="top-text">
 	     	 <ul class="nav visible-lg-block navbar-nav navbar-right">
-		        <li id="address"><a href="zhaq.html">点击返回上一页</a></li>
+		        <li id="address"><a href="<%=request.getContextPath()%>/users/index.do?method=query">点击返回上一页</a></li>
 		        
 		        
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	     	 <ul class="nav visible-xs-block navbar-nav">
-		        <li><a href="zhaq.html"style="color: white;">点击返回上一页</a>	</li>
+		        <li><a href="<%=request.getContextPath()%>/users/index.do?method=query"style="color: white;">点击返回上一页</a>	</li>
 	            
 		      </ul>
 		      

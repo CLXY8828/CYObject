@@ -318,4 +318,22 @@ public class IndexService {
 		
 	}
 
+	public List<Map<String, Object>> queryjl(String userid) throws ClassNotFoundException, SQLException {
+		
+		Map<String, Object> map = dao.executeQueryForMap("select * from students where UUID=?", new int[]{Types.VARCHAR},new Object[]{userid});
+		return dao.executeQueryForList("select * from resume where id='"+map.get("id")+"'");
+	}
+
+	public Map<String, Object> queryjlmap(String id) throws ClassNotFoundException, SQLException {
+		
+		return dao.executeQueryForMap("select * from resume where resume_id=?",new int[]{Types.VARCHAR},new Object[]{id});
+		
+	}
+
+	public Map<String, Object> queryeid(String eid) throws ClassNotFoundException, SQLException {
+		
+		return dao.executeQueryForMap("select * from employment where eid=?", new int[]{Types.VARCHAR},new Object[]{eid});
+		
+	}
+
 }

@@ -306,7 +306,7 @@
                           	描述：修改信息
                           -->
                           <div class="row visible-lg-block" >
-                          	<a href="xgxx.html">
+                          	<a href="<%= request.getContextPath() %>/users/perfect.do?method=perfectsavepage">
 			  				<div class="panel panel-default">
 							  <div class="panel-body">
 							    <div class="col-lg-2 " style="padding-top: 8px;">

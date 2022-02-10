@@ -70,4 +70,5 @@ public final class Dates implements Serializable {
 		curTime = formatter.format(currentDate);
 		return curTime;
 	}
+	
 }

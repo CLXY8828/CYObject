@@ -192,7 +192,7 @@
 	    </div>
 	     <div class="collapse navbar-collapse " id="top-text">
 	     	 <ul class="nav visible-lg-block navbar-nav navbar-right">
-		        <li id="address"><a href="../zym.html">点击返回上一页</a></li>
+		        <li id="address"><a href="<%=request.getContextPath()%>/users/index.do?method=query">点击返回上一页</a></li>
 		        
 		      </ul>
 	    </div>
@@ -225,8 +225,8 @@
                   	时间：2022-01-30
                   	描述：左边
                   -->
-			  	<div class="col-lg-3 visible-lg-block ">
-	  				<div class="table-responsive">
+			  	<div class=" col-lg-2 visible-lg-block ">
+	  				<div class="table-responsive hidden ">
 					  <table class="table table-bordered table-hover" style=" font-size: 20px; text-align: center; ">
 					  	<tr >
 					  		<td>
@@ -241,22 +241,22 @@
 					    		<a href="#home01" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="jbxx" >基本信息</a>
 					    	</td>
 					    </tr>
-					    <tr style="background-color: white;">
+					    <tr class="hidden" style="background-color: white;">
 					    	<td>
 					    		<a href="#home03" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="gzjy">工作经验</a>
 					    	</td>
 					    </tr>
-					    <tr style="background-color: white;">
+					    <tr class="hidden" style="background-color: white;">
 					    	<td>
 					    		<a href="#home04" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="zxqk">在校情况</a>
 					    	</td>
 					    </tr>
-					    <tr style="background-color: white;">
+					    <tr class="hidden" style="background-color: white;">
 					    	<td>
 					    		<a href="#home05" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="jntc">技能特长</a>
 					    	</td>
 					    </tr>
-					    <tr style="background-color: white;">
+					    <tr class="hidden" style="background-color: white;">
 					    	<td>
 					    		<a href="#home06" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="zwpj">自我评价</a>
 					    	</td>
