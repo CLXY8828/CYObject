@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -110,12 +111,12 @@
 			<div style="margin-left: 10%;">
 				<img src="../img/logo.png" style="width: 4%;height: 4%;padding-top: 0.5%;padding-bottom: 0.5%;">
 				<span style="color: white;margin-top: 10%;margin-left: 0.5%;" class="h3"><strong>高校就业平台</strong></span>
-				<span style="color: white; margin-left: 59.8%;padding-top: 50%;">欢迎<span>**</span>登陆</span>
+				<span style="color: white; margin-left: 59.8%;padding-top: 50%;">欢迎<span><%=((Map)session.getAttribute("user")).get("admin_name")%></span>登陆</span>
 				<div class="h2 btn-group" style="font-size:28px;margin-top:0.6%;">
 					<button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 80px;">我的</button>
 					<ul class="dropdown-menu">
-					    <li><a href="userinfo/selfinfo.html">个人中心</a></li>
-					    <li><a href="#">退出</a></li>
+					    <!--<li><a href="userinfo/selfinfo.html">个人中心</a></li>-->
+					    <li><a href="<%=request.getContextPath() %>/users/logein.do?method=out">退出</a></li>
 					  </ul>
 				</div>
 			</div>
@@ -133,8 +134,13 @@
 					<div class="menu">       
 						<div class="menu-title inacitve"><img src="../img/working.png" class="nav-icon"><span style="font-size:22px;margin-right:110px;">就业</span><span class="glyphicon glyphicon-menu-down"></span></div>                
 						<ul class="menu-content">
+						<%if(((Map)session.getAttribute("user")).get("admin_have").equals(2)){%>
+							<li style="margin-bottom: -8%;"><a href="#classset" tabindex="-1" aria-controls="classset" role="tab" data-toggle="tab" onclick="classsetpage()"><span style="margin-right: 26%;font-size: 20px;">班级就业</span></a></li>	
+						<% }else{ %>
+						<p><%=((Map)session.getAttribute("user")).get("admin_have")%></p>
 							<li><a href="#gradeset" tabindex="-1" aria-controls="gradeset" role="tab" data-toggle="tab" onclick="gradesetpage()"><span style="margin-right: 26%;font-size: 20px;">年级就业</span></a></li>								
 							<li style="margin-bottom: -8%;"><a href="#classset" tabindex="-1" aria-controls="classset" role="tab" data-toggle="tab" onclick="classsetpage()"><span style="margin-right: 26%;font-size: 20px;">班级就业</span></a></li>	
+						<% } %>
 						</ul>
 					</div>
 					<hr class="norhr"/>
@@ -144,7 +150,7 @@
 							<li style="margin-bottom: -8%;"><a href="#postinfo" tabindex="-1" aria-controls="postinfo" role="tab" data-toggle="tab" onclick="postinfopage()"><span style="margin-right: 26%;font-size: 20px;">岗位信息</span></a></li>
 						</ul>
 					</div>
-					<hr class="norhr" />
+					<hr class="norhr"/>
 					<div class="menu">
 						<div class="menu-title inacitve"><img src="../img/warningsystem.png" class="nav-icon"><span style="font-size:22px;margin-right:65px;">预警系统</span><span class="glyphicon glyphicon-menu-down"></span></div>
 						<ul class="menu-content">
@@ -153,6 +159,7 @@
 							<li style="margin-bottom: -8%;"><a href="#postoverdue" tabindex="-1" aria-controls="gradeset" role="tab" data-toggle="tab" onclick="postoverduepage()"><span style="margin-right: 11%;font-size: 20px;">岗位过期预警</span></a></li>
 						</ul>
 					</div>
+					<%if(!(((Map)session.getAttribute("user")).get("admin_have").equals(2))){%>
 					<hr class="norhr" />
 					<div class="menu">
 						<div class="menu-title inacitve"><img src="../img/stuinfo.png" class="nav-icon"><span style="font-size:22px;margin-right:20px;">学生信息管理</span><span class="glyphicon glyphicon-menu-down"></span></div>
@@ -161,10 +168,13 @@
 							<li style="margin-bottom: -8%;"><a href="#badel" tabindex="-1" aria-controls="badel" role="tab" data-toggle="tab" onclick="badelpage()"><span style="margin-right: 26%;font-size: 20px;">批量删除</span></a></li>
 						</ul>
 					</div>
+					<%}%>
+					<%if(((Map)session.getAttribute("user")).get("admin_have").equals(0)){%>
 					<hr class="norhr" />
 					<div class="menu">
 						<div class="menu-title"><img src="../img/authority.png" class="nav-icon"><a href="#author" tabindex="-1" aria-controls="author" role="tab" data-toggle="tab" onclick="authorpage()" style="font-size:22px;margin-right:90px;">权限管理</a></div>
 					</div>
+					<%}%>
 				</div>
 				<div class="content_right tab-content" style="box-shadow: 1 0 3px 3px gray;">
 					<div id="default" class="tab-pane active" style="width: 100%;height: 100%;">

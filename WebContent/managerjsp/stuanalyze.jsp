@@ -58,7 +58,9 @@
 	        		        alignWithLabel: true
 	        		      },
 	        		      // prettier-ignore
-	        		      data: ['18级就业人数', '19级就业人数']
+	        		      data: [
+	        		    	  '18级就业人数', '19级就业人数'
+	        		    	  ]//年纪名字
 	        		    }
 	        		  ],
 	        		  yAxis: [
@@ -115,7 +117,7 @@
 	        		      type: 'bar',
 	        		      data: [
 	        		        846, 865
-	        		      ]
+	        		      ]//年级得就业人数
 	        		    },
 	        		    {
 	        		      name: '未就业人数',
@@ -123,13 +125,13 @@
 	        		      yAxisIndex: 1,
 	        		      data: [
 	        		        32,48
-	        		      ]
+	        		      ]//年级得未就业人数
 	        		    },
 	        		    {
 	        		      name: '就业率',
 	        		      type: 'line',
 	        		      yAxisIndex: 2,
-	        		      data: [96 ,97 ]
+	        		      data: [96 ,97 ]//年级得就业率
 	        		    }
 	        		  ]
 	        		};
@@ -166,7 +168,7 @@
 	           type: 'pie',
 	           radius: '50%',
 	           data: [
-	             { value: 1048, name: '北京' },
+	             { value: 1048, name: '北京' },//查单位地址 模糊查询
 	             { value: 735, name: '天津' },
 	             { value: 580, name: '石家庄' },
 	             { value: 484, name: '上海' },
