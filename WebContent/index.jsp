@@ -160,7 +160,12 @@
 		        <li class="dropdown" id="mine">
 		          <a style="color: white; width: 159px; font-size: 16px;background-color:#011536;" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
+		          	<c:if test="${empty ws}">
 		            <li class="text-center"><a href="<%=request.getContextPath() %>/users/index.do?method=perfactpage">个人信息</a></li>
+		            </c:if>
+		           <c:if test="${!empty ws}">
+		           <li class="text-center"><a href="<%= request.getContextPath() %>/users/perfect.do?method=perfactlist ">个人信息</a></li>
+		            </c:if>
 		            <c:if test="${empty ws}">
 		            <li class="text-center"><a href="#" onclick="modaltt('#okxx')">安全中心</a></li>
 		            </c:if>
@@ -820,7 +825,7 @@
 		      		<button type="button" class="btn btn-default" data-dismiss="modal">稍后填写</button>
 			      	</div>
 			      	<div class="col-lg-8 col-xs-8">
-			      		<a href="#" type="button" class="btn btn-primary">立即填写</a>
+			      		<a href="<%=request.getContextPath() %>/users/index.do?method=perfactpage" type="button" class="btn btn-primary">立即填写</a>
 			      	</div>
 		      	</div>
 		      </div>

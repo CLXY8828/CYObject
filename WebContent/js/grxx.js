@@ -377,7 +377,6 @@ function gsxx02()
 	
 	if( (byqx==1) && (dwmc==1) && (dwxz==1) && (dwszd==1) && (dwhy==1) && (gzzwlb==1) && (dwlxr==1) && (lxrdh==1) && (lxrsj==1) && (lxryx==1) && (dwdz==1) )
 	{
-		$('#gzjy').tab('show');
 		return true
 	}
 	else
@@ -403,7 +402,7 @@ function gsxx02()
 function byqxyz()
 {
 	var byqx=$('#gsxx001 option:selected').val()
-	if(byqx.trim())
+	if(byqx=='请选择')
 	{
 		$("#gsxx-cwts01").html("请选择毕业去向");
 		$("#gsxx-cwts01").show();
@@ -424,7 +423,7 @@ function dwmcyz()
 {
 	var dwmc=$("#gsxx002").val();
 	
-	if(!dwmc.trim())
+	if(dwmc=='请选择')
 	{
 		$("#gsxx-cwts02").html("请填写单位名称");
 		$("#gsxx-cwts02").show();
@@ -445,7 +444,7 @@ function dwmcyz()
 function dwxzyz()
 {
 	var dwxz=$('#gsxx003 option:selected').val()
-	if(dwxz.trim())
+	if(dwxz=='请选择')
 	{
 		$("#gsxx-cwts03").html("请选择单位性质");
 		$("#gsxx-cwts03").show();
@@ -466,8 +465,7 @@ function dwxzyz()
 function dwszdyz()
 {
 	var dwszd=$('#gsxx004 option:selected').val()
-	
-	if(dwszd.trim())
+	if(dwszd=='请选择')
 	{
 		$("#gsxx-cwts04").html("请选择单位所在地");
 		$("#gsxx-cwts04").show();
@@ -488,7 +486,7 @@ function dwhyyz()
 {
 	var dwhy=$("#gsxx005").val();
 	
-	if(!dwhy.trim())
+	if(dwhy=='请选择')
 	{
 		$("#gsxx-cwts05").html("请填写单位行业");
 		$("#gsxx-cwts05").show();
@@ -509,7 +507,7 @@ function gzzwlbyz()
 {
 	var gzzwlb=$("#gsxx006").val();
 	
-	if(!gzzwlb.trim())
+	if(gzzwlb=='请选择')
 	{
 		$("#gsxx-cwts06").html("请填写工作职位类别");
 		$("#gsxx-cwts06").show();
@@ -953,7 +951,6 @@ function zwpj()
 	
 	if((grah==1) && (zsydbz==1) &&(zwpj01==1)  )
 	{
-		alert("成功")
 		return true
 		
 	}

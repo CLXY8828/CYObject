@@ -119,22 +119,50 @@
 		<script type="text/javascript">
 		
 			function formjb() {
-				var url="<%= request.getContextPath() %>/users/perfect.do?method=formjb"//提交的地址  
-			 		$.post(url,$('#fm-jb').serialize(),function(data)
-						{
-			 				if(data=='yes'){
-			 					$('#gsxx02').tab('show');
-			 					return;
-			 				}
-			 				else if(data='no'){
-			 					$("#error05").html("学号与身份证号不匹配！");
-			 					$("#error05").show();
-			 					$("#jbxx-error05").show();
-			 					$("#jbxx-success05").hide();
-			 					return;
-			 				}
-			 				window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
-						});
+				if (jbxx()) {
+					var url="<%= request.getContextPath() %>/users/perfect.do?method=formjb"//提交的地址  
+							alert($('#fm-jb').serialize())
+				 		$.post(url,$('#fm-jb').serialize(),function(data)
+							{
+				 				if(data=='yes'){
+				 					$('#gsxx02').tab('show');
+				 					return;
+				 				}
+				 				else if(data='no'){
+				 					$("#error05").html("学号与身份证号不匹配！");
+				 					$("#error05").show();
+				 					$("#jbxx-error05").show();
+				 					$("#jbxx-success05").hide();
+				 					return;
+				 				}
+				 				window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
+							});
+				}
+				
+			}
+		
+			function formgs() {
+				alert("提交点击")
+				if(gsxx02()){
+					$("#gsxx-sub").button('loading');
+					$("#gsxx-sub").removeAttr('onclick');
+					var url="<%= request.getContextPath() %>/users/perfect.do?method=formgs"//提交的地址  
+				 		$.post(url,$('#fm-gs').serialize(),function(data,status)
+							{
+				 			if(status=='success'){
+					 			if(data=='no'){
+					 				$("#gsxx-cwts11").html("您的基本信息尚未完善或提交！");
+					 				$("#gsxx-cwts11").show();
+					 				$("#gsxx-error11").show();
+					 				$("#gsxx-success11").hide();
+				 					return;
+				 				}
+					 			else if(data=='yes'){
+					 				window.location.href=encodeURI("<%=request.getContextPath()%>/users/index.do?method=query");
+					 			}
+				 			}
+							});
+				}
 			}
 		
 		</script>
@@ -215,11 +243,6 @@
 					    </tr>
 					    <tr style="background-color: white;">
 					    	<td>
-					    		<a href="#home02" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="gsxx01">公司信息</a>
-					    	</td>
-					    </tr>
-					    <tr style="background-color: white;">
-					    	<td>
 					    		<a href="#home03" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="gzjy">工作经验</a>
 					    	</td>
 					    </tr>
@@ -243,7 +266,7 @@
                         	时间：2022-02-05
                         	描述：这是选择是后展示的公司信息的模块
                         -->
-					    <tr class="">
+					    <tr class="hidden">
 					    	<td>
 					    		<a href="#home07" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="gsxx02">公司信息</a>
 					    	</td>
@@ -287,7 +310,7 @@
 				    		<hr />
 						  
 						  <div class="row" >
-						  	<form  id="fm-jb" onsubmit="return jbxx()" action="#" >
+						  	<form  id="fm-jb" action="#" >
 						   		<div class="row" > 
 						   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 										  <div class="input-group  " >
@@ -873,7 +896,7 @@
                     -->
 				    <div role="tabpanel" class="tab-pane" id="home07">
 				    	<div class="container-fluid">
-				    		<form onsubmit="return gsxx02()" action="#">
+				    		
 				    		
 				    		<div class="row " style="padding-top: 15px; background-color: white; height: 120px;">
 						  	<div class="row">
@@ -888,11 +911,12 @@
 						   	
 						  </div>
 						  <hr />
+						  <form id="fm-gs" action="#">
 						  <div class="row" >
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
-									  <span class="input-group-addon" >毕业去向</span>
-									  <select class="form-control" id="gsxx001">
+									  <span class="input-group-addon">毕业去向</span>
+									  <select class="form-control" name="destination_id" id="gsxx001">
 				          					<option>请选择</option>
 				          					<c:forEach var="map" items="${byqx}">
 				          					<option value="${map.destination_id}">${map.destination_explain}</option>
@@ -906,7 +930,7 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >单位名称</span>
-									  <input type="text" class="form-control"  id="gsxx002">
+									  <input type="text" class="form-control" name="gsname" id="gsxx002">
 									  <span id="gsxx-success02" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green; padding-right: 60px;padding-top: 38px;  display: none;"></span>
 										<span id="gsxx-error02" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; padding-right: 60px;padding-top: 38px; display: none;"></span>
 									</div>
@@ -917,7 +941,7 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >单位性质</span>
-									  <select class="form-control" id="gsxx003">
+									  <select class="form-control" name="nature_id" id="gsxx003">
 				          					<option>请选择</option>
 				          					<c:forEach var="map" items="${dwxz}">
 				          					<option value="${map.nature_id}">${map.nature_name}</option>
@@ -931,7 +955,7 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >单位所在地</span>
-									  <select  class="form-control" id="gsxx004">
+									  <select  class="form-control" name="companyaddress_id" id="gsxx004">
 				          					<option>请选择</option>
 				          					<c:forEach var="map" items="${dwdz}">
 				          					<option value="${map.companyaddress_id}">${map.companyaddress_name}</option>
@@ -947,7 +971,7 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >单位行业</span>
-									  <select  class="form-control" id="gsxx005">
+									  <select  class="form-control" name="industry_id" id="gsxx005">
 				          					<option>请选择</option>
 				          					<c:forEach var="map" items="${dwhy}">
 				          					<option value="${map.industry_id}">${map.industry_name}</option>
@@ -961,7 +985,7 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >工作职位类别</span>
-									  <select  class="form-control" id="gsxx006">
+									  <select  class="form-control" name="positiontype_id" id="gsxx006">
 				          					<option>请选择</option>
 				          					<c:forEach var="map" items="${zwlb}">
 				          					<option value="${map.positiontype_id}">${map.positiontype_name}</option>
@@ -977,7 +1001,7 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >单位联系人</span>
-									  <input type="text" class="form-control"  id="gsxx007">
+									  <input type="text" class="form-control" name="contact_person"  id="gsxx007">
 										<span id="gsxx-success07" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green; padding-right: 60px;padding-top: 38px;  display: none;"></span>
 									  <span id="gsxx-error07" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; padding-right: 60px;padding-top: 38px; display: none;"></span>
 									</div>
@@ -986,7 +1010,7 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >联系人电话</span>
-									  <input type="text" class="form-control"  id="gsxx008">
+									  <input type="text" class="form-control" name="cell_phone"  id="gsxx008">
 										<span id="gsxx-success08" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green; padding-right: 60px;padding-top: 38px;  display: none;"></span>
 									  <span id="gsxx-error08" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; padding-right: 60px;padding-top: 38px; display: none;"></span>
 									</div>
@@ -997,7 +1021,7 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >联系人手机</span>
-									  <input type="text" class="form-control"  id="gsxx009">
+									  <input type="text" class="form-control" name="sphone"  id="gsxx009">
 									<span id="gsxx-success09" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green; padding-right: 60px;padding-top: 38px;  display: none;"></span>
 									  <span id="gsxx-error09" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; padding-right: 60px;padding-top: 38px; display: none;"></span>
 									</div>
@@ -1006,34 +1030,36 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >联系人电子邮箱</span>
-									  <input type="email" class="form-control"  id="gsxx010">
+									  <input type="email" class="form-control" name="contact_email" id="gsxx010">
 									<span id="gsxx-success10" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green; padding-right: 60px;padding-top: 38px;  display: none;"></span>
 									  <span id="gsxx-error10" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; padding-right: 60px;padding-top: 38px; display: none;"></span>
 									</div>
 									<div id="gsxx-cwts10" style="font-size: 13px; color: red; display: none; "></div>
 					   			</div>
-					   			</div>
-				   		   </div>
-				   		   <div class="row">
+					   		</div>
+					   		<div class="row">
 						  	<div class="col-lg-12 col-xs-12" style="padding-top: 10px;">
 						  		<div class="" >
 								  <span class="input-group-addon" >单位地址</span>
-								  <textarea class="form-control" rows="2" placeholder="例如：xx省xx市xx区xx街道xx号" id="gsxx011"></textarea>
+								  <textarea class="form-control" name="company_address" rows="2" placeholder="例如：xx省xx市xx区xx街道xx号" id="gsxx011"></textarea>
 									<span id="gsxx-success11" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green; padding-right: 60px;padding-top: 48px;  display: none;"></span>
 									  <span id="gsxx-error11" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; padding-right: 60px;padding-top: 48px; display: none;"></span>
 						  		</div>
 						  		<div id="gsxx-cwts11" style="font-size: 13px; color: red; display: none; ">/div>
 						  	</div>
 						  </div>
+						  </div>
 						  <div class="row" >
 				   			<div class="col-lg-6 col-xs-6 " style="padding-top: 10px;">
 							  	<a class="btn btn-default " href="#home01" aria-controls="home" role="tab" data-toggle="tab">取消</a>
 				   			</div>
 				   			<div class="col-lg-6 col-xs-6  col-lg-push-5 col-xs-push-2" style="padding-top: 10px;">
-							  	<button type="submit" class="btn btn-primary">提 交</button>
+							  	<button type="button" id="gsxx-sub" onclick="formgs()" class="btn btn-primary">提 交</button>
 				   			</div>
 				   		  </div>
 						</form>
+				   		   </div>
+				   		   
 				    	</div>
 				    </div>
 				  </div>
@@ -1044,7 +1070,6 @@
 			</div>
 		  </div>
 		  </div>
-		</div>
 		
 		<!--
         	作者：1977455153@qq.com
