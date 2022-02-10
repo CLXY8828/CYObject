@@ -73,7 +73,6 @@ public class PostinfoServlet extends  HttpServlet{
 		String demand = request.getParameter("demand_"+eid);
 		String subtime = Dates.CurrentTime();
 		String readyNumb= request.getParameter("readyNumb_"+eid);
-		System.out.println(subtime);
 		//2.存值
 		postinfoservice.editValue(eid,nature_id,gsname,employment_name,salary,phone,
 				employment_describe,introduce,note,address,education,experience,zwtype,

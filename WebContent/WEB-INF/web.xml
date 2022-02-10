@@ -11,6 +11,16 @@
   </welcome-file-list>
   
   <servlet>
+    <servlet-name>StuanalyzeServlet</servlet-name>
+    <servlet-class>com.rj.bd.managerall.stuanalyze.StuanalyzeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StuanalyzeServlet</servlet-name>
+    <url-pattern>/stuanalyze/stu.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
     <servlet-name>ClassServlet</servlet-name>
     <servlet-class>com.rj.bd.managerall.employment.classset.ClassServlet</servlet-class>
   </servlet>

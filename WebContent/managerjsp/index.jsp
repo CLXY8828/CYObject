@@ -137,7 +137,6 @@
 						<%if(((Map)session.getAttribute("user")).get("admin_have").equals(2)){%>
 							<li style="margin-bottom: -8%;"><a href="#classset" tabindex="-1" aria-controls="classset" role="tab" data-toggle="tab" onclick="classsetpage()"><span style="margin-right: 26%;font-size: 20px;">班级就业</span></a></li>	
 						<% }else{ %>
-						<p><%=((Map)session.getAttribute("user")).get("admin_have")%></p>
 							<li><a href="#gradeset" tabindex="-1" aria-controls="gradeset" role="tab" data-toggle="tab" onclick="gradesetpage()"><span style="margin-right: 26%;font-size: 20px;">年级就业</span></a></li>								
 							<li style="margin-bottom: -8%;"><a href="#classset" tabindex="-1" aria-controls="classset" role="tab" data-toggle="tab" onclick="classsetpage()"><span style="margin-right: 26%;font-size: 20px;">班级就业</span></a></li>	
 						<% } %>
@@ -178,7 +177,7 @@
 				</div>
 				<div class="content_right tab-content" style="box-shadow: 1 0 3px 3px gray;">
 					<div id="default" class="tab-pane active" style="width: 100%;height: 100%;">
-						<iframe src="stuanalyze.jsp" width="100%" height="100%"></iframe>
+						<iframe src="<%=request.getContextPath()%>/stuanalyze/stu.do?method=query" width="100%" height="100%"></iframe>
 					</div>
 					<div id="gradeset" class="tab-pane" style="width: 100%;height: 100%;">
 						<iframe src="<%=request.getContextPath()%>/grade/grade.do?method=query&page=1" width="100%" height="100%"></iframe>

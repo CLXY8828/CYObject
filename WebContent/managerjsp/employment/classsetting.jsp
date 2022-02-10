@@ -131,7 +131,8 @@
 									<a href="#idenfier" data-toggle="modal" data-target="#exportstu${map.class_id}"><img src="../img/expoet2.png" style="width: 28px;height: 28px;" ></a>
 								</td>
 								<td>
-									<a onclick="gradeindex()"><img src="../img/inside.png" style="width: 28px;height: 28px;"></a>
+								<a><img src="../img/inside.png" style="width: 28px;height: 28px;"></a>
+									<!--  <a onclick="gradeindex()"><img src="../img/inside.png" style="width: 28px;height: 28px;"></a>-->
 								</td>
 							</tr>
 						
