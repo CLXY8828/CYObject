@@ -9,9 +9,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>岗位信息</title>
-		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			.container{
 				width: 100%;
@@ -248,7 +248,6 @@
 						删除需要id请自己加
 						蟹蟹
 					 -->
-					<form action="/*" method="post" name="delform">
 						<table border="0px" cellspacing="5px" cellpadding="0px" style="width: 100%;" class="table">
 							<tr>
 								<th width="8%">序号</th>
@@ -282,7 +281,7 @@
 								<td><a href="#idenfier" data-toggle="modal" data-target="#edit<%=map.get("eid")%>"><img src="../img/edit.png" style="width: 30px;height:30px;" ></a></td>
 								<td><a href="#idenfier" data-toggle="modal" data-target="#view<%=map.get("eid")%>"><img src="../img/view.png" style="width: 30px;height:30px;" ></a></td>
 								<td>
-								<a href="" onclick="checkdel('<%=map.get("eid")%>')"><img src="../img/delete.png" style="width: 30px;height: 30px;" ></a>
+								<a href="#" onclick="checkdel('<%=map.get("eid")%>')"><img src="../img/delete.png" style="width: 30px;height: 30px;" ></a>
 								</td>
 							</tr>
 							<div class="modal fade" id="edit<%=map.get("eid")%>" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
@@ -624,7 +623,6 @@
 								</td>
 							</tr>
 						</table>
-					</form>
 				</div>
 			</div>
 		</div>

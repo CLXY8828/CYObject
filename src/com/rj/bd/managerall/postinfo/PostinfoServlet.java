@@ -157,7 +157,9 @@ public class PostinfoServlet extends  HttpServlet{
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		request.setAttribute("page", page);
+		System.out.println("前");
 		request.getRequestDispatcher("/managerjsp/post/postinfo.jsp").forward(request, response);
+		System.out.println("后");
 	}
 
 }

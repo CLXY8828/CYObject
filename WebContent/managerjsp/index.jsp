@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+	<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
     <title>后台我的</title>
 </head>
 <style type="text/css">
@@ -94,15 +94,15 @@
 		display: none;
 	}
 	.norhr{
-		border: #000000 1px solid;
 		margin-top: -5px;
 		width: 70%;
 		margin-left: 25px;
+		border:0px;
+		border-bottom:2px solid #5c5c3d;
 	}
 	.container-fluid{
 		width: 100%;
 	}
-	
 </style>
 <body>
 	<div class="hidden-sm hidden-xs hidden-md" style="width: 100%;height: 10%;">
@@ -110,35 +110,38 @@
 			<div style="margin-left: 10%;">
 				<img src="../img/logo.png" style="width: 4%;height: 4%;padding-top: 0.5%;padding-bottom: 0.5%;">
 				<span style="color: white;margin-top: 10%;margin-left: 0.5%;" class="h3"><strong>高校就业平台</strong></span>
-				<span style="color: white; margin-left: 60%;padding-top: 50%;">欢迎<span>**</span>登陆</span>
-				<span class="h2" style="font-size:28px;">
-					<a href="userinfo/selfinfo.html" class="btn btn-info" style="width: 80px;">我的</a>
-				</span>
+				<span style="color: white; margin-left: 59.8%;padding-top: 50%;">欢迎<span>**</span>登陆</span>
+				<div class="h2 btn-group" style="font-size:28px;margin-top:0.6%;">
+					<button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 80px;">我的</button>
+					<ul class="dropdown-menu">
+					    <li><a href="userinfo/selfinfo.html">个人中心</a></li>
+					    <li><a href="#">退出</a></li>
+					  </ul>
+				</div>
 			</div>
 		</div>
 	</div>
     <div class="container">
 		<div id="body">
 			<div class="content">
-				<div class="content_left">
+				<div class="content_left hidden-sm hidden-xs hidden-md">
 					<div class="nav_title">
 						<span style="font-size: 25px;">高校就业管理信息平台</span>
 					</div>
-					<hr style="width: 100%; border: #000000 1.5px solid;margin-top: -5px;" />
+					<hr style="width:100%; border: #000000 1.5px solid;margin-top: -5px;" />
 					<!-- 每一个菜单项 -->
 					<div class="menu">       
 						<div class="menu-title inacitve"><img src="../img/working.png" class="nav-icon"><span style="font-size:22px;margin-right:110px;">就业</span><span class="glyphicon glyphicon-menu-down"></span></div>                
 						<ul class="menu-content">
-							<li><a href="#gradeset" tabindex="-1" aria-controls="gradeset" role="tab" data-toggle="tab" onclick="gradesetpage()"><span style="margin-right: 26%;font-size: 21px;">年纪设定</span></a></li>								
-							<li style="margin-bottom: -8%;"><a href="#gradeset" tabindex="-1" aria-controls="gradeset" role="tab" data-toggle="tab" onclick="classsetpage()"><span style="margin-right: 26%;font-size: 20px;">班级设定</span></a></li>	
+							<li><a href="#gradeset" tabindex="-1" aria-controls="gradeset" role="tab" data-toggle="tab" onclick="gradesetpage()"><span style="margin-right: 26%;font-size: 20px;">年级就业</span></a></li>								
+							<li style="margin-bottom: -8%;"><a href="#classset" tabindex="-1" aria-controls="classset" role="tab" data-toggle="tab" onclick="classsetpage()"><span style="margin-right: 26%;font-size: 20px;">班级就业</span></a></li>	
 						</ul>
 					</div>
 					<hr class="norhr"/>
 					<div class="menu">
 						<div class="menu-title inacitve"><img src="../img/postinfo.png" class="nav-icon"><span style="font-size:22px;margin-right:110px;">岗位</span><span class="glyphicon glyphicon-menu-down"></span></div>
 						<ul class="menu-content">
-							<li><a href="#postinfo" tabindex="-1" aria-controls="postinfo" role="tab" data-toggle="tab" onclick="postinfopage()"><span style="margin-right: 26%;font-size: 20px;">岗位信息</span></a></li>
-							<li style="margin-bottom: -8%;"><a href="#" tabindex="-1" aria-controls="postinfo" role="tab" data-toggle="tab" onclick=""><span style="margin-right: -6%;font-size: 20px;">学生急需岗位信息</span></a></li>
+							<li style="margin-bottom: -8%;"><a href="#postinfo" tabindex="-1" aria-controls="postinfo" role="tab" data-toggle="tab" onclick="postinfopage()"><span style="margin-right: 26%;font-size: 20px;">岗位信息</span></a></li>
 						</ul>
 					</div>
 					<hr class="norhr" />
@@ -154,30 +157,25 @@
 					<div class="menu">
 						<div class="menu-title inacitve"><img src="../img/stuinfo.png" class="nav-icon"><span style="font-size:22px;margin-right:20px;">学生信息管理</span><span class="glyphicon glyphicon-menu-down"></span></div>
 						<ul class="menu-content">
-							<li><a href="#" tabindex="-1" aria-controls="stuworkwarn" role="tab" data-toggle="tab" onclick=""><span style="margin-right: 26%;font-size: 20px;">批量注册</span></a></li>
-							<li style="margin-bottom: -8%;"><a href="#" tabindex="-1" aria-controls="stuworkwarn" role="tab" data-toggle="tab" onclick=""><span style="margin-right: 26%;font-size: 20px;">批量删除</span></a></li>
+							<li><a href="#bareg" tabindex="-1" aria-controls="bareg" role="tab" data-toggle="tab" onclick="baregpage()"><span style="margin-right: 26%;font-size: 20px;">批量注册</span></a></li>
+							<li style="margin-bottom: -8%;"><a href="#badel" tabindex="-1" aria-controls="badel" role="tab" data-toggle="tab" onclick="badelpage()"><span style="margin-right: 26%;font-size: 20px;">批量删除</span></a></li>
 						</ul>
 					</div>
 					<hr class="norhr" />
 					<div class="menu">
-						<div class="menu-title"><img src="../img/authority.png" class="nav-icon"><span style="font-size:22px;margin-right:90px;">权限管理</span></div>
+						<div class="menu-title"><img src="../img/authority.png" class="nav-icon"><a href="#author" tabindex="-1" aria-controls="author" role="tab" data-toggle="tab" onclick="authorpage()" style="font-size:22px;margin-right:90px;">权限管理</a></div>
 					</div>
 				</div>
 				<div class="content_right tab-content" style="box-shadow: 1 0 3px 3px gray;">
 					<div id="default" class="tab-pane active" style="width: 100%;height: 100%;">
-						<iframe src="<%=request.getContextPath()%>/default.jsp" width="100%" height="100%"></iframe>
+						<iframe src="stuanalyze.jsp" width="100%" height="100%"></iframe>
 					</div>
 					<div id="gradeset" class="tab-pane" style="width: 100%;height: 100%;">
-						<iframe src="<%=request.getContextPath()%>/employment/gradesetting.jsp" width="100%" height="100%"></iframe>
+						<iframe src="<%=request.getContextPath()%>/grade/grade.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
-					
-					<div id="eighteensetting" class="tab-pane" style="width: 100%;height: 100%;">
-						<iframe src="<%=request.getContextPath()%>/employment/eighteenworkinfo/eighteensetting.jsp" width="100%" height="100%"></iframe>
+					<div id="classset" class="tab-pane" style="width: 100%;height: 100%;">
+						<iframe src="<%=request.getContextPath()%>/classs/set.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
-					<div id="eighteenworkinfo" class="tab-pane" style="width: 100%;height: 100%;">
-						<iframe src="<%=request.getContextPath()%>/employment/eighteenworkinfo/eighteenworkinfo.jsp" width="100%" height="100%"></iframe>
-					</div>
-					
 					<div id="postinfo" class="tab-pane" style="width: 100%;height: 100%;">
 						<iframe src="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
@@ -188,9 +186,17 @@
 						<iframe src="<%=request.getContextPath()%>/waring/fill.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
 					<div id="postoverdue" class="tab-pane" style="width: 100%;height: 100%;">
-						<iframe src="<%=request.getContextPath()%>/postwaring/postoverdue.jsp" width="100%" height="100%"></iframe>
+						<iframe src="<%=request.getContextPath()%>/waring/over.do?method=query&page=1" width="100%" height="100%"></iframe>
 					</div>
-					
+					<div id="bareg" class="tab-pane" style="width: 100%;height: 100%;">
+						<iframe src="<%=request.getContextPath()%>/student/info.do?method=queryinfo&page=1" width="100%" height="100%"></iframe>
+					</div>
+					<div id="badel" class="tab-pane" style="width: 100%;height: 100%;">
+						<iframe src="<%=request.getContextPath()%>/student/info.do?method=querydelete&page=1" width="100%" height="100%"></iframe>
+					</div>
+					<div id="author" class="tab-pane" style="width: 100%;height: 100%;">
+						<iframe src="<%=request.getContextPath() %>/management/authority.do?method=query&page=1" width="100%" height="100%"></iframe>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -215,68 +221,104 @@
 			//找到二级标签，给他注册点击事件，收展它下面的三级标题组  
 			
         });
-		function gradesetpage(){
+        function gradesetpage(){
 			$('#gradeset').attr("class","tab-pane active");
-			$('#eighteensetting').attr("class","tab-pane");
-			$('#eighteenworkinfo').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
 			$('#postinfo').attr("class","tab-pane");
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
-		function eighteensettingpage(){
+		function classsetpage(){
 			$('#gradeset').attr("class","tab-pane");
-			$('#eighteensetting').attr("class","tab-pane active");
-			$('#eighteenworkinfo').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane  active");
 			$('#postinfo').attr("class","tab-pane");
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane");
-		}
-		function eighteenworkinfopage(){
-			$('#gradeset').attr("class","tab-pane");
-			$('#eighteensetting').attr("class","tab-pane");
-			$('#eighteenworkinfo').attr("class","tab-pane active");
-			$('#postinfo').attr("class","tab-pane");
-			$('#stuworkwarn').attr("class","tab-pane");
-			$('#postfillwarn').attr("class","tab-pane");
-			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function postinfopage(){
 			$('#gradeset').attr("class","tab-pane");
-			$('#eighteensetting').attr("class","tab-pane");
-			$('#eighteenworkinfo').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
 			$('#postinfo').attr("class","tab-pane active");
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function stuworkwarnpage(){
 			$('#gradeset').attr("class","tab-pane");
-			$('#eighteensetting').attr("class","tab-pane");
-			$('#eighteenworkinfo').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
 			$('#postinfo').attr("class","tab-pane");
 			$('#stuworkwarn').attr("class","tab-pane active");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function postfillwarnpage(){
 			$('#gradeset').attr("class","tab-pane");
-			$('#eighteensetting').attr("class","tab-pane");
-			$('#eighteenworkinfo').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
 			$('#postinfo').attr("class","tab-pane");
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane active");
 			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
 		}
 		function postoverduepage(){
 			$('#gradeset').attr("class","tab-pane");
-			$('#eighteensetting').attr("class","tab-pane");
-			$('#eighteenworkinfo').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
 			$('#postinfo').attr("class","tab-pane");
 			$('#stuworkwarn').attr("class","tab-pane");
 			$('#postfillwarn').attr("class","tab-pane");
 			$('#postoverdue').attr("class","tab-pane active");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
+		}
+		function baregpage(){
+			$('#gradeset').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
+			$('#postinfo').attr("class","tab-pane");
+			$('#stuworkwarn').attr("class","tab-pane");
+			$('#postfillwarn').attr("class","tab-pane");
+			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane active");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane");
+		}
+		function badelpage(){
+			$('#gradeset').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
+			$('#postinfo').attr("class","tab-pane");
+			$('#stuworkwarn').attr("class","tab-pane");
+			$('#postfillwarn').attr("class","tab-pane");
+			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane active");
+			$('#author').attr("class","tab-pane");
+		}
+		function authorpage(){
+			$('#gradeset').attr("class","tab-pane");
+			$('#classset').attr("class","tab-pane");
+			$('#postinfo').attr("class","tab-pane");
+			$('#stuworkwarn').attr("class","tab-pane");
+			$('#postfillwarn').attr("class","tab-pane");
+			$('#postoverdue').attr("class","tab-pane");
+			$('#bareg').attr("class","tab-pane");
+			$('#badel').attr("class","tab-pane");
+			$('#author').attr("class","tab-pane active");
 		}
     </script>
 </body>

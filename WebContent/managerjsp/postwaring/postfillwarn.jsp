@@ -6,9 +6,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>岗位招满预警</title>
-		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			th{
 				font-size: 14px;
@@ -35,7 +35,7 @@
 				<div class="row" style="margin-left: 10px;margin-right: 10px;margin-top: -10px;">
 					<img src="../img/userA.png" style="width: 50px;height: 50px;">
 					<span class="h3">岗位招满预警</span>
-					<a href="/*">
+					<a href="#">
 						<span id="addclass" style="color:royalblue;float: right;" class="h3" onclick="return checkexport()">
 							<img src="../img/expoet2.png" width="30px" height="30px">
 							<span style="margin-top: 50px">导出信息</span>
@@ -45,11 +45,10 @@
 				<hr style="border: #000000 2px solid;margin-top: -1px; width: 100%;" />
 			</div>
 			<div style="width: 100%;">
-				<form action="/*" method="post" name="delform">
 					<table border="0px" cellspacing="5px" cellpadding="0px" style="width: 100%;" class="table">
 						<tr>
 							<th width="6%">序号</th>
-							<th width="14%">岗位</th>
+							<th width="14%">岗位名称</th>
 							<th width="12%">预招人数</th>
 							<th width="12%">已招人数</th>
 							<th width="14%">联系电话</th>
@@ -96,7 +95,7 @@
 										<br>
 										<div style="overflow-y:scroll;height: 500px; width: 100%;">
 											<span>
-												学生信息
+												该岗位申请的学生信息
 											</span><br>
 									<!-- 从这往下是另一个list -->
 									<c:forEach items="${list_account}" var="map_acction">
@@ -112,7 +111,7 @@
 													</span>
 													<span style="margin-left: 15%;">
 														联系电话
-														<span>${map_acction.account_phone}</span>
+														<span>${map_acction.phone}</span>
 													</span>
 												</div>
 										</c:if>
@@ -133,12 +132,12 @@
 									<%if(pagej==1){%>
 									<span onclick="del()" class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span>
 									<%}else{%>
-										<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej-1)%>"><span class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+										<a href="<%=request.getContextPath()%>/waring/fill.do?method=query&page=<%=(pagej-1)%>"><span class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
 									<%} %>
 									<%if(pagej==((count/10)!=0&count!=10?((count/10)+1):1)){%>
 									<span onclick="add()" class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span>
 									<%}else{%>
-										<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej+1)%>"><span class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+										<a href="<%=request.getContextPath()%>/waring/fill.do?method=query&page=<%=(pagej+1)%>"><span class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
 									<%} %>
 									</div>
 									<span style="float: left; margin-left: 10px;">
@@ -156,7 +155,6 @@
 							</td>
 						</tr>
 					</table>
-				</form>
 			</div>
 		</div>
 	</body>
@@ -171,11 +169,11 @@
 		
 		function pagenum1(num) {
 			if(num<=<%=(count/10)!=0?((count/10)+1):1%>){
-				var url= "<%=request.getContextPath()%>/waring/stu.do?method=query&page="+num+"";	
+				var url= "<%=request.getContextPath()%>/waring/fill.do?method=query&page="+num+"";	
 				  window.location.href=encodeURI(url);	
 			}else{
 				document.getElementById("pagenum").value = page;
-				alert("没有当前页数"+page)
+				alert("没有当前页数")
 			}
 		}
 		function checkdel(delform){
@@ -186,7 +184,8 @@
 		}
 		function checkexport(){
 			if(confirm("你将导出预警系统中未就业学生的信息")){
-				window.location.href="/*";
+				var url= "<%=request.getContextPath()%>/waring/fill.do?method=export";
+				window.location.href=encodeURI(url);
 			}else{
 				return false;
 			}

@@ -10,6 +10,52 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <servlet>
+    <servlet-name>ClassServlet</servlet-name>
+    <servlet-class>com.rj.bd.managerall.employment.classset.ClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClassServlet</servlet-name>
+    <url-pattern>/classs/set.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ManageServlet</servlet-name>
+    <servlet-class>com.rj.bd.managerall.management.ManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageServlet</servlet-name>
+    <url-pattern>/management/authority.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>StudentInfoServlet</servlet-name>
+    <servlet-class>com.rj.bd.managerall.studentinfo.StudentInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentInfoServlet</servlet-name>
+    <url-pattern>/student/info.do</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>GradeWorkServlet</servlet-name>
+    <servlet-class>com.rj.bd.managerall.employment.gradeworkinfo.GradeWorkServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GradeWorkServlet</servlet-name>
+    <url-pattern>/gradework/work.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GradeServlet</servlet-name>
+    <servlet-class>com.rj.bd.managerall.employment.grade.GradeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GradeServlet</servlet-name>
+    <url-pattern>/grade/grade.do</url-pattern>
+  </servlet-mapping>
+  
    <servlet>
     <servlet-name>PostoverwarnServlet</servlet-name>
     <servlet-class>com.rj.bd.managerall.postwaring.postoverwaring.PostoverwarnServlet</servlet-class>

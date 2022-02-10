@@ -8,9 +8,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>学生就业预警</title>
-		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%=request.getContextPath() %>/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			th{
 				font-size: 14px;
@@ -37,7 +37,7 @@
 				<div class="row" style="margin-left: 10px;margin-right: 10px;margin-top: -10px;">
 					<img src="../img/userA.png" style="width: 50px;height: 50px;">
 					<span class="h3">学生就业预警</span>
-					<a href="/*">
+					<a href="#">
 						<span id="addclass" style="color:royalblue;float: right;" class="h3" onclick="return checkexport()">
 							<img src="../img/expoet2.png" width="30px" height="30px">
 							<span style="margin-top: 50px">导出信息</span>
@@ -54,7 +54,7 @@
 							<th width="10%">学号</th>
 							<th width="14%">未就业时长</th>
 							<th width="14%">联系电话</th>
-							<th width="14%">离职/未就业</th>
+							<th width="14%">就业状态</th>
 							<th width="14%">专业老师</th>
 							<th width="8%">联系处理</th>
 						</tr>
@@ -63,7 +63,6 @@
 						List list=(List)request.getAttribute("list");
 						 int count = (Integer)request.getAttribute("count");
 						  int pagej = (Integer)request.getAttribute("page");
-						  
 						  String nian_r = (String)request.getAttribute("nian");
 						  String yue_r = (String)request.getAttribute("yue");
 						  String ri_r = (String)request.getAttribute("ri");
@@ -97,15 +96,16 @@
 							<td><%=map.get("name") %></td>
 							<td><%=map.get("sid") %></td>
 							<td><%=date %><span>天</span></td>
-							<td><%=map.get("account_phone") %></td>
+							<td><%=map.get("phone") %></td>
 							<td>未就业</td>
 							<td><%=map.get("tname") %></td>
 							<td>
 							<%if((map.get("processdate")).equals("0")){%>
 								
-								<a href="#idenfier<%=map.get("sid") %>" data-toggle="modal" data-target="#dealmethod<%=map.get("sid") %>"><img src="../img/warning.png" style="width: 30px;height: 30px;" ></a>
+								<a href="#idenfier" data-toggle="modal" data-target="#dealmethod<%=map.get("sid") %>"><img src="../img/warning.png" style="width: 30px;height: 30px;" ></a>
 							<%}else{%>
-								<img src="../img/deal.png" style="width: 28px;height: 28px;" >
+								<a href="#idenfier" data-toggle="modal" data-target="#dealmethod<%=map.get("sid") %>"><img src="../img/deal.png" style="width: 28px;height: 28px;" ></a>
+								
 							<%} %>
 							</td>
 						</tr>
@@ -121,13 +121,13 @@
 										<br>
 										<div class="row">
 											<span style="margin-left: 20%;">
-												<a href="#idenfier<%=map.get("sid") %>"  data-toggle="modal" data-target="#emaildeal<%=map.get("sid") %>" data-dismiss="modal"><span class="h3">发送学生信息到邮箱</span></a>
+												<a href="#idenfier"  data-toggle="modal" data-target="#emaildeal<%=map.get("sid") %>" data-dismiss="modal" onclick = "dopost(this)" id = "<%=map.get("sid") %>"><span class="h3">发送学生信息到邮箱</span></a>
 											</span>
 										</div>
 										<br>
 										<div class="row">
 											<span style="margin-left: 20%;">
-												<a href="#idenfier<%=map.get("sid") %>" data-toggle="modal" data-target="#dealnow<%=map.get("sid") %>" data-dismiss="modal"><span class="h3">联系学生了解情况</span></a>
+												<a href="#idenfier" data-toggle="modal" data-target="#dealnow<%=map.get("sid") %>" data-dismiss="modal"><span class="h3">联系学生了解情况</span></a>
 											</span>
 										</div>
 									</div><br><br><br>
@@ -180,19 +180,13 @@
 										<div class="row" style="margin-left:10%">
 											<span class="h3">
 												电话：
-												<span><%=map.get("account_phone")%></span>
+												<span><%=map.get("phone")%></span>
 											</span>
 										</div><br>
 										<div class="row" style="margin-left:10%">
 											<span class="h3">
 												QQ：
-												<span>99999999999</span>
-											</span>
-										</div><br>
-										<div class="row" style="margin-left:10%">
-											<span class="h3">
-												微信：
-												<span>99999999999</span>
+												<span><%=map.get("sqq")%></span>
 											</span>
 										</div>
 										<br><br><br>
@@ -215,12 +209,12 @@
 									<%if(pagej==1){%>
 									<span onclick="del()" class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span>
 									<%}else{%>
-										<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej-1)%>"><span class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+										<a href="<%=request.getContextPath()%>/waring/stu.do?method=query&page=<%=(pagej-1)%>"><span class="glyphicon glyphicon-chevron-left" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
 									<%} %>
 									<%if(pagej==((count/10)!=0&count!=10?((count/10)+1):1)){%>
 									<span onclick="add()" class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span>
 									<%}else{%>
-										<a href="<%=request.getContextPath()%>/postinfo/postin.do?method=query&page=<%=(pagej+1)%>"><span class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
+										<a href="<%=request.getContextPath()%>/waring/stu.do?method=query&page=<%=(pagej+1)%>"><span class="glyphicon glyphicon-chevron-right" style="width: 22px;height: 22px;border: #000000 1px solid;"></span></a>
 									<%} %>
 									</div>
 									<span style="float: left; margin-left: 10px;">
@@ -242,6 +236,16 @@
 		</div>
 	</body>
 	<script type="text/javascript">
+		function dopost(sid){
+			$.ajax({
+				type:"get",
+				url:"<%=request.getContextPath()%>/waring/stu.do?method=sendemail&sid="+sid.id+"",
+				data:{}, 
+				success:function(data) {
+					
+				}
+			});
+		}
 	var page = <%=pagej%>;
 		function add() {
 			alert("已经是最后一页了！")
@@ -256,14 +260,13 @@
 				  window.location.href=encodeURI(url);	
 			}else{
 				document.getElementById("pagenum").value = page;
-				alert("没有当前页数"+page)
+				alert("没有当前页数")
 			}
 		}
 		function checkexport(){
 			if(confirm("你将导出预警系统中未就业学生的信息")){
-				window.location.href="/*";
-			}else{
-				return false;
+				var url= "<%=request.getContextPath()%>/waring/stu.do?method=export";	
+				window.location.href=encodeURI(url);
 			}
 		}
 	</script>

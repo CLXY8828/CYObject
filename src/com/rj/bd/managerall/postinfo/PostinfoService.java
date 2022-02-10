@@ -11,12 +11,12 @@ import java.util.UUID;
 
 import com.rj.bd.dao.Dao;
 import com.rj.bd.dao.DaoImpl;
-
 /**
  * @desc   岗位上传c层
  * @author 秋月蓝璃
  *
  */
+
 public class PostinfoService {
 	Dao dao =new DaoImpl();
 	/**

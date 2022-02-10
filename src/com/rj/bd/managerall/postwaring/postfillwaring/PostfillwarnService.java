@@ -9,12 +9,12 @@ import java.util.Map;
 
 import com.rj.bd.dao.Dao;
 import com.rj.bd.dao.DaoImpl;
-
 /**
  * @desc   岗位招满 c层
  * @author 秋月蓝璃
  *
  */
+
 public class PostfillwarnService {
 	Dao dao =new DaoImpl();
 	/**
@@ -45,7 +45,7 @@ public class PostfillwarnService {
 				new int []{Types.INTEGER,Types.INTEGER}, new Object []{i,(i+10)});
 	}
 	/**
-	 * @desc   查询详情视频
+	 * @desc   查询详情
 	 * @return
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
@@ -53,8 +53,28 @@ public class PostfillwarnService {
 	public List<Map<String, Object>> selectaccountValue() throws ClassNotFoundException, SQLException {
 		return dao.executeQueryForList(" SELECT * FROM employmentapply e,account a where e.UUID=a.UUID ");
 	}
+	/**
+	 * @desc  删除岗位
+	 * @param eid
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public void deleteValue(String eid) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		dao.executeUpdate("delete from employmentapply where eid=?", new int []{Types.VARCHAR}, new Object []{eid});
 		dao.executeUpdate("delete from employment where eid=?", new int []{Types.VARCHAR}, new Object []{eid});
+	}
+	/**
+	 * @desc  查询要导出的岗位信息
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public List<Map<String, Object>> selectPost() throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForList(" SELECT * FROM employment WHERE recrultsNumb = readyNumb ");
+	}
+	public List<Map<String, Object>> selectStu() throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForList(" SELECT * FROM employmentapply e,account a where e.UUID=a.UUID AND applystate = 1 ");
 	}
 }
