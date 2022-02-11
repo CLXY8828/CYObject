@@ -209,7 +209,7 @@ public class IndexServlet extends HttpServlet {
 		}
 		 Map<String, Object> map = service.queryjlmap(id);
 	     Map<String, Object> emap = service.queryeid(eid);
-		 EmailUtils.enclosureMessage("1977455153@qq.com",user.get("name")+"-"+emap.get("gsname")+"-"+emap.get("employment_name"), "", "D:/tools/"+map.get("resume_one"));
+		 EmailUtils.enclosureMessage("1063258498@qq.com",user.get("name")+"-"+emap.get("gsname")+"-"+emap.get("employment_name"), "", "D:/tools/"+map.get("resume_one"));
 	}
 
 
