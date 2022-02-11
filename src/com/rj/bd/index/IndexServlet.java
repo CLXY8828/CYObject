@@ -2,6 +2,7 @@ package com.rj.bd.index;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -177,6 +178,13 @@ public class IndexServlet extends HttpServlet {
 		Map user = (Map)request.getSession().getAttribute("user");
 		String userid = request.getParameter("userid");
 		String eid = request.getParameter("eid");
+		List<Map<String, Object>> jl = service.queryjl(userid);
+		if (jl==null||jl.size()<=0) {
+			PrintWriter print = response.getWriter();
+			print.write("no");
+			print.close();
+			return;
+		}
 		if (userid!=null&&!userid.equals("")) {
 			service.saveSQ(userid,eid);
 			emailto(userid,user,eid);
@@ -187,14 +195,16 @@ public class IndexServlet extends HttpServlet {
 	private void emailto(String userid, Map user, String eid) throws ClassNotFoundException, SQLException, ParseException, MessagingException, IOException {
 		List<Map<String, Object>> list = service.queryjl(userid);
 		String time=(String)(list.get(0).get("resume_time"));
+		System.out.println(time);
 		String id=(list.get(0).get("resume_id"))+"";
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 		 Date date1 = sdf.parse(time);
 		 for (Map<String, Object> map : list) {
 	        Date date2 = sdf.parse((String)map.get("resume_time"));
+	        System.out.println((String)map.get("resume_time"));
 	        if (date2.after(date1)) {
 	        	date1=date2;
-	        	id=(String)map.get("resume_id");
+	        	id=map.get("resume_id")+"";
 	        }
 		}
 		 Map<String, Object> map = service.queryjlmap(id);

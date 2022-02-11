@@ -1,8 +1,11 @@
 package com.rj.bd.resume;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -17,6 +20,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 @SuppressWarnings("serial")
 public class ResumeServlet extends HttpServlet {
@@ -32,9 +36,41 @@ public class ResumeServlet extends HttpServlet {
 			else if ("page".equals(q)) {
 				page(request,response);
 			}
+			else if ("download".equals(q)) {
+				download(request,response);
+			}
+			else if ("list".equals(q)) {
+				listpage(request,response);
+			}
 		} catch (FileUploadException | ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void listpage(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+		
+		Map user = (Map)request.getSession().getAttribute("user");
+		
+		List<Map<String, Object>> list = service.querylist(user.get("UUID")+"");
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/resume/resumelist.jsp").forward(request, response);
+	}
+
+	/**
+	 * @desc 下载简历
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 */
+	private void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String manager_imgpath=request.getParameter("path");
+			String path="D:/tools/";
+			File file=new File(path+manager_imgpath);
+			System.out.println(manager_imgpath);
+			FileInputStream fileInputStream=new FileInputStream(file);
+			response.setHeader("Access-Control-Allow-Origin", "*");//设置该图片允许跨域访问
+			IOUtils.copy(fileInputStream, response.getOutputStream());
 	}
 
 	private void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,7 +102,7 @@ public class ResumeServlet extends HttpServlet {
 		 //5.设置解析器的相关参数
 		 upload.setHeaderEncoding("utf-8");
 		 //upload.setSizeMax(1024*1024);
-		
+		 String sizes="0";
 		 //6.解析request对象
 		 List<FileItem> formFileItemList = upload.parseRequest(request);
 		 //7.上传
@@ -84,6 +120,11 @@ public class ResumeServlet extends HttpServlet {
 				
 				//上传
 				FileUtils.copyInputStreamToFile(everyFileItem.getInputStream(), new File(path+"/"+fileSaveName));
+				long size = FileUtils.sizeOf(new File(path+"/"+fileSaveName));
+				double s=(double)size;
+				DecimalFormat df = new DecimalFormat("0.00");
+				
+				sizes = df.format(s/1024/1024);
 				
 			 }
 		  }	
@@ -92,7 +133,7 @@ public class ResumeServlet extends HttpServlet {
 		//8.保存添加页面的数据
 		 String virtualPath=fileSaveName;
 		 Map user = (Map)request.getSession().getAttribute("user");
-		 service.uppdf(virtualPath,(String)user.get("UUID"));
+		 service.uppdf(virtualPath,(String)user.get("UUID"),sizes);
 		 response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
 	}
 

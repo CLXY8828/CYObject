@@ -142,7 +142,6 @@
 			}
 		
 			function formgs() {
-				alert("提交点击")
 				if(gsxx02()){
 					$("#gsxx-sub").button('loading');
 					$("#gsxx-sub").removeAttr('onclick');

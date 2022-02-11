@@ -84,6 +84,8 @@ public class PerfectServlet extends HttpServlet {
 		Map user = (Map)request.getSession().getAttribute("user");
 		service.saveall(qq,student_jy,email,processdate,destination_id,gname,nature_id,companyaddress_id,industry_id,positiontype_id,contact_person,cell_phone,sphone,contact_email
 				,company_address,sutdent_address,schooljz,schoolsh,schoolbw,schoolhd,hobby,Insufficient,evaluate,advantage,honor,Feeling,(String)user.get("UUID"));
+		user=service.executeaccountForSid(user.get("UUID")+"");
+		request.getSession().setAttribute("user", user);
 		response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
 	}
 

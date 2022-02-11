@@ -116,9 +116,17 @@
 					var eid=geteid();
 					var okid=getokid();
 					var count= $("#sq-count").text();
+					$("#sqzw-sub").button('loading');
 					var url ="<%=request.getContextPath()%>/users/index.do?method=sq";
 					$.post(url,{userid:userid,eid:eid},function(data)
 					{
+						if(data=="no"){
+							$("#sqzw").modal('hide');
+							$("#sqzw-sub").button('reset');
+							modaltt("#sqzwno");
+							return;
+						}
+						$("#sqzw-sub").button('reset');
 						sqzwok ();
 						$("#sq-count").text(Number(count)+1);
 						$("#"+okid).removeAttr("onclick");
@@ -198,7 +206,7 @@
 	            <li><a class="top-text" href="#" style="color: white;">个人信息</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">安全中心</a></li>
 	            <li><a class="top-text" href="<%=request.getContextPath() %>/users/resume.do?method=page" style="color: white;">上传简历</a></li>
-	            <li><a class="top-text" href="#" style="color: white;">历史简历</a></li>
+	            <li><a class="top-text" href="<%=request.getContextPath() %>/users/resume.do?method=list" style="color: white;">历史简历</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">我的收藏</a></li>
 	            <li><a class="top-text" href="#" style="color: white;">申请记录</a></li>
 	            <li><a class="top-text" href="<%=request.getContextPath() %>/users/logein.do?method=out" style="color: white;">退出</a></li>
@@ -705,7 +713,7 @@
 						    		<a type="button" href="<%=request.getContextPath() %>/users/resume.do?method=page" class="btn btn-primary">上传简历</a>
 						    	</div>
 						    	<div class="col-lg-6">
-						    		<a type="button" class="btn btn-primary">历史简历</a>
+						    		<a type="button" href="<%=request.getContextPath() %>/users/resume.do?method=list" class="btn btn-primary">历史简历</a>
 						    	</div>
 						    </div>
 						    <div class="row">
@@ -853,7 +861,7 @@
 		      		<button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
 			      	</div>
 			      	<div class="col-lg-10 col-xs-10">
-			      		<a type="button" class="btn btn-primary" onclick="sqok('${user.UUID}')">确&nbsp;定</a>
+			      		<a type="button" id="sqzw-sub" class="btn btn-primary" onclick="sqok('${user.UUID}')">确&nbsp;定</a>
 			      	</div>
 		      </div>
 		    </div>
@@ -885,5 +893,28 @@
 		    </div>
 		  </div>
 		</div>
+		
+		<div class="modal fade" tabindex="-1" role="dialog" id="sqzwno" style="margin-top: 150px;">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    	<div class="modal-header text-center">
+		    		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       					 <h4 class="modal-title modal-sqzw-h4" ></h4>
+       					 <h5 class="modal-title modal-sqzw-h5"></h5>
+		    	</div>
+		      <div class="modal-body" align="center">
+		      		<h4>您还没有上传简历，请上传后再操作</h4>
+		      </div>
+		      <div class="modal-footer" align="center">
+		      	<div class="row">
+		      		<div class="col-lg-7 col-xs-8">
+		      			<a type="button" class="btn btn-primary" data-dismiss="modal" style="width: 100px;">确定</a>
+		      		</div>
+		      	</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
 	</body>
 </html>

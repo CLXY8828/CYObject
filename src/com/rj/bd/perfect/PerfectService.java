@@ -315,7 +315,17 @@ public class PerfectService {
 		return dao.executeQueryForList("select * from positiontype");
 		
 	}
-
+	/**
+	 * @desc 通过sid查询数据库中的账号
+	 * @param sid
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public Map<String, Object> executeaccountForSid(String sid) throws ClassNotFoundException, SQLException {
+		String sql = "select * from account where sid=?";
+		return dao.executeQueryForMap(sql, new int[]{Types.VARCHAR}, new Object[]{sid});
+	}
 	/**
 	 * @desc 保存全部信息
 	 * @param qq
@@ -461,7 +471,7 @@ public class PerfectService {
 			types[12]=Types.VARCHAR;
 			types[13]=Types.VARCHAR;
 			types[14]=Types.VARCHAR;
-			
+			dao.executeUpdate("update account set processdate=1 where UUID=?",new int[]{Types.VARCHAR} , new Object[]{userid});
 		}
 		types[15]=Types.INTEGER;
 		types[16]=Types.INTEGER;
