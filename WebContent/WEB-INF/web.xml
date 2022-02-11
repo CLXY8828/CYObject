@@ -139,6 +139,15 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>PdfServlet</servlet-name>
+    <servlet-class>com.rj.bd.pdf.PdfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PdfServlet</servlet-name>
+    <url-pattern>/users/pdf.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>PerfectServlet</servlet-name>
     <servlet-class>com.rj.bd.perfect.PerfectServlet</servlet-class>
   </servlet>

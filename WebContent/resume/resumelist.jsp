@@ -108,9 +108,7 @@
 			//pdf展示的js
 			function cxzs(filedom)
 			{
-				alert(filedom)
-				var dom=encodeURI("<%=request.getContextPath() %>/users/resume.do?method=download&path=0c7574ab-c97d-4938-a2ce-82c115fa90df.pdf");
-				alert(dom)
+				var dom=encodeURI("<%=request.getContextPath() %>/users/pdf.do?method="+filedom);
 				$('#error').modal('show')
 				$("#preview").attr("src","<%=request.getContextPath() %>/pdfjs/web/viewer.html?file="+dom)
 				
@@ -138,7 +136,7 @@
 	      	<div id="lg-top-padding">
 	      		
 	      	</div>
-	        <img id="loge" class="img-responsive" alt="Responsive image" src="img/001.png">
+	        <img id="loge" class="img-responsive" alt="Responsive image" src="<%=request.getContextPath() %>/img/001.png">
 	      </a>
 	      <p class="navbar-text"><strong>高校就业平台</strong></p>
 	    </div>
@@ -207,7 +205,7 @@
 				    		</td>
 				    		<td>
 				    			<a onclick="cxzs('${map.resume_one}')">
-				    				<img src="img/jr.png" class="img-responsive" alt="Responsive image" style="height: 20px;">
+				    				<img src="<%=request.getContextPath() %>/img/jr.png" class="img-responsive" alt="Responsive image" style="height: 20px;">
 				    			</a>
 				    		</td>
 				    	</tr>
@@ -260,7 +258,7 @@
 				    		
 				    		<td>
 				    			<a onclick="cxzs('002.pdf')">
-				    				<img src="img/jr.png" class="img-responsive" alt="Responsive image" style="height: 20px;">
+				    				<img src="<%=request.getContextPath() %>/img/jr.png" class="img-responsive" alt="Responsive image" style="height: 20px;">
 				    			</a>
 				    		</td>
 				    	</tr>
