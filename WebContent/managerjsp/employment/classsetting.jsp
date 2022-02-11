@@ -169,7 +169,7 @@
 											</span>
 											<span class="row">
 												导入学生信息：
-												<input type="file" name="stuinfo" id="stuinfo" value="" accept=".xls, .xlsx"/>
+												<input type="file" name="stuinfo" id="stuinfo1" value="" accept=".xls, .xlsx"/>
 											</span>
 											<span class="row">
 												<a href="<%=request.getContextPath()%>/classs/set.do?method=download"><span style="color:skyblue;">下载Excel模板</span></a>
@@ -380,8 +380,7 @@
 	<script type="text/javascript">
 		function importExcel(id)
 		{
-			var fed=$("#stuinfo").val();
-			alert("fed:"+fed);
+			var fed=$("#stuinfo1").val();
 			if(fed.length<=0){
 			 alert("请选择需要导入的excel的文件");
 	         return false;					

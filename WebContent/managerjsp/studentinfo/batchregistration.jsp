@@ -414,7 +414,6 @@
 	         return false;					
 			}
 			var url= "<%=request.getContextPath() %>/student/info.do?method=importExcel&fed="+fed+"";				   
-			 alert("url:"+encodeURI(url));			
 			 window.location.href=encodeURI(url); 
 		}
 		var page = <%=pagej%>;

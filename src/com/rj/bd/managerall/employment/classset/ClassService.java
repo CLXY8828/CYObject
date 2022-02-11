@@ -108,8 +108,17 @@ public class ClassService {
 		List<Map<String, Object>> list_examinee_ids = dao.executeQueryForList("select * from import where data_sid=?",new int[]{Types.VARCHAR},new Object []{columnValuesList.get(0)});
 		if (list_examinee_ids.size()>0) 
 		{
-			String  sql="  UPDATE IMPORT SET class_id = ? where data_sid=? ";
+			
+			String  sql="  UPDATE IMPORT SET class_id = ? where data_sid=? "; 
 			dao.executeUpdate(sql,new int []{Types.VARCHAR,Types.VARCHAR}, new Object []{class_id.trim(),columnValuesList.get(0)});
+		}
+		List<Map<String, Object>> list_STU = dao.executeQueryForList("select * from students s,account a  where s.UUID=a.UUID AND a.sid = ?"
+				,new int[]{Types.VARCHAR},new Object []{columnValuesList.get(0)});
+		if (list_STU.size()>0) 
+		{
+			Map<String,Object> map = dao.executeQueryForMap(" select * from class where class_id = ?",new int[]{Types.VARCHAR},new Object []{columnValuesList.get(0)});
+			String  sql="  UPDATE students SET class_id = ? , department_id=? where IDnumber in (select data_IDnumber from import where class_id=? ) ";
+			dao.executeUpdate(sql,new int []{Types.VARCHAR,Types.VARCHAR}, new Object []{class_id.trim(),map.get("department_id"),columnValuesList.get(0)});
 		}
 	}
 	/**
