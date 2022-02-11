@@ -53,8 +53,9 @@ public class PerfectServlet extends HttpServlet {
 	 * @throws InterruptedException 
 	 * @throws FileNotFoundException 
 	 * @throws ClassNotFoundException 
+	 * @throws ServletException 
 	 */
-	private void saveall(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, InterruptedException, SQLException, IOException {
+	private void saveall(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, FileNotFoundException, InterruptedException, SQLException, IOException, ServletException {
 		String qq = request.getParameter("qq");
 		String student_jy = request.getParameter("gzjy");//工作经验
 		String email = request.getParameter("email");
@@ -86,7 +87,7 @@ public class PerfectServlet extends HttpServlet {
 				,company_address,sutdent_address,schooljz,schoolsh,schoolbw,schoolhd,hobby,Insufficient,evaluate,advantage,honor,Feeling,(String)user.get("UUID"));
 		user=service.executeaccountForSid(user.get("UUID")+"");
 		request.getSession().setAttribute("user", user);
-		response.sendRedirect(request.getContextPath()+"/users/index.do?method=query");
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	/**
@@ -173,6 +174,8 @@ public class PerfectServlet extends HttpServlet {
 		print.flush();
 		print.close();
 		service.savegs((String)user.get("UUID"),(String)user.get("sid"),destination_id,gsname,nature_id,companyaddress_id,industry_id,cell_phone,sphone,contact_email,company_address,positiontype_id,contact_person);
+		user=service.executeaccountForSid(user.get("UUID")+"");
+		request.getSession().setAttribute("user", user);
 	}
 
 	/**

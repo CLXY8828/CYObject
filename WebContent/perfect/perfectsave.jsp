@@ -300,12 +300,12 @@
 								  <div class="form-control " align="center">
 								  	<div class="col-lg-6 col-xs-6">
 								  		<label class="radio-inline">
-										  <input type="radio" name="sfjy"  value="1" onclick="xsjy()" ${fn:trim(user.processdate) eq"1"?"checked":"" }> 是
+										  <input type="radio" name="sfjy"  value="1" onclick="xsjy()" ${fn:trim(user.employment_status) eq"1"?"checked":"" }> 是
 										</label>
 								  	</div>
 								  	<div class="col-lg-6 col-xs-6">
 										<label class="radio-inline">
-										  <input type="radio" name="sfjy"  value="0" onclick="ycjy()" ${fn:trim(user.processdate) eq"0"?"checked":"" }> 否
+										  <input type="radio" name="sfjy"  value="0" onclick="ycjy()" ${fn:trim(user.employment_status) eq"0"?"checked":"" }> 否
 										</label>
 								  	</div>
 								  </div>

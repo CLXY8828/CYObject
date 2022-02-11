@@ -532,7 +532,7 @@
 						   			<img src="../img/tx.png" alt="..." class="img-rounded" style=" width: 50px;">
 							   	</div>
 								<div class=" col-lg-6 col-xs-4 col-lg-pull-0 col-xs-pull-5 ">
-									<h2>张三</h2>
+									<h2>请完善基本信息</h2>
 								</div>
 								
 						   	</div>
@@ -614,7 +614,7 @@
 						   			<img src="../img/tx.png" alt="..." class="img-rounded" style=" width: 50px;">
 							   	</div>
 								<div class=" col-lg-6 col-xs-4 col-lg-pull-0 col-xs-pull-5 ">
-									<h2>张三</h2>
+									<h2>请完善基本信息</h2>
 								</div>
 								
 						   	</div>
@@ -761,7 +761,7 @@
 						   			<img src="../img/tx.png" alt="..." class="img-rounded" style=" width: 50px;">
 							   	</div>
 								<div class=" col-lg-6 col-xs-4 col-lg-pull-0 col-xs-pull-5 ">
-									<h2>张三</h2>
+									<h2>请完善基本信息</h2>
 								</div>
 								
 						   	</div>
@@ -833,7 +833,7 @@
 						   			<img src="../img/tx.png" alt="..." class="img-rounded" style=" width: 50px;">
 							   	</div>
 								<div class=" col-lg-6 col-xs-4 col-lg-pull-0 col-xs-pull-5 ">
-									<h2>张三</h2>
+									<h2>请完善基本信息</h2>
 								</div>
 								
 						   	</div>
@@ -903,7 +903,7 @@
 						   			<img src="../img/tx.png" alt="..." class="img-rounded" style=" width: 50px;">
 							   	</div>
 								<div class=" col-lg-6 col-xs-4 col-lg-pull-0 col-xs-pull-5 ">
-									<h2>张三</h2>
+									<h2>请完善基本信息</h2>
 								</div>
 								
 						   	</div>

@@ -499,7 +499,7 @@
 						  				<h4 class="gsname text-right"><small>${map.gsname}</small></h4>
 						  			</div>
 						  			<div class="col-xs-12">
-						  				<h5 class="visible-xs-block gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12"?fn:split(map.salary, ".")[0]:map.salary}${fn:split(map.salary, ".")[1]=="12"?"":"薪"}</h5>
+						  				<h5 class="visible-xs-block gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12薪"?fn:split(map.salary, ".")[0]:map.salary}</h5>
 						  			</div>
 					  		</div>
 					  	</div>
@@ -512,7 +512,7 @@
 					  	<div class="row">
 					  		<div class="col-lg-12 visible-lg-block">
 					  			<div class="col-lg-2">
-					  				<h4 class="gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12"?fn:split(map.salary, ".")[0]:map.salary}${fn:split(map.salary, ".")[1]=="12"?"":"薪"}</h4>
+					  				<h4 class="gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12薪"?fn:split(map.salary, ".")[0]:map.salary}</h4>
 					  			</div>
 					  			<div class="col-lg-2">
 					  				<h4 class="gsname">${map.address}</h4>

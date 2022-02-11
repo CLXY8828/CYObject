@@ -230,10 +230,10 @@
 					    	<td><h4>邮箱：${fn:substring(map.email, 0, 3)}***@${fn:substringAfter(map.email, "@")}</h4></td>
 					    	<td><h4>是否就业：
 					    	<label class="radio-inline">
-							  <input type="radio" name="sfjy"  value="1" ${fn:trim(user.processdate) eq"1"?"checked":"" } disabled  > 是
+							  <input type="radio" name="sfjy"  value="1" ${fn:trim(user.employment_status) eq"1"?"checked":"" } disabled  > 是
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="sfjy"  value="2"  ${fn:trim(user.processdate) eq"0"?"checked":"" } disabled  > 否
+							  <input type="radio" name="sfjy"  value="2"  ${fn:trim(user.employment_status) eq"0"?"checked":"" } disabled  > 否
 							</label>
 					    	</h4></td>
 					    </tr>

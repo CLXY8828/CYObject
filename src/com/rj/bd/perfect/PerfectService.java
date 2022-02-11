@@ -190,10 +190,12 @@ public class PerfectService {
 			String name = names.get(0).text();
 			Elements ids = doc.getElementsByClass("social-credit-code-text");
 			String id = ids.get(0).text();
+			Elements addresss = doc.getElementsByClass("child-addr-poptip");
+			String address = addresss.get(0).text();
 			driver.quit();
 			gsname=UUID.randomUUID().toString();
 			String sql="insert into companymessage values(?,?,?,?,?,?,?)";
-			dao.executeUpdate(sql,new int[]{Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR}, new Object[]{gsname,name,id,"","","",""});
+			dao.executeUpdate(sql,new int[]{Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR}, new Object[]{gsname,name,id,address,"","",""});
 			
 		}
 		else {
@@ -231,7 +233,7 @@ public class PerfectService {
 		values[11]=userid;
 		dao.executeUpdate(sql, types, values);
 		dao.executeUpdate("update import set data_state=1 where data_id='"+sid+"'");
-		dao.executeUpdate("update account set processdate=1 where UUID=?",new int[]{Types.VARCHAR} , new Object[]{userid});
+		dao.executeUpdate("update account set employment_status=1 where UUID=?",new int[]{Types.VARCHAR} , new Object[]{userid});
 	}
 	/**
 	 * @desc 查询信息是否完善
@@ -392,10 +394,12 @@ public class PerfectService {
 			String name = names.get(0).text();
 			Elements ids = doc.getElementsByClass("social-credit-code-text");
 			String id = ids.get(0).text();
+			Elements addresss = doc.getElementsByClass("child-addr-poptip");
+			String address = addresss.get(0).text();
 			driver.quit();
 			gsname=UUID.randomUUID().toString();
 			String sql="insert into companymessage values(?,?,?,?,?,?,?)";
-			dao.executeUpdate(sql,new int[]{Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR}, new Object[]{gsname,name,id,"","","",""});
+			dao.executeUpdate(sql,new int[]{Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR}, new Object[]{gsname,name,id,address,"","",""});
 			
 		}
 		else {
@@ -471,7 +475,7 @@ public class PerfectService {
 			types[12]=Types.VARCHAR;
 			types[13]=Types.VARCHAR;
 			types[14]=Types.VARCHAR;
-			dao.executeUpdate("update account set processdate=1 where UUID=?",new int[]{Types.VARCHAR} , new Object[]{userid});
+			dao.executeUpdate("update account set employment_status=1 where UUID=?",new int[]{Types.VARCHAR} , new Object[]{userid});
 		}
 		types[15]=Types.INTEGER;
 		types[16]=Types.INTEGER;
