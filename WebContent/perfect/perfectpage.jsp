@@ -274,7 +274,7 @@
                   	描述：左边
                   -->
 			  	<div class=" col-lg-2 visible-lg-block ">
-	  				<div class="table-responsive  ">
+	  				<div class="table-responsive hidden ">
 					  <table class="table table-bordered table-hover" style=" font-size: 20px; text-align: center; ">
 					  	<tr >
 					  		<td>
@@ -314,7 +314,7 @@
                         	时间：2022-02-05
                         	描述：这是选择是后展示的公司信息的模块
                         -->
-					    <tr class="">
+					    <tr class="hidden">
 					    	<td>
 					    		<a href="#home07" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="gsxx02">公司信息</a>
 					    	</td>
