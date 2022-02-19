@@ -482,14 +482,24 @@
                           -->
                         <a href="<%=request.getContextPath() %>/users/index.do?method=details&eid=${map.eid}">
 					  	<div class="row">
-					  		<div class="col-lg-5 col-xs-6">
-					  			<div class="col-lg-6 visible-lg-block">
+					  		<div class="col-lg-8 col-xs-6">
+					  			<div class="col-lg-4 visible-lg-block">
 					  				<h4>${map.employment_name}</h4>
 					  			</div>
 					  			<h4 class="visible-xs-block">${map.employment_name}</h4>
-					  			<div class="col-lg-6 visible-lg-block">
+					  			<div class="col-lg-2 visible-lg-block">
 					  				<h4><small>
 					  				 ${fn:substring(map.subtime,fn:indexOf(map.subtime,"-")+1, -1)}发布  
+					  				</small></h4>
+					  			</div>
+					  			<div class="col-lg-2 visible-lg-block">
+					  				<h4><small>
+					  				 已申请${map.ap}人  
+					  				</small></h4>
+					  			</div>
+					  			<div class="col-lg-2 visible-lg-block">
+					  				<h4><small>
+					  				 已收藏${map.co}人  
 					  				</small></h4>
 					  			</div>
 					  			
@@ -752,13 +762,13 @@
                			<h5>热门职业</h5>
                			
                			<table class="table">
-               			<c:forEach items="${list}" var="map" end="4">
+               			<c:forEach items="${randomsum}" var="map">
                				<tr>
                					<td>
-               					<a href="<%=request.getContextPath() %>/users/index.do?method=details&eid=${map.eid}">
+               					<a href="<%=request.getContextPath() %>/users/index.do?method=details&eid=${list[map].eid}">
                						<div class="row">
                							<div class="col-lg-6 visible-lg-block">
-					  					<h6 class="yc" title="${map.employment_name}">${map.employment_name}</h6>
+					  					<h6 class="yc" title="${list[map].employment_name}">${list[map].employment_name}</h6>
 							  			</div>
 							  			<div class="col-lg-6 visible-lg-block">
 							  				<h6><small>01-02发布</small></h6>
@@ -766,15 +776,15 @@
                						</div>
                						<div class="row">
                							<div class="col-lg-8 col-lg-push-5">
-               								<h6 class="gsname" title="${map.gsname}">${map.gsname}</h6>
+               								<h6 class="gsname" title="${list[map].gsname}">${list[map].gsname}</h6>
                							</div>
                						</div>
                						<div class="row">
                							<div class="col-lg-6">
-               								<h6 class="gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12"?fn:split(map.salary, ".")[0]:map.salary}${fn:split(map.salary, ".")[1]=="12"?"":"薪"}</h6>
+               								<h6 class="gsname" style="color: red;">${fn:split(list[map].salary, ".")[1]=="12薪"?fn:split(list[map].salary, ".")[0]:map.salary}</h6>
                							</div>
                							<div class="col-lg-5">
-               								<h6 class="yc" title="${map.address}">${map.address}</h6>
+               								<h6 class="yc" title="${list[map].address}">${list[map].address}</h6>
                							</div>
                						</div>
                						</a>

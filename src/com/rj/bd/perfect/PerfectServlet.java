@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 
 @SuppressWarnings("serial")
@@ -37,11 +39,28 @@ public class PerfectServlet extends HttpServlet {
 			else if ("saveall".equals(q)) {
 				saveall(request,response);
 			}
+			else if ("everygsname".equals(q)) {
+				everygsname(request,response);
+			}
 		} catch (ClassNotFoundException | SQLException | InterruptedException e) {
 			e.printStackTrace();
 		}
 		
 	
+	}
+
+	private void everygsname(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException {
+		
+		String gsname = request.getParameter("gsname");
+		List<Map<String, Object>> gsnamelist = service.mqueryBygsname(gsname);
+		ObjectMapper  om=new ObjectMapper();
+		String result = om.writeValueAsString(gsnamelist);
+		PrintWriter print = response.getWriter();
+		print.write(result);
+		print.flush();
+		print.close();
+		
+		
 	}
 
 	/**

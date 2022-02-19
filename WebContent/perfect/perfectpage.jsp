@@ -117,11 +117,60 @@
 		</style>
 		
 		<script type="text/javascript">
+		$(document).ready(function(){
+
+				$("input[name='gsname']").keyup(function() {
+					var gsname = $(this).val();
+					if (gsname!="") {
+						var url="<%= request.getContextPath() %>/users/perfect.do?method=everygsname"//提交的地址  
+					 		$.post(url,{"gsname":gsname},function(data)
+								{
+					 			
+					 			if(getJsonLength($.parseJSON(data))>0){
+					 				$("input[name='gsname']").tooltip('show')
+					 				$("#gsnameul").show();
+					 				$("#gsnameul").html("");
+					 				$.each($.parseJSON(data),function(index,values){
+					 					$("#gsnameul").append("<li ><a href='#'>"+values.company_name+"</a></li>");	
+					 					})
+					 				$('#gsnameul').delegate('li','click',function(){
+					 					$("input[name='gsname']").val($(this).text())
+					 					$("input[name='gsname']").focus();
+					 					$("#gsnameul").hide()
+					 				})
+					 				$("input[name='gsname']").blur(function(){
+					 				$("input[name='gsname']").tooltip('hide')
+									$("#gsnameul").hide("fast",function () {
+										$('#gsnameul').delegate('li','click',function(){
+						 					$("input[name='gsname']").val($(this).text())
+						 					$("input[name='gsname']").focus();
+						 					$("#gsnameul").hide()
+						 				})
+									});
+									});
+					 				
+					 			}
+								});
+					}
+					else {
+						$("input[name='gsname']").tooltip('show')
+						$("#gsnameul").html("");
+						//$("#gsnameul").hide();
+					}
+					
+				})
+		});
 		
+		function getJsonLength(jsonData){  
+	        var jsonLength = 0;  
+	        for(var item in jsonData){  
+	            jsonLength++;  
+	        }
+	        return jsonLength;  
+	    }
 			function formjb() {
 				if (jbxx()) {
 					var url="<%= request.getContextPath() %>/users/perfect.do?method=formjb"//提交的地址  
-							alert($('#fm-jb').serialize())
 				 		$.post(url,$('#fm-jb').serialize(),function(data)
 							{
 				 				if(data=='yes'){
@@ -225,7 +274,7 @@
                   	描述：左边
                   -->
 			  	<div class=" col-lg-2 visible-lg-block ">
-	  				<div class="table-responsive hidden ">
+	  				<div class="table-responsive  ">
 					  <table class="table table-bordered table-hover" style=" font-size: 20px; text-align: center; ">
 					  	<tr >
 					  		<td>
@@ -265,7 +314,7 @@
                         	时间：2022-02-05
                         	描述：这是选择是后展示的公司信息的模块
                         -->
-					    <tr class="hidden">
+					    <tr class="">
 					    	<td>
 					    		<a href="#home07" class="color-zb" aria-controls="home" role="tab" data-toggle="tab" id="gsxx02">公司信息</a>
 					    	</td>
@@ -929,7 +978,9 @@
 					   			<div class="col-lg-6 col-xs-12 " style="padding-top: 10px;">
 								  	<div class="" >
 									  <span class="input-group-addon" >单位名称</span>
-									  <input type="text" class="form-control" name="gsname" id="gsxx002">
+									  <input type="text" class="form-control" name="gsname" id="gsxx002"  data-toggle="tooltip" data-trigger="manual" data-placement="top" title="请尽可能确保公司名的完整性">
+									   <ul id="gsnameul" class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: 15px; min-width: 407px;">
+									  </ul>
 									  <span id="gsxx-success02" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green; padding-right: 60px;padding-top: 38px;  display: none;"></span>
 										<span id="gsxx-error02" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; padding-right: 60px;padding-top: 38px; display: none;"></span>
 									</div>

@@ -265,6 +265,7 @@
 									<span id="xgxx-success01" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error01" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error01" style="font-size: 13px; color: red; padding-left: 60px;display: none; "></div>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
@@ -281,6 +282,7 @@
 			          					<option ${map.student_jy=="10年以上"?"selected='selected'":""} value="">10年以上</option>
 			          				</select>
 								</div>
+								<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  				</div>
 			  				
 			  			</div>
@@ -292,6 +294,7 @@
 									<span id="xgxx-success03" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error03" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error03" style="font-size: 13px; color: red; padding-left: 60px;display: none; "></div>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
@@ -310,6 +313,7 @@
 								  	</div>
 								  </div>
 								</div>
+								<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  				</div>
 			  			</div>
 			  			<div class="row  yjys" >
@@ -322,6 +326,7 @@
 				          					</c:forEach>
 				          				</select>
 								</div>
+								<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
 			  					<div class="input-group  " >
@@ -330,6 +335,7 @@
 									<span id="xgxx-success06" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error06" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error06" style="font-size: 13px; color: red; padding-left: 80px;display: none; "></div>
 			  				</div>
 			  				
@@ -343,7 +349,9 @@
 				          					<option ${map.nature_id==map2.nature_id?"selected='selected'":""} value="${map2.nature_id}">${map2.nature_name}</option>
 				          					</c:forEach>
 				          				</select>
+				          			
 								</div>
+								<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
 			  					<div class="input-group  " >
@@ -353,9 +361,11 @@
 		          					<option ${map.companyaddress_id==map2.companyaddress_id?"selected='selected'":""} value="${map2.companyaddress_id}">${map2.companyaddress_name}</option>
 		          					</c:forEach>
 		          				</select>
+		          				
 								<span id="xgxx-success08" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error08" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error08" style="font-size: 13px; color: red; padding-left: 100px;display: none; "></div>
 			  				</div>
 			  				
@@ -372,6 +382,7 @@
 								<span id="xgxx-success09" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error09" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error09" style="font-size: 13px; color: red; padding-left: 80px;display: none; "></div>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
@@ -385,6 +396,7 @@
 								<span id="xgxx-success10" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error10" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error10" style="font-size: 13px; color: red; padding-left: 110px;display: none; "></div>
 			  				</div>
 			  				
@@ -397,6 +409,7 @@
 								<span id="xgxx-success11" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error11" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error11" style="font-size: 13px; color: red; padding-left: 100px;display: none; "></div>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
@@ -406,6 +419,7 @@
 								<span id="xgxx-success12" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error12" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error12" style="font-size: 13px; color: red; padding-left: 100px;display: none; "></div>
 			  				</div>
 			  				
@@ -418,6 +432,7 @@
 								<span id="xgxx-success13" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error13" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error13" style="font-size: 13px; color: red; padding-left: 100px;display: none; "></div>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
@@ -427,6 +442,7 @@
 								<span id="xgxx-success14" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error14" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  					<div id="error14" style="font-size: 13px; color: red; padding-left: 120px;display: none; "></div>
 			  				</div>
 			  				
@@ -439,6 +455,7 @@
 								  <span id="xgxx-success15" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error15" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 								</div>
+								<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 								<div id="error15" style="font-size: 13px; color: red; padding-left: 80px;display: none; ">asd</div>
 			  				</div>
 			  			</div>
@@ -450,6 +467,7 @@
 								<span id="xgxx-success16" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="color: green;display:none ;"></span>
 								  <span id="xgxx-error16" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="color: red; display: none;"></span>
 								</div>
+								<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 								<div id="error16" style="font-size: 13px; color: red; padding-left: 80px;display: none; "></div>
 			  				</div>
 			  			</div>
@@ -470,6 +488,7 @@
 								  	</div>
 								  </div>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
 			  					<div class="input-group">
@@ -487,6 +506,7 @@
 								  	</div>
 								  </div>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  				</div>
 			  			</div>
 			  			
@@ -507,6 +527,7 @@
 								  	</div>
 								  </div>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  				</div>
 			  				<div class="col-lg-6 col-xs-12" style="padding-top: 10px;">
 			  					<div class="input-group">
@@ -524,6 +545,7 @@
 								  	</div>
 								  </div>
 			  					</div>
+			  					<span class="form-control-feedback" style="color: red; font-size: 20px; padding-top: 12px; padding-left: 20px;">*</span>
 			  				</div>
 			  			</div>
 			  			<div class="row ">

@@ -492,6 +492,11 @@ public class PerfectService {
 		dao.executeUpdate(sql, types, values);
 	}
 
+	public List<Map<String, Object>> mqueryBygsname(String gsname) throws ClassNotFoundException, SQLException {
+		return dao.executeQueryForList("select company_name from companymessage where company_name like ? limit 5",new int[]{Types.VARCHAR},new Object[]{"%"+gsname+"%"});
+		
+	}
+
 	
 	
 }

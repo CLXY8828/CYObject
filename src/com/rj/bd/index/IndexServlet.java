@@ -6,10 +6,12 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -121,8 +123,10 @@ public class IndexServlet extends HttpServlet {
 		String eid = request.getParameter("eid");
 		Map user = (Map)request.getSession().getAttribute("user");
 		List<Map<String, Object>> list=service.query(user==null?null:(String)user.get("UUID"));
+		List<Integer> random=randomForlist(list.size());
 		Map<String, Object> map = service.detailquery(user,eid);
 		System.out.println(map);
+		request.setAttribute("randomsum",random);
 		request.setAttribute("map", map);
 		request.setAttribute("list",list);
 		request.getRequestDispatcher("/detailspage/detailspage.jsp").forward(request, response);
@@ -209,7 +213,7 @@ public class IndexServlet extends HttpServlet {
 		}
 		 Map<String, Object> map = service.queryjlmap(id);
 	     Map<String, Object> emap = service.queryeid(eid);
-		 EmailUtils.enclosureMessage("1063258498@qq.com",user.get("name")+"-"+emap.get("gsname")+"-"+emap.get("employment_name"), "", "D:/tools/"+map.get("resume_one"));
+		 EmailUtils.enclosureMessage("1977455153@qq.com",user.get("name")+"-"+emap.get("gsname")+"-"+emap.get("employment_name"), "", "D:/tools/"+map.get("resume_one"));
 	}
 
 
@@ -315,12 +319,30 @@ public class IndexServlet extends HttpServlet {
 	private void query(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
 			String userid = (String) request.getSession().getAttribute("userid");
 			List<Map<String, Object>> list=service.query(userid);
+			List<Integer> random=randomForlist(list.size());
 			int sc=service.scquery(userid);
 			int sq=service.sqquery(userid);
 			request.getSession().setAttribute("sc", sc);
 			request.getSession().setAttribute("sq", sq);
+			request.setAttribute("randomsum",random);
+			System.out.println(random);
 			request.setAttribute("list", list);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+
+
+	private List<Integer> randomForlist(int size) {
+		Random ra = new Random();
+		List<Integer> ran=new ArrayList<Integer>();
+		for (int i = 0; i < 4; i++) {
+			int c = ra.nextInt(size);
+			if (ran.contains(c)) {
+				i--;
+				continue;
+			}
+			ran.add(c);
+		}
+		return ran;
 	}
 
 

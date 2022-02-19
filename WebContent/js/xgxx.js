@@ -13,12 +13,7 @@ function xgxx()
 	xgxx14()
 	xgxx15()
 	xgxx16()
-	xgxx21()
-	xgxx22()
-	xgxx23()
-	xgxx24()
-	xgxx25()
-	xgxx26()
+
 	
 	var qq=xgxx01()//QQ
 	var email=xgxx03()//邮箱
@@ -32,18 +27,13 @@ function xgxx()
 	var xlremail=xgxx14()//联系人邮箱
 	var dwdz=xgxx15()//单位地址
 	var xzdz=xgxx16()//现居住址
-	var grxh=xgxx21()//个人喜好
-	var zsbz=xgxx22()//自身不足
-	var zwpj=xgxx23()//自我评价
-	var zsys=xgxx24()//自身优势
-	var grry=xgxx25()//个人荣誉
-	var gzjy=xgxx26()//工作经验及感触
+
 	
 	//判断是否就业然后进行非空验证
 	var sfjy = $('input:radio[name="sfjy"]:checked').val();
 	if(sfjy==1)
 	{
-		if((qq==1) && (email==1) && (dwmc==1) && (dwszd==1) && (dwhy==1) && (gzzwlb==1) && (dwlxr==1) && (xlrdh==1) && (xlrsj==1) && (xlremail==1) && (dwdz==1) && (xzdz==1) && (grxh==1) && (zsbz==1) && (zwpj==1) && (zsys==1) && (grry==1) && (gzjy==1) )
+		if((qq==1) && (email==1) && (dwmc==1) && (dwszd==1) && (dwhy==1) && (gzzwlb==1) && (dwlxr==1) && (xlrdh==1) && (xlrsj==1) && (xlremail==1) && (dwdz==1) && (xzdz==1)  )
 		{
 			return true
 		}
@@ -387,132 +377,6 @@ function xgxx16()
 		$("#error16").hide();
 		$("#xgxx-error16").hide();
 		$("#xgxx-success16").show();
-		return 1;
-	}
-}
-//个人喜好
-function xgxx21()
-{
-	var grxh=$("#xgxx21").val();
-	
-	if(!grxh.trim())
-	{
-		$("#error21").html("请填写个人喜好");
-		$("#error21").show();
-		$("#xgxx-error21").show();
-		$("#xgxx-success21").hide();
-		return 2;
-	}
-	else
-	{
-		$("#error21").hide();
-		$("#xgxx-error21").hide();
-		$("#xgxx-success21").show();
-		return 1;
-	}
-}
-//自身有的不足
-function xgxx22()
-{
-	var zsydbz=$("#xgxx22").val();
-	
-	if(!zsydbz.trim())
-	{
-		$("#error22").html("请填写自身有的不足");
-		$("#error22").show();
-		$("#xgxx-error22").show();
-		$("#xgxx-success22").hide();
-		return 2;
-	}
-	else
-	{
-		$("#error22").hide();
-		$("#xgxx-error22").hide();
-		$("#xgxx-success22").show();
-		return 1;
-	}
-}
-//自我评价
-function xgxx23()
-{
-	var zwpj=$("#xgxx23").val();
-	
-	if(!zwpj.trim())
-	{
-		$("#error23").html("请填写自我评价");
-		$("#error23").show();
-		$("#xgxx-error23").show();
-		$("#xgxx-success23").hide();
-		return 2;
-	}
-	else
-	{
-		$("#error23").hide();
-		$("#xgxx-error23").hide();
-		$("#xgxx-success23").show();
-		return 1;
-	}
-}
-//自身优势
-function xgxx24()
-{
-	var zsys=$("#xgxx24").val();
-	
-	if(!zsys.trim())
-	{
-		$("#error24").html("请填写自身优势");
-		$("#error24").show();
-		$("#xgxx-error24").show();
-		$("#xgxx-success24").hide();
-		return 2;
-	}
-	else
-	{
-		$("#error24").hide();
-		$("#xgxx-error24").hide();
-		$("#xgxx-success24").show();
-		return 1;
-	}
-}
-//个人获取的荣誉
-function xgxx25()
-{
-	var grry=$("#xgxx25").val();
-	
-	if(!grry.trim())
-	{
-		$("#error25").html("请填写个人获取的荣誉");
-		$("#error25").show();
-		$("#xgxx-error25").show();
-		$("#xgxx-success25").hide();
-		return 2;
-	}
-	else
-	{
-		$("#error25").hide();
-		$("#xgxx-error25").hide();
-		$("#xgxx-success25").show();
-		return 1;
-	}
-}
-//参加过的工作经验及感触
-function xgxx26()
-{
-	var gzjy=$("#xgxx26").val();
-	
-	if(!gzjy.trim())
-	{
-		$("#error26").html("请填写参加过的工作经验及感触");
-		$("#error26").show();
-		$("#xgxx-error26").show();
-		$("#xgxx-success26").hide();
-		return 2;
-	}
-	else
-	{
-		$("#error26").hide();
-		$("#xgxx-error26").hide();
-		$("#xgxx-success26").show();
 		return 1;
 	}
 }

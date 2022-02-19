@@ -31,10 +31,13 @@ public class IndexService {
 	public List<Map<String, Object>> query(String userid) throws ClassNotFoundException, SQLException {
 		
 		if (userid==null) {
-			return dao.executeQueryForList("SELECT * FROM employment");
+			return dao.executeQueryForList("SELECT * FROM employment,(SELECT eid,SUM(CASE WHEN applystate=1 THEN 1 ELSE 0 END) ap,SUM(CASE WHEN Collectionstate=1 THEN 1 ELSE 0 END) co FROM employmentapply GROUP BY eid) a "
+					+ "where employment.eid=a.eid");
 		}
 		
-		return dao.executeQueryForList("SELECT * FROM employment,employmentapply where employment.eid=employmentapply.eid and employmentapply.UUID=?", new int[]{Types.VARCHAR}, new Object[]{userid});
+		return dao.executeQueryForList("SELECT * FROM employment,employmentapply"
+				+ ",(SELECT eid,SUM(CASE WHEN applystate=1 THEN 1 ELSE 0 END) ap,SUM(CASE WHEN Collectionstate=1 THEN 1 ELSE 0 END) co FROM employmentapply GROUP BY eid) a "
+				+ "where employment.eid=employmentapply.eid and employmentapply.eid=a.eid and  employmentapply.UUID=?", new int[]{Types.VARCHAR}, new Object[]{userid});
 	}
 
 	/**

@@ -501,13 +501,13 @@
                			<h5>热门职业</h5>
                			
                			<table class="table">
-               			<c:forEach items="${list}" var="map" end="4">
+               			<c:forEach items="${randomsum}" var="map" end="4">
                				<tr>
                					<td>
-               					<a href="<%=request.getContextPath() %>/users/index.do?method=details&eid=${map.eid}">
+               					<a href="<%=request.getContextPath() %>/users/index.do?method=details&eid=${list[map].eid}">
                						<div class="row">
                							<div class="col-lg-6 visible-lg-block">
-					  					<h6 class="yc" title="${map.employment_name}">${map.employment_name}</h6>
+					  					<h6 class="yc" title="${list[map].employment_name}">${list[map].employment_name}</h6>
 							  			</div>
 							  			<div class="col-lg-6 visible-lg-block">
 							  				<h6><small>01-02发布</small></h6>
@@ -515,15 +515,15 @@
                						</div>
                						<div class="row">
                							<div class="col-lg-8 col-lg-push-5">
-               								<h6 class="gsname" title="${map.gsname}">${map.gsname}</h6>
+               								<h6 class="gsname" title="${list[map].gsname}">${list[map].gsname}</h6>
                							</div>
                						</div>
                						<div class="row">
                							<div class="col-lg-6">
-               								<h6 class="gsname" style="color: red;">${fn:split(map.salary, ".")[1]=="12"?fn:split(map.salary, ".")[0]:map.salary}${fn:split(map.salary, ".")[1]=="12"?"":"薪"}</h6>
+               								<h6 class="gsname" style="color: red;">${fn:split(list[map].salary, ".")[1]=="12薪"?fn:split(list[map].salary, ".")[0]:list[map].salary}</h6>
                							</div>
                							<div class="col-lg-5">
-               								<h6 class="yc" title="${map.address}">${map.address}</h6>
+               								<h6 class="yc" title="${list[map].address}">${list[map].address}</h6>
                							</div>
                						</div>
                						</a>
